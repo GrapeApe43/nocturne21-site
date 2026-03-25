@@ -5,6 +5,7 @@ on:
     paths:
       - "js/comic_settings.js"
       - "generate-rss.py"
+      - ".github/workflows/publish.yml"
   workflow_dispatch:
 
 jobs:
@@ -32,11 +33,7 @@ jobs:
       - run: python generate-rss.py
 
       - name: Upload rss.xml to Neocities
-
-git add .
-git commit -m "Add automation"
-git push
         run: |
           curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
-          -F "rss.xml=@rss.xml" \
-          https://neocities.org/api/upload
+            -F "rss.xml=@rss.xml" \
+            https://neocities.org/api/upload
