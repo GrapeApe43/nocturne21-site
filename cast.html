@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head align="center">
+  <link rel="icon" href="img/favicon.png">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nocturne 21 | Cast</title>
+
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <script type="text/javascript" language="javascript" src="lytebox/lytebox.js"></script>
+  <link rel="stylesheet" href="lytebox/lytebox.css" type="text/css" media="screen" />
+
+  <style>
+    .n21-cast-wrap {
+      --n21-panel-color: #000;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .n21-cast-layout {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+      max-width: 1000px;
+      margin: 20px auto 0;
+    }
+
+    .n21-cast-tabs {
+  width: 88px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  overflow-x: visible;
+  padding-top: 8px;
+  margin-right: -8px;
+  scrollbar-width: none;
+  position: relative;
+  z-index: 3;
+}
+
+    .n21-cast-tabs::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    .n21-cast-tab {
+      width: 100%;
+      display: block;
+      box-sizing: border-box;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-right: none;
+      border-radius: 14px 0 0 14px;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .n21-cast-tab:hover {
+      transform: translateX(-4px);
+      filter: brightness(1.06);
+    }
+
+   .n21-cast-tab.active {
+  transform: translateX(-6px);
+ 
+  z-index: 4;
+}
+
+.n21-cast-tab.active::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: -10px;
+  width: 12px;
+  height: calc(100% + 4px);
+  background: inherit;
+  z-index: 5;
+}
+
+#characterDisplay.n21-cast-display {
+  flex: 1;
+  min-width: 0;
+  min-height: 620px;
+  border: none !important;
+  outline: none !important;
+  border-left: none !important;
+  border-radius: 12px 12px 12px 12px;
+  background: var(--n21-panel-color) !important;
+  padding: 22px;
+  box-shadow: 0 0 18px rgba(0,0,0,0.2);
+}
+
+    .n21-cast-image-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+    }
+
+    .n21-cast-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .n21-cast-bio {
+      position: absolute;
+      top: 4%;
+      left: 4%;
+      width: 34%;
+      max-width: 300px;
+      padding: 18px 18px 16px 18px;
+      border-radius: 10px;
+      color: #222;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+      border: 1px solid rgba(0,0,0,0.08);
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.94) 0px,
+          rgba(255,255,255,0.94) 27px,
+          rgba(120,180,255,0.35) 28px,
+          rgba(255,255,255,0.94) 29px
+        );
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .n21-cast-bio::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 18px;
+      width: 2px;
+      background: rgba(220, 70, 90, 0.45);
+      border-radius: 2px;
+    }
+
+    .n21-cast-name {
+      margin: 0 0 10px 0;
+      padding-left: 16px;
+      color: #111;
+      line-height: 1.1;
+      font-family: "Lacquer Regular", sans-serif;
+    }
+
+    .n21-cast-text {
+      margin: 0;
+      padding-left: 16px;
+      color: #333;
+      line-height: 2;
+      font-size: 15px;
+      font-family: "Patrick Hand", cursive;
+    }
+.n21-cast-text {
+  color: #222;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+}
+
+
+
+
+    @media (max-width: 800px) {
+      .n21-cast-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .n21-cast-tabs {
+        width: 100%;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        margin-right: 0;
+        padding-top: 0;
+      }
+
+      .n21-cast-tab {
+        width: 70px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        transform: none !important;
+      }
+
+      .n21-cast-tab.active::after {
+        display: none;
+      }
+
+      #characterDisplay.n21-cast-display {
+  min-height: 0;
+  border: none !important;
+  outline: none !important;
+  border-radius: 15px;
+  padding: 14px;
+  background: var(--n21-panel-color) !important;
+}
+
+      .n21-cast-image-wrap {
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .n21-cast-image {
+        width: 100%;
+        height: auto;
+      }
+
+      .n21-cast-bio {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        width: 90%;
+        max-width: none;
+        margin: 12px auto 0 auto;
+      }
+
+    
+  </style>
+</head>
+
+<body align="center" background="img/lily.png" width="100%">
+
+
+<div class="floating-share" id="shareBar">
+  <button class="share-toggle" type="button" onclick="toggleShare(event)">Share</button>
+
+    <a href="/rss.xml" target="_blank" aria-label="RSS">
+      <svg viewBox="0 0 24 24">
+        <circle cx="6" cy="18" r="2"/>
+        <path d="M4 11a9 9 0 0 1 9 9"/>
+        <path d="M4 4a16 16 0 0 1 16 16"/>
+      </svg>
+    </a>
+
+    <a href="https://bsky.app/" target="_blank" aria-label="Bluesky">
+      <img src="img/bluesky.png" alt="Bluesky">
+    </a>
+
+    <a href="#" onclick="copyLink(); alert('Link copied! Paste into Discord ✧'); return false;" aria-label="Discord">
+      <svg viewBox="0 0 24 24">
+        <path d="M20 4.5A19 19 0 0 0 15.5 3l-.3.6a17 17 0 0 0-6.4 0L8.5 3A19 19 0 0 0 4 4.5C1.8 8 1.2 11.4 1.5 14.7c2.5 1.8 4.9 2.9 7.2 3.6l.9-1.3c-.8-.3-1.5-.7-2.2-1.1.2-.2.3-.3.5-.5 4.2 2 8.7 2 12.9 0 .2.2.3.3.5.5-.7.4-1.4.8-2.2 1.1l.9 1.3c2.3-.7 4.7-1.8 7.2-3.6.4-3.8-.7-7.2-2.8-10.2z"/>
+      </svg>
+    </a>
+
+    <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://nocturne21.com" target="_blank" aria-label="Tumblr">
+      <svg viewBox="0 0 24 24">
+        <path d="M10 2v6h4v3h-4v5c0 2 1 3 3 3h1v3h-2c-4 0-6-2-6-6v-5H4V8c3-1 5-3 6-6z"/>
+      </svg>
+    </a>
+
+    <a href="#" onclick="copyLink(); alert('Link copied! Open Instagram to share ✧'); return false;" aria-label="Instagram">
+      <svg viewBox="0 0 24 24">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-1a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+      </svg>
+    </a>
+
+    <a href="https://www.reddit.com/submit?url=https://nocturne21.com&title=Nocturne%2021%20Webcomic" target="_blank" aria-label="Reddit">
+      <svg viewBox="0 0 24 24">
+        <path d="M24 12c0 6.6-5.4 12-12 12S0 18.6 0 12 5.4 0 12 0s12 5.4 12 12zm-5-1.5c0-1-.8-1.8-1.8-1.8-.5 0-1 .2-1.3.6-1.3-.9-3-1.5-4.9-1.6l1-3.1 2.6.6c0 .8.7 1.5 1.5 1.5.8 0 1.5-.7 1.5-1.5S16.9 4 16.1 4c-.6 0-1.2.4-1.4 1l-3-.7c-.3-.1-.6.1-.7.4l-1.2 3.7c-1.9.1-3.6.7-4.9 1.6-.3-.4-.8-.6-1.3-.6-1 0-1.8.8-1.8 1.8 0 .7.4 1.3 1 1.6 0 .2-.1.5-.1.7 0 3.2 3.8 5.8 8.5 5.8s8.5-2.6 8.5-5.8c0-.2 0-.5-.1-.7.6-.3 1-1 1-1.6z"/>
+      </svg>
+    </a>
+
+    <a href="https://twitter.com/intent/tweet?url=https://nocturne21.com&text=I just found this webcomic ✧" target="_blank" aria-label="Twitter/X">
+      <svg viewBox="0 0 24 24">
+        <path d="M18 2h3l-7 8 8 12h-6l-5-8-7 8H1l8-9L2 2h6l4 7 6-7z"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="writeHeader"></div>
+
+  <div class="subPage clearfix" align="left">
+    <div class="n21-cast-wrap">
+      <h1 align="center">CAST</h1>
+      <p>Click on character image to read full profile!</p>
+
+      <div class="n21-cast-layout">
+        <div class="n21-cast-tabs" id="thumbContainer">
+          <img class="n21-cast-tab active" src="img/cast/cast-kai.png" data-index="0" alt="Kai tab">
+          <img class="n21-cast-tab" src="img/cast/cast-kuro.png" data-index="1" alt="Kuro tab">
+          <img class="n21-cast-tab" src="img/cast/cast-yosh.png" data-index="2" alt="Yoshiko tab">
+          <img class="n21-cast-tab" src="img/cast/cast-shin.png" data-index="3" alt="Shingen tab">
+          <img class="n21-cast-tab" src="img/cast/cast-kiri.png" data-index="4" alt="Kiri tab">
+          <img class="n21-cast-tab" src="img/cast/cast-marunin.png" data-index="5" alt="Dream Lady tab">
+          <img class="n21-cast-tab" src="img/cast/cast-riyu.png" data-index="6" alt="Stranger tab">
+        </div>
+
+        <div class="n21-cast-display" id="characterDisplay">
+          <div class="n21-cast-image-wrap">
+            <img class="n21-cast-image" id="charImage" src="img/cast/profile-kai.png" alt="Character profile image">
+
+            <div class="n21-cast-bio" id="charBio">
+              <h2 class="n21-cast-name" id="charName">Kai</h2>
+              <p class="n21-cast-text" id="charText">Loading...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="writeFooter"></div>
+
+  <a href="https://ko-fi.com/nocturne21" target="_blank" class="kofi-fixed">
+    ☕ COFFEE FUND
+  </a>
+
+  <script>
+const characters = [
+  {
+    name: "Kai",
+    image: "img/cast/profile-kai.png",
+    bio: "Kai is a chaotic, sleep-deprived mess who somehow keeps moving forward. Equal parts sarcasm and vulnerability, he deflects with humor even when things get heavy.",
+    color: "rgba(87,108,153,0.72)"   // #576C99
+  },
+  {
+    name: "Kuro",
+    image: "img/cast/profile-kuro.png",
+    bio: "Kuro is more grounded, observant, and often the voice of reason—though not always the voice people want to hear.",
+    color: "rgba(213,142,133,0.72)"  // #D58E85
+  },
+  {
+    name: "Yoshiko",
+    image: "img/cast/profile-yoshiko.png",
+    bio: "Yoshiko is sharp, perceptive, and harder to read than she first appears. She notices more than she lets on.",
+    color: "rgba(97,66,126,0.72)"    // #61427E
+  },
+  {
+    name: "Shingen",
+    image: "img/cast/profile-shingen.png",
+    bio: "Shingen carries authority with him, but there’s always the sense that he knows more than he’s willing to say.",
+    color: "rgba(177,126,54,0.72)"   // #B17E36
+  },
+  {
+    name: "Kiri",
+    image: "img/cast/profile-kiri.png",
+    bio: "Kiri is unpredictable, energetic, and difficult to pin down. He can be disarming one second and unsettling the next.",
+    color: "rgba(84,95,100,0.72)"    // #545F64
+  },
+  {
+    name: "Dream Lady",
+    image: "img/cast/profile-dreamlady.png",
+    bio: "She exists somewhere between dream and nightmare, impossible to fully understand and impossible to ignore.",
+    color: "rgba(160,190,202,0.72)"  // #A0BECA
+  },
+  {
+    name: "Stranger",
+    image: "img/cast/profile-stranger.png",
+    bio: "Not everything is what it seems, and the Stranger feels like the embodiment of that truth.",
+    color: "rgba(253,218,172,0.72)"  // #FDDAAC
+  }
+];
+
+    let currentIndex = 0;
+    const tabs = document.querySelectorAll(".n21-cast-tab");
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => showCharacter(index));
+    });
+
+    function showCharacter(index) {
+      const char = characters[index];
+      const img = document.getElementById("charImage");
+      const bio = document.getElementById("charBio");
+
+      tabs.forEach((tab, i) => {
+        tab.classList.remove("active");
+        tab.style.backgroundColor = characters[i].color;
+      });
+
+      tabs[index].classList.add("active");
+      document.querySelector(".n21-cast-wrap").style.setProperty("--n21-panel-color", char.color);
+
+      img.style.opacity = 0;
+      img.style.transform = "translateX(18px)";
+      bio.style.opacity = 0;
+      bio.style.transform = "translateX(-10px)";
+
+      setTimeout(() => {
+        document.getElementById("charName").textContent = char.name;
+        document.getElementById("charText").textContent = char.bio;
+        img.src = char.image;
+
+// convert rgba to lighter version
+function lightenColor(color) {
+  return color.replace(/rgba?\(([^)]+)\)/, (match, values) => {
+    let [r, g, b, a] = values.split(',').map(v => parseFloat(v));
+    
+    // push toward white
+    r = Math.min(255, r + 80);
+    g = Math.min(255, g + 80);
+    b = Math.min(255, b + 80);
+
+    return `rgba(${r}, ${g}, ${b}, 0.85)`;
+  });
+}
+
+const lightColor = lightenColor(char.color);
+
+bio.style.background = `
+  repeating-linear-gradient(
+    to bottom,
+    ${lightColor} 0px,
+    ${lightColor} 27px,
+    rgba(120,180,255,0.35) 28px,
+    ${lightColor} 29px
+  )
+`;
+
+        img.style.opacity = 1;
+        img.style.transform = "translateX(0)";
+        bio.style.opacity = 1;
+        bio.style.transform = "translateX(0)";
+      }, 180);
+
+      currentIndex = index;
+    }
+
+    document.addEventListener("keydown", function(e) {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        showCharacter((currentIndex + 1) % characters.length);
+      }
+
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        showCharacter((currentIndex - 1 + characters.length) % characters.length);
+      }
+    });
+
+    function toggleShare(e) {
+      e.preventDefault();
+      document.getElementById("shareBar").classList.toggle("open");
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText("https://nocturne21.com");
+    }
+
+    window.addEventListener("load", () => {
+      showCharacter(0);
+    });
+  </script>
+  <script src="js/sharebar.js"></script>
+  <script src="js/comic_header.js" defer></script>
+  <script src="js/comic_footer.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

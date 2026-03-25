@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head align="center">
+  <link rel="icon" href="img/favicon.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nocturne 21 | Gallery</title>
+
+    <!-- style -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Cherry Cream Soda -->
+<link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
+    <!-- Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+     
+
+<script type="text/javascript" language="javascript" src="lytebox/lytebox.js"></script>
+<link rel="stylesheet" href="lytebox/lytebox.css" type="text/css" media="screen" />
+
+
+    <style>
+        body {
+            text-align: center;
+        }
+        
+        h2 {
+            color: green;
+        }
+        
+        .gallery {
+          
+        }
+        
+        .gallery img {
+            width: 200px;
+            transition: 1s;
+            padding: 5px;
+        }
+        
+        .gallery img:hover {
+            filter: drop-shadow(4px 4px 6px #12A1FF);
+            transform: scale(1.1);
+        }
+    </style>  
+    
+    
+</head>
+<body align="center" background="img/lily.png" max-width="100%">
+
+
+<div class="floating-share" id="shareBar">
+  <button class="share-toggle" type="button" onclick="toggleShare(event)">Share</button>
+
+   <!-- RSS -->
+  <a href="/rss.xml" target="_blank" data-platform="rss">
+    <svg viewBox="0 0 24 24">
+      <circle cx="6" cy="18" r="2"/>
+      <path d="M4 11a9 9 0 0 1 9 9"/>
+      <path d="M4 4a16 16 0 0 1 16 16"/>
+    </svg>
+  </a>
+ 
+ 
+  <!-- Bluesky -->
+<a href="https://bsky.app/" target="_blank" data-platform="bluesky">
+  <img src="img/bluesky.png" alt="Bluesky">
+</a>
+
+
+<!--Discord -->
+
+<a href="#" onclick="copyLink(); alert('Link copied! Paste into Discord ✧'); return false;" data-platform="discord">
+<svg viewBox="0 0 24 24">
+  <path d="M20 4.5A19 19 0 0 0 15.5 3l-.3.6a17 17 0 0 0-6.4 0L8.5 3A19 19 0 0 0 4 4.5C1.8 8 1.2 11.4 1.5 14.7c2.5 1.8 4.9 2.9 7.2 3.6l.9-1.3c-.8-.3-1.5-.7-2.2-1.1.2-.2.3-.3.5-.5 4.2 2 8.7 2 12.9 0 .2.2.3.3.5.5-.7.4-1.4.8-2.2 1.1l.9 1.3c2.3-.7 4.7-1.8 7.2-3.6.4-3.8-.7-7.2-2.8-10.2z"/>
+</svg>
+  </a>
+
+  <!-- Tumblr -->
+  <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://nocturne21.com"
+     target="_blank" data-platform="tumblr">
+    <svg viewBox="0 0 24 24"><path d="M10 2v6h4v3h-4v5c0 2 1 3 3 3h1v3h-2c-4 0-6-2-6-6v-5H4V8c3-1 5-3 6-6z"/></svg>
+  </a>
+
+<!-- Instagram -->
+<a href="#" onclick="copyLink(); alert('Link copied! Open Instagram to share ✧'); return false;" data-platform="instagram">
+  <!-- svg --><svg viewBox="0 0 24 24">
+  <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-1a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+</svg>
+</a>
+
+  <!-- Reddit -->
+<a href="https://www.reddit.com/submit?url=https://nocturne21.com&title=Nocturne%2021%20Webcomic"
+   target="_blank" data-platform="reddit">
+   <svg viewBox="0 0 24 24">
+  <path d="M24 12c0 6.6-5.4 12-12 12S0 18.6 0 12 5.4 0 12 0s12 5.4 12 12zm-5-1.5c0-1-.8-1.8-1.8-1.8-.5 0-1 .2-1.3.6-1.3-.9-3-1.5-4.9-1.6l1-3.1 2.6.6c0 .8.7 1.5 1.5 1.5.8 0 1.5-.7 1.5-1.5S16.9 4 16.1 4c-.6 0-1.2.4-1.4 1l-3-.7c-.3-.1-.6.1-.7.4l-1.2 3.7c-1.9.1-3.6.7-4.9 1.6-.3-.4-.8-.6-1.3-.6-1 0-1.8.8-1.8 1.8 0 .7.4 1.3 1 1.6 0 .2-.1.5-.1.7 0 3.2 3.8 5.8 8.5 5.8s8.5-2.6 8.5-5.8c0-.2 0-.5-.1-.7.6-.3 1-1 1-1.6z"/>
+</svg>
+  </a>
+  
+    <!-- Twitter/X -->
+  <a href="https://twitter.com/intent/tweet?url=https://nocturne21.com&text=I just found this webcomic ✧"
+     target="_blank" data-platform="twitter">
+    <svg viewBox="0 0 24 24"><path d="M18 2h3l-7 8 8 12h-6l-5-8-7 8H1l8-9L2 2h6l4 7 6-7z"/></svg>
+  </a>
+
+</div>
+
+
+
+
+    <!-- header -->
+    <div class="writeHeader"></div>
+
+<div class="subPage clearfix" align="right">
+    
+    <div>
+        <h1 align="center" >GALLERY</h1>
+    </div>
+    
+    
+    
+<div id="tablediv" class="gallery" align="center" max-width="100%">
+<h3>Nocturne Illustrations</h3>
+<table align="center" border="0" cellpadding="3" cellspacing="3">
+	<tbody>
+	
+		<tr>
+			<td><a href="/img/gallery/N21-cover.jpg" class="lytebox" data-lyte-options=“group:gallery1” data-description="Volume One Cover: Robot Boy"><img src="/img/gallery/N21-cover.jpg" style="width: 200px;"/></a></td>
+			<td><a href="/img/gallery/part2-teaser.jpg" class="lytebox" data-lyte-options=“group:gallery1” data-description="Chapter 5-7 Teaser: Rough Day"><img src="/img/gallery/part2-teaser.jpg" style="width: 200px;"/></a></td>
+			<td><a href="/img/gallery/Kai_rain.jpg" class="lytebox" data-lyte-options=“group:gallery1” data-description="Chapter One Endpage"><img src="/img/gallery/Kai_rain.jpg" style="width: 200px;"/></a></td>
+			
+		</tr>
+		<tr>
+				<td><a href="/img/gallery/Yoshiko-illustration.jpg" class="lytebox" data-lyte-options=“group:gallery1” data-description="Chapter Two Endpage"><img src="/img/gallery/Yoshiko-illustration.jpg" style="width: 200px;"/></a></td>
+				<td><a href="/img/gallery/Kai-illustration2.jpg" class="lytebox" data-lyte-options=“group:gallery1” data-description="Chapter Three Endpage"><img src="/img/gallery/Kai-illustration2.jpg" style="width: 200px;"/></a></td>
+		    <td><a href="/img/gallery/riyu-endpage.jpg" class="lytebox" data-lyte-options=“group:gallery1” data-description="Chapter Five Endpage"><img src="/img/gallery/riyu-endpage.jpg" style="width: 200px;"/></a></td>
+    <tr>
+			<td><a href="/img/gallery/Gion1984.jpg" class="lytebox" data-lyte-options=“group:gallery1” data-description="Good Ole Days in Gion"><img src="/img/gallery/Gion1984.jpg" style="width: 200px;"/></a></td>
+				<td><a href="/img/gallery/Shimizu-family-picture.jpg" class="lytebox" data-lyte-options=“group:gallery1” data-description="Shimizu Family Portrait"><img src="/img/gallery/Shimizu-family-picture.jpg" style="width: 200px;"/></a></td>
+		    <td><a href="/img/gallery/Sleep.jpg" class="lytebox" data-lyte-options=“group:gallery1” data-description="Chapter Four Illustration: Safe"><img src="/img/gallery/Sleep.jpg" style="width: 200px;"/></a></td>
+		</tr>
+		<tr>
+			<td><a href="/img/gallery/Nightmare 2.jpg" class="lytebox" data-lyte-options=“group:gallery1” data-description="The Nightmare"><img src="/img/gallery/Nightmare 2.jpg" style="width: 200px;"/></a></td>
+			<td><a href="/img/gallery/dreamscape.jpg" class="lytebox" data-lyte-options=“group:gallery1” data-description="Mindscape"><img src="/img/gallery/dreamscape.jpg" style="width: 200px;"/></a></td>
+		</tr>
+	</tbody>
+</table><br><br>
+</div>
+
+<div align="top">
+<h3>Nocturne 21 Specials</h3>
+<h4>Crossover Art</h4>
+<a href="/img/gallery/crossover-fanart.jpg" class="lytebox" data-lyte-options=“group:gallery2” data-description="Nocturne 21, Here I Lie Awake, The Angel Professor crossover fan art"><img src="/img/gallery/crossover-fanart.jpg" style="height: 200px;"/></a>
+<a href="/img/gallery/New-Years-Swap.jpg" class="lytebox" data-lyte-options=“group:gallery2” data-description="New Year's Costume Exchange featuring Kai & Yosh sporting Isadore's wardrobe, character created by Hantu-Ayam"><img src="/img/gallery/New-Years-Swap.jpg" style="height: 200px;"/></a>
+<a href="/img/gallery/Imp-kai.jpg" class="lytebox" data-lyte-options=“group:gallery2” data-description="Imp Kai in the style of Wirecat's The Imp and her Knight"><img src="/img/gallery/Imp-kai.jpg" style="height: 200px;"/></a>
+<a href="/img/gallery/cool-girl-24-7.jpg" class="lytebox" data-lyte-options=“group:gallery2” data-description="Crossover character between Nocturne 21 and D-Wrek's Twenty-Four/Seven"><img src="/img/gallery/cool-girl-24-7.jpg" style="height: 200px;"/></a>
+
+<h4>April Fool's Day</h4>
+<a href="/img/gallery/Aprilfoolsday.jpg" class="lytebox" data-lyte-options=“group:gallery2” data-description="April Fool's Day 2023: I pranked that was redoing Nocturne 21 for the 6th time and returning to the the Shoujo manga style"><img src="/img/gallery/Aprilfoolsday.jpg" style="height: 250px;"/></a>
+<a href="/img/gallery/April-fools-2024.jpg" class="lytebox" data-lyte-options=“group:gallery2” data-description="April Fool's Day 2024: The classic 'it was all a dream prank'"><img src="/img/gallery/April-fools-2024-1.jpg" style="height: 250px;"/></a>
+<h4>Halloween</h4>
+<a href="/img/gallery/N21-Halloween.jpg" class="lytebox" data-lyte-options=“group:gallery2” data-description="Halloween Hospital Shenanigans"><img src="/img/gallery/N21-Halloween.jpg" style="height: 180px;"/></a>
+<h4>Christmas</h4>
+<a href="/img/gallery/N21-christmascard.jpg" class="lytebox" data-lyte-options=“group:gallery2” data-description="Christmas 2022"><img src="/img/gallery/N21-christmascard.jpg" style="height: 250px;"/></a>
+<a href="/img/gallery/Christmas2023.jpg" class="lytebox" data-lyte-options=“group:gallery2” data-description="Christmas 2023"><img src="/img/gallery/Christmas2023.jpg" style="height: 250px;"/></a>
+</div>
+
+</div>
+
+
+
+        
+       
+    
+   
+  
+    
+    <!-- footer -->
+    <div class="writeFooter"></div>
+    
+
+<a href="https://ko-fi.com/nocturne21" target="_blank" class="kofi-fixed">
+  ☕ COFFEE FUND
+</a>
+
+
+<script>
+  document.querySelectorAll("img").forEach(img => {
+    img.loading = "lazy";
+  });
+</script>
+
+
+<!-- at the end of this page we only call the header and footer scripts, because we don't need use any functions from the other scripts. -->
+<script src="js/comic_header.js" defer></script>
+<script src="js/comic_footer.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,688 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+  HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+
+body, div, main, section, article {
+  box-sizing: border-box; 
+}
+
+/* universal background color */
+body {
+  background-repeat: repeat-y;
+  background-size: 100%;
+  width: 100%;
+  background-position: top center; 
+  background-attachment: scroll;
+  background-color: #000000;
+
+}
+
+
+
+/* header image */
+header img {
+  width: 1000px;
+  max-width: 100%;}
+  
+header img {
+  background-color:#12A1FF;
+  width: 100%;
+}
+
+
+
+/* clearfix hack to prevent image overflow. check out the W3Schools page on it. */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.img {
+  width: 100%
+  }
+/*FONTS*/
+
+/* header font */
+#showComic, header, h1, h2, h3, h4, h5 {
+  font-family: "Lacquer Regular"; color: #ffffff;
+}
+
+h1 {
+  color: #EE4757;
+  }
+
+h2 {
+  color: #EE4757;
+  }
+
+
+
+
+
+
+/* body font */
+.subPage p, footer, #authorNotes, .archiveTable {
+  font-family: 'Open Sans', sans-serif;
+  font-size: large; color: #ffffff;
+
+}
+
+/* STYLING FOR SUBPAGES (about, characters, etc) */
+
+/*general*/
+
+#music {
+  background-color: #161528;
+
+  }
+
+.subPage {
+  width: 900px;
+  max-width: 90%;
+  float: inherit;
+  background-color: #000000;
+  opacity: 1.0;
+  outline: 4px solid #12A1FF;
+  border-radius: 15px;
+    box-shadow: -15px 15px 15px #012842;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 0px 12px 12px;
+}
+
+.subPage:not(.archivePage) {
+  text-align: center;
+  
+}
+
+/* for pictures displayed to the left */
+.leftPic {
+  float:right;
+  margin-left:20px;
+}
+
+/* for pictures displayed to the left */
+.rightPic {
+
+  float:left;
+  margin-left:20px;
+}
+
+.reads ul {
+  outline: 2px #12A1FF;
+  color: #fff;
+  
+  }
+
+#reads li{
+  list-style-type: cjk-ideographic;
+  font-family: 'open sans', sans-serif;
+  }
+
+#reads a{
+  color: #EE4757;
+  }
+
+#reads a:hover{
+  color: #27FFFF;
+  }
+
+
+#tablediv table {
+  max-width:100%;
+
+  }
+
+
+#tablediv img{
+max-width:24vw;}
+
+
+#support table {
+  
+  width: 100%;
+  
+  }
+
+.socialicons {
+  max-width: 100%;
+  overflow: none;
+  }
+
+
+.socialicons img {
+  width: 35px;
+  background-color: #000;
+  }
+
+@media only {
+  
+  .socialicons img {
+    width: 25px;
+    height: 25px;
+    }
+  
+  }
+
+
+iframe {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16/9;
+   }
+
+
+/* specific to Characters */
+.charTable, .charTable td { 
+  width: 100%;
+}
+
+.aboutTable, .aboutTable td {
+  width: 100%;
+  }
+
+/* link colors */
+a {
+      color: #fff;
+    }
+
+a:hover {
+      color: #27FFFF;
+    }
+
+/* HEADER */
+header #nav {
+  background-color: #12A1FF;
+  outline: 4px solid #12A1FF;
+  font-size: 25px;
+  width: 100%;
+  margin: auto;
+}
+
+/* HOMEPa
+
+/* style nav button images */
+.comicNav {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0px;
+}
+.comicNav img {
+  width: 80px;
+  max-width: 98%;
+  padding-right: 30px;
+}
+
+border {
+  box-shadow: 10px 10px 5px darkblue;
+}
+
+/* style comic page image */
+.comicPage img {
+  width: 900px;
+  max-width: 98%;
+  outline: 3px solid #000000;
+}
+
+/* style author notes */
+#authorNotes {
+  background-color:#000000;
+  outline: 3px solid #12A1FF;
+  border-radius: 15px;
+   box-shadow: -15px 15px 15px #012842;
+  margin: auto;
+  padding: 10px;
+  padding-top: 0px;
+  width: 900px;
+  max-width: 98%;
+}
+
+ ul.horizontal-list { 
+      list-style-type: none; 
+      margin: 0; 
+      padding: 0; 
+      display: flex; 
+      width: 100%;
+    } 
+  
+    ul.horizontal-list li { 
+      margin-right: 10px; 
+    } 
+    
+    
+
+#cusdis_thread {
+    width: 100%;
+    max-width: 700px ;
+    margin: 10px auto ; /* Reduced margin to tighten space */
+    padding: 0;
+    overflow: hidden; 
+}
+
+#cusdis_thread iframe {
+    width: 100% ;
+    border: none ;
+    /* Remove any fixed height or min-height here */
+}
+
+
+/* ARCHIVE PAGE */
+
+/* style table in which archive is displayed */
+.archiveTable {
+  width: 90%;
+  border-collapse:collapse;
+}
+
+/* style archive table cells */
+.archiveTable td {
+  padding: 3px;
+  vertical-align: central;
+  
+}
+
+/* style table cell in which page title is displayed */
+.archiveCellTitle:not(.leftAlignTableText) {
+  max-width: 300px;
+  text-align: center;
+}
+
+.archiveCellDate {
+  text-align: right;
+  min-width: 120px;
+}
+
+.archiveCellNum {
+  text-align: center;
+  min-width: 30px;
+}
+
+/* style the thumbnails on the archive page */
+.archiveCellThumb {
+    width: 500px;
+    max-width: 60px;
+}
+.archiveCellThumb img{
+    max-width: 75%;
+  }
+
+/* for left aligning the text in a table cell */
+.leftAlignTableText td {
+  text-align: left;
+}
+
+/* highlight a table row and make pointer into hand when moused over */
+.archiveRow:hover {
+  background-color: #2ED1FF;
+  cursor: pointer;
+}
+
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  left: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #12A1FF; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+
+
+
+
+/* FOOTER */
+footer {
+
+  color: #EE4757;
+  margin-top: 12px;
+  margin-bottom: 15px;
+  float: left;
+  width: 100%;
+  font-size: 12px;
+}
+
+footer p {
+  margin: auto;
+}
+
+footer a {
+  color: #EE4757
+}
+
+footer a:hover {
+  color: #27ffff
+}
+
+/* take away margins from the edges of the screen */
+html, body {
+  margin: 0;
+}
+
+
+
+ /* --- Cusdis Comment Section Styling --- */
+
+.share-bar {
+  text-align: center;
+  margin-top: 25px;
+  padding: 15px;
+
+  border: 1px solid #00e5ff;
+  border-radius: 12px;
+
+  box-shadow: 0 0 10px #00e5ff33;
+  background: #000;
+}
+
+.share-text {
+  display: block;
+  margin-bottom: 10px;
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+
+.share-bar a {
+  color: #00e5ff;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.share-bar a:hover {
+  text-shadow: 0 0 8px #00e5ff;
+}
+
+
+
+
+/* BLOG */
+
+.blog-title {
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+  letter-spacing: 2px;
+}
+
+.blog-container {
+  display: flex;
+  max-width: 1000px;
+  margin: 40px auto;
+  gap: 20px;
+}
+
+/* Sidebar */
+.blog-list {
+  width: 200px;
+  padding: 15px;
+
+  border: 1px solid #00e5ff;
+  border-radius: 12px;
+
+  box-shadow: 0 0 10px #00e5ff33;
+  background: #000;
+}
+
+.blog-list a {
+  display: block;
+  color: #00e5ff;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.blog-list a:hover {
+  text-shadow: 0 0 8px #00e5ff;
+}
+
+/* Post content */
+.blog-content {
+  flex: 1;
+  padding: 25px;
+
+  border: 2px solid #00e5ff;
+  border-radius: 18px;
+
+  box-shadow:
+    0 0 10px #00e5ff,
+    0 0 25px #00e5ff33;
+
+  background: #000;
+}
+
+.blog-content h2 {
+  margin-top: 0;
+}
+
+.date {
+  font-size: 0.8em;
+  opacity: 0.6;
+  margin-bottom: 15px;
+}
+
+/* Images */
+.blog-img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Navigation */
+.blog-nav {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.blog-nav a {
+  color: #00e5ff;
+  text-decoration: none;
+}
+
+.blog-nav a:hover {
+  text-shadow: 0 0 8px #00e5ff;
+}
+
+.search-box {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 0px;
+
+  background: #000;
+  border: 1px solid #00e5ff;
+  color: #fff;
+}
+
+
+
+
+
+/* =========================
+   GLOBAL SHARE BAR + KOFI
+========================= */
+
+/* desktop */
+.floating-share {
+  position: fixed;
+  right: 20px;
+  top: 75%;
+  transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 10px;
+  background: #000;
+  border: 2px solid #12A1FF;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #12A1FF55;
+  z-index: 9999;
+}
+
+.floating-share a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid #12A1FF;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.floating-share a:hover {
+  background: #12A1FF;
+  transform: scale(1.1);
+}
+
+.floating-share svg {
+  width: 18px;
+  height: 18px;
+  fill: #12A1FF;
+  overflow: visible;
+  transition: 0.2s;
+}
+
+.floating-share a:hover svg {
+  fill: #000;
+}
+
+/* bluesky png */
+.floating-share img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+  transition: 0.2s;
+
+  filter: brightness(0) saturate(100%)
+    invert(52%) sepia(95%) saturate(2688%)
+    hue-rotate(180deg) brightness(101%) contrast(103%);
+}
+
+.floating-share a:hover img {
+  filter: brightness(0);
+}
+
+/* mobile button hidden on desktop */
+.share-toggle {
+  display: none;
+}
+
+/* kofi on the left */
+.kofi-fixed {
+  position: fixed;
+  left: 20px;
+  right: auto;
+  bottom: 20px;
+  z-index: 9998;
+
+  background: #ff5f5f;
+  color: #fff;
+  font-family: "Lacquer Regular", sans-serif;
+  padding: 12px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 0 10px #ff5f5f88;
+  transition: 0.2s;
+}
+
+.kofi-fixed:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff5f5fcc;
+}
+
+/* mobile */
+@media (max-width: 800px) {
+  .floating-share {
+    top: auto;
+    bottom: 90px;
+    right: 20px;
+    left: auto;
+    transform: none;
+
+    width: 60px;
+    height: 60px;
+    padding: 0;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .floating-share a {
+    display: none !important;
+  }
+
+  .floating-share.open {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border-radius: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .floating-share.open a {
+    display: flex !important;
+  }
+
+  .share-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    background: none;
+    color: #12A1FF;
+    font-size: 12px;
+    font-family: "Open Sans", sans-serif;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
+
+  .floating-share.open .share-toggle {
+    width: auto;
+    height: 32px;
+    padding: 0 8px 6px 8px;
+  }
+
+  .kofi-fixed {
+    left: 20px;
+    bottom: 20px;
+  }
+}
+
+
+
+
+
+
+
