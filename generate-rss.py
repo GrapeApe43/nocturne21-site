@@ -6,15 +6,15 @@ from datetime import datetime, timezone
 from email.utils import format_datetime
 import pytumblr
 
-WEBHOOK_URL = "https://discord.com/api/webhooks/1486109531963658261/Qh7pEq9anvUCVjRp2zOpRoc3HbnlHauekZIXvbkzGAEXA8ZS7NypzzRkrQpkIK8FgFPd"
-LAST_POST_FILE = ".last_discord_post.txt"
-BLUESKY_HANDLE = "grape-ape.bsky.social"
-BLUESKY_APP_PASSWORD = "Zythos13!"
 
-TUMBLR_CONSUMER_KEY = "wGJ9ZOaKsB1EMlMO67YmSgE4kRQSGZO83bfFloH5T131JyTlut"
-TUMBLR_CONSUMER_SECRET = "h5rlk8ZfIHNvXQiwvgiJfQa5CYEOQNjAZDcBfbQ0yChPXeYIzK"
-TUMBLR_OAUTH_TOKEN = "PbbOXP8l516DzT8CqTyS8fPm8b2vFPKkieSfroQDJFrYEBLZyE"
-TUMBLR_OAUTH_SECRET = "XXsyPuXVw04HiJTCUorpKIMeBtqbI4MgMso6mxP3z8W2gcX1GR"
+WEBHOOK_URL = os.environ["WEBHOOK_URL"]
+BLUESKY_HANDLE = os.environ["BLUESKY_HANDLE"]
+BLUESKY_APP_PASSWORD = os.environ["BLUESKY_APP_PASSWORD"]
+
+TUMBLR_CONSUMER_KEY = os.environ["TUMBLR_CONSUMER_KEY"]
+TUMBLR_CONSUMER_SECRET = os.environ["TUMBLR_CONSUMER_SECRET"]
+TUMBLR_OAUTH_TOKEN = os.environ["TUMBLR_OAUTH_TOKEN"]
+TUMBLR_OAUTH_SECRET = os.environ["TUMBLR_OAUTH_SECRET"]
 
 TUMBLR_BLOG = "nocturne-21.tumblr.com"
 
