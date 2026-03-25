@@ -17,6 +17,7 @@ TUMBLR_OAUTH_TOKEN = os.environ["TUMBLR_OAUTH_TOKEN"]
 TUMBLR_OAUTH_SECRET = os.environ["TUMBLR_OAUTH_SECRET"]
 
 TUMBLR_BLOG = "nocturne-21.tumblr.com"
+LAST_POST_FILE = ".last_discord_post.txt"
 
 
 SITE_URL = "https://nocturne21.com"
