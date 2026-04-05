@@ -2,12 +2,6 @@ name: publish
 
 on:
   push:
-    paths:
-      - "js/comic_settings.js"
-      - "generate-rss.py"
-      - "n21-journal-data.js"
-      - "publish-journal.py"
-      - ".github/workflows/publish.yml"
   workflow_dispatch:
 
 jobs:
@@ -17,6 +11,8 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -47,16 +43,62 @@ jobs:
           TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
           TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
-          TUMBLR_BLOG: ${{ secrets.TUMBLR_BLOG }}
 
-      - name: Upload rss.xml to Neocities
+      - name: Collect changed files for Neocities
+        id: changed
+        shell: bash
         run: |
-          curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
-          -F "rss.xml=@rss.xml" \
-          https://neocities.org/api/upload
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            BEFORE="$(git rev-parse HEAD^ 2>/dev/null || true)"
+            AFTER="$(git rev-parse HEAD)"
+          else
+            BEFORE="${{ github.event.before }}"
+            AFTER="${{ github.sha }}"
+          fi
 
-      - name: Upload journal-rss.xml to Neocities
+          if [ -n "$BEFORE" ]; then
+            CHANGED="$(git diff --name-only "$BEFORE" "$AFTER")"
+          else
+            CHANGED="$(git diff-tree --no-commit-id --name-only -r HEAD)"
+          fi
+
+          {
+            echo "$CHANGED"
+            echo "rss.xml"
+            echo "journal-rss.xml"
+          } | sort -u > all_changed.txt
+
+          > deploy_files.txt
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            [ ! -f "$file" ] && continue
+
+            case "$file" in
+              .github/*|*.py|*.yml|*.yaml|README*|LICENSE*|.gitignore|.last_* )
+                continue
+                ;;
+              *)
+                echo "$file" >> deploy_files.txt
+                ;;
+            esac
+          done < all_changed.txt
+
+          echo "Files to upload:"
+          cat deploy_files.txt || true
+
+      - name: Upload changed files to Neocities
+        shell: bash
         run: |
+          if [ ! -s deploy_files.txt ]; then
+            echo "No deployable files changed."
+            exit 0
+          fi
+
+          args=()
+          while IFS= read -r file; do
+            args+=(-F "$file=@$file")
+          done < deploy_files.txt
+
           curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
-          -F "journal-rss.xml=@journal-rss.xml" \
-          https://neocities.org/api/upload
+            "${args[@]}" \
+            https://neocities.org/api/upload
