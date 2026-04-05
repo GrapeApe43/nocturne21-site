@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="img/favicon.png">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nocturne 21 | Journal Entry</title>
+
+  <!-- style -->
+  <link href="css/style.css?v=7011" rel="stylesheet" type="text/css" media="all">
+  <link href="css/n21-journal-clean.css?v=2" rel="stylesheet" type="text/css" media="all">
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body class="page-box-gap" align="center" background="img/lily.png" max-width="100%">
+
+  <!-- header -->
+  <div class="writeHeader"></div>
+
+  <div class="subPage clearfix">
+    <div class="n21journal-entry-wrap">
+
+      <a href="n21-journal" class="n21journal-backlink">← Back to Journal</a>
+
+      <article class="n21journal-entry-article">
+        <h1 id="entry-title" class="n21journal-entry-title">Loading entry...</h1>
+        <p id="entry-date" class="n21journal-entry-date"></p>
+        <img id="entry-thumb" class="n21journal-entry-thumb" alt="" style="display:none;">
+        <div id="entry-content" class="n21journal-entry-body"></div>
+        <div id="entry-comic-link"></div>
+        <div id="entry-patreon-box"></div>
+      </article>
+
+<div id="commentsWrap" class="comments-shell"></div>
+
+    </div>
+  </div>
+
+  <!-- journal data -->
+  <script src="n21-journal-data.js?v=9011"></script>
+
+  <!-- entry render -->
+  <script>
+    function formatDate(dateString) {
+      const date = new Date(dateString + "T00:00:00");
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
+
+    function getQueryParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+
+    function findPostById(id) {
+  if (!Array.isArray(N21_JOURNAL_POSTS) || !id) return null;
+  return N21_JOURNAL_POSTS.find(post =>
+    post.id &&
+    post.id.trim().toLowerCase() === id.trim().toLowerCase()
+  ) || null;
+}
+
+    function renderPost() {
+      const entryTitle = document.getElementById("entry-title");
+      const entryDate = document.getElementById("entry-date");
+      const entryThumb = document.getElementById("entry-thumb");
+      const entryContent = document.getElementById("entry-content");
+
+      const postId = getQueryParam("id");
+
+      if (!postId) {
+        entryTitle.textContent = "Entry not found";
+        entryDate.textContent = "";
+        entryContent.innerHTML = "<p>No journal entry ID was provided.</p>";
+        document.title = "Nocturne 21 | Entry Not Found";
+        return null;
+      }
+
+      const post = findPostById(postId);
+
+      if (!post) {
+        entryTitle.textContent = "Entry not found";
+        entryDate.textContent = "";
+        entryContent.innerHTML = "<p>Sorry, that journal entry could not be found.</p>";
+        document.title = "Nocturne 21 | Entry Not Found";
+        return null;
+      }
+
+      entryTitle.textContent = post.title;
+      entryDate.textContent = formatDate(post.date);
+      entryContent.innerHTML = post.content || "";
+      document.title = `Nocturne 21 | ${post.title}`;
+      
+      const entryComicLink = document.getElementById("entry-comic-link");
+
+if (entryComicLink) {
+  if (post.comicPage) {
+    entryComicLink.innerHTML = `
+      <div class="entry-comic-link-box">
+        <p class="entry-comic-link-label">Related Comic Update</p>
+        <a class="entry-comic-link-button" href="/?pg=${post.comicPage}">
+          Read Comic Page ${post.comicPage}
+        </a>
+      </div>
+    `;
+  } else {
+    entryComicLink.innerHTML = "";
+  }
+}
+const patreonBox = document.getElementById("entry-patreon-box");
+
+if (patreonBox) {
+  const tags = Array.isArray(post.tags) ? post.tags : [];
+  const showPatreon = post.showPatreon !== false;
+
+  if (!showPatreon) {
+    patreonBox.innerHTML = "";
+  } else {
+    let message = "If you'd like to support Nocturne 21 and help me keep creating, you can support the comic on Patreon.";
+
+    if (tags.includes("comic") || tags.includes("update")) {
+      message = "Want to support new pages, early looks, and behind-the-scenes comic updates? Patreon is the best place to do that.";
+    } else if (tags.includes("process") || tags.includes("art")) {
+      message = "If you enjoy the behind-the-scenes art process, sketches, and extra notes, Patreon is where I share more of that kind of work.";
+    } else if (tags.includes("personal") || tags.includes("journal")) {
+      message = "If you’d like to support Nocturne 21 and the work that goes into building its world, Patreon helps me keep the project going.";
+    }
+
+    patreonBox.innerHTML = `
+      <div class="entry-patreon-panel">
+        <p class="entry-patreon-kicker">Support Nocturne 21</p>
+        <p class="entry-patreon-text">${message}</p>
+        <a class="entry-patreon-button" href="https://patreon.com/nocturne21" target="_blank" rel="noopener">
+          Visit Patreon
+        </a>
+            <p class="entry-patreon-subtle">
+      Prefer a one-time tip? <a href="https://ko-fi.com/nocturne21" target="_blank" rel="noopener">Visit Ko-fi</a>
+    </p>
+      </div>
+    `;
+  }
+}
+      if (post.thumb && post.thumb.trim()) {
+        entryThumb.src = post.thumb;
+        entryThumb.alt = post.title;
+        entryThumb.style.display = "block";
+      } else {
+        entryThumb.style.display = "none";
+      }
+
+      return postId;
+    }
+
+    const currentPostId = renderPost();
+  </script>
+
+  <!-- CommentBox library -->
+  <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+
+  <!-- CommentBox render -->
+  <script>
+    function renderJournalCommentBox() {
+      const commentWrap = document.getElementById("commentsWrap");
+      if (!commentWrap || !currentPostId) return;
+
+      commentWrap.innerHTML = `
+        <h2 class="comments-title">Join the Conversation</h2>
+        <p class="comment-prompt">What did you think of this journal entry? 👀</p>
+        <div class="commentbox"></div>
+      `;
+
+      if (typeof commentBox === "function") {
+        commentBox("5725326164361216-proj", {
+          defaultBoxId: "n21-journal-" + currentPostId,
+          backgroundColor: "#111827",
+          textColor: "#e8ecf4",
+          subtextColor: "#b8c2d1"
+        });
+      }
+    }
+
+    renderJournalCommentBox();
+  </script>
+
+  <!-- Ko-fi -->
+  <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+  <script>
+    kofiWidgetOverlay.draw('nocturne21', {
+      'type': 'floating-chat',
+      'floating-chat.donateButton.text': 'Coffee',
+      'floating-chat.donateButton.background-color': '#ff5f5f',
+      'floating-chat.donateButton.text-color': '#fff'
+    });
+  </script>
+
+  <!-- footer -->
+  <div class="writeFooter"></div>
+
+  <script>
+    document.querySelectorAll("img").forEach(img => {
+      img.loading = "lazy";
+    });
+  </script>
+
+  <script src="js/comic_header.js" defer></script>
+  <script src="js/comic_footer.js" defer></script>
+</body>
+</html>
