@@ -3,6 +3,10 @@ name: publish
 permissions:
   contents: write
 
+concurrency:
+  group: publish-main
+  cancel-in-progress: false
+
 on:
   push:
     paths:
@@ -53,15 +57,19 @@ jobs:
           TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
 
-      # 🔥 THIS IS THE FIX FOR DISCORD SPAM
       - name: Save journal tracker to repo
         run: |
           if [ -f .last_journal_post.txt ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
+
             git add .last_journal_post.txt
-            git diff --cached --quiet || git commit -m "Update journal tracker"
-            git push
+
+            if ! git diff --cached --quiet; then
+              git commit -m "Update journal tracker"
+              git pull --rebase origin main
+              git push origin main
+            fi
           fi
 
       - name: Upload rss.xml to Neocities
