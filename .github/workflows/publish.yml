@@ -2,6 +2,12 @@ name: publish
 
 on:
   push:
+    paths:
+      - "js/comic_settings.js"
+      - "generate-rss.py"
+      - "n21-journal-data.js"
+      - "publish-journal.py"
+      - ".github/workflows/publish.yml"
   workflow_dispatch:
 
 jobs:
@@ -22,7 +28,7 @@ jobs:
       - name: Install Python dependencies
         run: pip install requests feedgen pytumblr
 
-      - name: Generate comic RSS and publish comic socials
+      - name: Run comic automation
         run: python generate-rss.py
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
@@ -33,7 +39,7 @@ jobs:
           TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
 
-      - name: Generate journal RSS and publish journal socials
+      - name: Run journal automation
         run: python publish-journal.py
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
@@ -44,61 +50,25 @@ jobs:
           TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
 
-      - name: Collect changed files for Neocities
-        id: changed
-        shell: bash
+      # 🔥 THIS IS THE FIX FOR DISCORD SPAM
+      - name: Save journal tracker to repo
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            BEFORE="$(git rev-parse HEAD^ 2>/dev/null || true)"
-            AFTER="$(git rev-parse HEAD)"
-          else
-            BEFORE="${{ github.event.before }}"
-            AFTER="${{ github.sha }}"
+          if [ -f .last_journal_post.txt ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .last_journal_post.txt
+            git diff --cached --quiet || git commit -m "Update journal tracker"
+            git push
           fi
 
-          if [ -n "$BEFORE" ]; then
-            CHANGED="$(git diff --name-only "$BEFORE" "$AFTER")"
-          else
-            CHANGED="$(git diff-tree --no-commit-id --name-only -r HEAD)"
-          fi
-
-          {
-            echo "$CHANGED"
-            echo "rss.xml"
-            echo "journal-rss.xml"
-          } | sort -u > all_changed.txt
-
-          > deploy_files.txt
-          while IFS= read -r file; do
-            [ -z "$file" ] && continue
-            [ ! -f "$file" ] && continue
-
-            case "$file" in
-              .github/*|*.py|*.yml|*.yaml|README*|LICENSE*|.gitignore|.last_* )
-                continue
-                ;;
-              *)
-                echo "$file" >> deploy_files.txt
-                ;;
-            esac
-          done < all_changed.txt
-
-          echo "Files to upload:"
-          cat deploy_files.txt || true
-
-      - name: Upload changed files to Neocities
-        shell: bash
+      - name: Upload rss.xml to Neocities
         run: |
-          if [ ! -s deploy_files.txt ]; then
-            echo "No deployable files changed."
-            exit 0
-          fi
-
-          args=()
-          while IFS= read -r file; do
-            args+=(-F "$file=@$file")
-          done < deploy_files.txt
-
           curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
-            "${args[@]}" \
-            https://neocities.org/api/upload
+          -F "rss.xml=@rss.xml" \
+          https://neocities.org/api/upload
+
+      - name: Upload journal-rss.xml to Neocities
+        run: |
+          curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
+          -F "journal-rss.xml=@journal-rss.xml" \
+          https://neocities.org/api/upload
