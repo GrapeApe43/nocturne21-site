@@ -19,23 +19,30 @@ writePageClickable(".writePageClickable",true); //show the current page. to togg
 
 writeAuthorNotes(".writeAuthorNotes");
 
+renderCommentBoxForPage();
+
 keyNav(); 
 
-// This forces Cusdis to forget the old page and load the new one
-const commentBox = document.getElementById('cusdis_thread');
-if (commentBox && window.CUSDIS) {
-    // 1. Wipe the old comments
-    commentBox.innerHTML = '';
+function renderCommentBoxForPage() {
+  const commentWrap = document.getElementById("commentsWrap");
+  if (!commentWrap) return;
 
-    // 2. Update the "ID" tags to the new page number
-    const newUrl = window.location.origin + window.location.pathname + '?pg=' + pg;
-    commentBox.setAttribute('data-page-id', pg.toString());
-    commentBox.setAttribute('data-page-url', newUrl);
-    commentBox.setAttribute('data-page-title', "Nocturne 21 - Page " + pg);
+  commentWrap.innerHTML = `
+    <h2 class="comments-title">Join the Conversation</h2>
+    <p class="comment-prompt">What did you think of this page? 👀</p>
+    <div class="commentbox"></div>
+  `;
 
-    // 3. Re-render the box from scratch
-    window.CUSDIS.renderTo(commentBox);
+  if (typeof commentBox === "function") {
+    commentBox("5725326164361216-proj", {
+      defaultBoxId: "nocturne21-page-" + pg,
+      backgroundColor: "#111827",
+      textColor: "#e8ecf4",
+      subtextColor: "#b8c2d1"
+    });
+  }
 }
+
 
 
 //enables navigation through the comic with the arrow keys and WSAD. It doesn't need a div with a class name, it automatically works. delete or comment out (add // at the beginning) here to disable.
