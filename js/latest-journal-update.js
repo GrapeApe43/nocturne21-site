@@ -22,7 +22,7 @@
   );
 
   const latest = filtered.length ? filtered[0] : posts[0];
-  const readMoreLink = `n21-entry-page?id=${latest.id}`;
+  const readMoreLink = `n21-entry-page.html?id=${latest.id}`;
 
   box.innerHTML = `
     <div class="latest-journal-inner">
