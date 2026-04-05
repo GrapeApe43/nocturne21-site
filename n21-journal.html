@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/img/favicon.png">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nocturne 21 | Journal</title>
+
+  <link rel="stylesheet" href="/css/style.css?v=6001">
+  <link rel="stylesheet" href="/css/n21-journal-clean.css?v=1">
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body align="center" background="/img/lily.png">
+
+  <!-- header -->
+  <div class="writeHeader"></div>
+
+  <div class="page-box-gap">
+    <div class="n21journal-page-shell">
+      <div class="n21journal-wrap">
+        <div class="n21journal-panel">
+          <h1 class="n21journal-page-title">Journal</h1>
+          <p class="n21journal-page-intro">
+            Site updates, behind-the-scenes notes, and extra thoughts from Nocturne 21.
+          </p>
+
+          <div class="n21journal-layout">
+            <aside class="n21journal-sidebar">
+              <h2 class="n21journal-sidebar-title">Archive</h2>
+              <div id="journal-archive" class="n21journal-archive"></div>
+            </aside>
+
+            <main class="n21journal-main">
+              <div id="journal-list" class="n21journal-list"></div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div class="writeFooter"></div>
+
+  <!-- journal data -->
+  <script src="/n21-journal-data.js?v=6001"></script>
+
+  <!-- journal page logic -->
+  <script>
+    const journalList = document.getElementById("journal-list");
+    const journalArchive = document.getElementById("journal-archive");
+    const DEFAULT_THUMB = "/img/journal/default-thumb.jpg";
+
+    function formatDate(dateString) {
+      const date = new Date(dateString + "T00:00:00");
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
+
+    function formatMonthYear(dateString) {
+      const date = new Date(dateString + "T00:00:00");
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long"
+      });
+    }
+
+    function stripHTML(html) {
+      const temp = document.createElement("div");
+      temp.innerHTML = html;
+      return temp.textContent || temp.innerText || "";
+    }
+
+    function getExcerpt(post) {
+      if (post.excerpt && post.excerpt.trim()) return post.excerpt;
+      const plainText = stripHTML(post.content || "").trim();
+      if (!plainText) return "";
+      return plainText.length > 160 ? plainText.slice(0, 160).trim() + "..." : plainText;
+    }
+
+    function getThumb(post) {
+      return post.thumb && post.thumb.trim() ? post.thumb : DEFAULT_THUMB;
+    }
+
+    function sortPostsNewestFirst(posts) {
+      return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+
+    function groupPostsByMonth(posts) {
+      const grouped = {};
+
+      posts.forEach(post => {
+        const key = formatMonthYear(post.date);
+        if (!grouped[key]) grouped[key] = [];
+        grouped[key].push(post);
+      });
+
+      return grouped;
+    }
+
+    function buildJournalList() {
+  if (!journalList || !Array.isArray(N21_JOURNAL_POSTS)) return;
+
+  const sortedPosts = sortPostsNewestFirst(N21_JOURNAL_POSTS);
+
+  journalList.innerHTML = sortedPosts.map(post => `
+    <article class="n21journal-card">
+      <a class="n21journal-card-link" href="n21-entry-page?id=${encodeURIComponent(post.id)}">
+        <div class="n21journal-thumb-wrap">
+          <img src="${getThumb(post)}" alt="${post.title}" class="n21journal-thumb" loading="lazy">
+        </div>
+        <div class="n21journal-card-content">
+          <h2 class="n21journal-card-title">${post.title}</h2>
+          <p class="n21journal-card-date">${formatDate(post.date)}</p>
+          <p class="n21journal-card-excerpt">${getExcerpt(post)}</p>
+          <span class="n21journal-readmore">Read entry →</span>
+        </div>
+      </a>
+    </article>
+  `).join("");
+}
+
+function buildArchive() {
+  if (!journalArchive || !Array.isArray(N21_JOURNAL_POSTS)) return;
+
+  const sortedPosts = sortPostsNewestFirst(N21_JOURNAL_POSTS);
+  const grouped = groupPostsByMonth(sortedPosts);
+  const months = Object.keys(grouped);
+
+  journalArchive.innerHTML = months.map((month, index) => `
+    <div class="n21journal-archive-group">
+      <button class="n21journal-archive-toggle ${index === 0 ? "open" : ""}" type="button">
+        <span>${month}</span>
+        <span class="n21journal-archive-arrow">${index === 0 ? "−" : "+"}</span>
+      </button>
+
+      <div class="n21journal-archive-posts" style="display:${index === 0 ? "block" : "none"};">
+        ${grouped[month].map(post => `
+          <a class="n21journal-archive-link" href="n21-entry-page?id=${encodeURIComponent(post.id)}">
+            ${post.title}
+          </a>
+        `).join("")}
+      </div>
+    </div>
+  `).join("");
+
+  const toggles = journalArchive.querySelectorAll(".n21journal-archive-toggle");
+
+  toggles.forEach(toggle => {
+    toggle.addEventListener("click", function () {
+      const postsBox = this.nextElementSibling;
+      const arrow = this.querySelector(".n21journal-archive-arrow");
+      const isOpen = postsBox.style.display === "block";
+
+      postsBox.style.display = isOpen ? "none" : "block";
+      arrow.textContent = isOpen ? "+" : "−";
+      this.classList.toggle("open", !isOpen);
+    });
+  });
+}
+
+    buildJournalList();
+    buildArchive();
+  </script>
+
+  <!-- Ko-fi -->
+  <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+  <script>
+    kofiWidgetOverlay.draw('nocturne21', {
+      'type': 'floating-chat',
+      'floating-chat.donateButton.text': 'Coffee',
+      'floating-chat.donateButton.background-color': '#ff5f5f',
+      'floating-chat.donateButton.text-color': '#fff'
+    });
+  </script>
+
+  <!-- header/footer scripts -->
+  <script src="/js/comic_header.js" defer></script>
+  <script src="/js/comic_footer.js" defer></script>
+
+  <!-- webring -->
+  <div id="webcomicwebring" align="center">
+    <script type="text/javascript" src="https://webcomicring.org/js/comicring-variables.js"></script>
+    <script type="text/javascript" src="https://webcomicring.org/js/comicring-widget.js"></script>
+  </div>
+
+  <!-- lazy loading -->
+  <script>
+    document.querySelectorAll("img").forEach(img => {
+      img.loading = "lazy";
+    });
+  </script>
+
+  <!-- share bar -->
+  <script src="/js/sharebar.js"></script>
+
+</body>
+</html>
