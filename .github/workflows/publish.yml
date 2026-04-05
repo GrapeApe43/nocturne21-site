@@ -1,10 +1,12 @@
-name: Publish comic updates
+name: publish
 
 on:
   push:
     paths:
       - "js/comic_settings.js"
       - "generate-rss.py"
+      - "n21-journal-data.js"
+      - "publish-journal.py"
       - ".github/workflows/publish.yml"
   workflow_dispatch:
 
@@ -12,28 +14,49 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
-    env:
-      WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-      BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
-      BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
-      TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
-      TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
-      TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
-      TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repo
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - run: pip install requests pytumblr
+      - name: Install Python dependencies
+        run: pip install requests feedgen pytumblr
 
-      - run: python generate-rss.py
+      - name: Generate comic RSS and publish comic socials
+        run: python generate-rss.py
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
+          TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
+          TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
+          TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
+
+      - name: Generate journal RSS and publish journal socials
+        run: python publish-journal.py
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
+          TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
+          TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
+          TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
+          TUMBLR_BLOG: ${{ secrets.TUMBLR_BLOG }}
 
       - name: Upload rss.xml to Neocities
         run: |
           curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
-            -F "rss.xml=@rss.xml" \
-            https://neocities.org/api/upload
+          -F "rss.xml=@rss.xml" \
+          https://neocities.org/api/upload
+
+      - name: Upload journal-rss.xml to Neocities
+        run: |
+          curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
+          -F "journal-rss.xml=@journal-rss.xml" \
+          https://neocities.org/api/upload
