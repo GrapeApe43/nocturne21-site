@@ -6,7 +6,11 @@ import requests
 import pytumblr
 
 SITE_URL = "https://nocturne21.com"
-JOURNAL_DATA_FILE = "n21-journal-data.js"
+JOURNAL_DATA_FILE = "./n21-journal-data.js"
+
+if not os.path.exists(JOURNAL_DATA_FILE):
+    print("Available files:", os.listdir("."))
+    raise FileNotFoundError(f"Could not find {JOURNAL_DATA_FILE}")
 LAST_JOURNAL_POST_FILE = ".last_journal_post.txt"
 OUTPUT_FILE = "journal-rss.xml"
 DEFAULT_IMAGE_URL = f"{SITE_URL}/img/promo-art.jpg"
