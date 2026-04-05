@@ -58,7 +58,7 @@ def extract_comic_page(entry):
 
 
 def build_entry_url(post_id):
-    return f"{SITE_URL}/n21-entry-page?id={post_id}"
+    return f"{SITE_URL}/n21-entry-page.html?id={post_id}"
 
 
 def get_image(post):
