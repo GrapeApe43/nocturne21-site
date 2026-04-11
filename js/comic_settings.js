@@ -1701,18 +1701,14 @@ const pgData = [
         authorNotes: `<p></p>`
     },
     
-         {
+{
     pgNum: 186,
     title: "Page 170",
     date: writeDate(2026, 4, 10),
     altText: "",
     imageFiles: 1,
-    authorNotes: `<p>Looks like Kai's ready to pull out the big guns. Our stranger looks like he's having some regrets</p>`,
-
-    // NEW ↓↓↓
-    description: "Page 170 of Nocturne 21",
-    thumb: "https://nocturne21.com/img/preview/pg186.png"
-} 
+    authorNotes: `<p>Looks like Kai's ready to pull out the big guns. Our stranger looks like he's having some regrets</p>`
+}
       
 ];
 
