@@ -8,6 +8,7 @@
   <title>Nocturne 21 | Cast</title>
 
   <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+  <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
@@ -240,13 +241,13 @@
 <div class="floating-share" id="shareBar">
   <button class="share-toggle" type="button" onclick="toggleShare(event)">Share</button>
 
-    <a href="/rss.xml" target="_blank" aria-label="RSS">
-      <svg viewBox="0 0 24 24">
-        <circle cx="6" cy="18" r="2"/>
-        <path d="M4 11a9 9 0 0 1 9 9"/>
-        <path d="M4 4a16 16 0 0 1 16 16"/>
-      </svg>
-    </a>
+<a href="/rss.html" title="Subscribe">
+  <svg viewBox="0 0 24 24">
+    <circle cx="6" cy="18" r="2"/>
+    <path d="M4 11a9 9 0 0 1 9 9"/>
+    <path d="M4 4a16 16 0 0 1 16 16"/>
+  </svg>
+</a>
 
     <a href="https://bsky.app/" target="_blank" aria-label="Bluesky">
       <img src="img/bluesky.png" alt="Bluesky">
@@ -317,9 +318,6 @@
 
   <div class="writeFooter"></div>
 
-  <a href="https://ko-fi.com/nocturne21" target="_blank" class="kofi-fixed">
-    ☕ COFFEE FUND
-  </a>
 
   <script>
 const characters = [
@@ -459,9 +457,28 @@ bio.style.background = `
       showCharacter(0);
     });
   </script>
+  
+  <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script>
+  kofiWidgetOverlay.draw('nocturne21', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Coffee',
+    'floating-chat.donateButton.background-color': '#5D61AB',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>
+
+  
+  
   <script src="js/sharebar.js"></script>
   <script src="js/comic_header.js" defer></script>
   <script src="js/comic_footer.js" defer></script>
+  
+    <div id='webcomicwebring' align="center">
+<script type="text/javascript" src="https://webcomicring.org/js/comicring-variables.js"></script>
+<script type="text/javascript" src="https://webcomicring.org/js/comicring-widget.js"></script>
+</div>  
+  
 </body>
 </html>
 
