@@ -30,7 +30,6 @@ const navText = ["First","Previous","Next","Last"]; //alt text for your nav imag
 const navFolder = "img/comicnav"; //directory where nav images are stored
 const navExt = "png" //file extension of nav images
 const navScrollTo = "#showComic"; //id of the div you want the page to automatically scroll to when you click to the next comic. will turn off if you delete text between quotation marks
-
 if (pg == 0) {pg = maxpg;} //display MOST RECENT COMIC when the webpage is loaded. if you want to instead have the FIRST COMIC displayed first, change maxpg to 1.
 
 //pgData holds all the parameters for each of your pages. copypaste this and fill out accordingly:
@@ -1692,24 +1691,31 @@ const pgData = [
         imageFiles: 1,
         authorNotes: `<p>Hey folks! Sorry for the lack of update for a while. Had a big move and a lot of life changes since I last updated. I'm settled down now and looking to regularly post again. So keep an eye out for that and as always, thanks for reading!</p>`
     },
-      {
-        pgNum: 185,
-        title: `Page 169`,
-        date: writeDate(2026, 03, 18),
-        altText: "",
-        imageFiles: 1,
-        authorNotes: `<p></p>`
-    },
     
-{
+    {
+    pgNum: 185,
+    title: "Page 169",
+    date: writeDate(2026, 3, 24),
+    altText: "",
+    imageFiles: 1,
+    authorNotes: `<p>Ruh-roh. Cat's outta the bag now, kid...</p>`,
+
+    // NEW ↓↓↓
+    description: "Page 169 of Nocturne 21",
+    thumb: "https://nocturne21.com/img/thumbs/pg185.png"
+},
+         {
     pgNum: 186,
     title: "Page 170",
     date: writeDate(2026, 4, 10),
     altText: "",
     imageFiles: 1,
-    authorNotes: `<p>Looks like Kai's ready to pull out the big guns. Our stranger looks like he's having some regrets</p>`
-}
-      
+    authorNotes: `<p>Looks like Kai's ready to pull out the big guns. Our stranger looks like he's having some regrets</p>`,
+
+    // NEW ↓↓↓
+    description: "Page 170 of Nocturne 21",
+    thumb: "https://nocturne21.com/img/thumbs/pg186.png"
+} 
 ];
 
 //below is a function you dont rly need to mess with but if you're more experienced with js you can
