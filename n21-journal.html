@@ -9,7 +9,8 @@
 
   <link rel="stylesheet" href="/css/style.css?v=6001">
   <link rel="stylesheet" href="/css/n21-journal-clean.css?v=1">
-
+  <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
+  
   <!-- fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
@@ -55,7 +56,7 @@
   <script>
     const journalList = document.getElementById("journal-list");
     const journalArchive = document.getElementById("journal-archive");
-    const DEFAULT_THUMB = "/img/journal/default-thumb.jpg";
+    const DEFAULT_THUMB = "/img/default-img.png";
 
     function formatDate(dateString) {
       const date = new Date(dateString + "T00:00:00");
@@ -114,7 +115,7 @@
 
   journalList.innerHTML = sortedPosts.map(post => `
     <article class="n21journal-card">
-      <a class="n21journal-card-link" href="n21-entry-page.html?id=${encodeURIComponent(post.id)}">
+      <a class="n21journal-card-link" href="n21-entry-page?id=${encodeURIComponent(post.id)}">
         <div class="n21journal-thumb-wrap">
           <img src="${getThumb(post)}" alt="${post.title}" class="n21journal-thumb" loading="lazy">
         </div>
@@ -145,7 +146,7 @@ function buildArchive() {
 
       <div class="n21journal-archive-posts" style="display:${index === 0 ? "block" : "none"};">
         ${grouped[month].map(post => `
-          <a class="n21journal-archive-link" href="n21-entry-page.html?id=${encodeURIComponent(post.id)}">
+          <a class="n21journal-archive-link" href="n21-entry-page?id=${encodeURIComponent(post.id)}">
             ${post.title}
           </a>
         `).join("")}
@@ -178,7 +179,7 @@ function buildArchive() {
     kofiWidgetOverlay.draw('nocturne21', {
       'type': 'floating-chat',
       'floating-chat.donateButton.text': 'Coffee',
-      'floating-chat.donateButton.background-color': '#ff5f5f',
+      'floating-chat.donateButton.background-color': '#5D61AB',
       'floating-chat.donateButton.text-color': '#fff'
     });
   </script>
