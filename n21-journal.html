@@ -115,7 +115,7 @@
 
   journalList.innerHTML = sortedPosts.map(post => `
     <article class="n21journal-card">
-      <a class="n21journal-card-link" href="n21-entry-page?id=${encodeURIComponent(post.id)}">
+      <a class="n21journal-card-link" href="n21-entry-page.html?id=${encodeURIComponent(post.id)}">
         <div class="n21journal-thumb-wrap">
           <img src="${getThumb(post)}" alt="${post.title}" class="n21journal-thumb" loading="lazy">
         </div>
@@ -146,7 +146,7 @@ function buildArchive() {
 
       <div class="n21journal-archive-posts" style="display:${index === 0 ? "block" : "none"};">
         ${grouped[month].map(post => `
-          <a class="n21journal-archive-link" href="n21-entry-page?id=${encodeURIComponent(post.id)}">
+          <a class="n21journal-archive-link" href="n21-entry-page.html?id=${encodeURIComponent(post.id)}">
             ${post.title}
           </a>
         `).join("")}
