@@ -9,6 +9,7 @@
     
     <!-- style -->
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,13 +25,13 @@
   <button class="share-toggle" type="button" onclick="toggleShare(event)">Share</button>
 
    <!-- RSS -->
-  <a href="/rss.xml" target="_blank" data-platform="rss">
-    <svg viewBox="0 0 24 24">
-      <circle cx="6" cy="18" r="2"/>
-      <path d="M4 11a9 9 0 0 1 9 9"/>
-      <path d="M4 4a16 16 0 0 1 16 16"/>
-    </svg>
-  </a>
+<a href="/rss.html" title="Subscribe">
+  <svg viewBox="0 0 24 24">
+    <circle cx="6" cy="18" r="2"/>
+    <path d="M4 11a9 9 0 0 1 9 9"/>
+    <path d="M4 4a16 16 0 0 1 16 16"/>
+  </svg>
+</a>
  
  
   <!-- Bluesky -->
@@ -121,9 +122,9 @@ the newest member of the Shimizu household.  </p>
           
             <div align="left">
 
-
+<div class="video-embed">
  <iframe src="https://www.youtube.com/embed/j5xrqFHDUM4?si=EWxG72NoTUzO3CrG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
-
+</div>
 
 
 <h2>SOME BACKGROUND</h2>
@@ -164,9 +165,15 @@ forge for yourself.</p>
     <div class="writeFooter"></div>
     
 
-<a href="https://ko-fi.com/nocturne21" target="_blank" class="kofi-fixed">
-  ☕ COFFEE FUND
-</a>
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script>
+  kofiWidgetOverlay.draw('nocturne21', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Coffee',
+    'floating-chat.donateButton.background-color': '#5D61AB',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>
 
 
 <!-- at the end of this page we only call the header and footer scripts, because we don't need use any functions from the other scripts. -->
