@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -13,8 +14,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install Neocities CLI
-        run: npm install -g neocities
-
       - name: Deploy to Neocities
-        run: neocities push . --api_key ${{ secrets.NEOCITIES_API_KEY }}
+        uses: jonchang/deploy-neocities@master
+        with:
+          key: ${{ secrets.NEOCITIES_API_KEY }}
+          dir: .
