@@ -14,20 +14,25 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Create deploy folder
+      - name: Create clean deploy folder
         run: |
           rm -rf deploy
           mkdir deploy
-          cp -r css deploy/ 2>/dev/null || true
-          cp -r js deploy/ 2>/dev/null || true
-          cp -r img deploy/ 2>/dev/null || true
-          cp -r fonts deploy/ 2>/dev/null || true
-          cp -r audio deploy/ 2>/dev/null || true
-          cp -r comics deploy/ 2>/dev/null || true
-          cp *.html deploy/ 2>/dev/null || true
+
+          # CORE SITE FOLDERS
+          cp -r css deploy/
+          cp -r js deploy/
+          cp -r img deploy/
+          cp -r lytebox deploy/ 2>/dev/null || true
+
+          # HTML FILES
+          cp *.html deploy/
+
+          # RSS + DATA FILES
           cp *.xml deploy/ 2>/dev/null || true
-          cp *.txt deploy/ 2>/dev/null || true
-          cp *.json deploy/ 2>/dev/null || true
+          cp *.js deploy/ 2>/dev/null || true
+
+          # OPTIONAL (if you use them)
           cp favicon.* deploy/ 2>/dev/null || true
 
       - name: Deploy to Neocities
