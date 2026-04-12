@@ -340,3 +340,58 @@
     font-size: 1.2rem;
   }
 }
+/* ========================================
+   JOURNAL CARD HOVER MOTION
+======================================== */
+
+.n21journal-card {
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.n21journal-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(255, 214, 220, 0.22);
+  box-shadow:
+    0 0 0 1px rgba(255, 214, 220, 0.10),
+    0 18px 34px rgba(0, 0, 0, 0.38),
+    0 0 18px rgba(238, 71, 87, 0.12);
+}
+
+.n21journal-thumb {
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    filter 0.24s ease;
+}
+
+.n21journal-card:hover .n21journal-thumb {
+  transform: scale(1.025);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.03);
+}
+
+.n21journal-card-title,
+.n21journal-readmore {
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.n21journal-card:hover .n21journal-card-title,
+.n21journal-card:hover .n21journal-readmore {
+  color: #9ffcff;
+  text-shadow: 0 0 10px rgba(159, 252, 255, 0.18);
+}
+
+@media (max-width: 700px) {
+  .n21journal-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .n21journal-card:hover .n21journal-thumb {
+    transform: scale(1.01);
+  }
+}
