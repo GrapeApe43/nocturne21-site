@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
     <title>Nocturne 21 | Archive</title>
 
     <!-- fonts -->
@@ -20,13 +21,13 @@
   <button class="share-toggle" type="button" onclick="toggleShare(event)">Share</button>
 
    <!-- RSS -->
-  <a href="/rss.xml" target="_blank" data-platform="rss">
-    <svg viewBox="0 0 24 24">
-      <circle cx="6" cy="18" r="2"/>
-      <path d="M4 11a9 9 0 0 1 9 9"/>
-      <path d="M4 4a16 16 0 0 1 16 16"/>
-    </svg>
-  </a>
+<a href="/rss.html" title="Subscribe">
+  <svg viewBox="0 0 24 24">
+    <circle cx="6" cy="18" r="2"/>
+    <path d="M4 11a9 9 0 0 1 9 9"/>
+    <path d="M4 4a16 16 0 0 1 16 16"/>
+  </svg>
+</a>
  
  
   <!-- Bluesky -->
@@ -80,6 +81,8 @@
 
 
     <div class="archivePage subPage" align="center">
+    
+
         
         <h1>Archive</h1>
         <h2><a href="#chapter1">Chapter 1</a> | <a href="#chapter2">Chapter 2</a> | <a href="#chapter3">Chapter 3</a> | <a href="#kaijournal">Kai's Journals</a> | <a href="#chapter4">Chapter 4</a> | <a href="#chapter5">Chapter 5</a></h2>
@@ -87,35 +90,38 @@
         indexPage = "index.html" //set which html page your comics are on, supremely important. archive system will break otherwise
         </script>
 
+<div id="continue-reading-wrap" style="display:none;">
+  <a id="continue-reading-btn" href="#">Continue Reading →</a>
+</div>
 
-        <div class="chapter1">
-           <a name="Chapter1"> <h2>Chapter 1: The Red Rain</h2></a>
-        </div>
+<div id="chapter1" class="chapter1 archive-section">
+  <button class="archive-toggle">Chapter 1: The Red Rain</button>
+</div>
 
-        <div class="chapter2">
-          <a name="chapter2">  <h2>Chapter 2: Glass</h2></a>
-        </div>
+<div id="chapter2" class="chapter2 archive-section">
+  <button class="archive-toggle">Chapter 2: Glass</button>
+</div>
 
-        <div class="chapter3">
-          <a name="chapter3">  <h2>Chapter 3: Snow Day</h2></a>
-        </div>
-        
-        <div class="kaijournal">
-           <a name="kaijournal"> <h2>Kai's Journals</h2></a>
-        </div>
+<div id="chapter3" class="chapter3 archive-section">
+  <button class="archive-toggle">Chapter 3: Snow Day</button>
+</div>
 
-        <div class="chapter4">
-           <a name="chapter4"> <h2>Chapter 4: The Stranger</h2></a>
-        </div>
-        
-        <div class="chapter5">
-           <a name="chapter5"><h2>Chapter 5: The Voice From Below</h2></a>
-        </div>
+<div id="kaijournal" class="kaijournal archive-section">
+  <button class="archive-toggle">Kai Journals</button>
+</div>
+
+<div id="chapter4" class="chapter4 archive-section">
+  <button class="archive-toggle">Chapter 4: The Stranger</button>
+</div>
+
+<div id="chapter5" class="chapter5 archive-section">
+  <button class="archive-toggle">Chapter 5: The Voice from Below</button>
+
+</div>
 
       
     
   
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
   
     </div>
     
@@ -123,9 +129,15 @@
     <div class="writeFooter"></div>
     
 
-<a href="https://ko-fi.com/nocturne21" target="_blank" class="kofi-fixed">
-  ☕ COFFEE FUND
-</a>
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script>
+  kofiWidgetOverlay.draw('nocturne21', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Coffee',
+    'floating-chat.donateButton.background-color': '#5D61AB',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>
 
 
 
@@ -136,6 +148,11 @@
 <script src="js/comic_archive.js" defer></script>
 <script src="js/comic_footer.js" defer></script>
 <script src="js/sharebar.js"></script>
+
+    <div id='webcomicwebring' align="center">
+<script type="text/javascript" src="https://webcomicring.org/js/comicring-variables.js"></script>
+<script type="text/javascript" src="https://webcomicring.org/js/comicring-widget.js"></script>
+</div>
 
 <script>
   document.querySelectorAll("img").forEach(img => {
