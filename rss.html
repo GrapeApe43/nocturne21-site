@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="img/favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Nocturne 21 | Subscribe</title>
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
+
+  <style>
+    .rss-page-wrap {
+      max-width: 760px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+
+    .rss-box {
+      background: rgba(10, 10, 14, 0.88);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      padding: 28px 22px;
+      color: #eee;
+    }
+
+    .rss-box h1,
+    .rss-box h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .rss-box p {
+      line-height: 1.6;
+    }
+
+    .rss-feed-url-wrap {
+      display: flex;
+      gap: 10px;
+      align-items: stretch;
+      flex-wrap: wrap;
+      margin: 18px 0 10px;
+    }
+
+    .rss-feed-url {
+      flex: 1 1 420px;
+      min-width: 0;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #111;
+      color: #d9e8ff;
+      font-size: 14px;
+      word-break: break-all;
+    }
+
+    .rss-btn {
+      display: inline-block;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: #1b1b22;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .rss-btn:hover {
+      transform: translateY(-1px);
+      background: #252530;
+    }
+
+    .rss-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 4px;
+    }
+
+    .rss-note,
+    .rss-status {
+      font-size: 0.95em;
+      opacity: 0.9;
+    }
+
+    .rss-reader-list {
+      margin-top: 18px;
+      padding-left: 20px;
+    }
+
+    .rss-reader-list li {
+      margin-bottom: 8px;
+    }
+
+    .rss-mini {
+      opacity: 0.8;
+      font-size: 0.95em;
+    }
+
+    .rss-back {
+      text-align: center;
+      margin-top: 22px;
+    }
+
+    .rss-back a {
+      color: #EE4757;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .rss-back a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 700px) {
+      .rss-box {
+        padding: 22px 16px;
+      }
+
+      .rss-feed-url-wrap {
+        flex-direction: column;
+      }
+
+      .rss-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body background="img/lily.png">
+  <div align="center">
+    <div class="writeHeader"></div>
+
+    <div class="rss-page-wrap">
+      <div class="rss-box">
+        <h1>Subscribe to Nocturne 21</h1>
+
+        <p>
+          Want updates without relying on social media? You can follow the comic with RSS.
+          RSS lets readers subscribe once and get new updates automatically in an RSS reader.
+        </p>
+
+        <h2>The Feed</h2>
+
+        <div class="rss-feed-url-wrap">
+          <div class="rss-feed-url" id="rssFeedUrl">https://nocturne21.com/rss.xml</div>
+          <button class="rss-btn" id="copyRssBtn" type="button">Copy Feed Link</button>
+        </div>
+
+        <p class="rss-status" id="rssCopyStatus"></p>
+
+        <div class="rss-actions">
+          <a class="rss-btn" href="/rss.xml" target="_blank" rel="noopener noreferrer">
+            Open Raw Feed
+          </a>
+
+          <a class="rss-btn" id="rssReaderBtn" href="/rss.xml">
+            Open in RSS App
+          </a>
+        </div>
+
+        <p class="rss-note">
+          If the feed opens as code or XML in your browser, that’s normal — copy the feed link and paste it into an RSS reader.
+        </p>
+
+        <h2>How to Use It</h2>
+        <ol class="rss-reader-list">
+          <li>Copy the feed URL above.</li>
+          <li>Open your RSS reader of choice.</li>
+          <li>Add or follow a new feed.</li>
+          <li>Paste in the Nocturne 21 feed URL.</li>
+        </ol>
+
+        <p class="rss-mini">
+          Some browsers or apps can open feeds directly. Others will just show the raw XML file.
+        </p>
+
+        <div class="rss-back">
+          <a href="/index.html">← Back to Comic</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="writeFooter"></div>
+  </div>
+
+  <script src="js/comic_settings.js" defer></script>
+  <script src="js/comic_header.js" defer></script>
+  <script src="js/comic_footer.js" defer></script>
+
+  <script>
+    (function () {
+      const FEED_URL = "https://nocturne21.com/rss.xml";
+      const copyBtn = document.getElementById("copyRssBtn");
+      const status = document.getElementById("rssCopyStatus");
+      const readerBtn = document.getElementById("rssReaderBtn");
+
+      if (readerBtn) {
+        readerBtn.href = FEED_URL;
+      }
+
+      if (copyBtn) {
+        copyBtn.addEventListener("click", async function () {
+          try {
+            await navigator.clipboard.writeText(FEED_URL);
+            status.textContent = "Feed link copied ✧";
+          } catch (err) {
+            status.textContent = "Couldn’t copy automatically. The feed URL is listed above.";
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
