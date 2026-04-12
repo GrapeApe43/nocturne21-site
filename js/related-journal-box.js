@@ -29,7 +29,7 @@
         <p class="related-journal-label">From the Journal</p>
         <h3 class="related-journal-title">${post.title}</h3>
         <p class="related-journal-excerpt">${post.excerpt || ""}</p>
-       <a class="related-journal-button" href="/n21-entry-page.html?id=${encodeURIComponent(post.id)}">
+        <a class="related-journal-button" href="/n21-entry-page?id=${encodeURIComponent(post.id)}">
           Read the Journal Entry
         </a>
       </div>
