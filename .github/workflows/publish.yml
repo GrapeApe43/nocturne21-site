@@ -89,6 +89,7 @@ jobs:
           https://neocities.org/api/upload
 
       - name: Upload journal-rss.xml to Neocities
+        if: hashFiles('journal-rss.xml') != ''
         run: |
           curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
           -F "journal-rss.xml=@journal-rss.xml" \
