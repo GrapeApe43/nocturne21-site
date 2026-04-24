@@ -7,14 +7,14 @@ from email.utils import format_datetime
 import pytumblr
 
 
-WEBHOOK_URL = os.environ["WEBHOOK_URL"]
-BLUESKY_HANDLE = os.environ["BLUESKY_HANDLE"]
-BLUESKY_APP_PASSWORD = os.environ["BLUESKY_APP_PASSWORD"]
+WEBHOOK_URL = os.environ.get("WEBHOOK_URL")
+BLUESKY_HANDLE = os.environ.get("BLUESKY_HANDLE")
+BLUESKY_APP_PASSWORD = os.environ.get("BLUESKY_APP_PASSWORD")
 
-TUMBLR_CONSUMER_KEY = os.environ["TUMBLR_CONSUMER_KEY"]
-TUMBLR_CONSUMER_SECRET = os.environ["TUMBLR_CONSUMER_SECRET"]
-TUMBLR_OAUTH_TOKEN = os.environ["TUMBLR_OAUTH_TOKEN"]
-TUMBLR_OAUTH_SECRET = os.environ["TUMBLR_OAUTH_SECRET"]
+TUMBLR_CONSUMER_KEY = os.environ.get("TUMBLR_CONSUMER_KEY")
+TUMBLR_CONSUMER_SECRET = os.environ.get("TUMBLR_CONSUMER_SECRET")
+TUMBLR_OAUTH_TOKEN = os.environ.get("TUMBLR_OAUTH_TOKEN")
+TUMBLR_OAUTH_SECRET = os.environ.get("TUMBLR_OAUTH_SECRET")
 
 TUMBLR_BLOG = "nocturne-21.tumblr.com"
 LAST_POST_FILE = ".last_discord_post.txt"
@@ -361,43 +361,57 @@ if latest_live_entry:
         with open(LAST_POST_FILE, "r", encoding="utf-8") as f:
             last_posted = f.read().strip()
 
-    # ✅ MUST BE INDENTED
     if last_posted != str(pg_num):
-        message = {
-            "content": build_discord_caption(title, page_url)
-        }
 
-        embed = {
-            "title": title,
-            "url": page_url,
-            "image": {
-                "url": preview_url
-            }
-        }
-
-        response = requests.post(WEBHOOK_URL, json={
-            "content": message["content"],
-            "embeds": [embed]
-        })
-
-        print("Discord response:", response.status_code)
-
-        if response.status_code in (200, 204):
-            with open(LAST_POST_FILE, "w", encoding="utf-8") as f:
-                f.write(str(pg_num))
-            print(f"Posted page {pg_num} to Discord.")
-
-            post_to_bluesky(title, page_url, preview_url, alt_text or title)
-            post_to_tumblr(title, page_url, preview_url)
-
+        # 🚫 Skip posting if NOT manual run
+        if not WEBHOOK_URL:
+            print("Skipping social posting (no WEBHOOK_URL, likely auto deploy).")
         else:
-            print("Discord post failed.")
+            message = {
+                "content": build_discord_caption(title, page_url)
+            }
+
+            embed = {
+                "title": title,
+                "url": page_url,
+                "image": {
+                    "url": preview_url
+                }
+            }
+
+            response = requests.post(WEBHOOK_URL, json={
+                "content": message["content"],
+                "embeds": [embed]
+            })
+
+            print("Discord response:", response.status_code)
+
+            if response.status_code in (200, 204):
+                with open(LAST_POST_FILE, "w", encoding="utf-8") as f:
+                    f.write(str(pg_num))
+                print(f"Posted page {pg_num} to Discord.")
+
+                # 🔵 Bluesky
+                if BLUESKY_HANDLE and BLUESKY_APP_PASSWORD:
+                    try:
+                        post_to_bluesky(title, page_url, preview_url, alt_text or title)
+                    except Exception as e:
+                        print("Bluesky failed:", e)
+
+                # 🟣 Tumblr
+                if all([TUMBLR_CONSUMER_KEY, TUMBLR_CONSUMER_SECRET, TUMBLR_OAUTH_TOKEN, TUMBLR_OAUTH_SECRET]):
+                    try:
+                        post_to_tumblr(title, page_url, preview_url)
+                    except Exception as e:
+                        print("Tumblr failed:", e)
+
+            else:
+                print("Discord post failed.")
     else:
-        print(f"Page {pg_num} was already posted to Discord. Skipping.")
+        print(f"Page {pg_num} was already posted. Skipping.")
 
 else:
     print("No live comic image/preview found on the site, so posting was skipped.")    
-    
     
     
     
