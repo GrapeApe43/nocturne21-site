@@ -17,7 +17,7 @@ document.querySelector(".writeHeader").innerHTML = `
   </div>
   
   <a href="index.html" class="site-banner-link">
-    <img src="./img/logo.png" srcset="logo@2x.png 2x" alt="Nocturne 21" class="site-banner" />
+    <img src="./img/logo.png" alt="Nocturne 21" class="site-banner" />
   </a>
 
   <div id="nav">
