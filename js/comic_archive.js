@@ -37,7 +37,7 @@ writeArchive("kaijournal", 94, 97, -1, true, false);
 
 writeArchive("chapter4", 98, 150, -1, true, false);
 
-writeArchive("chapter5", 151, 186, -1, true, false);
+writeArchive("chapter5", 151, 187, -1, true, false);
 
 
 // Continue Reading button on archive page
