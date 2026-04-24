@@ -35,7 +35,13 @@ jobs:
       - name: Install Python dependencies
         run: pip install requests feedgen pytumblr
 
-      - name: Run comic automation
+      # ✅ ALWAYS runs (safe)
+      - name: Generate RSS only
+        run: python generate-rss.py
+
+      # 🔴 ONLY runs when you manually click "Run workflow"
+      - name: Post comic to social media
+        if: github.event_name == 'workflow_dispatch'
         run: python generate-rss.py
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
@@ -46,7 +52,8 @@ jobs:
           TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
 
-      - name: Run journal automation
+      - name: Post journal to social media
+        if: github.event_name == 'workflow_dispatch'
         run: python publish-journal.py
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
@@ -57,7 +64,9 @@ jobs:
           TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
 
+      # 🔴 Only update tracker when posting actually happens
       - name: Save journal tracker to repo
+        if: github.event_name == 'workflow_dispatch'
         run: |
           if [ -f .last_journal_post.txt ]; then
             git config user.name "github-actions[bot]"
@@ -72,6 +81,7 @@ jobs:
             fi
           fi
 
+      # ✅ ALWAYS upload RSS (safe)
       - name: Upload rss.xml to Neocities
         run: |
           curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
