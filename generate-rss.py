@@ -26,8 +26,10 @@ SITE_DESCRIPTION = "A dark atmospheric webcomic"
 SETTINGS_FILE = "js/comic_settings.js"
 OUTPUT_FILE = "rss.xml"
 
+
 def strip_html(text):
     return re.sub(r"<[^>]+>", "", text or "").strip()
+
 
 def parse_write_date(date_text):
     if not date_text:
@@ -38,6 +40,7 @@ def parse_write_date(date_text):
     year, month, day = map(int, match.groups())
     return datetime(year, month, day, tzinfo=timezone.utc)
 
+
 def get_pgdata_block(js_text):
     start_marker = "const pgData = ["
     start = js_text.find(start_marker)
@@ -46,6 +49,7 @@ def get_pgdata_block(js_text):
     start += len(start_marker)
     end = js_text.find("];", start)
     return js_text[start:end]
+
 
 def split_entries(pgdata_text):
     entries, current, depth, inside = [], [], 0, False
@@ -61,17 +65,21 @@ def split_entries(pgdata_text):
                 inside, current = False, []
     return entries
 
+
 def extract_quoted_field(entry, field):
     match = re.search(rf"{field}\s*:\s*`(.*?)`", entry, re.S)
     return match.group(1).strip() if match else None
+
 
 def extract_number_field(entry, field):
     match = re.search(rf"{field}\s*:\s*(\d+)", entry)
     return match.group(1) if match else None
 
+
 def extract_date_field(entry):
     match = re.search(r"writeDate\(\d+,\s*\d+,\s*\d+\)", entry)
     return match.group(0) if match else None
+
 
 # =========================
 # RSS GENERATION
@@ -178,7 +186,6 @@ if latest_live_entry:
         if not WEBHOOK_URL:
             print("Skipping social posting (auto deploy).")
         else:
-            # Discord
             res = requests.post(WEBHOOK_URL, json={
                 "content": f"🆕 {title}\n{page_url}",
                 "embeds": [{"image": {"url": preview_url}}]
@@ -188,11 +195,9 @@ if latest_live_entry:
                 open(LAST_POST_FILE, "w").write(str(pg))
                 print("Posted to Discord.")
 
-                # Bluesky
                 if BLUESKY_HANDLE and BLUESKY_APP_PASSWORD:
                     print("Posting to Bluesky...")
 
-                # Tumblr
                 if all([TUMBLR_CONSUMER_KEY, TUMBLR_CONSUMER_SECRET,
                         TUMBLR_OAUTH_TOKEN, TUMBLR_OAUTH_SECRET]):
                     print("Posting to Tumblr...")
@@ -204,4 +209,3 @@ if latest_live_entry:
 
 else:
     print("No valid live page found.")
-```
