@@ -14,7 +14,7 @@ const N21_JOURNAL_POSTS = [
       <p>Also, new page out today! Be sure to check it out!</p><br>
       
       <p>Anyway, that's all folks! As always, thanks for reading!</p><br>
-      <img src="/img/preview/pg188.png">
+      <img src="/img/preview/pg188.png" align="center">
     `,
     tags: ["comic", "update"],
     comicPage: 188,
