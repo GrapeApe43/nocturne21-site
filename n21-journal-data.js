@@ -13,7 +13,8 @@ const N21_JOURNAL_POSTS = [
       Hopefully, that means I won't have to keep skipping weeks and <i>maybe</i> just maybe I can even get ahead. We'll see, lol...</p><br>
       <p>Also, new page out today! Be sure to check it out!</p><br>
       
-      <p>Anyway, that's all folks! As always, thanks for reading!</p>
+      <p>Anyway, that's all folks! As always, thanks for reading!</p><br>
+      <a href="https://nocturne21.com/"><img src="/img/previews/pg188.png"></a>
     `,
     tags: ["comic", "update"],
     comicPage: 188,
