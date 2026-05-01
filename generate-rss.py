@@ -6,7 +6,6 @@ from datetime import datetime, timezone
 from email.utils import format_datetime
 import pytumblr
 
-# ✅ Safe environment variables (won’t crash on push)
 WEBHOOK_URL = os.environ.get("WEBHOOK_URL")
 BLUESKY_HANDLE = os.environ.get("BLUESKY_HANDLE")
 BLUESKY_APP_PASSWORD = os.environ.get("BLUESKY_APP_PASSWORD")
@@ -81,9 +80,117 @@ def extract_date_field(entry):
     return match.group(0) if match else None
 
 
-# =========================
-# RSS GENERATION
-# =========================
+def build_tags(title):
+    base_tags = ["nocturne21", "webcomic", "indiecomic", "comicupdate"]
+    title_lower = title.lower()
+
+    if "chapter" in title_lower:
+        base_tags.append("chapterupdate")
+    if "kai" in title_lower:
+        base_tags.append("kai")
+    if "olivia" in title_lower:
+        base_tags.append("olivia")
+
+    return list(dict.fromkeys(base_tags))
+
+
+def build_bluesky_caption(title, page_url):
+    tags = " ".join(f"#{tag}" for tag in build_tags(title)[:4])
+    return f"New Nocturne 21 update ✨\n\n{title}\n{page_url}\n\n{tags}"
+
+
+def build_tumblr_caption(title, page_url):
+    return f"""
+<p>🆕 <b>New Nocturne 21 Update!</b></p>
+<p><b>{title}</b></p>
+<p><a href="{page_url}">Read on the site →</a></p>
+""".strip()
+
+
+def post_to_bluesky(title, page_url, image_url, alt_text=""):
+    session_resp = requests.post(
+        "https://bsky.social/xrpc/com.atproto.server.createSession",
+        json={
+            "identifier": BLUESKY_HANDLE,
+            "password": BLUESKY_APP_PASSWORD,
+        },
+        timeout=15,
+    )
+    session_resp.raise_for_status()
+    session = session_resp.json()
+
+    access_jwt = session["accessJwt"]
+    did = session["did"]
+
+    img_resp = requests.get(image_url, timeout=20)
+    img_resp.raise_for_status()
+    img_bytes = img_resp.content
+
+    if len(img_bytes) > 1_000_000:
+        raise ValueError(f"Image is too large for Bluesky: {len(img_bytes)} bytes")
+
+    upload_resp = requests.post(
+        "https://bsky.social/xrpc/com.atproto.repo.uploadBlob",
+        headers={
+            "Authorization": f"Bearer {access_jwt}",
+            "Content-Type": "image/png",
+        },
+        data=img_bytes,
+        timeout=20,
+    )
+    upload_resp.raise_for_status()
+    blob = upload_resp.json()["blob"]
+
+    post_resp = requests.post(
+        "https://bsky.social/xrpc/com.atproto.repo.createRecord",
+        headers={
+            "Authorization": f"Bearer {access_jwt}",
+            "Content-Type": "application/json",
+        },
+        json={
+            "repo": did,
+            "collection": "app.bsky.feed.post",
+            "record": {
+                "$type": "app.bsky.feed.post",
+                "text": build_bluesky_caption(title, page_url),
+                "createdAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+                "embed": {
+                    "$type": "app.bsky.embed.images",
+                    "images": [
+                        {
+                            "alt": alt_text or title,
+                            "image": blob,
+                        }
+                    ],
+                },
+            },
+        },
+        timeout=20,
+    )
+
+    print("Bluesky response:", post_resp.status_code, post_resp.text)
+    post_resp.raise_for_status()
+    print("Posted to Bluesky.")
+
+
+def post_to_tumblr(title, page_url, image_url):
+    client = pytumblr.TumblrRestClient(
+        TUMBLR_CONSUMER_KEY,
+        TUMBLR_CONSUMER_SECRET,
+        TUMBLR_OAUTH_TOKEN,
+        TUMBLR_OAUTH_SECRET,
+    )
+
+    client.create_photo(
+        TUMBLR_BLOG,
+        state="published",
+        caption=build_tumblr_caption(title, page_url),
+        source=image_url,
+        tags=build_tags(title),
+    )
+
+    print("Posted to Tumblr.")
+
 
 with open(SETTINGS_FILE, "r", encoding="utf-8") as f:
     js_text = f.read()
@@ -93,6 +200,9 @@ items = []
 
 for entry in entries:
     pg = extract_number_field(entry, "pgNum")
+    if not pg:
+        continue
+
     title = extract_quoted_field(entry, "title") or f"Page {pg}"
     notes = extract_quoted_field(entry, "authorNotes")
     alt = extract_quoted_field(entry, "altText") or title
@@ -107,22 +217,22 @@ for entry in entries:
     items.append(f"""
     <item>
       <title>{html.escape(title)}</title>
-      <link>{page_url}</link>
-      <guid>{page_url}</guid>
-      <pubDate>{pub_date}</pubDate>
+      <link>{html.escape(page_url)}</link>
+      <guid>{html.escape(page_url)}</guid>
+      <pubDate>{html.escape(pub_date)}</pubDate>
       <description><![CDATA[
-        <p>{description}</p>
-        <img src="{thumb_url}" alt="{alt}">
+        <p>{html.escape(description)}</p>
+        <img src="{html.escape(thumb_url)}" alt="{html.escape(alt)}">
       ]]></description>
     </item>
     """)
 
-rss = f"""<?xml version="1.0"?>
+rss = f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-<title>{SITE_TITLE}</title>
-<link>{SITE_URL}</link>
-<description>{SITE_DESCRIPTION}</description>
+<title>{html.escape(SITE_TITLE)}</title>
+<link>{html.escape(SITE_URL)}</link>
+<description>{html.escape(SITE_DESCRIPTION)}</description>
 {''.join(items)}
 </channel>
 </rss>"""
@@ -132,14 +242,13 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
 
 print(f"rss.xml generated successfully with {len(items)} items.")
 
-# =========================
-# FIND LATEST LIVE PAGE (FIXED)
-# =========================
-
 latest_live_entry = None
 
 for entry in reversed(entries):
     pg = extract_number_field(entry, "pgNum")
+    if not pg:
+        continue
+
     image_url = f"{SITE_URL}/img/comics/pg{pg}.jpg"
     preview_url = f"{SITE_URL}/img/preview/pg{pg}.png"
 
@@ -148,24 +257,20 @@ for entry in reversed(entries):
 
     try:
         image_ok = requests.head(image_url, timeout=10).status_code == 200
-    except:
+    except requests.RequestException:
         pass
 
     try:
         preview_ok = requests.head(preview_url, timeout=10).status_code == 200
-    except:
+    except requests.RequestException:
         pass
 
     if image_ok:
         if not preview_ok:
             print(f"⚠️ Preview missing for pg{pg}, continuing anyway.")
-
         latest_live_entry = entry
         break
 
-# =========================
-# POSTING
-# =========================
 
 if latest_live_entry:
     pg = extract_number_field(latest_live_entry, "pgNum")
@@ -180,30 +285,48 @@ if latest_live_entry:
 
     last_posted = None
     if os.path.exists(LAST_POST_FILE):
-        last_posted = open(LAST_POST_FILE).read().strip()
+        with open(LAST_POST_FILE, "r", encoding="utf-8") as f:
+            last_posted = f.read().strip()
 
     if last_posted != str(pg):
         if not WEBHOOK_URL:
             print("Skipping social posting (auto deploy).")
         else:
             res = requests.post(WEBHOOK_URL, json={
-                "content": f"🆕 {title}\n{page_url}",
-                "embeds": [{"image": {"url": preview_url}}]
+                "content": f"🆕 **New Nocturne 21 Update!**\n\n**{title}**\n{page_url}",
+                "embeds": [{"title": title, "url": page_url, "image": {"url": preview_url}}],
             })
 
+            print("Discord response:", res.status_code)
+
             if res.status_code in (200, 204):
-                open(LAST_POST_FILE, "w").write(str(pg))
+                with open(LAST_POST_FILE, "w", encoding="utf-8") as f:
+                    f.write(str(pg))
                 print("Posted to Discord.")
 
                 if BLUESKY_HANDLE and BLUESKY_APP_PASSWORD:
-                    print("Posting to Bluesky...")
+                    try:
+                        post_to_bluesky(title, page_url, preview_url, alt)
+                    except Exception as e:
+                        print("Bluesky failed:", e)
+                else:
+                    print("Skipping Bluesky: missing credentials.")
 
-                if all([TUMBLR_CONSUMER_KEY, TUMBLR_CONSUMER_SECRET,
-                        TUMBLR_OAUTH_TOKEN, TUMBLR_OAUTH_SECRET]):
-                    print("Posting to Tumblr...")
+                if all([
+                    TUMBLR_CONSUMER_KEY,
+                    TUMBLR_CONSUMER_SECRET,
+                    TUMBLR_OAUTH_TOKEN,
+                    TUMBLR_OAUTH_SECRET,
+                ]):
+                    try:
+                        post_to_tumblr(title, page_url, preview_url)
+                    except Exception as e:
+                        print("Tumblr failed:", e)
+                else:
+                    print("Skipping Tumblr: missing credentials.")
+
             else:
                 print("Discord failed.")
-
     else:
         print("Already posted. Skipping.")
 
