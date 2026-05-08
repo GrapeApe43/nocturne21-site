@@ -1740,7 +1740,7 @@ const pgData = [
     // NEW ↓↓↓
     description: "Page 172 of Nocturne 21",
     thumb: "https://nocturne21.com/img/thumbs/pg188.png"
-}
+},
          {
     pgNum: 189,
     title: "Page 173",
