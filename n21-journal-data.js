@@ -1,9 +1,10 @@
 const N21_JOURNAL_POSTS = [
 
-  {
-    id: "busy-bee",
-    title: "Work and Life",
-    date: "2026-04-30",
+    {
+   id: "busy-bee",
+  title: "Work and Life",
+  date: "2026-04-30",
+  thumbnail: "img/preview/pg188.png",
     excerpt: "Big life changes slowed the comic process, but we're getting there!",
     content: `
       <p>Not much to say here. Just wanted to give a quick update. I got a new full time job at the beginning of April. It's kept me super 
@@ -14,7 +15,10 @@ const N21_JOURNAL_POSTS = [
       <p>Also, new page out today! Be sure to check it out!</p><br>
       
       <p>Anyway, that's all folks! As always, thanks for reading!</p><br>
-      <img src="/img/preview/pg188.png" align="center">
+
+    <img src="img/preview/pg188.png" align="center" alt="">
+
+
     `,
     tags: ["comic", "update"],
     comicPage: 188,
