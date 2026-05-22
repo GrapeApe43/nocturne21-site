@@ -15,7 +15,25 @@ on:
       - "n21-journal-data.js"
       - "publish-journal.py"
       - ".github/workflows/publish.yml"
+
   workflow_dispatch:
+    inputs:
+      publish_comic:
+        description: "Post comic update?"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+      publish_journal:
+        description: "Post journal update?"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "true"
+          - "false"
 
 jobs:
   publish:
@@ -35,13 +53,11 @@ jobs:
       - name: Install Python dependencies
         run: pip install requests feedgen pytumblr
 
-      # ✅ ALWAYS runs (safe)
       - name: Generate RSS only
         run: python generate-rss.py
 
-      # 🔴 ONLY runs when you manually click "Run workflow"
       - name: Post comic to social media
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish_comic == 'true'
         run: python generate-rss.py
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
@@ -53,7 +69,7 @@ jobs:
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
 
       - name: Post journal to social media
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish_journal == 'true'
         run: python publish-journal.py
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
@@ -64,24 +80,22 @@ jobs:
           TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
 
-      # 🔴 Only update tracker when posting actually happens
-      - name: Save journal tracker to repo
+      - name: Save publish trackers to repo
         if: github.event_name == 'workflow_dispatch'
         run: |
-          if [ -f .last_journal_post.txt ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-            git add .last_journal_post.txt
+          git add .last_discord_post.txt .last_journal_post.txt rss.xml journal-rss.xml 2>/dev/null || true
 
-            if ! git diff --cached --quiet; then
-              git commit -m "Update journal tracker"
-              git pull --rebase origin main
-              git push origin main
-            fi
+          if ! git diff --cached --quiet; then
+            git commit -m "Update publish trackers"
+            git pull --rebase --autostash origin main
+            git push origin main
+          else
+            echo "No tracker or RSS changes to commit."
           fi
 
-      # ✅ ALWAYS upload RSS (safe)
       - name: Upload rss.xml to Neocities
         run: |
           curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
