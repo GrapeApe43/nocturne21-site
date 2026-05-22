@@ -88,9 +88,14 @@
       return plainText.length > 160 ? plainText.slice(0, 160).trim() + "..." : plainText;
     }
 
-    function getThumb(post) {
-      return post.thumb && post.thumb.trim() ? post.thumb : DEFAULT_THUMB;
-    }
+function getPostThumbnail(post) {
+  if (post.thumbnail) return post.thumbnail;
+
+  const match = post.content?.match(/<img[^>]+src=["']([^"']+)["']/i);
+  if (match) return match[1];
+
+  return "img/default-journal-thumb.png";
+}
 
     function sortPostsNewestFirst(posts) {
       return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
