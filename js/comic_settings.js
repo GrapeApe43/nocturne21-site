@@ -1833,7 +1833,7 @@ const pgData = [
     date: writeDate(2026, 06, 25),
     altText: "",
     imageFiles: 1,
-    authorNotes: `<p>Pretty sure this was EXACTLY what Yosh was afraid of. Kai, my guy, you need to learn some defense.</p>`,
+    authorNotes: `<p>Can't imagine why you've been in high school for 6 years, Clyde.</p>`,
 
     // NEW ↓↓↓
     description: "Page 180 of Nocturne 21",
