@@ -37,7 +37,7 @@ writeArchive("kaijournal", 94, 97, -1, true, false);
 
 writeArchive("chapter4", 98, 150, -1, true, false);
 
-writeArchive("chapter5", 151, 196, -1, true, false);
+writeArchive("chapter5", 151, 197, -1, true, false);
 
 
 // Continue Reading button on archive page
@@ -74,7 +74,7 @@ function getChapterFromPage(page) {
   if (pg >= 69 && pg <= 93) return "chapter3";
   if (pg >= 94 && pg <= 97) return "kaijournal";
   if (pg >= 98 && pg <= 150) return "chapter4";
-  if (pg >= 151 && pg <= 196) return "chapter5";
+  if (pg >= 151 && pg <= 197) return "chapter5";
 
   return null;
 }
