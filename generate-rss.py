@@ -81,7 +81,7 @@ def extract_date_field(entry):
 
 
 def build_tags(title):
-    base_tags = ["nocturne21", "webcomic", "indiecomic", "comicupdate"]
+    base_tags = ["nocturne21", "webcomic", "indiecomic", "comicupdate", "globalcomix", "indiecomiczone", "comicfury", "drunkduck", "psychological", "drama"]
     title_lower = title.lower()
 
     if "chapter" in title_lower:
