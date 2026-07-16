@@ -11,7 +11,7 @@ let pg = Number(findGetParameter("pg")); //make "pg" mean the current page numbe
 ////////////////////////
 
 //REALLY IMPORTANT ONES
-const maxpg = 198; //the current number of pages your comic has in total. this DOESNT necessarily mean number of IMAGE FILES as it doesn't count pages split into multiple files. 
+const maxpg = 199; //the current number of pages your comic has in total. this DOESNT necessarily mean number of IMAGE FILES as it doesn't count pages split into multiple files. 
 //YOU MUST UPDATE THIS NUMBER EVERY TIME YOU ADD A NEW PAGE or else it wont display the most recent page
 
 // COMIC PAGE SETTINGS
@@ -1864,6 +1864,18 @@ const pgData = [
     // NEW ↓↓↓
     description: "Page 182 of Nocturne 21",
     thumb: "https://nocturne21.com/img/thumbs/pg198.png"
+},
+             {
+    pgNum: 199,
+    title: "Page 183",
+    date: writeDate(2026, 07, 16),
+    altText: "",
+    imageFiles: 1,
+    authorNotes: `<p>Guess Yosh wanted to join in the car-smashing fun. </p>`,
+
+    // NEW ↓↓↓
+    description: "Page 183 of Nocturne 21",
+    thumb: "https://nocturne21.com/img/thumbs/pg199.png"
 },
 ];
 
