@@ -17,7 +17,11 @@ function n21GetVisitorId() {
 }
 
 // Record one page view.
-async function n21TrackPageView(pageType, pageId = null) {
+async function n21TrackPageView(
+  pageType,
+  pageId = null,
+  pageTitle = null
+) {
   try {
     const response = await fetch(
       `${N21_SUPABASE_URL}/rest/v1/page_views`,
@@ -35,6 +39,7 @@ async function n21TrackPageView(pageType, pageId = null) {
           visitor_id: n21GetVisitorId(),
           page_type: pageType,
           page_id: pageId ? String(pageId) : null,
+          page_title: pageTitle,
           page_url: window.location.pathname + window.location.search,
           referrer: document.referrer || null
         })
@@ -50,7 +55,12 @@ async function n21TrackPageView(pageType, pageId = null) {
       return;
     }
 
-    console.log("N21 Analytics: page view recorded.");
+    console.log(
+      "N21 Analytics: page view recorded.",
+      pageType,
+      pageId,
+      pageTitle
+    );
   } catch (error) {
     console.error("N21 Analytics error:", error);
   }
