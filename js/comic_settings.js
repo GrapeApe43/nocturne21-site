@@ -1913,6 +1913,18 @@ const pgData = [
     description: "Page 186 of Nocturne 21",
     thumb: "https://nocturne21.com/img/thumbs/pg202.png"
 },
+                 {
+    pgNum: 203,
+    title: "Page 187",
+    date: writeDate(2026, 08, 13),
+    altText: "",
+    imageFiles: 1,
+    authorNotes: `<p>Yosh: Just don't do anything you'll regret.</p><p>Kai: Challenge accepted.</p>`,
+
+    // NEW ↓↓↓
+    description: "Page 186 of Nocturne 21",
+    thumb: "https://nocturne21.com/img/thumbs/pg202.png"
+},
 ];
 
 //below is a function you dont rly need to mess with but if you're more experienced with js you can
