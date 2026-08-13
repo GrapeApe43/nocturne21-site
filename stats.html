@@ -20,12 +20,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 
-
 <body class="stats-page" background="img/lily.png">
 
   <!-- Normal Nocturne 21 header -->
   <div class="writeHeader"></div>
-
 
   <main class="stats-dashboard">
 
@@ -62,13 +60,11 @@
           <span class="stats-card-note">Anonymous readers</span>
         </div>
 
-
         <div class="stats-card">
           <span class="stats-card-label">Page Views</span>
           <strong id="statViews">—</strong>
           <span class="stats-card-note">Total pages loaded</span>
         </div>
-
 
         <div class="stats-card">
           <span class="stats-card-label">Comic Views</span>
@@ -76,13 +72,11 @@
           <span class="stats-card-note">Comic pages read</span>
         </div>
 
-
         <div class="stats-card">
           <span class="stats-card-label">Journal Views</span>
           <strong id="statJournalViews">—</strong>
           <span class="stats-card-note">Journal entries read</span>
         </div>
-
 
         <div class="stats-card">
           <span class="stats-card-label">Site Page Views</span>
@@ -103,8 +97,8 @@
 
         <h2>Visitor Activity</h2>
 
-        <div class="stats-chart-placeholder" id="visitorChart">
-          Traffic graph coming next…
+        <div class="stats-chart-wrap">
+          <canvas id="visitorChart"></canvas>
         </div>
 
       </div>
@@ -179,7 +173,10 @@
   <script src="js/comic_header.js" defer></script>
   <script src="js/comic_footer.js" defer></script>
 
-  <!-- Dashboard JS will go here later -->
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Dashboard JS -->
   <script src="js/stats.js" defer></script>
 
 </body>
