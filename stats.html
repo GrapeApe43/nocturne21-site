@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="img/favicon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nocturne 21 | Site Statistics</title>
+
+  <!-- Main site style -->
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+
+  <!-- Stats-specific style -->
+  <link href="css/stats.css" rel="stylesheet" type="text/css" media="all">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+
+
+<body class="stats-page" background="img/lily.png">
+
+  <!-- Normal Nocturne 21 header -->
+  <div class="writeHeader"></div>
+
+
+  <main class="stats-dashboard">
+
+    <div class="stats-heading">
+      <div>
+        <h1>Site Statistics</h1>
+        <p>Nocturne 21 traffic and reader activity.</p>
+      </div>
+
+      <div class="stats-range">
+        <label for="statsRange">Range</label>
+
+        <select id="statsRange">
+          <option value="7">Last 7 Days</option>
+          <option value="30" selected>Last 30 Days</option>
+          <option value="90">Last 90 Days</option>
+          <option value="all">All Time</option>
+        </select>
+      </div>
+    </div>
+
+
+    <!-- SUMMARY CARDS -->
+
+    <section class="stats-section">
+
+      <h2>Overview</h2>
+
+      <div class="stats-card-grid">
+
+        <div class="stats-card">
+          <span class="stats-card-label">Unique Visitors</span>
+          <strong id="statVisitors">—</strong>
+          <span class="stats-card-note">Anonymous readers</span>
+        </div>
+
+
+        <div class="stats-card">
+          <span class="stats-card-label">Page Views</span>
+          <strong id="statViews">—</strong>
+          <span class="stats-card-note">Total pages loaded</span>
+        </div>
+
+
+        <div class="stats-card">
+          <span class="stats-card-label">Comic Views</span>
+          <strong id="statComicViews">—</strong>
+          <span class="stats-card-note">Comic pages read</span>
+        </div>
+
+
+        <div class="stats-card">
+          <span class="stats-card-label">Journal Views</span>
+          <strong id="statJournalViews">—</strong>
+          <span class="stats-card-note">Journal entries read</span>
+        </div>
+
+
+        <div class="stats-card">
+          <span class="stats-card-label">Site Page Views</span>
+          <strong id="statSiteViews">—</strong>
+          <span class="stats-card-note">About, Cast, Gallery, etc.</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- VISITOR GRAPH -->
+
+    <section class="stats-section">
+
+      <div class="stats-panel">
+
+        <h2>Visitor Activity</h2>
+
+        <div class="stats-chart-placeholder" id="visitorChart">
+          Traffic graph coming next…
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- POPULAR CONTENT -->
+
+    <section class="stats-two-column">
+
+      <div class="stats-panel">
+
+        <h2>Top Comic Pages</h2>
+
+        <div id="topComicPages" class="stats-list">
+          <p class="stats-loading">Waiting for data…</p>
+        </div>
+
+      </div>
+
+
+      <div class="stats-panel">
+
+        <h2>Top Journal Posts</h2>
+
+        <div id="topJournalPosts" class="stats-list">
+          <p class="stats-loading">Waiting for data…</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SITE PAGES / REFERRERS -->
+
+    <section class="stats-two-column">
+
+      <div class="stats-panel">
+
+        <h2>Top Site Pages</h2>
+
+        <div id="topSitePages" class="stats-list">
+          <p class="stats-loading">Waiting for data…</p>
+        </div>
+
+      </div>
+
+
+      <div class="stats-panel">
+
+        <h2>Traffic Sources</h2>
+
+        <div id="topReferrers" class="stats-list">
+          <p class="stats-loading">Waiting for data…</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- Normal Nocturne 21 footer -->
+  <div class="writeFooter"></div>
+
+
+  <!-- Rarebit header/footer -->
+  <script src="js/comic_header.js" defer></script>
+  <script src="js/comic_footer.js" defer></script>
+
+  <!-- Dashboard JS will go here later -->
+  <script src="js/stats.js" defer></script>
+
+</body>
+</html>
