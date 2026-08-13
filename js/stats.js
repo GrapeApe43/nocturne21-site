@@ -376,17 +376,67 @@ function n21EscapeHtml(value) {
 
 
 // -----------------------------------------
+// TRAFFIC SOURCES
+// -----------------------------------------
+
+async function n21LoadReferrers() {
+  const daysBack = n21GetDaysBack();
+
+  const data = await n21StatsRpc(
+    "get_n21_referrers",
+    {
+      days_back: daysBack,
+      result_limit: 10
+    }
+  );
+
+  if (!Array.isArray(data)) {
+    throw new Error("No referrer data returned.");
+  }
+
+  const container =
+    document.getElementById("topReferrers");
+
+  if (!container) return;
+
+  if (!data.length) {
+    container.innerHTML =
+      `<p class="stats-loading">No referrer data yet.</p>`;
+    return;
+  }
+
+  container.innerHTML = data
+    .map(row => `
+      <div class="stats-list-row">
+
+        <span class="stats-list-name">
+          ${n21EscapeHtml(row.source_name || "Unknown")}
+        </span>
+
+        <span class="stats-list-value">
+          ${n21FormatNumber(row.view_count)}
+          ${Number(row.view_count) === 1 ? "view" : "views"}
+        </span>
+
+      </div>
+    `)
+    .join("");
+}
+
+
+// -----------------------------------------
 // LOAD DASHBOARD
 // -----------------------------------------
 
 async function n21LoadDashboard() {
   try {
 
-    await Promise.all([
-      n21LoadOverview(),
-      n21LoadTopContent(),
-      n21LoadDailyActivity()
-    ]);
+await Promise.all([
+  n21LoadOverview(),
+  n21LoadTopContent(),
+  n21LoadDailyActivity(),
+  n21LoadReferrers()
+]);
 
     console.log("N21 Stats: dashboard loaded.");
 
