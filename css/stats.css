@@ -148,26 +148,18 @@
 }
 
 
-/* GRAPH PLACEHOLDER */
+/* LIVE TRAFFIC CHART */
 
-.stats-chart-placeholder {
-  min-height: 360px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px dashed #394250;
-  border-radius: 6px;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.015),
-      rgba(255, 255, 255, 0.015) 1px,
-      transparent 1px,
-      transparent 42px
-    ),
-    #101620;
-  color: #707b8a;
-  font-size: 14px;
+.stats-chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  padding: 10px 4px 0;
+}
+
+.stats-chart-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 
@@ -225,11 +217,6 @@
 
 
 /* SUBTLE RED ACCENT */
-
-.stats-heading::after {
-  content: "";
-  position: absolute;
-}
 
 .stats-panel,
 .stats-card {
@@ -300,8 +287,8 @@
     grid-template-columns: 1fr;
   }
 
-  .stats-chart-placeholder {
-    min-height: 260px;
+  .stats-chart-wrap {
+    height: 280px;
   }
 
   .stats-card strong {
