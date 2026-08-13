@@ -463,12 +463,27 @@
     <script src="js/comic_header.js" defer></script>
     <script src="js/comic_footer.js" defer></script>
 
-    <script src="js/n21-analytics.js"></script>
-<script>
-  const n21ComicPage =
-    new URLSearchParams(window.location.search).get("pg") || "202";
+<script src="js/n21-analytics.js"></script>
 
-  n21TrackPageView("comic", n21ComicPage);
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+
+    const n21ComicPage =
+      Number(params.get("pg")) || maxpg;
+
+    const n21ComicData =
+      pgData.find(item => item.pgNum === n21ComicPage);
+
+    const n21ComicTitle =
+      n21ComicData ? n21ComicData.title : null;
+
+    n21TrackPageView(
+      "comic",
+      n21ComicPage,
+      n21ComicTitle
+    );
+  });
 </script>
     
     <script src="n21-journal-data.js"></script>
