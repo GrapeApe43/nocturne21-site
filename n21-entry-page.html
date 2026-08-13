@@ -214,7 +214,23 @@ if (patreonBox) {
 
   <script src="js/comic_header.js" defer></script>
   <script src="js/comic_footer.js" defer></script>
-  
+
+  <script src="js/n21-analytics.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!currentPostId) return;
+
+    const post = findPostById(currentPostId);
+    if (!post) return;
+
+    n21TrackPageView(
+      "journal",
+      currentPostId,
+      post.title
+    );
+  });
+</script>
   
       <div id='webcomicwebring' align="center">
 <script type="text/javascript" src="https://webcomicring.org/js/comicring-variables.js"></script>
