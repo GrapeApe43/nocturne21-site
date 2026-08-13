@@ -462,9 +462,20 @@
     <script src="js/comic_show.js" defer></script>
     <script src="js/comic_header.js" defer></script>
     <script src="js/comic_footer.js" defer></script>
+
+    <script src="js/n21-analytics.js"></script>
+<script>
+  const n21ComicPage =
+    new URLSearchParams(window.location.search).get("pg") || "202";
+
+  n21TrackPageView("comic", n21ComicPage);
+</script>
+    
     <script src="n21-journal-data.js"></script>
     <script src="js/latest-journal-update.js"></script>
     <script src="/js/related-journal-box.js"></script>
+
+  
    
     <div id='webcomicwebring' align="center">
 <script type="text/javascript" src="https://webcomicring.org/js/comicring-variables.js"></script>
