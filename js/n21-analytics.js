@@ -61,7 +61,70 @@ async function n21TrackPageView(
       pageId,
       pageTitle
     );
+
   } catch (error) {
     console.error("N21 Analytics error:", error);
   }
+}
+
+
+// --------------------------------------------------
+// AUTOMATIC TRACKING FOR NORMAL SITE PAGES
+// --------------------------------------------------
+
+function n21AutoTrackSitePage() {
+  let path = window.location.pathname;
+
+  // Remove trailing slash, if there is one.
+  if (path.length > 1 && path.endsWith("/")) {
+    path = path.slice(0, -1);
+  }
+
+  // These already have their own specialized tracking.
+  const specialPages = [
+    "",
+    "/",
+    "/index.html",
+    "/n21-entry-page",
+    "/n21-entry-page.html"
+  ];
+
+  if (specialPages.includes(path)) {
+    return;
+  }
+
+  // Turn "/about.html" into "about"
+  // Turn "/n21-journal.html" into "n21-journal"
+  let pageId = path
+    .split("/")
+    .pop()
+    .replace(/\.html$/i, "");
+
+  if (!pageId) return;
+
+  // Use the HTML page title, but remove the repetitive site name.
+  let pageTitle = document.title
+    .replace(/^Nocturne 21\s*\|\s*/i, "")
+    .trim();
+
+  // Fall back to a readable version of the filename if necessary.
+  if (!pageTitle || pageTitle === "Nocturne 21") {
+    pageTitle = pageId
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, letter => letter.toUpperCase());
+  }
+
+  n21TrackPageView(
+    "site",
+    pageId,
+    pageTitle
+  );
+}
+
+
+// Automatically run normal-page tracking.
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", n21AutoTrackSitePage);
+} else {
+  n21AutoTrackSitePage();
 }
