@@ -1,0 +1,14 @@
+{
+  "releases": [
+    {
+      "enabled": false,
+      "status": "pending",
+      "pgNum": 203,
+      "title": "Page 187",
+      "publish_at": "2026-08-17T12:00:00-04:00",
+      "altText": "",
+      "imageFiles": 1,
+      "authorNotes": "<p></p>"
+    }
+  ]
+}
