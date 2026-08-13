@@ -2,8 +2,13 @@
 // NOCTURNE 21 - STATS DASHBOARD
 // =========================================
 
-const N21_STATS_URL = "https://orkiydrkqdtjygmmcfld.supabase.co";
-const N21_STATS_KEY = "sb_publishable_0EppKig7i_IR00-enCi1aw_Q8SIo-DW";
+const N21_STATS_URL =
+  "https://orkiydrkqdtjygmmcfld.supabase.co";
+
+const N21_STATS_KEY =
+  "sb_publishable_0EppKig7i_IR00-enCi1aw_Q8SIo-DW";
+
+let n21VisitorChart = null;
 
 
 // -----------------------------------------
@@ -121,7 +126,11 @@ function n21RenderList(containerId, rows) {
       <div class="stats-list-row">
 
         <span class="stats-list-name">
-          ${n21EscapeHtml(row.page_title || row.page_id || "Unknown")}
+          ${n21EscapeHtml(
+            row.page_title ||
+            row.page_id ||
+            "Unknown"
+          )}
         </span>
 
         <span class="stats-list-value">
@@ -187,6 +196,172 @@ async function n21LoadTopContent() {
 
 
 // -----------------------------------------
+// DAILY VISITOR ACTIVITY
+// -----------------------------------------
+
+async function n21LoadDailyActivity() {
+  const daysBack = n21GetDaysBack();
+
+  const data = await n21StatsRpc(
+    "get_n21_daily_activity",
+    {
+      days_back: daysBack
+    }
+  );
+
+  if (!Array.isArray(data)) {
+    throw new Error("No daily activity data returned.");
+  }
+
+  n21RenderVisitorChart(data);
+}
+
+
+// -----------------------------------------
+// TRAFFIC CHART
+// -----------------------------------------
+
+function n21RenderVisitorChart(rows) {
+  const canvas = document.getElementById("visitorChart");
+
+  if (!canvas) return;
+
+  const labels = rows.map(row => {
+    const date = new Date(row.day + "T00:00:00");
+
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric"
+    });
+  });
+
+  const totalViews = rows.map(row =>
+    Number(row.total_views || 0)
+  );
+
+  const uniqueVisitors = rows.map(row =>
+    Number(row.unique_visitors || 0)
+  );
+
+  const comicViews = rows.map(row =>
+    Number(row.comic_views || 0)
+  );
+
+  if (n21VisitorChart) {
+    n21VisitorChart.destroy();
+  }
+
+  n21VisitorChart = new Chart(canvas, {
+    type: "line",
+
+    data: {
+      labels: labels,
+
+      datasets: [
+        {
+          label: "Page Views",
+          data: totalViews,
+          borderColor: "#c82f43",
+          backgroundColor: "rgba(200, 47, 67, 0.12)",
+          borderWidth: 2,
+          tension: 0.25,
+          pointRadius: 3,
+          pointHoverRadius: 5
+        },
+
+        {
+          label: "Visitors",
+          data: uniqueVisitors,
+          borderColor: "#6d78d8",
+          backgroundColor: "rgba(109, 120, 216, 0.10)",
+          borderWidth: 2,
+          tension: 0.25,
+          pointRadius: 3,
+          pointHoverRadius: 5
+        },
+
+        {
+          label: "Comic Views",
+          data: comicViews,
+          borderColor: "#6fbf73",
+          backgroundColor: "rgba(111, 191, 115, 0.08)",
+          borderWidth: 2,
+          tension: 0.25,
+          pointRadius: 3,
+          pointHoverRadius: 5
+        }
+      ]
+    },
+
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+
+      interaction: {
+        mode: "index",
+        intersect: false
+      },
+
+      plugins: {
+        legend: {
+          labels: {
+            color: "#c6cfdb",
+            usePointStyle: true,
+            boxWidth: 8,
+            padding: 18
+          }
+        },
+
+        tooltip: {
+          backgroundColor: "#0d131c",
+          titleColor: "#ffffff",
+          bodyColor: "#d7dce5",
+          borderColor: "#303846",
+          borderWidth: 1
+        }
+      },
+
+      scales: {
+        x: {
+          ticks: {
+            color: "#8994a4",
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 10
+          },
+
+          grid: {
+            color: "rgba(255,255,255,0.04)"
+          },
+
+          border: {
+            color: "#303846"
+          }
+        },
+
+        y: {
+          beginAtZero: true,
+
+          ticks: {
+            color: "#8994a4",
+            precision: 0
+          },
+
+          grid: {
+            color: "rgba(255,255,255,0.06)"
+          },
+
+          border: {
+            color: "#303846"
+          }
+        }
+      }
+    }
+  });
+}
+
+
+// -----------------------------------------
 // BASIC HTML SAFETY
 // -----------------------------------------
 
@@ -209,7 +384,8 @@ async function n21LoadDashboard() {
 
     await Promise.all([
       n21LoadOverview(),
-      n21LoadTopContent()
+      n21LoadTopContent(),
+      n21LoadDailyActivity()
     ]);
 
     console.log("N21 Stats: dashboard loaded.");
@@ -228,7 +404,8 @@ async function n21LoadDashboard() {
 // DATE RANGE CHANGES
 // -----------------------------------------
 
-const statsRange = document.getElementById("statsRange");
+const statsRange =
+  document.getElementById("statsRange");
 
 if (statsRange) {
   statsRange.addEventListener(
