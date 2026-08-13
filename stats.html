@@ -25,167 +25,339 @@
   <!-- Normal Nocturne 21 header -->
   <div class="writeHeader"></div>
 
-  <main class="stats-dashboard">
 
-    <div class="stats-heading">
-      <div>
-        <h1>Site Statistics</h1>
-        <p>Nocturne 21 traffic and reader activity.</p>
-      </div>
+  <div class="stats-shell">
 
-      <div class="stats-range">
-        <label for="statsRange">Range</label>
+    <!-- ========================================
+         LEFT STATS NAVIGATION
+         ======================================== -->
 
-        <select id="statsRange">
-          <option value="7">Last 7 Days</option>
-          <option value="30" selected>Last 30 Days</option>
-          <option value="90">Last 90 Days</option>
-          <option value="all">All Time</option>
-        </select>
-      </div>
-    </div>
+    <aside class="stats-sidebar">
+
+      <nav class="stats-side-nav" aria-label="Statistics navigation">
+
+        <a href="#overview" class="stats-side-home">
+          <span class="stats-side-icon">⌁</span>
+          <span>Site Statistics</span>
+        </a>
+
+        <a href="#overview" class="stats-side-link stats-side-active">
+          <span class="stats-side-icon">▧</span>
+          <span>Overview</span>
+        </a>
 
 
-    <!-- SUMMARY CARDS -->
+        <div class="stats-side-group">
+          <h3>Comic Pages</h3>
 
-    <section class="stats-section">
+          <a href="#comic-pages" class="stats-side-link">
+            <span class="stats-side-icon">▤</span>
+            <span>Top Pages</span>
+          </a>
 
-      <h2>Overview</h2>
-
-      <div class="stats-card-grid">
-
-        <div class="stats-card">
-          <span class="stats-card-label">Unique Visitors</span>
-          <strong id="statVisitors">—</strong>
-          <span class="stats-card-note">Anonymous readers</span>
+          <a href="#reader-sessions" class="stats-side-link">
+            <span class="stats-side-icon">⌁</span>
+            <span>Reader Sessions</span>
+          </a>
         </div>
 
-        <div class="stats-card">
-          <span class="stats-card-label">Page Views</span>
-          <strong id="statViews">—</strong>
-          <span class="stats-card-note">Total pages loaded</span>
+
+        <div class="stats-side-group">
+          <h3>Journal</h3>
+
+          <a href="#journal-posts" class="stats-side-link">
+            <span class="stats-side-icon">▥</span>
+            <span>Top Posts</span>
+          </a>
         </div>
 
-        <div class="stats-card">
-          <span class="stats-card-label">Comic Views</span>
-          <strong id="statComicViews">—</strong>
-          <span class="stats-card-note">Comic pages read</span>
+
+        <div class="stats-side-group">
+          <h3>Traffic</h3>
+
+          <a href="#visitor-activity" class="stats-side-link">
+            <span class="stats-side-icon">⌁</span>
+            <span>Visitor Activity</span>
+          </a>
+
+          <a href="#traffic-sources" class="stats-side-link">
+            <span class="stats-side-icon">↗</span>
+            <span>Referrers</span>
+          </a>
         </div>
 
-        <div class="stats-card">
-          <span class="stats-card-label">Journal Views</span>
-          <strong id="statJournalViews">—</strong>
-          <span class="stats-card-note">Journal entries read</span>
+
+        <div class="stats-side-group">
+          <h3>Info &amp; Settings</h3>
+
+          <a href="/about.html" class="stats-side-link">
+            <span class="stats-side-icon">ⓘ</span>
+            <span>About This Site</span>
+          </a>
+
+          <a href="#privacy" class="stats-side-link">
+            <span class="stats-side-icon">◇</span>
+            <span>Privacy</span>
+          </a>
         </div>
 
-        <div class="stats-card">
-          <span class="stats-card-label">Site Page Views</span>
-          <strong id="statSiteViews">—</strong>
-          <span class="stats-card-note">About, Cast, Gallery, etc.</span>
+      </nav>
+
+    </aside>
+
+
+    <!-- ========================================
+         MAIN DASHBOARD
+         ======================================== -->
+
+    <main class="stats-dashboard">
+
+      <!-- PAGE HEADER -->
+
+      <section class="stats-heading" id="overview">
+
+        <div>
+          <h1>Site Statistics</h1>
+          <p>Overview of Nocturne 21 traffic and reader activity.</p>
         </div>
 
-      </div>
+        <div class="stats-range">
+          <label for="statsRange">Range</label>
 
-    </section>
-
-
-    <!-- VISITOR GRAPH -->
-
-    <section class="stats-section">
-
-      <div class="stats-panel">
-
-        <h2>Visitor Activity</h2>
-
-        <div class="stats-chart-wrap">
-          <canvas id="visitorChart"></canvas>
+          <select id="statsRange">
+            <option value="7">Last 7 Days</option>
+            <option value="30" selected>Last 30 Days</option>
+            <option value="90">Last 90 Days</option>
+            <option value="all">All Time</option>
+          </select>
         </div>
 
-      </div>
-
-    </section>
+      </section>
 
 
-    <!-- POPULAR CONTENT -->
+      <!-- VISITOR GRAPH -->
 
-    <section class="stats-two-column">
+      <section
+        class="stats-section"
+        id="visitor-activity"
+      >
 
-      <div class="stats-panel">
+        <div class="stats-panel stats-activity-panel">
 
-        <h2>Top Comic Pages</h2>
+          <h2>Visitor Activity</h2>
 
-        <div id="topComicPages" class="stats-list">
-          <p class="stats-loading">Waiting for data…</p>
-        </div>
-
-      </div>
-
-
-      <div class="stats-panel">
-
-        <h2>Top Journal Posts</h2>
-
-        <div id="topJournalPosts" class="stats-list">
-          <p class="stats-loading">Waiting for data…</p>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- SITE PAGES / REFERRERS -->
-
-    <section class="stats-two-column">
-
-      <div class="stats-panel">
-
-        <h2>Top Site Pages</h2>
-
-        <div id="topSitePages" class="stats-list">
-          <p class="stats-loading">Waiting for data…</p>
-        </div>
-
-      </div>
-
-
-      <div class="stats-panel">
-
-        <h2>Traffic Sources</h2>
-
-        <div id="topReferrers" class="stats-list">
-          <p class="stats-loading">Waiting for data…</p>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- RECENT READER SESSIONS -->
-
-    <section class="stats-section">
-
-      <div class="stats-panel">
-
-        <div class="stats-session-heading">
-          <div>
-            <h2>Recent Reader Sessions</h2>
-            <p>
-              Anonymous reading paths grouped into 30-minute sessions.
-            </p>
+          <div class="stats-chart-wrap">
+            <canvas id="visitorChart"></canvas>
           </div>
+
         </div>
 
-        <div id="recentSessions" class="stats-sessions">
-          <p class="stats-loading">Waiting for session data…</p>
+      </section>
+
+
+      <!-- SUMMARY STATISTICS -->
+
+      <section class="stats-section">
+
+        <div class="stats-panel stats-summary-panel">
+
+          <h2>Summary Statistics</h2>
+
+          <div class="stats-card-grid">
+
+            <div class="stats-card">
+              <div class="stats-card-icon">◉</div>
+
+              <div class="stats-card-content">
+                <span class="stats-card-label">Unique Visitors</span>
+                <strong id="statVisitors">—</strong>
+                <span class="stats-card-note">Anonymous readers</span>
+              </div>
+            </div>
+
+
+            <div class="stats-card">
+              <div class="stats-card-icon">↗</div>
+
+              <div class="stats-card-content">
+                <span class="stats-card-label">Page Views</span>
+                <strong id="statViews">—</strong>
+                <span class="stats-card-note">Total pages loaded</span>
+              </div>
+            </div>
+
+
+            <div class="stats-card">
+              <div class="stats-card-icon">▤</div>
+
+              <div class="stats-card-content">
+                <span class="stats-card-label">Comic Views</span>
+                <strong id="statComicViews">—</strong>
+                <span class="stats-card-note">Comic pages read</span>
+              </div>
+            </div>
+
+
+            <div class="stats-card">
+              <div class="stats-card-icon">▥</div>
+
+              <div class="stats-card-content">
+                <span class="stats-card-label">Journal Views</span>
+                <strong id="statJournalViews">—</strong>
+                <span class="stats-card-note">Journal entries read</span>
+              </div>
+            </div>
+
+
+            <div class="stats-card">
+              <div class="stats-card-icon">⌂</div>
+
+              <div class="stats-card-content">
+                <span class="stats-card-label">Site Page Views</span>
+                <strong id="statSiteViews">—</strong>
+                <span class="stats-card-note">About, Cast, Gallery, etc.</span>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
-      </div>
+      </section>
 
-    </section>
 
-  </main>
+      <!-- POPULAR CONTENT -->
+
+      <section class="stats-two-column">
+
+        <div
+          class="stats-panel"
+          id="comic-pages"
+        >
+
+          <h2>Top Comic Pages</h2>
+
+          <div id="topComicPages" class="stats-list">
+            <p class="stats-loading">Waiting for data…</p>
+          </div>
+
+        </div>
+
+
+        <div
+          class="stats-panel"
+          id="journal-posts"
+        >
+
+          <h2>Top Journal Posts</h2>
+
+          <div id="topJournalPosts" class="stats-list">
+            <p class="stats-loading">Waiting for data…</p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- SITE PAGES / REFERRERS -->
+
+      <section class="stats-two-column">
+
+        <div class="stats-panel">
+
+          <h2>Top Site Pages</h2>
+
+          <div id="topSitePages" class="stats-list">
+            <p class="stats-loading">Waiting for data…</p>
+          </div>
+
+        </div>
+
+
+        <div
+          class="stats-panel"
+          id="traffic-sources"
+        >
+
+          <h2>Traffic Sources</h2>
+
+          <div id="topReferrers" class="stats-list">
+            <p class="stats-loading">Waiting for data…</p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- RECENT READER SESSIONS -->
+
+      <section
+        class="stats-section"
+        id="reader-sessions"
+      >
+
+        <div class="stats-panel">
+
+          <div class="stats-session-heading">
+
+            <div>
+              <h2>Recent Reader Sessions</h2>
+
+              <p>
+                Anonymous reading paths grouped into 30-minute sessions.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div
+            id="recentSessions"
+            class="stats-sessions"
+          >
+
+            <p class="stats-loading">
+              Waiting for session data…
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PRIVACY NOTE -->
+
+      <section
+        class="stats-section"
+        id="privacy"
+      >
+
+        <div class="stats-panel stats-privacy-panel">
+
+          <h2>Privacy</h2>
+
+          <p>
+            Nocturne 21 statistics use a random anonymous browser ID
+            to estimate visitors and reading sessions.
+          </p>
+
+          <p>
+            The tracker does not ask readers for names, email addresses,
+            accounts, or other identifying information.
+          </p>
+
+        </div>
+
+      </section>
+
+
+    </main>
+
+  </div>
 
 
   <!-- Normal Nocturne 21 footer -->
