@@ -52,3 +52,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh workflow run publish.yml --ref "${{ github.ref_name }}"
+
+      - name: Deploy updated site to Neocities
+        if: steps.release.outputs.released == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run deploy.yml --ref "${{ github.ref_name }}"
