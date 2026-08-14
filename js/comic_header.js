@@ -1,21 +1,6 @@
 document.querySelector(".writeHeader").innerHTML = `
   <header class="site-header">
   
-  <div class="jumpring">
-    <a href="https://spelledeg.wixsite.com/ontenterhook"><img src="https://i.imgur.com/CJfTY8s.png" target="_blank" title="Ontenterhook: Thrillerish webcomic collective"></a>
-    <a href="http://hereilieawake.webcomic.ws/"><img src="https://i.imgur.com/YGMLp6o.png" target="_blank" title="Here I Lie Awake"></a>
-    <a href="http://polaris.webcomic.ws/"><img src="https://i.imgur.com/MxNtgV2.png" target="_blank" title="Polaris"></a>
-    <a href="http://kordinar.the-comic.org/"><img src="https://i.imgur.com/DhpYBjs.png" target="_blank" title="Kordinar 25000"></a>
-    <a href="https://www.emergencycoven.com/"><img src="https://i.imgur.com/5l3fCdK.jpg" target="_blank" title="The Emergency Coven"></a>
-    <a href="http://mksjekyllandhyde.thecomicseries.com/"><img src="https://i.imgur.com/4K9Ivo3.png" target="_blank" title="MK's The Strange Case of Dr. Jekkyl & Mr. Hyde"></a>
-    <a href="http://nowhiring.cfw.me/"><img src="https://i.imgur.com/Xz97tZn.png" target="_blank" title="Now Hiring"></a>
-    <a href="http://playground-cryptida.thecomicseries.com/"><img src="https://i.imgur.com/l2eu15L.png" target="_blank" title="Playground"></a>
-    <a href="http://sunstrikeandbluemist.thecomicseries.com/"><img src="https://i.imgur.com/glD7zrE.png" target="_blank" title="Sunstrike & Bluemist: An Origin Story"></a>
-    <a href="http://aceofthespades.thecomicseries.com/"><img src="https://i.imgur.com/xO9zrnq.png" target="_blank" title="The Ace of the Spades"></a>
-    <a href="http://strippedwebcomic.webcomic.ws/"><img src="https://i.imgur.com/ArfMUti.png" target="_blank" title="STRIPPED: A War Story"></a>
-    <a href="http://trevor.the-comic.org/"><img src="https://i.imgur.com/4IvJSUR.png" target="_blank" title="TREVOR"></a>
-  </div>
-  
   <a href="index.html" class="site-banner-link">
     <img src="./img/logo.png" alt="Nocturne 21" class="site-banner" />
   </a>
