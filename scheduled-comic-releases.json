@@ -30,7 +30,7 @@
       "publish_at": "2026-09-03T18:30:00-04:00",
       "altText": "",
       "imageFiles": 1,
-      "authorNotes": "<p></p>",
+      "authorNotes": "<p></p>"
     },
     {
       "enabled": true,
@@ -40,7 +40,7 @@
       "publish_at": "2026-09-03T19:30-04:00",
       "altText": "",
       "imageFiles": 1,
-      "authorNotes": "<p></p>",
+      "authorNotes": "<p></p>"
     }
   ]
 }
