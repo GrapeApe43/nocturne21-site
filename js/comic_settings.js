@@ -1937,6 +1937,32 @@ const pgData = [
     description: "Page 188 of Nocturne 21",
     thumb: "https://nocturne21.com/img/thumbs/pg204.png"
 },
+                 {
+    pgNum: 205,
+    title: "Page 189",
+    date: writeDate(2026, 09, 03),
+    altText: "",
+    imageFiles: 1,
+    authorNotes: `<p>Aaaaaand down he goes. Let's hope that big purple bubble pops before the last bell rings.</p>`,
+
+    // NEW ↓↓↓
+    description: "Page 189 of Nocturne 21",
+    thumb: "https://nocturne21.com/img/thumbs/pg205.png"
+},
+                 {
+    pgNum: 206,
+    title: "Page 190",
+    date: writeDate(2026, 09, 03),
+    altText: "",
+    imageFiles: 1,
+    authorNotes: `<p>That's it for Chapter 5, folks! Took WAY too long to finish, but this beast is done!
+    Gonna go on a short hiatus to work on Chapter 6, but I'll be back soon! Keep checking in for updates and extras!
+    As always, thank you SO much for reading!</p>`,
+
+    // NEW ↓↓↓
+    description: "Page 190 of Nocturne 21",
+    thumb: "https://nocturne21.com/img/thumbs/pg206.png"
+},    
     
 ];
 
