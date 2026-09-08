@@ -3915,7 +3915,205 @@ div.jumpring a:hover {
 }
 
 
+/* ========================================
+   CHAPTER 06 — PRODUCTION STATUS
+======================================== */
 
+.chapter-status {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 10px 14px 12px 14px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(36, 16, 22, 0.98),
+      rgba(20, 10, 14, 0.98)
+    );
+
+  border-top: 1px solid rgba(238, 71, 87, 0.28);
+  border-bottom: 1px solid rgba(238, 71, 87, 0.28);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 214, 220, 0.035),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+
+  font-family:
+    "Courier New",
+    Courier,
+    monospace;
+
+  line-height: normal;
+  text-align: left;
+
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* ----------------------------------------
+   STATUS HEADER
+---------------------------------------- */
+
+.chapter-status-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 4px;
+}
+
+.chapter-status-title {
+  color: var(--n21-red-pale);
+
+  font-size: 0.72rem;
+  font-weight: bold;
+
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+
+  text-shadow:
+    0 0 6px rgba(238, 71, 87, 0.16);
+}
+
+.chapter-status-percent {
+  color: var(--n21-red-soft);
+
+  font-size: 0.72rem;
+  font-weight: bold;
+
+  letter-spacing: 0.06em;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 0 7px rgba(238, 71, 87, 0.25);
+}
+
+
+/* ----------------------------------------
+   PAGE COUNT
+---------------------------------------- */
+
+.chapter-status-info {
+  color: var(--n21-text-faint);
+
+  font-size: 0.66rem;
+  letter-spacing: 0.10em;
+
+  margin-bottom: 6px;
+
+  line-height: 1.3;
+}
+
+
+/* ----------------------------------------
+   PROGRESS TRACK
+---------------------------------------- */
+
+.chapter-progress-track {
+  width: 100%;
+  height: 7px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.48),
+      rgba(0, 0, 0, 0.68)
+    );
+
+  border: 1px solid rgba(238, 71, 87, 0.24);
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+
+/* ----------------------------------------
+   PROGRESS FILL
+---------------------------------------- */
+
+.chapter-progress-fill {
+  height: 100%;
+
+  min-width: 3px;
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(154, 39, 54, 0.95),
+      rgba(238, 71, 87, 0.98),
+      rgba(255, 140, 154, 0.95)
+    );
+
+  box-shadow:
+    0 0 7px rgba(238, 71, 87, 0.42),
+    0 0 14px rgba(238, 71, 87, 0.16);
+
+  transition:
+    width 0.45s ease;
+}
+
+
+/* ----------------------------------------
+   SUBTLE SCANLINE / TECH EFFECT
+---------------------------------------- */
+
+.chapter-status::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.018) 0px,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+
+  opacity: 0.45;
+}
+
+
+/* ----------------------------------------
+   MOBILE
+---------------------------------------- */
+
+@media (max-width: 700px) {
+
+  .chapter-status {
+    padding: 8px 10px 10px 10px;
+  }
+
+  .chapter-status-title {
+    font-size: 0.60rem;
+    letter-spacing: 0.08em;
+  }
+
+  .chapter-status-percent {
+    font-size: 0.60rem;
+  }
+
+  .chapter-status-info {
+    font-size: 0.57rem;
+    letter-spacing: 0.07em;
+  }
+
+  .chapter-progress-track {
+    height: 6px;
+  }
+}
 
 
 
