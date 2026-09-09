@@ -2,15 +2,12 @@
    NOCTURNE 21 — SITE HEADER
    ======================================== */
 
-// Chapter 6 production progress
 const CHAPTER_NUMBER = "06";
 const CHAPTER_COMPLETED = 1;
 const CHAPTER_TOTAL = 35;
 
-const chapterPercent = Math.min(
-  100,
-  Math.round((CHAPTER_COMPLETED / CHAPTER_TOTAL) * 1000) / 10
-);
+const chapterPercent =
+  Math.round((CHAPTER_COMPLETED / CHAPTER_TOTAL) * 1000) / 10;
 
 document.querySelector(".writeHeader").innerHTML = `
   <header class="site-header">
@@ -29,30 +26,121 @@ document.querySelector(".writeHeader").innerHTML = `
       <a href="support.html" data-page="support.html">SUPPORT</a>
     </div>
 
-    <div class="chapter-status" aria-label="Chapter 6 production progress">
 
-      <div class="chapter-status-header">
-        <span class="chapter-status-title">
+    <!-- CHAPTER 06 PRODUCTION STATUS -->
+
+    <div
+      class="chapter-status"
+      aria-label="Chapter 6 production progress"
+      style="
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 20;
+        margin: 0;
+        padding: 10px 14px 12px;
+        background: linear-gradient(
+          to bottom,
+          rgba(36, 16, 22, 0.98),
+          rgba(20, 10, 14, 0.98)
+        );
+        border-top: 1px solid rgba(238, 71, 87, 0.28);
+        border-bottom: 1px solid rgba(238, 71, 87, 0.28);
+        line-height: normal;
+        text-align: left;
+        font-family: 'Courier New', Courier, monospace;
+      "
+    >
+
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          margin: 0 0 4px;
+          padding: 0;
+          line-height: 1.3;
+        "
+      >
+        <span
+          style="
+            color: #ffd6dc;
+            font-size: 0.72rem;
+            font-weight: bold;
+            letter-spacing: 0.12em;
+          "
+        >
           CHAPTER ${CHAPTER_NUMBER} // PRODUCTION STATUS
         </span>
 
-        <span class="chapter-status-percent">
+        <span
+          style="
+            color: #ff9aa5;
+            font-size: 0.72rem;
+            font-weight: bold;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+          "
+        >
           ${chapterPercent}%
         </span>
       </div>
 
-      <div class="chapter-status-info">
-        <span>${String(CHAPTER_COMPLETED).padStart(2, "0")} / ${String(CHAPTER_TOTAL).padStart(2, "0")} PAGES COMPLETE</span>
+
+      <div
+        style="
+          width: 100%;
+          margin: 0 0 6px;
+          padding: 0;
+          color: rgba(255,255,255,0.66);
+          font-size: 0.66rem;
+          letter-spacing: 0.10em;
+          line-height: 1.3;
+        "
+      >
+        ${String(CHAPTER_COMPLETED).padStart(2, "0")} /
+        ${String(CHAPTER_TOTAL).padStart(2, "0")}
+        PAGES COMPLETE
       </div>
 
-      <div class="chapter-progress-track">
+
+      <div
+        style="
+          width: 100%;
+          height: 7px;
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          background: rgba(0,0,0,0.55);
+          border: 1px solid rgba(238,71,87,0.28);
+          overflow: hidden;
+          line-height: 0;
+        "
+      >
         <div
-          class="chapter-progress-fill"
-          style="width: ${chapterPercent}%"
+          style="
+            width: ${chapterPercent}%;
+            height: 100%;
+            min-width: 3px;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(
+              to right,
+              #9a2736,
+              #ee4757,
+              #ff8c9a
+            );
+            box-shadow:
+              0 0 7px rgba(238,71,87,0.42),
+              0 0 14px rgba(238,71,87,0.16);
+          "
         ></div>
       </div>
 
     </div>
+
 
     <div class="socialicons">
       <a href="https://discord.gg/FCkUWf7awk" target="_blank">
@@ -93,14 +181,12 @@ document.querySelector(".writeHeader").innerHTML = `
 (function () {
   const navLinks = document.querySelectorAll("#nav a");
 
-  // get current path cleanly
   let currentPath =
     window.location.pathname.split("/").pop() || "index.html";
 
-  // strip query/hash just in case
   currentPath = currentPath.split("?")[0].split("#")[0];
 
-  // normalize paths like "about" -> "about.html"
+
   function normalizePath(path) {
     path = (path || "")
       .split("?")[0]
@@ -111,7 +197,6 @@ document.querySelector(".writeHeader").innerHTML = `
       return "index.html";
     }
 
-    // if no file extension, assume .html
     if (!path.includes(".") && path !== "") {
       return path + ".html";
     }
@@ -119,7 +204,9 @@ document.querySelector(".writeHeader").innerHTML = `
     return path;
   }
 
+
   currentPath = normalizePath(currentPath);
+
 
   navLinks.forEach(link => {
     const href = normalizePath(link.getAttribute("href"));
@@ -129,7 +216,7 @@ document.querySelector(".writeHeader").innerHTML = `
     }
   });
 
-  // extra homepage fallback
+
   if (
     window.location.pathname === "/" ||
     window.location.pathname.endsWith("/index") ||
