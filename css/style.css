@@ -3916,39 +3916,39 @@ div.jumpring a:hover {
 
 
 /* ========================================
-   CHAPTER 06 — PRODUCTION STATUS
+   NOCTURNE 21 — CHAPTER 06 PRODUCTION STATUS
 ======================================== */
 
-.chapter-status {
-  width: 100%;
-  box-sizing: border-box;
+.site-header .chapter-status {
+  display: block !important;
+  position: relative !important;
+  z-index: 5 !important;
 
-  padding: 10px 14px 12px 14px;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 58px !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 10px 14px 12px 14px !important;
 
   background:
     linear-gradient(
       to bottom,
       rgba(36, 16, 22, 0.98),
       rgba(20, 10, 14, 0.98)
-    );
+    ) !important;
 
-  border-top: 1px solid rgba(238, 71, 87, 0.28);
-  border-bottom: 1px solid rgba(238, 71, 87, 0.28);
+  border-top: 1px solid rgba(238, 71, 87, 0.28) !important;
+  border-bottom: 1px solid rgba(238, 71, 87, 0.28) !important;
 
-  box-shadow:
-    inset 0 1px 0 rgba(255, 214, 220, 0.035),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+  line-height: normal !important;
+  text-align: left !important;
 
-  font-family:
-    "Courier New",
-    Courier,
-    monospace;
+  font-family: "Courier New", Courier, monospace !important;
 
-  line-height: normal;
-  text-align: left;
-
-  position: relative;
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 
@@ -3956,41 +3956,55 @@ div.jumpring a:hover {
    STATUS HEADER
 ---------------------------------------- */
 
-.chapter-status-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.site-header .chapter-status-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
 
-  gap: 12px;
+  width: 100% !important;
+  height: auto !important;
 
-  margin-bottom: 4px;
+  margin: 0 0 4px 0 !important;
+  padding: 0 !important;
+
+  line-height: normal !important;
 }
 
-.chapter-status-title {
-  color: var(--n21-red-pale);
 
-  font-size: 0.72rem;
-  font-weight: bold;
+.site-header .chapter-status-title {
+  display: block !important;
 
-  letter-spacing: 0.12em;
-  line-height: 1.3;
+  color: var(--n21-red-pale) !important;
+
+  font-size: 0.72rem !important;
+  font-weight: bold !important;
+
+  letter-spacing: 0.12em !important;
+  line-height: 1.3 !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 
   text-shadow:
     0 0 6px rgba(238, 71, 87, 0.16);
 }
 
-.chapter-status-percent {
-  color: var(--n21-red-soft);
 
-  font-size: 0.72rem;
-  font-weight: bold;
+.site-header .chapter-status-percent {
+  display: block !important;
 
-  letter-spacing: 0.06em;
+  color: var(--n21-red-soft) !important;
 
-  white-space: nowrap;
+  font-size: 0.72rem !important;
+  font-weight: bold !important;
 
-  text-shadow:
-    0 0 7px rgba(238, 71, 87, 0.25);
+  letter-spacing: 0.06em !important;
+  line-height: 1.3 !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  white-space: nowrap !important;
 }
 
 
@@ -3998,40 +4012,45 @@ div.jumpring a:hover {
    PAGE COUNT
 ---------------------------------------- */
 
-.chapter-status-info {
-  color: var(--n21-text-faint);
+.site-header .chapter-status-info {
+  display: block !important;
 
-  font-size: 0.66rem;
-  letter-spacing: 0.10em;
+  width: 100% !important;
 
-  margin-bottom: 6px;
+  color: var(--n21-text-faint) !important;
 
-  line-height: 1.3;
+  font-size: 0.66rem !important;
+  letter-spacing: 0.10em !important;
+  line-height: 1.3 !important;
+
+  margin: 0 0 6px 0 !important;
+  padding: 0 !important;
 }
 
 
 /* ----------------------------------------
-   PROGRESS TRACK
+   PROGRESS BAR
 ---------------------------------------- */
 
-.chapter-progress-track {
-  width: 100%;
-  height: 7px;
+.site-header .chapter-progress-track {
+  display: block !important;
+
+  width: 100% !important;
+  height: 7px !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 
   background:
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.48),
-      rgba(0, 0, 0, 0.68)
-    );
+    rgba(0, 0, 0, 0.55) !important;
 
-  border: 1px solid rgba(238, 71, 87, 0.24);
+  border: 1px solid rgba(238, 71, 87, 0.28) !important;
 
-  box-sizing: border-box;
+  overflow: hidden !important;
 
-  overflow: hidden;
-
-  position: relative;
+  line-height: 0 !important;
 }
 
 
@@ -4039,50 +4058,42 @@ div.jumpring a:hover {
    PROGRESS FILL
 ---------------------------------------- */
 
-.chapter-progress-fill {
-  height: 100%;
+.site-header .chapter-progress-fill {
+  display: block !important;
 
-  min-width: 3px;
+  height: 100% !important;
+  min-width: 3px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 
   background:
     linear-gradient(
       to right,
-      rgba(154, 39, 54, 0.95),
-      rgba(238, 71, 87, 0.98),
-      rgba(255, 140, 154, 0.95)
-    );
+      #9a2736,
+      #ee4757,
+      #ff8c9a
+    ) !important;
 
   box-shadow:
     0 0 7px rgba(238, 71, 87, 0.42),
-    0 0 14px rgba(238, 71, 87, 0.16);
+    0 0 14px rgba(238, 71, 87, 0.16) !important;
 
-  transition:
-    width 0.45s ease;
+  line-height: 0 !important;
 }
 
 
 /* ----------------------------------------
-   SUBTLE SCANLINE / TECH EFFECT
+   KEEP SOCIALS BELOW THE STATUS BAR
 ---------------------------------------- */
 
-.chapter-status::after {
-  content: "";
+.site-header .socialicons {
+  position: relative !important;
+  z-index: 4 !important;
 
-  position: absolute;
-  inset: 0;
+  clear: both !important;
 
-  pointer-events: none;
-
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.018) 0px,
-      rgba(255, 255, 255, 0.018) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-
-  opacity: 0.45;
+  line-height: 1 !important;
 }
 
 
@@ -4092,33 +4103,27 @@ div.jumpring a:hover {
 
 @media (max-width: 700px) {
 
-  .chapter-status {
-    padding: 8px 10px 10px 10px;
+  .site-header .chapter-status {
+    min-height: 52px !important;
+
+    padding: 8px 10px 10px 10px !important;
   }
 
-  .chapter-status-title {
-    font-size: 0.60rem;
-    letter-spacing: 0.08em;
+  .site-header .chapter-status-title {
+    font-size: 0.60rem !important;
+    letter-spacing: 0.08em !important;
   }
 
-  .chapter-status-percent {
-    font-size: 0.60rem;
+  .site-header .chapter-status-percent {
+    font-size: 0.60rem !important;
   }
 
-  .chapter-status-info {
-    font-size: 0.57rem;
-    letter-spacing: 0.07em;
+  .site-header .chapter-status-info {
+    font-size: 0.57rem !important;
+    letter-spacing: 0.07em !important;
   }
 
-  .chapter-progress-track {
-    height: 6px;
+  .site-header .chapter-progress-track {
+    height: 6px !important;
   }
 }
-
-
-
-
-
-
-
-
