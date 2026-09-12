@@ -3,7 +3,7 @@
    ======================================== */
 
 const CHAPTER_NUMBER = "06";
-const CHAPTER_COMPLETED = 1;
+const CHAPTER_COMPLETED = 2;
 const CHAPTER_TOTAL = 35;
 
 const chapterPercent =
