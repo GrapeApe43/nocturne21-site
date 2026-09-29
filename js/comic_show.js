@@ -15,6 +15,11 @@ console.log(pg)
 
 writePageTitle(".writePageTitle", false," - "); //write title of page. true/false
 
+//SEO: give each comic page its own browser title
+if (pgData.length >= pg) {
+  document.title = `Nocturne 21 — Page ${pgData[pg - 1].pgNum} | Sci-Fi Drama Webcomic`;
+}
+
 writePageClickable(".writePageClickable",true); //show the current page. to toggle whether pages can be clicked to move to the next one, set this to true or false.
 
 writeAuthorNotes(".writeAuthorNotes");
