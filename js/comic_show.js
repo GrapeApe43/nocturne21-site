@@ -30,6 +30,21 @@ if (pgData.length >= pg) {
     );
   }
 }
+//SEO: set a canonical URL for each comic page
+if (pgData.length >= pg) {
+  let canonical = document.querySelector('link[rel="canonical"]');
+
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.setAttribute("rel", "canonical");
+    document.head.appendChild(canonical);
+  }
+
+  canonical.setAttribute(
+    "href",
+    `https://nocturne21.com/?pg=${pg}`
+  );
+}
 
 writePageClickable(".writePageClickable",true); //show the current page. to toggle whether pages can be clicked to move to the next one, set this to true or false.
 
