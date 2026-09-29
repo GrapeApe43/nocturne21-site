@@ -19,6 +19,17 @@ writePageTitle(".writePageTitle", false," - "); //write title of page. true/fals
 if (pgData.length >= pg) {
   document.title = `Nocturne 21 — Page ${pgData[pg - 1].pgNum} | Sci-Fi Drama Webcomic`;
 }
+//SEO: give each comic page its own meta description
+if (pgData.length >= pg) {
+  const metaDescription = document.querySelector('meta[name="description"]');
+
+  if (metaDescription) {
+    metaDescription.setAttribute(
+      "content",
+      `Read Page ${pgData[pg - 1].pgNum} of Nocturne 21, a sci-fi drama webcomic by April Ferrero about family, trauma, identity, and finding strength through connection.`
+    );
+  }
+}
 
 writePageClickable(".writePageClickable",true); //show the current page. to toggle whether pages can be clicked to move to the next one, set this to true or false.
 
