@@ -4127,3 +4127,48 @@ div.jumpring a:hover {
     height: 6px !important;
   }
 }
+
+
+/* Comic page SEO description */
+.comic-seo-description {
+  max-width: 700px;
+  margin: 8px auto 18px;
+  padding: 10px 18px;
+
+  text-align: center;
+  line-height: 1.5;
+
+  background: rgba(10, 8, 15, 0.72);
+  border: 1px solid rgba(93, 97, 171, 0.45);
+  border-radius: 8px;
+}
+
+.comic-seo-description p {
+  margin: 0;
+}
+
+.comic-seo-description strong {
+  display: block;
+  margin-bottom: 3px;
+
+  color: #f2cbd3;
+  font-size: 1.05rem;
+}
+
+.comic-seo-description span {
+  display: block;
+  color: #d7d7df;
+  font-size: 0.9rem;
+}
+
+/* Keep the description comfortable on smaller screens */
+@media (max-width: 750px) {
+  .comic-seo-description {
+    margin: 8px 14px 16px;
+    padding: 9px 12px;
+  }
+
+  .comic-seo-description span {
+    font-size: 0.85rem;
+  }
+}
