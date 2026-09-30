@@ -53,9 +53,11 @@ if (pgData.length >= pg) {
   if (seoDescription) {
     seoDescription.innerHTML = `
       <p>
-        <strong>Nocturne 21 — Page ${pgData[pg - 1].pgNum}</strong><br>
-        A page from <em>Nocturne 21</em>, a sci-fi drama webcomic by April Ferrero
-        about family, trauma, identity, and finding strength through connection.
+        <strong>Nocturne 21</strong>
+        <span>
+          A sci-fi drama webcomic by April Ferrero about family, trauma,
+          identity, and finding strength through connection.
+        </span>
       </p>
     `;
   }
