@@ -389,7 +389,7 @@ const pgData = [
         pgNum: 35,
         title: `Chapter Two: Glass`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Chapter Two: Glass",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -398,7 +398,7 @@ const pgData = [
         pgNum: 36,
         title: `Page 33`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The boy is back to resting, while Kuro and Yosh enjoy dinner and banter, relieved that the their guest seems okay...mostly.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -407,7 +407,7 @@ const pgData = [
         pgNum: 37,
         title: `Page 34`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro ensures that Yosh is comfortable with the new living arrangement. Yoshiko expresses little concern over the boy being dangerous, but does share her annoyance with her cousin, Kiri.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -416,7 +416,7 @@ const pgData = [
         pgNum: 38,
         title: `Page 35`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro and Yoshiko finish dinner, enjoying a nice moment and reflect on Yoshiko's similarities to her mother who passed long ago.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -425,7 +425,7 @@ const pgData = [
         pgNum: 39,
         title: `Page 36`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The boy seems to be feeling much better and Yoshiko decides to test how bad his memory loss is with some image cards. He appears to have forgotten quite a bit.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -434,7 +434,7 @@ const pgData = [
         pgNum: 40,
         title: `Page 37`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro comes in the room to announce lunch, and after hearing Yoshiko's summary of the memory test, reassures the boy he'll catch up in no time.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -443,7 +443,7 @@ const pgData = [
         pgNum: 41,
         title: `Page 38`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The kids rugh off to lunch and Kuro smiles, enjoying the new liveliness of their home. Fast forward to a new day, and Kuro is surprised to see the boy, who they've started callin Kai, up early and curious about Kuro's coffee.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -452,7 +452,7 @@ const pgData = [
         pgNum: 42,
         title: `Page 39`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "After trying coffee for himself, Kai seems eager to drink the whole pot and Kuro must intervene. They start discussing Kai's feelings about attending his first day of school. Kuro gives a little background about his brother, Shin, who is a teacher at the school and can help Kai if he needs it. ",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -461,7 +461,7 @@ const pgData = [
         pgNum: 43,
         title: `Page 40`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro further explains that Shin's son, Kiri, is known to be a problem and to be careful around him. Yoshiko finally wakes up and comes for coffee. Kuro and Yosh tease each other a bit, while Kai attempts to steal back the coffee pot.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -470,7 +470,7 @@ const pgData = [
         pgNum: 44,
         title: `Page 41`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko leaves to study for a test before they have to leave for school and Kuro tries to ensure Kai feels okay about the situation. Kai assures him he's fine and tests his luck with a question no one shoud ever ask...",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -479,7 +479,7 @@ const pgData = [
         pgNum: 45,
         title: `Page 42`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Fast forward to later in the school day, Kai and Yosh are sitting in the principal's office. Kai looks distraught. Kuro shows up and demands the principal explain himself. While Principal Wiggins spews a bunch of nonsense about Kai's delinquent behavior, Yosh interrupts to defend her new friend.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -488,7 +488,7 @@ const pgData = [
         pgNum: 46,
         title: `Page 43`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro intervenes between the two and asks Kai, who has been quiet the whole time, his side of the story. An overly anxious Kai, refuses to talk, so Yoshiko begins to explain what happened to get him in trouble.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -497,7 +497,7 @@ const pgData = [
         pgNum: 47,
         title: `Page 44`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yosh begins by recounting how on the way to school, Kiri saw the two, and rudely addressed",
         imageFiles: 1,
         authorNotes: ``
     },
