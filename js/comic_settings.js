@@ -50,7 +50,7 @@ const pgData = [
         pgNum: 1, //what page number it is
         title: "Nocturne 21 Volume One: Robot Boy", //the title of the page (leaving this blank will default it to "Page X")
         date: writeDate(2021, 3, 16), //the date on which the page was posted (mainly for the archive). The date is written using a function called "writeDate", basically just put writeDate and then some parenthesis and, comma separated, the year followed by the month and the day. Don't forget another comma at the end outside the parenthesis!
-        altText: "Here's some alt text!", //the alt text (mouse over text) for this particular comic. put nothing inbetween the quotes for no alt text
+        altText: "Ready to go on a crazy ride? Nocturne 21 begins...", //the alt text (mouse over text) for this particular comic. put nothing inbetween the quotes for no alt text
         imageFiles: 1, //how many image files this page is split into
         authorNotes: `
             <p>And so it begins...</p>
@@ -61,7 +61,7 @@ const pgData = [
         pgNum: 2,
         title: "Chapter One: The Red Rain",
         date: writeDate(2021, 3, 17),
-        altText: "Here's some more alt text!",
+        altText: "Chapter One: The Red Rain",
         imageFiles: 1,
         authorNotes: `
      
@@ -71,7 +71,7 @@ const pgData = [
         pgNum: 3,
         title: "Page 1",
         date: writeDate(2021, 3, 18),
-        altText: "Here's even more alt text!",
+        altText: "A mysterious blood-soaked boy walks the rainy streets of Caulwyn, New Hampshire.",
         imageFiles: 1,
         authorNotes: `
             <p></p>
@@ -81,7 +81,7 @@ const pgData = [
         pgNum: 4,
         title: "Page 2",
         date: writeDate(2021, 3, 19),
-        altText: "So much alt text...",
+        altText: "The boy reflects on the events that brought him here one last time, before finally collapsing from his injuries.",
         imageFiles: 1,
         authorNotes: `
             <p></p>
@@ -91,7 +91,7 @@ const pgData = [
         pgNum: 5,
         title: "Page 3",
         date: writeDate(2021, 3, 20),
-        altText: "Here's even more alt text!",
+        altText: "Spectators watch and speculate about the boy, but mostly keep their distance. Until Dr. Kuro Shimizu arrives on the scene.",
         imageFiles: 1,
         authorNotes: `
             <p></p>
@@ -101,7 +101,7 @@ const pgData = [
         pgNum: 6,
         title: `Page 4`,
         date: writeDate(2021, 3, 21),
-        altText: "Here's even more alt text!",
+        altText: "The kind doctor rushes to the boy's aide, but is struck when seeing his face...it's someone he recognizes.",
         imageFiles: 1,
         authorNotes: `
             <p></p>
@@ -111,7 +111,7 @@ const pgData = [
         pgNum: 7,
         title: `Page 5`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro realizes, for unknown reason, the boy can't go to the hospital and makes the bold decision to take him home.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -121,7 +121,7 @@ const pgData = [
         pgNum: 8,
         title: `Page 6`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro quickly readies a surface to treat the boy's wounds, desparately hoping to save him.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -131,7 +131,7 @@ const pgData = [
         pgNum: 9,
         title: `Page 7`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Before Kuro can do anything, he first goes to his daughter, Yoshiko, to make sure she stays in her room, away from the chaos.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -141,7 +141,7 @@ const pgData = [
         pgNum: 10,
         title: `Page 8`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "After delivering an alarming and questionable excuse, Kuro leaves his daughter, hoping he's convinced her to stay put.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -151,7 +151,7 @@ const pgData = [
         pgNum: 11,
         title: `Page 9`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro starts treating his patient's immediate problems, first by removing the blood filling the boy's lungs.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -161,7 +161,7 @@ const pgData = [
         pgNum: 12,
         title: `Page 10`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "With a sudden gasp for air, the boy wakes up, frightened and panicked. He manages to utter the words 'I'm sorry' under his breath. What for? Kuro has no idea.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -171,7 +171,7 @@ const pgData = [
         pgNum: 13,
         title: `Page 11`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The boy fades out again and a very stressed Kuro, questions if he made a bad decision by bringing him into his home.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -181,7 +181,7 @@ const pgData = [
         pgNum: 14,
         title: `Page 12`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Some time passes and Yoshiko slips out of her room while Kuro continues to operate on the patient. Yoshiko spots the dying boy on the kitchen table and hysterically questions Kuro's actions.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -191,7 +191,7 @@ const pgData = [
         pgNum: 15,
         title: `Page 13`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Unconvinced by her father's explanation, Yoshiko reaches for the phone to call an ambulance. Without hesitation, Kuro rips the phone off the wall and smashes it to pieces.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -201,7 +201,7 @@ const pgData = [
         pgNum: 16,
         title: `Page 14`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko feels confused and defeated. She doesn't understand her father, but Kuro still manages to talk her into helping to treat the boy.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -211,7 +211,7 @@ const pgData = [
         pgNum: 17,
         title: `Page 15`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The patient has been treated and Yoshiko and Kuro treat themselves to a 4AM pizza dinner.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -221,7 +221,7 @@ const pgData = [
         pgNum: 18,
         title: `Page 16`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko shows concerns about what could happen if the boy dies in their care. Will her dad get arrested or sued? Will she end up in the adoption system?",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -231,7 +231,7 @@ const pgData = [
         pgNum: 19,
         title: `Page 17`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro tries to reassure Yoshiko, but jury's still out on whether it worked. For now, all they can do is wait and hope for the best.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -241,7 +241,7 @@ const pgData = [
         pgNum: 20,
         title: `Page 18`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Four days later, Yoshiko asks around her school about the boy, including her (surrogate) cousin, Kiri. Kiri's admits he's never seen the kid before, with some jealousy in his voice. Yoshiko goes home, feeling defeated and nervous. ",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -251,7 +251,7 @@ const pgData = [
         pgNum: 21,
         title: `Page 19`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro and Yoshiko ask each other about if new information on the boy's identity has come up. No progress has been made and Kuro has to reassure Yosh once again.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -261,7 +261,7 @@ const pgData = [
         pgNum: 22,
         title: `Page 20`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Though the boy's injuries show some healing, he has not shown any sign of waking up in the past four days. Until now. He suddenly wakes up in a panic!",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -271,7 +271,7 @@ const pgData = [
         pgNum: 23,
         title: `Page 21`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The boy attempts to get out of bed, but immediately falls on his face. Yoshiko hears the thud from the living room.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -281,7 +281,7 @@ const pgData = [
         pgNum: 24,
         title: `Page 22`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Waking up in a strange setting, the boy breaks the mirror, feeling the need to defend himself should trouble arise. Kuro and Yosh are positive now of the noise they heard and Yosh jumps into action.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -291,7 +291,7 @@ const pgData = [
         pgNum: 25,
         title: `Page 23`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Reaching the room before Kuro, Yoshiko looks around for their guest and sees no one. She realizes to late, that he's got the jump on her. Kuro walks in to see the boy holding broken glass against Yoshiko's neck.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -301,7 +301,7 @@ const pgData = [
         pgNum: 26,
         title: `Page 24`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The boy is terrified and believes himself to be in a dangerous situation. Kuro takes a breath and tries to calmly talk him down.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -311,7 +311,7 @@ const pgData = [
         pgNum: 27,
         title: `Page 25`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "When questioned by Kuro, the boy reveals that he has no idea where he is or...who he is. Yosh and Kuro are shocked and unsure what to do next.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -321,7 +321,7 @@ const pgData = [
         pgNum: 28,
         title: `Page 26`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko takes a chance and gently talks to the boy, assuring him that he's in a safe place, with caring people. Her words seem to be working.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -331,7 +331,7 @@ const pgData = [
         pgNum: 29,
         title: `Page 27`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The boy relaxes and drops the shard. He immediately collapses, succumbing to his injuries. Yoshiko and Kuro hurry to his aide.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -341,7 +341,7 @@ const pgData = [
         pgNum: 30,
         title: `Page 28`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro and Yosh get him back into bed. Kuro notices some wounds that have opened up and begins treating him.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -351,7 +351,7 @@ const pgData = [
         pgNum: 31,
         title: `Page 29`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Feeling guilty for his actions, the boy apologizes for his behavior. Kuro shows compassion for his patient, and reassures him that it was a misunderstanding and no there are no ill-feelings.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -361,7 +361,7 @@ const pgData = [
         pgNum: 32,
         title: `Page 30`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko and the boy share some fun banter and Kuro continues to treat him, happy to see the kids getting along.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -371,7 +371,7 @@ const pgData = [
         pgNum: 33,
         title: `Page 31`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The boy expresses concern for his future and what will happen to him. Kuro insists that he stay with them, with no rush for him to leave.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -381,7 +381,7 @@ const pgData = [
         pgNum: 34,
         title: `Page 32`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The boy resists, feeling guilty for being a burden, but Kuro and Yosh shoot down his efforts to leave. The chapter ends with Yoshiko excitedly welcoming the boy to the family.",
         imageFiles: 1,
         authorNotes: ``
     },
