@@ -46,22 +46,6 @@ if (pgData.length >= pg) {
   );
 }
 
-//SEO: add readable context for each comic page
-if (pgData.length >= pg) {
-  const seoDescription = document.querySelector(".comic-seo-description");
-
-  if (seoDescription) {
-    seoDescription.innerHTML = `
-      <p>
-        <strong>Nocturne 21</strong>
-        <span>
-          A sci-fi drama webcomic by April Ferrero about family, trauma,
-          identity, and finding strength through connection.
-        </span>
-      </p>
-    `;
-  }
-}
 writePageClickable(".writePageClickable",true); //show the current page. to toggle whether pages can be clicked to move to the next one, set this to true or false.
 
 writeAuthorNotes(".writeAuthorNotes");
