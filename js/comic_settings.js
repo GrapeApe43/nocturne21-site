@@ -81,7 +81,7 @@ const pgData = [
         pgNum: 4,
         title: "Page 2",
         date: writeDate(2021, 3, 19),
-        altText: "The boy reflects on the events that brought him here one last time, before finally collapsing from his injuries.",
+        altText: "The boy reflects on the events that brought him here one last time before finally collapsing from his injuries.",
         imageFiles: 1,
         authorNotes: `
             <p></p>
@@ -91,7 +91,7 @@ const pgData = [
         pgNum: 5,
         title: "Page 3",
         date: writeDate(2021, 3, 20),
-        altText: "Spectators watch and speculate about the boy, but mostly keep their distance. Until Dr. Kuro Shimizu arrives on the scene.",
+        altText: "Spectators watch and speculate about the boy but mostly keep their distance, until Dr. Kuro Shimizu arrives on the scene.",
         imageFiles: 1,
         authorNotes: `
             <p></p>
@@ -101,33 +101,31 @@ const pgData = [
         pgNum: 6,
         title: `Page 4`,
         date: writeDate(2021, 3, 21),
-        altText: "The kind doctor rushes to the boy's aide, but is struck when seeing his face...it's someone he recognizes.",
+        altText: "The kind doctor rushes to the boy's aid, but is struck when he sees his face—it's someone he recognizes.",
         imageFiles: 1,
         authorNotes: `
             <p></p>
             `,
     },
-      {
+    {
         pgNum: 7,
         title: `Page 5`,
         date: writeDate(2023, 10, 18),
-        altText: "Kuro realizes, for unknown reason, the boy can't go to the hospital and makes the bold decision to take him home.",
+        altText: "Kuro realizes, for an unknown reason, that the boy can't go to the hospital and makes the bold decision to take him home.",
         imageFiles: 1,
         authorNotes: ``
     },
     
-     
-      {
+    {
         pgNum: 8,
         title: `Page 6`,
         date: writeDate(2023, 10, 18),
-        altText: "Kuro quickly readies a surface to treat the boy's wounds, desparately hoping to save him.",
+        altText: "Kuro quickly readies a surface to treat the boy's wounds, desperately hoping to save him.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 9,
         title: `Page 7`,
         date: writeDate(2023, 10, 18),
@@ -136,8 +134,7 @@ const pgData = [
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 10,
         title: `Page 8`,
         date: writeDate(2023, 10, 18),
@@ -146,8 +143,7 @@ const pgData = [
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 11,
         title: `Page 9`,
         date: writeDate(2023, 10, 18),
@@ -156,38 +152,34 @@ const pgData = [
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 12,
         title: `Page 10`,
         date: writeDate(2023, 10, 18),
-        altText: "With a sudden gasp for air, the boy wakes up, frightened and panicked. He manages to utter the words 'I'm sorry' under his breath. What for? Kuro has no idea.",
+        altText: "With a sudden gasp for air, the boy wakes up frightened and panicked. He manages to utter the words 'I'm sorry' under his breath before fading again.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 13,
         title: `Page 11`,
         date: writeDate(2023, 10, 18),
-        altText: "The boy fades out again and a very stressed Kuro, questions if he made a bad decision by bringing him into his home.",
+        altText: "The boy fades out again, and a very stressed Kuro questions whether he made a bad decision by bringing him into his home.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 14,
         title: `Page 12`,
         date: writeDate(2023, 10, 18),
-        altText: "Some time passes and Yoshiko slips out of her room while Kuro continues to operate on the patient. Yoshiko spots the dying boy on the kitchen table and hysterically questions Kuro's actions.",
+        altText: "Some time passes, and Yoshiko slips out of her room while Kuro continues to operate on the patient. Yoshiko spots the dying boy on the kitchen table and hysterically questions Kuro's actions.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 15,
         title: `Page 13`,
         date: writeDate(2023, 10, 18),
@@ -196,108 +188,97 @@ const pgData = [
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 16,
         title: `Page 14`,
         date: writeDate(2023, 10, 18),
-        altText: "Yoshiko feels confused and defeated. She doesn't understand her father, but Kuro still manages to talk her into helping to treat the boy.",
+        altText: "Yoshiko feels confused and defeated. She doesn't understand her father, but Kuro still manages to talk her into helping treat the boy.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 17,
         title: `Page 15`,
         date: writeDate(2023, 10, 18),
-        altText: "The patient has been treated and Yoshiko and Kuro treat themselves to a 4AM pizza dinner.",
+        altText: "The patient has been treated, and Yoshiko and Kuro treat themselves to a 4 AM pizza dinner.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 18,
         title: `Page 16`,
         date: writeDate(2023, 10, 18),
-        altText: "Yoshiko shows concerns about what could happen if the boy dies in their care. Will her dad get arrested or sued? Will she end up in the adoption system?",
+        altText: "Yoshiko worries about what could happen if the boy dies in their care, fearing that Kuro could be arrested or sued and that she could end up in the foster system.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 19,
         title: `Page 17`,
         date: writeDate(2023, 10, 18),
-        altText: "Kuro tries to reassure Yoshiko, but jury's still out on whether it worked. For now, all they can do is wait and hope for the best.",
+        altText: "Kuro tries to reassure Yoshiko, but it's unclear whether it works. For now, all they can do is wait and hope for the best.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 20,
         title: `Page 18`,
         date: writeDate(2023, 10, 18),
-        altText: "Four days later, Yoshiko asks around her school about the boy, including her (surrogate) cousin, Kiri. Kiri's admits he's never seen the kid before, with some jealousy in his voice. Yoshiko goes home, feeling defeated and nervous. ",
+        altText: "Four days later, Yoshiko asks around her school about the boy, including her surrogate cousin, Kiri. Kiri appears jealous as he tells her he's never seen the boy before. Yoshiko goes home feeling defeated and nervous.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 21,
         title: `Page 19`,
         date: writeDate(2023, 10, 18),
-        altText: "Kuro and Yoshiko ask each other about if new information on the boy's identity has come up. No progress has been made and Kuro has to reassure Yosh once again.",
+        altText: "Kuro and Yoshiko ask each other whether any new information about the boy's identity has come up. No progress has been made, and Kuro has to reassure Yosh once again.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 22,
         title: `Page 20`,
         date: writeDate(2023, 10, 18),
-        altText: "Though the boy's injuries show some healing, he has not shown any sign of waking up in the past four days. Until now. He suddenly wakes up in a panic!",
+        altText: "Though the boy's injuries show some healing, he has shown no sign of waking up in the past four days—until now. He suddenly wakes up in a panic!",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 23,
         title: `Page 21`,
         date: writeDate(2023, 10, 18),
-        altText: "The boy attempts to get out of bed, but immediately falls on his face. Yoshiko hears the thud from the living room.",
+        altText: "The boy attempts to get out of bed but immediately falls on his face. Yoshiko hears the thud from the living room.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 24,
         title: `Page 22`,
         date: writeDate(2023, 10, 18),
-        altText: "Waking up in a strange setting, the boy breaks the mirror, feeling the need to defend himself should trouble arise. Kuro and Yosh are positive now of the noise they heard and Yosh jumps into action.",
+        altText: "Waking up in a strange setting, the boy breaks the mirror, feeling the need to defend himself should trouble arise. Kuro and Yosh are now certain they heard something, and Yosh jumps into action.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 25,
         title: `Page 23`,
         date: writeDate(2023, 10, 18),
-        altText: "Reaching the room before Kuro, Yoshiko looks around for their guest and sees no one. She realizes to late, that he's got the jump on her. Kuro walks in to see the boy holding broken glass against Yoshiko's neck.",
+        altText: "Reaching the room before Kuro, Yoshiko looks around for their guest and sees no one. She realizes too late that he's gotten the jump on her. Kuro walks in to see the boy holding broken glass against Yoshiko's neck.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 26,
         title: `Page 24`,
         date: writeDate(2023, 10, 18),
@@ -306,8 +287,7 @@ const pgData = [
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 27,
         title: `Page 25`,
         date: writeDate(2023, 10, 18),
@@ -316,68 +296,61 @@ const pgData = [
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 28,
         title: `Page 26`,
         date: writeDate(2023, 10, 18),
-        altText: "Yoshiko takes a chance and gently talks to the boy, assuring him that he's in a safe place, with caring people. Her words seem to be working.",
+        altText: "Yoshiko takes a chance and gently talks to the boy, assuring him that he's in a safe place with caring people. Her words seem to be working.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 29,
         title: `Page 27`,
         date: writeDate(2023, 10, 18),
-        altText: "The boy relaxes and drops the shard. He immediately collapses, succumbing to his injuries. Yoshiko and Kuro hurry to his aide.",
+        altText: "The boy relaxes and drops the shard. He immediately collapses, succumbing to his injuries. Yoshiko and Kuro hurry to his aid.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 30,
         title: `Page 28`,
         date: writeDate(2023, 10, 18),
-        altText: "Kuro and Yosh get him back into bed. Kuro notices some wounds that have opened up and begins treating him.",
+        altText: "Kuro and Yosh get him back into bed. Kuro notices that some of his wounds have opened up and begins treating him.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 31,
         title: `Page 29`,
         date: writeDate(2023, 10, 18),
-        altText: "Feeling guilty for his actions, the boy apologizes for his behavior. Kuro shows compassion for his patient, and reassures him that it was a misunderstanding and no there are no ill-feelings.",
+        altText: "Feeling guilty for his actions, the boy apologizes for his behavior. Kuro shows compassion for his patient and reassures him that it was a misunderstanding and that there are no ill feelings.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 32,
         title: `Page 30`,
         date: writeDate(2023, 10, 18),
-        altText: "Yoshiko and the boy share some fun banter and Kuro continues to treat him, happy to see the kids getting along.",
+        altText: "Yoshiko and the boy share some fun banter while Kuro continues to treat him, happy to see the kids getting along.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 33,
         title: `Page 31`,
         date: writeDate(2023, 10, 18),
-        altText: "The boy expresses concern for his future and what will happen to him. Kuro insists that he stay with them, with no rush for him to leave.",
+        altText: "The boy expresses concern about his future and what will happen to him. Kuro insists that he stay with them, with no rush for him to leave.",
         imageFiles: 1,
         authorNotes: ``
     },
 
- 
-      {
+    {
         pgNum: 34,
         title: `Page 32`,
         date: writeDate(2023, 10, 18),
@@ -497,7 +470,7 @@ const pgData = [
         pgNum: 47,
         title: `Page 44`,
         date: writeDate(2023, 10, 18),
-        altText: "Yosh begins by recounting how on the way to school, Kiri saw the two, and rudely addressed",
+        altText: "Yosh begins by recounting how on the way to school, they encountered Kiri, who harrassed the two. Kai doesn't take well to Kiri shouting at Yoshiko and lightly antagonizes him.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -506,7 +479,7 @@ const pgData = [
         pgNum: 48,
         title: `Page 45`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yosh and Kai try to avoid an altercation and walk away, but Kiri has other plans. Enraged by the situation, Kiri lunges at Kai, and it doesn't go unnoticed...",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -515,7 +488,7 @@ const pgData = [
         pgNum: 49,
         title: `Page 46`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Without hesitation, Kai back-kicks Kiri in the face, sending him soaring into a tree. Yoshiko is shocked at the insane reflexes of her mystrious new friend. Kai is a little shocked too.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -524,7 +497,7 @@ const pgData = [
         pgNum: 50,
         title: `Page 47`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Immediately feeling guilty, Kai rushes to Kiri's aid, along with Yosh. They get him on his feet and head to the nurse's office. While waiting for their first class to start, Kai expresses guilt for hurting Kiri, but Yoshiko attempts to ease his guilt with some humor.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -533,7 +506,7 @@ const pgData = [
         pgNum: 51,
         title: `Page 48`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Class starts and Shin greets his students as he enters the room. As he takes attendance, a classmate brings Shin's attention to their new student, Kai. Kai panics, unsure of what to say or do.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -542,7 +515,7 @@ const pgData = [
         pgNum: 52,
         title: `Page 49`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko introduces her Uncle to Kai and explains about his amnesia. Classmate, Griff, seizes the opportunity to try to weasel out of a test, but unfortunately fails.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -551,7 +524,7 @@ const pgData = [
         pgNum: 53,
         title: `Page 50`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kiri shuffles into the classroom, late from his visit to the nurse's office. Shingen questions his son about the foot-shaped bruise on his face, but Kiri doesn't care to explain. Him and Kai exchange glances, before Kiri sends a cryptic text to his friends.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -560,7 +533,7 @@ const pgData = [
         pgNum: 54,
         title: `Page 51 & 52`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko continues to explain the rest of the day, how Kiri managed to convince a majority of the male student body to try and assault Kai. Kai was able to evade the multiple attacks, but teachers picked him out as the culprit of all the school fighting that occurred.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -569,7 +542,7 @@ const pgData = [
         pgNum: 55,
         title: `Page 53`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Wiggins accuses Yoshiko's story of being ridiculous and Kuro has to intervene once again, to stop his daughter from mouthing off. Kuro tells the kids to leave the office so him and Wiggins can talk in private. Kai still says nothing, but follows Yosh out of the office.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -578,7 +551,7 @@ const pgData = [
         pgNum: 56,
         title: `Page 54`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yosh and Kai sit outside of the office in complete silence as the adults can be seen yelling. Yoshiko tries to comfort her friend, just as Kuro storms out the door. He managed to prevent Kai from getting in trouble but still has to take him home. Yosh is instructed to go back to class.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -587,7 +560,7 @@ const pgData = [
         pgNum: 57,
         title: `Page 55`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro and Kai leave the school, Kai slowly trailing behind. Kuro realizes that Kai has stopped and he turns to see what's wrong. Kai stutters as he tries to apologize for his behavior. Seeing how emotional Kai is, Kuro reaches out to put his hand on his shoulder, which startles Kai.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -596,7 +569,7 @@ const pgData = [
         pgNum: 58,
         title: `Page 56`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro stops when he sees Kai flinching and realizes the boy is expecting to be hit. Unexpectedly unearthing Kai's psychological trauma, causes Kuro to also become emotional. Kai is alarmed when he's suddenly embraced by Kuro, who holds him tightly, assuring him he's not a burden. Kai is speechless.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -605,7 +578,7 @@ const pgData = [
         pgNum: 59,
         title: `Page 57`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro looks into Kai's eyes and tells him that he's safe and that he will never hurt him. Kai relaxes a little bit and the two walk off, in search of a place to eat and unwind.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -614,7 +587,7 @@ const pgData = [
         pgNum: 60,
         title: `Page 58`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro, Kai and Yoshiko are finishing up dinner and Kai volunteers to clean the plates and make tea. Kuro asks Yosh for more details on the earlier events of the day. Yosh further describes how Kai was blamed and tore apart by Principal Wiggins.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -623,7 +596,7 @@ const pgData = [
         pgNum: 61,
         title: `Page 59`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro confides to Yosh about Kai's reaction earlier, and his suspicions that Kai has suffered terrible long-term abuse. Yoshiko is determined to help Kai heal and have a good life. The conversation ceases when Kai returns with the tea.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -632,7 +605,7 @@ const pgData = [
         pgNum: 62,
         title: `Page 60`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Late that night, Kai finds Kuro in the kitchen, neither of them able to sleep. Kai takes a seat next to him and Kuro pours him a glass of water.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -641,7 +614,7 @@ const pgData = [
         pgNum: 63,
         title: `Page 61`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro and Kai talk about Kai's anxieties going back to school. Kuro gives him advice about Wiggins as well as their unpleasant history with him. Kai feels a little better and decides to go back to bed.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -650,7 +623,7 @@ const pgData = [
         pgNum: 64,
         title: `Page 62`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "As Kai leaves the kitchen, Kuro accidentally calls him a strange name--a name that seems to trigger Kai. Suddenly, the water pitcher and glasses shatter without warning. Kai offers to clean it up, but a frazzled Kuro insists he go back to bed. Kuro looks at the broken glasses, and appears to have learned something that causes him stress.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -659,7 +632,7 @@ const pgData = [
         pgNum: 65,
         title: `Page 63`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai manages to fall asleep, but is suddenly pulled into a dark dream. He can't see anything, but hears the unnerving voice of a strange woman.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -668,7 +641,7 @@ const pgData = [
         pgNum: 66,
         title: `Page 64`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The strange woman pulls Kai in tight from behind and covers his eyes. She threatens that she'll find him and begins to dig her sharp claws through his flesh. The pain causes Kai to suddenly wake in a sweat.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -677,7 +650,7 @@ const pgData = [
         pgNum: 67,
         title: `Page 65`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai clutches his chest, still feeling the pain from his nightmare. When he's able to finally catch his breath, he notices his glass of water broken, pieces shattered all over the floor. Kai gets up to clean the mess, but hesitates before leaving the room, looking at the shards.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -686,7 +659,7 @@ const pgData = [
         pgNum: 68,
         title: `Page 66`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Something draws Kai back to the glass. He kneels down over the pieces and suddenly finds them moving to his will. He levitates the shards off the ground and reforms the glass cup like new. Kai falls back in shock and runs out of the room, panicked and confused. Chapter Two concludes.",
         imageFiles: 1,
         authorNotes: ``
     },
