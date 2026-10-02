@@ -668,7 +668,7 @@ const pgData = [
         pgNum: 69,
         title: `Chapter Three: Snow Day`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Chapter Three: Snow Day",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -677,7 +677,7 @@ const pgData = [
         pgNum: 70,
         title: `Page 67`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai attempts to freshen up in the bathroom after the events of the night, literally stress him sick. Kai looks up from the sink into the mirror and something he sees scares him and he jumps back.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -686,7 +686,7 @@ const pgData = [
         pgNum: 71,
         title: `Page 68`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "In the mirror, Kai sees a bloody, green-eyed version of himself. He impulsively reaches for some scissors and chops off his hair, in a panicked attempt to see someone different in the mirror. The night ends and early morning, Yoshiko and Kuro are up drinking coffee in the kitchen.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -695,7 +695,7 @@ const pgData = [
         pgNum: 72,
         title: `Page 69`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko and Kuro are conversing about school, when in walks Kai looking disheveled and exhausted. Kuro and Yosh are left speechless at the sight of Kai's very freshly chopped hair-do.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -704,7 +704,7 @@ const pgData = [
         pgNum: 73,
         title: `Page 70`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai is questioned about his new haircut, which he attributes to wanting to keep a low profile. Yosh argues that his purple eyes are going to keep attracting attention. Kai gets sad when Kuro and Yosh limit his coffee intake to one cup.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -713,7 +713,7 @@ const pgData = [
         pgNum: 74,
         title: `Page 71`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro asks Yoshiko to tell her uncle Shin to come over that evening to dicuss Kiri's behavior. When Yoshiko leaves the room, Kuro sees how sad Kai is to be out of coffee. Kuro feels bad and pours him another cup.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -722,7 +722,7 @@ const pgData = [
         pgNum: 75,
         title: `Page 72`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "At school, Shin's class ends and Yoshiko stops to deliver her father's message. Shingen already suspects that the topic will be Kiri, but perks up at the prospect of Kuro cooking him dinner. He agrees to come to the Shimizu house the next evening.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -731,7 +731,7 @@ const pgData = [
         pgNum: 76,
         title: `Page 73`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai and Yoshiko are in their science class, when Kai accidentally dozes off. He quickly awakens after having another nightmare of the red-eyed lady. When Yoshiko asks if he's okay, he claims he just needs the bathroom and leaves.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -740,7 +740,7 @@ const pgData = [
         pgNum: 77,
         title: `Page 74`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "As Kai's leaving the bathroom, he spots Wiggins in the hall talking to another teacher. He attempts to sneak past him, hoping he won't notice. Unfortunately, his efforts are in vain when Wiggins stops mid conversation to pursue Kai. Kai tries to evade him, turning all kinds of corners, but eventually reaches a dead end.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -749,7 +749,7 @@ const pgData = [
         pgNum: 78,
         title: `Page 75`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "In a last ditch effort, Kai uses his new-found powers to unlock a nearby door to a janitorial closet. He holds his breath, hoping Wiggins will give up and walk away. When Wiggins can't get in the closet, he leaves, and Kai lets out a sigh of relief.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -758,7 +758,7 @@ const pgData = [
         pgNum: 79,
         title: `Page 76`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai notices a stairwell in the closet leading up to the roof. He effortlessly breaks the chainlock on the door and steps outside. Kai takes in the fresh air and sits down. He peacefully nods, without any nightmares. Class ends and Yoshiko is looking around for Kai, who never returned from the bathroom.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -767,7 +767,7 @@ const pgData = [
         pgNum: 80,
         title: `Page 77`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko drops her school books when her classmate, Triffany bumps into her. Triffany feins remorse and her and Yoshiko have a passive agressive exchange. Triffany expresses interest in Kai and Yosh fends her off with sarcasm before finally escaping the vapid conversation.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -776,7 +776,7 @@ const pgData = [
         pgNum: 81,
         title: `Page 78`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai is startled awake by the school bell. Realizing he slept through the rest of the school day, he panics and scours the school grounds looking for Yosh. He finds her, while dodging more assaults from Kiri's friends. He catches up with Yosh, shielding her from an incoming attack.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -785,7 +785,7 @@ const pgData = [
         pgNum: 82,
         title: `Page 79`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The two kids run home to avoid more conflict. A disgruntled Yosh awakens to her alarm the next morning. She enters Kai's room to wake him up for school, but finds him in a much needed deep sleep.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -794,7 +794,7 @@ const pgData = [
         pgNum: 83,
         title: `Page 80`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "She decids to leave Kai asleep and her and Kuro decide to let him stay home if he needs to. Yoshiko pokes fun at her father when he gets on her case for sitting in Kai's chair. An exhuasted Kai enters the kitchen, smelling the fresh pot of coffee.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -803,7 +803,7 @@ const pgData = [
         pgNum: 84,
         title: `Page 81`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai sits down and they enjoy coffee together. He asks about the white stuff outside. Kuro is distraught at the site of a spring blizard happening. While Yosh and Kuro are outside discussing if school is canceled, Kai takes the opportunity to snag more coffee.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -812,7 +812,7 @@ const pgData = [
         pgNum: 85,
         title: `Page 82`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro checks the phone messages and a call from Shingen confirms school is closed. Kuro trudges off to work in the storm. That evening, Kai and Yosh enjoy a cozy fire while the power is out.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -821,7 +821,7 @@ const pgData = [
         pgNum: 86,
         title: `Page 83`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko introduces Kai to s'mores, which is big hit. Kai subtly inquires about superpowers and if they exist. He's disappointed to hear her say no, not knowing what it means for him.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -830,7 +830,7 @@ const pgData = [
         pgNum: 87,
         title: `Page 84`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai opens up to Yosh about his trauma and how he doesn't remember what happened, but he remembers all the negative feelings. Yoshiko admits her and Kuro haven't really tried to find his family, afraid he's come from an abusive home. Kai expresses that he has no interest in going back to where he came from.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -839,7 +839,7 @@ const pgData = [
         pgNum: 88,
         title: `Page 85`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko ensures Kai that he always has a home with them and pulls him in for a hug. Moments later, Shingen makes an unexpected visit.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -848,7 +848,7 @@ const pgData = [
         pgNum: 89,
         title: `Page 86`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "With Kuro out, Shin visits to check on the kids. He sits down with them and joins in the s'more party. Yoshiko starts changing the bandages on Kai's wounds. Shingen is horrified to see the extent of the damage on the boy.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -857,7 +857,7 @@ const pgData = [
         pgNum: 90,
         title: `Page 87`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Shin asks about the trouble Kiri got into and Yosh attempts to fill in her Uncle as kindly as possible. Shin is exasperated to hear about his son's actions. He gets up to start the generator and order pizza for the kids.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -866,7 +866,7 @@ const pgData = [
         pgNum: 91,
         title: `Page 88`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The kids are sleeping when Kuro arrives home late from work. Shin is in the kitchen grading papers. He heats up pizza for Kuro and the two begin discussing Kiri. Shin promises to put his foot down on Kiri's behavior.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -875,7 +875,7 @@ const pgData = [
         pgNum: 92,
         title: `Page 89`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro and Shin talk about Kai and whether or not he should be attending school. Shin also expresses concerns about Kai's origin, but also acknowledges that Kuro and Yosh seem much happier with Kai being there. Kuro's coffee mug suddenly cracks, but when Shin mentions it, Kuro brushes it off.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -884,7 +884,7 @@ const pgData = [
         pgNum: 93,
         title: `Page 90`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "In Kai's room, several objects are floating through the air. Kai is not in his bed, but is curled up in his closet, dreaming once again about the red-eyed lady. The chapter ends with the terrified look in his eyes as she finds him.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -892,7 +892,7 @@ const pgData = [
         pgNum: 94,
         title: `The Kai Journals: Part 1`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai writes in a journal about his daily life. He talks about his trouble with the principal, accidentally using his powers in front of Shin's wife, and Yosh finding him sleeping in the closet, which has become a nightly habit.",
         imageFiles: 1,
         authorNotes: `<p>So, this is a four part bonus content I made during a hiatus. Chapter 4 takes has a time skip of a few months and these journal entries are meant to fill in the gap as well as give you a better understanding of what goes on inside Kai's head. You don't <i>have</i> to read them to understand chapter 4, but it does make for a meaningful experience. There's a lot of important things that happen, including new abilities and a trip that becomes a core memory for Kai. Hope you enjoy!</p>`
     },
@@ -901,7 +901,7 @@ const pgData = [
         pgNum: 95,
         title: `The Kai Journals: Part 2`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai writes about his attempts to stay awake all night to avoid nightmares, his excitement about finally recovering from his injuries and a family trip to Hampton. Despite a rough start to the trip, Kai is overjoyed when Kuro asks to adopt him and accepts. When they return from their trip, they shop for things for Kai's room.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -910,7 +910,7 @@ const pgData = [
         pgNum: 96,
         title: `The Kai Journals: Part 3`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai writes about his nightmares returning and how now he's hearing people's thoughts, leading to more trouble at school. He's barely slept in weeks and when he does sleep, he's tortured by the red-eyed lady. Kuro is worried, but Kai refuses to talk, causing tension in the house.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -919,7 +919,7 @@ const pgData = [
         pgNum: 97,
         title: `The Kai Journals: Part 4`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai writes final entries about the torture of his nightmares, waking up to symbols carved all over his closet, and being at the end of the rope. The dreams become too much but he can't stay awake anymore. He falls asleep, and is pulled into another nightmre, leading the start of chapter four.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -928,7 +928,7 @@ const pgData = [
         pgNum: 98,
         title: `Chapter Four: The Stranger`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Chapter Four: The Stranger",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -937,7 +937,7 @@ const pgData = [
         pgNum: 99,
         title: `Page 91`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai falls into another one of his nightmares. The red-eyed lady is torturing him, trying to get him to say his real name. Kai is the only name he knows, so she continues to torture him, hoping to get the answer she wants.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -946,7 +946,7 @@ const pgData = [
         pgNum: 100,
         title: `Page 92`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "When Kai doesn't relent, dream lady throws her knife in frustration. A new figure enters the scene, picking up the knife she discarded. His features can't be seen, but his eyes glow a vibrant green. His eyes and his voice trigger terror in Kai, his heart racing as the man steps closer.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -955,7 +955,7 @@ const pgData = [
         pgNum: 101,
         title: `Page 93`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai pleads for them to stop, repeating that he can't remember. The man insists he does, he just doesn't want to remember. The woman pulls Kai up and holds him, while the man repeeatedly carves symbols all over his body. Kai screams as the torture ensues.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -964,7 +964,7 @@ const pgData = [
         pgNum: 102,
         title: `Page 94`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai lies still, barely able to move, completely covered in carved symbols. He makes a final plea to stop, but the man insists that it's Kai's own mind doing this to him. He implies that Kai's guilt is what's causing the nightmares and hands arrive from underneath, pulling on Kai.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -973,7 +973,7 @@ const pgData = [
         pgNum: 103,
         title: `Page 95`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The ground shatters and Kai falls into a dark void, with green eyes staring down at him. He screams in terror as he begins to awake from the nightmare, covered in blood, being held down by Kuro.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -982,7 +982,7 @@ const pgData = [
         pgNum: 104,
         title: `Page 96`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai is breathing heavily, confused as to what's going on. Kuro is holding his arms, Yosh holding his legs, trying to stop him from hurting himself. Kuro instructs Yoshiko to call Shin for a ride to the hospital.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -991,7 +991,7 @@ const pgData = [
         pgNum: 105,
         title: `Page 97`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai pleads with Kuro not to bring him, afraid to be torn from his new family, Kuro promises they'll be together and it's best for him. Yoshiko calls her uncle and informs him of the situation.",
         imageFiles: 1,
         authorNotes: ``
     },
