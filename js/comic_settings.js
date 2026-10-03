@@ -1081,7 +1081,7 @@ const pgData = [
         pgNum: 115,
         title: `Page 107`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The family are finally able to see Kai and he's relieved to see them too. Kai is adjusting okay, until Kiri starts antagonizing him. Kuro steps in and sends Kiri off to find Shin.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1090,7 +1090,7 @@ const pgData = [
         pgNum: 116,
         title: `Page 108`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "While the Shimizus are finally alone, Kuro and Yosh push Kai to talk about his nightmares. Kai is reluctant and very uncomfortable, but Yoshiko manages to convince him. He begins by telling them about the red-eyed lady.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1099,7 +1099,7 @@ const pgData = [
         pgNum: 117,
         title: `Page 109`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro seems surprised when Kai describes the woman. Him and Yosh are both alarmed when Kai confesses he's been having these dreams for months. Kai becomes emotional when he sees how stressed Kuro is.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1108,7 +1108,7 @@ const pgData = [
         pgNum: 118,
         title: `Page 110`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai reluctantly starts talking about the green-eyed man from his dream this morning. Kuro has to turn away, not wanting to show his own fears about the green-eyed man. Kai breaks into tears while describing his dream and Yoshiko insists they let him stop.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1117,7 +1117,7 @@ const pgData = [
         pgNum: 119,
         title: `Page 111`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro quickly pulls himself together when he sees how upset Kai is. He steps out of the room to talk to Kai's doctor, but Kai thinks Kuro is mad at him. Yosh tries to ease his fears and cheers him up with some humor and morning TV.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1126,7 +1126,7 @@ const pgData = [
         pgNum: 120,
         title: `Page 112`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "An hour or two later Yoshiko and Kai are talking about his fast-growing claws while watching TV, when in walks Shingen. They chat about crime dramas the Shimizus lack of a television. Shin offers up his old TV, which excites the kids.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1135,7 +1135,7 @@ const pgData = [
         pgNum: 121,
         title: `Page 113`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Shin and Kai are joking with each other, as Shin is leaving to get ready for work. In walks Kuro and Kiri, after Kuro has to pull him from another vending machine. Kuro and Shin have a tense moment before Shin and Kiri decide finally leave to go home.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1144,7 +1144,7 @@ const pgData = [
         pgNum: 122,
         title: `Page 114`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The morning ends with some humor. Fast forward to the evening, Yoshiko is passed out on Kai's hospital bed. Kuro and Kai are enjoying a game of Go Fish, when the nurse walks in. It's time for Kai's sleep study. Kai is scared, but Yosh and Kuro comfort him and pull him in for a tight family hug.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1153,7 +1153,7 @@ const pgData = [
         pgNum: 123,
         title: `Page 115`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yoshiko and Kuro are eating a late dinner, when Kuro is summoned to the nurse's station. Kai's physician explains that the study had to end early because of tech malfunction. Kai also needed to be sedated due to an intense, violent reaction to his nightmare.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1162,7 +1162,7 @@ const pgData = [
         pgNum: 124,
         title: `Page 116`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "The doctor's assessment is that Kai's parasomnia is due to psycological trauma and refers him to a mental health physician. Kuro decides to send Yoshiko home to rest, while he stays the night with Kai.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1171,7 +1171,7 @@ const pgData = [
         pgNum: 125,
         title: `Page 117`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro finds himself in an empty room, before completely breaking down. All his fears and insecurities pour out as he smokes a cigarette and speaks aloud to his deceased wife. ",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1180,7 +1180,7 @@ const pgData = [
         pgNum: 126,
         title: `Page 118`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "After some time has passed and Kuro has collected himself, He joins a glum Kai. Kuro tries to convince Kai that the failure of the sleep study isn't his fault. He also tries to give Kai an opportunity to open up about his powers, but Kai doesn't take the bait.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1189,7 +1189,7 @@ const pgData = [
         pgNum: 127,
         title: `Page 119`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro lectures Kai about being honest and the subject of skipping classes is brought up. Kai expresses that he likes school but his lack of knowledge makes him feel like a freak. Kuro comforts him while also pushing for him to try and stay in class.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1198,7 +1198,7 @@ const pgData = [
         pgNum: 128,
         title: `Page 120`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro pushes Kai to accept he's family and that he should rely on Kuro. When discussing an upcoming appointment with a psychologist, Kuro suggest Kai might be choosing to repress his memories. That triggers Kai and causes a telekinetic reaction. Kuro quells the conversation and comforts him.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1207,7 +1207,7 @@ const pgData = [
         pgNum: 129,
         title: `Sleep: Part 1`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "It's late and when Kuro tries to get Kai to sleep, Kai admits he's scared to sleep. Kuro holds him close and encourages him. He escorts Kai back to his bed and offers to read to him, which Kai happily accepts.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1216,7 +1216,7 @@ const pgData = [
         pgNum: 130,
         title: `Sleep: Part 2`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kai snuggles in close, like a small child, and is comforted listening to Kuro read. Before Kuro even finishes the first page, Kai has fallen asleep. Kuro expresses sadness, when thinking about how Kai's basic need for safety was taken from him.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1225,7 +1225,7 @@ const pgData = [
         pgNum: 131,
         title: `Sleep: Part 3`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro holds the sleeping boy tightly and tells his story out loud, about his fears of taking Kai home. He goes on to talk about how quickly he grew to love Kai. He asks Kai to fight his nightmares and get better, and he makes a promise to be the best father he can be.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1234,7 +1234,7 @@ const pgData = [
         pgNum: 132,
         title: `Sleep: Part 4`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Inside Kai's dream, the cold dark from before, slowly fades into the bright open sky of Hampton Beach. Kai opens his eyes to see he's surrounded by his loved ones and they're all relaxing and enjoying themselves. A comforted Kai, dozes off under the sun for an afternoon nap. In real time, Kuro and Kai are peacefully asleep, snuggled up to each other.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1243,7 +1243,7 @@ const pgData = [
         pgNum: 133,
         title: `Sleep: Part 5`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "After sunrise, Kuro suddenly jolts awake, afraid Kai hurt himself again. He sees a happy Kai sitting by the window excited about having a peacful sleep. Kuro gets them some breakfast and coffee, when his secretary walks in, and informs him about a work emergency.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1252,7 +1252,7 @@ const pgData = [
         pgNum: 134,
         title: `Sleep: Part 6/ Page 121`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kuro gets up to deal with his patient and cancel a surgery, when Kai pushes him to do his shift. He insists that he will be fine if Kuro needs to work. Kuro is reluctant, but eventually pursuaded. Kai becomes bored after only a few minutes alone.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1260,7 +1260,7 @@ const pgData = [
         pgNum: 135,
         title: `Page 122`,
         date: writeDate(2023, 10, 31),
-        altText: "",
+        altText: "Kai tries various things to entertain himself, from cartwheels, using his sheets to be a ghost, and attempting to pull the fire alarm. A defeated Kai is suddenly perked up when Kuro comes in to sneak him a coffee.",
         imageFiles: 1,
         authorNotes: `
         <p>Happy Halloween! Honestly, I can't express how stoked I am that ghost Kai ended up live on Halloween. This page was supposed to come out two months ago, but got pushed back for various life reasons and for the additional scene. I guess it worked out for the best!</p>
@@ -1270,7 +1270,7 @@ const pgData = [
         pgNum: 136,
         title: `The Kai Journals...er, Napkin: Part 5`,
         date: writeDate(2023, 11, 10),
-        altText: "",
+        altText: "Kai writes a new journal entry on a napkin, describing his adventures at the hospital. Along with his sleep study, and dress-up parties with the nurse, Kai mentions a feeling of his mind being tugged at, like someone is pulling a string tied around his brain. Kai also realizes he left his journal on the closet floor and hopes that Yoshiko doesn't find it.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1279,7 +1279,7 @@ const pgData = [
         pgNum: 137,
         title: `Page 123`,
         date: writeDate(2023, 11, 10),
-        altText: "",
+        altText: "Kai continues to struggle, fighting his boredom. Kuro brings Kai lunch during his break and Kai expresses nervousness about meeting with the psychologist very soon.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1288,7 +1288,7 @@ const pgData = [
         pgNum: 138,
         title: `Page 124`,
         date: writeDate(2023, 11, 10),
-        altText: "",
+        altText: "Kai's appointment is fast approaching. Kai impulsively decides to get dressed ans sneak out of the hospital. He walks right past a pair of distracted security guards. Kuro is informed about Kai skipping out, which causes him little surprise.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1296,7 +1296,7 @@ const pgData = [
         pgNum: 139,
         title: `Page 125`,
         date: writeDate(2023, 11, 17),
-        altText: "",
+        altText: "Yoshiko is startled when she finds Kai sitting at his desk during the last class of the day. Shin walks in and immediately notices Kai at his desk.",
         imageFiles: 1,
         authorNotes: `<p> Where does an anxious, restless sleep-deprived teenager go once he's escaped? To high school of course! Wait...what?!</p>`
     },
@@ -1304,7 +1304,7 @@ const pgData = [
         pgNum: 140,
         title: `Page 126`,
         date: writeDate(2023, 11, 17),
-        altText: "",
+        altText: "Kai has a ludicrous excuse as to why he's left the hospital, which no one believes. Shin leaves the classroom to make a phone call. Yosh tries to talk sense into Kai, when he is suddenly distracted by a telepathic signal in his mind.",
         imageFiles: 1,
         authorNotes: `<p>Boy's not using that noggin of his, is he?</p>`
     },
@@ -1312,7 +1312,7 @@ const pgData = [
         pgNum: 141,
         title: `Page 127`,
         date: writeDate(2023, 11, 22),
-        altText: "",
+        altText: "Kai finally addresses Yosh and changes the subject to his classwork. Shin is out in the hall informing Kuro that Kai is at the school. Kai falls asleep doing schoolwork and another nightmare sends him literally flying off his chair.",
         imageFiles: 1,
         authorNotes: `<p>Happy 20th anniversary, Nocturne 21! Been quite the amazing ride so far! </P>`
     },
@@ -1320,7 +1320,7 @@ const pgData = [
         pgNum: 142,
         title: `Page 128`,
         date: writeDate(2023, 11, 28),
-        altText: "",
+        altText: "The class is staring as Shin and Yosh help Kai up. Shin escorts him out into the hall. Kai is feverish and unwell, but still won't agree to go back to the hospital. Yoshiko agrees to go with him in the school van and Shin agrees.",
         imageFiles: 1,
         authorNotes: `<p>Oof. Having a meltdown in front of your classmates. High school's probably not the best place for that, Kai.</p>`
     },
@@ -1328,7 +1328,7 @@ const pgData = [
         pgNum: 143,
         title: `Page 129`,
         date: writeDate(2023, 11, 30),
-        altText: "",
+        altText: "Kai finally accepts and Yosh leads him off. The moment Shin returns to his classroom, Kai breaks free of Yosh and runs. Yosh struggles to keep up until Kai stops at a door.",
         imageFiles: 1,
         authorNotes: `<p>Poor Yosh. I'm not a runner either...</p>`
     },
@@ -1336,7 +1336,7 @@ const pgData = [
         pgNum: 144,
         title: `Page 130`,
         date: writeDate(2023, 12, 05),
-        altText: "",
+        altText: "Kai enters a teachers' lounge and Yosh anxiously follows. He pours them both some coffee and promises Yosh he'll go with her in ten minutes. She reluctantly obliges.",
         imageFiles: 1,
         authorNotes: `<p>See, folks? Nothing to worry about! Our boy's just taking a little coffee break!</p>`
     },
@@ -1344,7 +1344,7 @@ const pgData = [
         pgNum: 145,
         title: `Page 131`,
         date: writeDate(2023, 12, 07),
-        altText: "",
+        altText: "Yosh asks why Kai is acting weird. He opens up about he's scared of getting his memory back and finding out he's a bad person. He's terrified the Shimizus won't love him anymore.",
         imageFiles: 1,
         authorNotes: `<p>Maybe this wasn't actually about the coffee...</p>`
     },
@@ -1352,14 +1352,14 @@ const pgData = [
         pgNum: 146,
         title: `Page 132`,
         date: writeDate(2023, 12, 12),
-        altText: "",
+        altText: "Kai is mildly comforted when Yosh promises they'll love him no matter what. His comfort is short-lived when he senses something strange once again. He cryptically thanks Yosh for everything before bolting out of the lounge. Yosh follows him in a panic, desperate not lose him.",
         imageFiles: 1,
         authorNotes: `<p>Maybe you shouldn't follow him this time...</p>`
     },  {
         pgNum: 147,
         title: `Page 133`,
         date: writeDate(2023, 12, 14),
-        altText: "",
+        altText: "Yoshiko finds him outside. When she scolds him, he tells her to stay quiet and that he's waiting for something. Suddenly Kai senses something flying at Yosh.",
         imageFiles: 1,
         authorNotes: `<p>Watch your back, Yosh...</p>`
     },  
@@ -1367,7 +1367,7 @@ const pgData = [
         pgNum: 148,
         title: `Page 134`,
         date: writeDate(2023, 12, 19),
-        altText: "",
+        altText: "Kai pushes her out of the way of a sharp weapon, crashing into the car right where she had been standing. Kai tells her to stay down while he looks to see who was responsible. She begs him not to leave.",
         imageFiles: 1,
         authorNotes: `<p>This woulda been a real bad time to trip over his shoelaces...</p>`
     },  
@@ -1375,7 +1375,7 @@ const pgData = [
         pgNum: 149,
         title: `Page 135`,
         date: writeDate(2023, 12, 21),
-        altText: "",
+        altText: "Kai follows a trail to the middle of the parking lot and uses his powers to find the culprit. He looks up to see a figure on the roof of the school. The figure greets him with familiarity, but Kai angrily demands an explanation.",
         imageFiles: 1,
         authorNotes: `<p>The stranger has appeared...</p>`
     },
@@ -1383,7 +1383,7 @@ const pgData = [
         pgNum: 150,
         title: `Page 136`,
         date: writeDate(2023, 12, 28),
-        altText: "",
+        altText: "The figure leaps off the roof. Yosh screams, assuming the stranger is jumping to his death. Kai says nothing, but watches as he lands and leaves a heavy impact of debris and dust. Yosh cries into Kai's shoulder but he gestures her to look up. The dust clears and the figure can be seen and his face... is the same as Kai's. End of Volume One.",
         imageFiles: 1,
         authorNotes: `<p>And we conclude this chapter with an over-the-top superhero landing and dramatic dust cloud reveal. </p>`
     },
