@@ -1000,7 +1000,7 @@ const pgData = [
         pgNum: 106,
         title: `Page 98`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Shingen explains to his wife Helena what's happened, before leaving his house. Kiri catches him on the way out and after some back and forth, he manages to convince Shin to let him come along. Yoshiko is anxiously waiting, looking out the window for Uncle to pull in the drive way. When he finally arrives, the Shimizus immediately exit the house.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1009,7 +1009,7 @@ const pgData = [
         pgNum: 107,
         title: `Page 99`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Shin panics when he sees the bloody state that Kai is in. Kai stubbornly denies the seriousness of his wounds, while also slurring his words. Shin floors the gas pedal to get to the hospital. Some time later, the family waits in the waiting area while Kai is treated.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1018,7 +1018,7 @@ const pgData = [
         pgNum: 108,
         title: `Page 100`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yosh and Shin are sitting together. When asked if she's all right, Yoshiko begins telling her uncle about all the strange things going on in her house since Kai showed up. Shin tries to rationalize what he's told.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1027,7 +1027,7 @@ const pgData = [
         pgNum: 109,
         title: `Page 101`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "When Shin asks more about Kai, Yosh fesses up that the story he was told wasn't entirely truthful. Shin is baffled and upset at Kuro's decisions when he initially brought Kai home.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1036,7 +1036,7 @@ const pgData = [
         pgNum: 110,
         title: `Page 102`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Yosh attempts to quell Shin's anxieties, but is displaying concern on her own face. She asks Shin not to tell Kuro that she told him the truth, but he makes no promises. Kuro stops Kiri from violently attacking a vending machine.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1045,7 +1045,7 @@ const pgData = [
         pgNum: 111,
         title: `Page 103`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Shin insists that him and Kuro chat alone. In a nearby empty room, Shin tries to get to the bottom of what is going on with Kai. Kuro plays dumb and tries to cut the conversation short. Yosh and a grumpy Kiri quietly sit in the waiting room.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1054,7 +1054,7 @@ const pgData = [
         pgNum: 112,
         title: `Page 104`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Shin refuses to leave the topic alone. Kuro reluctantly agrees to be honest, but warns that Shin isn't going to believe him. After Shin convinces Kuro that he'll trust him, Kuro admits that Kai is telepathic.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1063,7 +1063,7 @@ const pgData = [
         pgNum: 113,
         title: `Page 105`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Failing to keep his word, Shin heads towards the door, storming off in disbelief. Kuro stops him in his tracks when he next tells Shin that he knows Kai's father. Shin tries to find out why Kuro hasn't returned him to his father and Kuro boldly states that he'll do everything to keep Kai away from his biological dad.",
         imageFiles: 1,
         authorNotes: ``
     },
@@ -1072,7 +1072,7 @@ const pgData = [
         pgNum: 114,
         title: `Page 106`,
         date: writeDate(2023, 10, 18),
-        altText: "",
+        altText: "Kiri tries to listen in on the adult conversation, but gives up with the blinds are drawn. He tries to comfort Yosh, who is clearly stressed about Kai. Shin wants answers and Kuro takes a chance and reveals something about Kai behind closed doors. Whatever was said, causes Shin to storm out of the room and down the halls, leaving Kuro alone.",
         imageFiles: 1,
         authorNotes: ``
     },
