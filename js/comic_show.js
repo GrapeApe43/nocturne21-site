@@ -164,16 +164,36 @@ function writePageClickable(div,clickable) {
     }
 }
 
-function writePageTitle(div,toggleNum, char) {
+function writePageTitle(div, toggleNum, char) {
   if (pgData.length >= pg) {
-    //display title of current page
-    document.querySelector(div).innerHTML = `<h1>${pgData[pg - 1].title}</h1>`;
-    if (toggleNum) {
-        //toggle whether you want to display the page number
-        document.querySelector(div).innerHTML = `<h1>${pgData[pg - 1].pgNum + char + pgData[pg - 1].title}</h1>`; //char denotes a separating character between the number and the title
+    const pageData = pgData[pg - 1];
+    const chapterInfo = getChapterData(pg);
+
+    let chapterContext = "";
+
+    if (chapterInfo) {
+      chapterContext = `
+        <div class="comic-chapter-context">
+          <span>${chapterInfo.volume}</span>
+          <span class="chapter-divider">›</span>
+          <span>${chapterInfo.chapter}</span>
+        </div>
+      `;
     }
+
+    let pageTitle = pageData.title;
+
+    if (toggleNum) {
+      pageTitle = pageData.pgNum + char + pageData.title;
+    }
+
+    document.querySelector(div).innerHTML = `
+      ${chapterContext}
+      <h1>${pageTitle}</h1>
+    `;
   }
 }
+
 
 function writeAuthorNotes(div) { //display author notes
   if (pgData.length >= pg) {
