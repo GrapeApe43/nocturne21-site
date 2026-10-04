@@ -102,19 +102,19 @@ jobs:
 
       - name: Upload rss.xml to Neocities
         run: |
-          curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
+          curl -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
           -F "rss.xml=@rss.xml" \
           https://neocities.org/api/upload
 
       - name: Upload sitemap.xml to Neocities
         run: |
-          curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
+          curl -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
           -F "sitemap.xml=@sitemap.xml" \
           https://neocities.org/api/upload
 
       - name: Upload journal-rss.xml to Neocities
         if: hashFiles('journal-rss.xml') != ''
         run: |
-          curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
+          curl -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
           -F "journal-rss.xml=@journal-rss.xml" \
           https://neocities.org/api/upload
