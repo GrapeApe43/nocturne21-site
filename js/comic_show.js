@@ -15,21 +15,30 @@ console.log(pg)
 
 writePageTitle(".writePageTitle", false," - "); //write title of page. true/false
 
-//SEO: give each comic page its own browser title
-if (pgData.length >= pg) {
-  document.title = `Nocturne 21 — Page ${pgData[pg - 1].pgNum} | Sci-Fi Drama Webcomic`;
-}
-//SEO: give each comic page its own meta description
-if (pgData.length >= pg) {
-  const metaDescription = document.querySelector('meta[name="description"]');
+// SEO: give explicit comic-page URLs their own browser title
+// and meta description. Leave the bare homepage metadata alone.
+{
+  const params = new URLSearchParams(window.location.search);
+  const requestedPage = params.get("pg");
 
-  if (metaDescription) {
-    metaDescription.setAttribute(
-      "content",
-      `Read Page ${pgData[pg - 1].pgNum} of Nocturne 21, a sci-fi drama webcomic by April Ferrero about family, trauma, identity, and finding strength through connection.`
-    );
+  if (requestedPage && pgData.length >= pg) {
+    const pageData = pgData[pg - 1];
+
+    document.title =
+      `Nocturne 21 — ${pageData.title} | Sci-Fi Drama Webcomic`;
+
+    const metaDescription =
+      document.querySelector('meta[name="description"]');
+
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        `Read ${pageData.title} of Nocturne 21, a sci-fi drama webcomic by April Ferrero about family, trauma, identity, and finding strength through connection.`
+      );
+    }
   }
 }
+
 // SEO: set the correct canonical URL
 // The homepage keeps its own canonical.
 // Individual comic pages get their own ?pg= canonical.
