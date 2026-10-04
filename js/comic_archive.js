@@ -195,9 +195,7 @@ function writeArchive(divClass, min, max, reverseOrder, useThumbs, useNums) {
             if (pgData[i - 1].date) {
                 pgDate = pgData[i - 1].date;
             }
-            if (pgData[i - 1].date) {
-                pgDate = pgData[i - 1].date;
-            }
+          
             if (pgData[i - 1].pgNum) {
                 pgNum = pgData[i - 1].pgNum;
             }
@@ -214,7 +212,14 @@ function writeArchive(divClass, min, max, reverseOrder, useThumbs, useNums) {
 
         if (useThumbs) {
             //draw thumbnails if you have thumbnails toggled
-            cellThumb.innerHTML = `<img alt="${pgTitle}" title="${pgTitle}" src="${pgThumb}" onerror="javascript:this.src='${pgThumbDefault}'"/>`;
+      cellThumb.innerHTML = `<a href="${linkToComic}" aria-label="Read ${pgTitle}">
+      <img
+        alt="${pgTitle}"
+        title="${pgTitle}"
+        src="${pgThumb}"
+        onerror="this.src='${pgThumbDefault}'" />
+    </a>
+  `;
             cellThumb.setAttribute("class", "archiveCellThumb");
         }
 
@@ -225,7 +230,10 @@ function writeArchive(divClass, min, max, reverseOrder, useThumbs, useNums) {
         }
 
         //draw each row
-        cellTitle.innerHTML = `<span><strong>${pgTitle}</strong></span>`;
+     cellTitle.innerHTML = ` <a href="${linkToComic}" class="archive-page-link">
+        <strong>${pgTitle}</strong>
+        </a>
+        `;
         cellTitle.setAttribute("class", "archiveCellTitle");
         cellDate.innerHTML = "<span> " + pgDate + " </span>";
         cellDate.setAttribute("class", "archiveCellDate");
