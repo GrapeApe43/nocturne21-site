@@ -13,6 +13,7 @@ on:
       - "js/comic_settings.js"
       - "generate-rss.py"
       - "generate-sitemap.py"
+      - "robots.txt"
       - "n21-journal-data.js"
       - "publish-journal.py"
       - ".github/workflows/publish.yml"
@@ -111,6 +112,12 @@ jobs:
           curl -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
           -F "sitemap.xml=@sitemap.xml" \
           https://neocities.org/api/upload
+
+      - name: Upload robots.txt to Neocities
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
+          -F "robots.txt=@robots.txt" \
+          https://neocities.org/api/upload     
 
       - name: Upload journal-rss.xml to Neocities
         if: hashFiles('journal-rss.xml') != ''
