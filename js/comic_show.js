@@ -58,6 +58,56 @@ if (pgData.length >= pg) {
   }
 }
 
+// SEO: structured data for individual comic pages
+{
+  const params = new URLSearchParams(window.location.search);
+  const requestedPage = params.get("pg");
+
+  if (requestedPage && pgData.length >= pg) {
+    const pageData = pgData[pg - 1];
+
+    const comicStructuredData = {
+      "@context": "https://schema.org",
+      "@type": "ComicStory",
+      "name": `Nocturne 21 — ${pageData.title}`,
+      "position": pageData.pgNum,
+      "url": `https://nocturne21.com/?pg=${pg}`,
+      "mainEntityOfPage": `https://nocturne21.com/?pg=${pg}`,
+      "isPartOf": {
+        "@type": "ComicSeries",
+        "name": "Nocturne 21",
+        "url": "https://nocturne21.com/"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "April Ferrero"
+      },
+      "artist": {
+        "@type": "Person",
+        "name": "April Ferrero"
+      },
+      "genre": [
+        "Science fiction",
+        "Drama"
+      ],
+      "inLanguage": "en"
+    };
+
+    // Add publication date when one exists for this page
+    if (pageData.date) {
+      comicStructuredData.datePublished = pageData.date;
+    }
+
+    const structuredDataScript = document.createElement("script");
+    structuredDataScript.type = "application/ld+json";
+    structuredDataScript.id = "comic-page-structured-data";
+    structuredDataScript.textContent =
+      JSON.stringify(comicStructuredData);
+
+    document.head.appendChild(structuredDataScript);
+  }
+}
+
 writePageClickable(".writePageClickable",true); //show the current page. to toggle whether pages can be clicked to move to the next one, set this to true or false.
 
 writeAuthorNotes(".writeAuthorNotes");
