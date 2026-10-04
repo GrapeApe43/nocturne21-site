@@ -120,10 +120,18 @@ if (chapterInfo) {
   };
 }
 
-    // Add publication date when one exists for this page
-    if (pageData.date) {
-      comicStructuredData.datePublished = pageData.date;
-    }
+// Add publication date in ISO 8601 format when one exists
+if (pageData.date) {
+  const parsedDate = new Date(pageData.date);
+
+  if (!isNaN(parsedDate.getTime())) {
+    const year = parsedDate.getFullYear();
+    const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
+    const day = String(parsedDate.getDate()).padStart(2, "0");
+
+    comicStructuredData.datePublished = `${year}-${month}-${day}`;
+  }
+}
 
     const structuredDataScript = document.createElement("script");
     structuredDataScript.type = "application/ld+json";
