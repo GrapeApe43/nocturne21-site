@@ -358,15 +358,6 @@ const pgData = [
         imageFiles: 1,
         authorNotes: ``
     },
-      {
-        pgNum: 35,
-        title: `Chapter Two: Glass`,
-        date: writeDate(2023, 10, 18),
-        altText: "Chapter Two: Glass",
-        imageFiles: 1,
-        authorNotes: ``
-    },
-
 {
     pgNum: 35,
     title: `Chapter Two: Glass`,
@@ -673,15 +664,6 @@ const pgData = [
     authorNotes: ``
 },
 
-      {
-        pgNum: 69,
-        title: `Chapter Three: Snow Day`,
-        date: writeDate(2023, 10, 18),
-        altText: "Chapter Three: Snow Day",
-        imageFiles: 1,
-        authorNotes: ``
-    },
-
 {
     pgNum: 69,
     title: `Chapter Three: Snow Day`,
@@ -907,32 +889,6 @@ const pgData = [
     authorNotes: ``
 },
 
-      {
-        pgNum: 91,
-        title: `Page 88`,
-        date: writeDate(2023, 10, 18),
-        altText: "The kids are sleeping when Kuro arrives home late from work. Shin is in the kitchen grading papers. He heats up pizza for Kuro and the two begin discussing Kiri. Shin promises to put his foot down on Kiri's behavior.",
-        imageFiles: 1,
-        authorNotes: ``
-    },
-
-      {
-        pgNum: 92,
-        title: `Page 89`,
-        date: writeDate(2023, 10, 18),
-        altText: "Kuro and Shin talk about Kai and whether or not he should be attending school. Shin also expresses concerns about Kai's origin, but also acknowledges that Kuro and Yosh seem much happier with Kai being there. Kuro's coffee mug suddenly cracks, but when Shin mentions it, Kuro brushes it off.",
-        imageFiles: 1,
-        authorNotes: ``
-    },
-
-      {
-        pgNum: 93,
-        title: `Page 90`,
-        date: writeDate(2023, 10, 18),
-        altText: "In Kai's room, several objects are floating through the air. Kai is not in his bed, but is curled up in his closet, dreaming once again about the red-eyed lady. The chapter ends with the terrified look in his eyes as she finds him.",
-        imageFiles: 1,
-        authorNotes: ``
-    },
 {
     pgNum: 94,
     title: `The Kai Journals: Part 1`,
@@ -1447,24 +1403,6 @@ const pgData = [
     imageFiles: 1,
     authorNotes: `<p>And we conclude this chapter with an over-the-top superhero landing and dramatic dust cloud reveal. </p>`
 },
-    
-        {
-        pgNum: 151,
-        title: `VOLUME 2: TRUST FALLS`,
-        date: writeDate(2024, 06, 12),
-        altText: "Nocturne 21 Volume Two: Trust Falls",
-        imageFiles: 1,
-        authorNotes: `<p></p>`
-        },
-    
-     {
-        pgNum: 152,
-        title: `Chapter Five: The Voice From Below`,
-        date: writeDate(2024, 06, 12),
-        altText: "Chapter Five: The Voice From Below",
-        imageFiles: 1,
-        authorNotes: `<p>Welcome back, friends! Sorry for the long hiatus! Good to be back at again. I hope you enjoy :)</p>`
-    },
    
 {
     pgNum: 151,
