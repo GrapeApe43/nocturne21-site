@@ -30,8 +30,10 @@ if (pgData.length >= pg) {
     );
   }
 }
-//SEO: set a canonical URL for each comic page
-if (pgData.length >= pg) {
+// SEO: set the correct canonical URL
+// The homepage keeps its own canonical.
+// Individual comic pages get their own ?pg= canonical.
+{
   let canonical = document.querySelector('link[rel="canonical"]');
 
   if (!canonical) {
@@ -40,10 +42,20 @@ if (pgData.length >= pg) {
     document.head.appendChild(canonical);
   }
 
-  canonical.setAttribute(
-    "href",
-    `https://nocturne21.com/?pg=${pg}`
-  );
+  const params = new URLSearchParams(window.location.search);
+  const requestedPage = params.get("pg");
+
+  if (requestedPage) {
+    canonical.setAttribute(
+      "href",
+      `https://nocturne21.com/?pg=${pg}`
+    );
+  } else {
+    canonical.setAttribute(
+      "href",
+      "https://nocturne21.com/"
+    );
+  }
 }
 
 writePageClickable(".writePageClickable",true); //show the current page. to toggle whether pages can be clicked to move to the next one, set this to true or false.
