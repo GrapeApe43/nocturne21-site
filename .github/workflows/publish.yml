@@ -12,6 +12,7 @@ on:
     paths:
       - "js/comic_settings.js"
       - "generate-rss.py"
+      - "generate-sitemap.py"
       - "n21-journal-data.js"
       - "publish-journal.py"
       - ".github/workflows/publish.yml"
@@ -56,6 +57,9 @@ jobs:
       - name: Generate RSS only
         run: python generate-rss.py
 
+      - name: Generate sitemap
+        run: python generate-sitemap.py
+
       - name: Post comic to social media
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish_comic == 'true'
         run: python generate-rss.py
@@ -86,7 +90,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add .last_discord_post.txt .last_journal_post.txt rss.xml journal-rss.xml 2>/dev/null || true
+          git add .last_discord_post.txt .last_journal_post.txt rss.xml journal-rss.xml sitemap.xml 2>/dev/null || true
 
           if ! git diff --cached --quiet; then
             git commit -m "Update publish trackers"
@@ -100,6 +104,12 @@ jobs:
         run: |
           curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
           -F "rss.xml=@rss.xml" \
+          https://neocities.org/api/upload
+
+      - name: Upload sitemap.xml to Neocities
+        run: |
+          curl -u "${{ secrets.NEOCITIES_USERNAME }}:${{ secrets.NEOCITIES_API_KEY }}" \
+          -F "sitemap.xml=@sitemap.xml" \
           https://neocities.org/api/upload
 
       - name: Upload journal-rss.xml to Neocities
