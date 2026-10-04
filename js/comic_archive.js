@@ -27,17 +27,19 @@ function topFunction() {
 }
 
 
-writeArchive("chapter1", 1, 34, -1, true, false); //writeArchive is for listing a RANGE of pages, take advantage of this by using headers to divide them into chapters or by month
+// Build archive sections from the shared chapter data
+chapterData.forEach((chapter) => {
+  const chapterEnd = chapter.end === null ? maxpg : chapter.end;
 
-writeArchive("chapter2", 35, 68, -1, true, false);
-
-writeArchive("chapter3", 69, 93, -1, true, false);
-
-writeArchive("kaijournal", 94, 97, -1, true, false);
-
-writeArchive("chapter4", 98, 150, -1, true, false);
-
-writeArchive("chapter5", 151, maxpg, -1, true, false);
+  writeArchive(
+    chapter.id,
+    chapter.start,
+    chapterEnd,
+    -1,
+    true,
+    false
+  );
+});
 
 
 // Continue Reading button on archive page
@@ -67,17 +69,10 @@ document.addEventListener("visibilitychange", function () {
 
 
 function getChapterFromPage(page) {
-  const pg = parseInt(page, 10);
-
-  if (pg >= 1 && pg <= 34) return "chapter1";
-  if (pg >= 35 && pg <= 68) return "chapter2";
-  if (pg >= 69 && pg <= 93) return "chapter3";
-  if (pg >= 94 && pg <= 97) return "kaijournal";
-  if (pg >= 98 && pg <= 150) return "chapter4";
-  if (pg >= 151 && pg <= maxpg) return "chapter5";
-
-  return null;
+  const chapter = getChapterData(page);
+  return chapter ? chapter.id : null;
 }
+
 
 function setOpenChapter(targetId = null, shouldScroll = false) {
   const sections = document.querySelectorAll(".archive-section");
