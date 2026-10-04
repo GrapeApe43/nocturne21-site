@@ -74,6 +74,7 @@ writePageTitle(".writePageTitle", false," - "); //write title of page. true/fals
 
   if (requestedPage && pgData.length >= pg) {
     const pageData = pgData[pg - 1];
+    const chapterInfo = getChapterData(pg);
 
     const comicStructuredData = {
       "@context": "https://schema.org",
@@ -101,6 +102,23 @@ writePageTitle(".writePageTitle", false," - "); //write title of page. true/fals
       ],
       "inLanguage": "en"
     };
+
+    // Add volume and chapter context when available
+if (chapterInfo) {
+  comicStructuredData.isPartOf = {
+    "@type": "ComicSeries",
+    "name": "Nocturne 21",
+    "url": "https://nocturne21.com/",
+    "hasPart": {
+      "@type": "CreativeWork",
+      "name": chapterInfo.volume,
+      "hasPart": {
+        "@type": "CreativeWork",
+        "name": chapterInfo.chapter
+      }
+    }
+  };
+}
 
     // Add publication date when one exists for this page
     if (pageData.date) {
