@@ -4582,3 +4582,16 @@ a.jump-comments-btn:hover {
     text-align: center !important;
   }
 }
+
+/* ========================================
+   ARCHIVE — MATCH STANDARD PAGE WIDTH
+======================================== */
+
+.archivePage.subPage {
+  width: 90% !important;
+  max-width: 1000px !important;
+  box-sizing: border-box !important;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
