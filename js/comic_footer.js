@@ -85,67 +85,113 @@ const footerStyle = document.createElement("style");
 
 footerStyle.textContent = `
 
-  .site-footer {
-    width: 100%;
-    box-sizing: border-box;
-  }
+/* ========================================
+   FOOTER TOP ROW
+   ======================================== */
+
+.footer-top-row {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 45px;
+  padding: 8px 12px 14px;
+}
 
 
+/* Social icons stay on far left */
+
+.footer-socialicons {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
 
 
-  /* Social icons + navigation centered as one footer row */
+/* Navigation stays centered in the footer */
+
+.footer-nav {
+  width: auto;
+  margin: 0 auto;
+
+  text-align: center;
+  white-space: normal;
+}
+
+
+/* Social icon hover */
+
+.footer-socialicons a img {
+  transition:
+    filter 0.2s ease,
+    transform 0.2s ease !important;
+}
+
+
+.footer-socialicons a:hover img {
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(47%)
+    sepia(19%)
+    saturate(1187%)
+    hue-rotate(199deg)
+    brightness(87%)
+    contrast(85%) !important;
+
+  transform: translateY(-2px) !important;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 700px) {
 
   .footer-top-row {
-    width: 100%;
-    box-sizing: border-box;
-
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    gap: 28px;
-    padding: 8px 12px 14px;
+    gap: 12px;
+    padding: 10px 12px 14px;
   }
 
 
+  /* Put socials back into normal flow */
+
   .footer-socialicons {
-    flex: 0 0 auto;
+    position: static;
+    transform: none;
+
+    width: 100%;
+    justify-content: center !important;
 
     margin: 0 !important;
     padding: 0 !important;
   }
 
 
+  /* Navigation gets its own line */
+
   .footer-nav {
-    flex: 0 1 auto;
+    width: 100%;
+    margin: 0;
 
     text-align: center;
-    white-space: normal;
   }
 
-
-  /* Restore social icon hover effect */
-
-  .footer-socialicons a img {
-    transition:
-      filter 0.2s ease,
-      transform 0.2s ease !important;
-  }
-
-
-  .footer-socialicons a:hover img {
-    filter:
-      brightness(0)
-      saturate(100%)
-      invert(47%)
-      sepia(19%)
-      saturate(1187%)
-      hue-rotate(199deg)
-      brightness(87%)
-      contrast(85%) !important;
-
-    transform: translateY(-2px) !important;
-  }
+}
 
 `;
 
