@@ -4356,15 +4356,67 @@ a.jump-comments-btn:hover {
 }
 
 /* ========================================
-   ABOUT THE AUTHOR — TEXT / IMAGE SPACING
+   ABOUT PAGE — AUTHOR SECTION
 ======================================== */
 
-.about-author-text {
-  max-width: 430px;
-  padding-right: 28px;
-  box-sizing: border-box;
+.about-author-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 44px;
+
+  width: 100%;
+  margin-top: 24px;
+
+  text-align: left;
+}
+
+.about-author-copy {
+  flex: 1 1 auto;
+
+  /* keeps the text from creeping right up against the art */
+  max-width: 540px;
+  min-width: 0;
+}
+
+.about-author-copy h2 {
+  margin-top: 10px;
+}
+
+.about-author-copy p {
+  margin-right: 0;
+  line-height: 1.55;
 }
 
 .about-author-image {
   flex: 0 0 auto;
+
+  width: 270px;
+  max-width: 38%;
+  height: auto;
+
+  margin: 0 !important;
+}
+
+
+/* Stack cleanly on smaller screens */
+@media (max-width: 700px) {
+
+  .about-author-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-author-copy {
+    max-width: none;
+    width: 100%;
+  }
+
+  .about-author-image {
+    width: min(100%, 320px);
+    max-width: 100%;
+
+    margin: 0 auto !important;
+  }
 }
