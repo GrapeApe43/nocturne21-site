@@ -141,39 +141,6 @@ document.querySelector(".writeHeader").innerHTML = `
 
     </div>
 
-
-    <div class="socialicons">
-      <a href="https://discord.gg/FCkUWf7awk" target="_blank">
-        <img src="img/social/discord.png">
-      </a>
-
-      <a href="https://bsky.app/profile/grape-ape.bsky.social" target="_blank">
-        <img src="img/social/bluesky.png">
-      </a>
-
-      <a href="https://cara.app/grapeape" target="_blank">
-        <img src="img/social/cara.png">
-      </a>
-
-      <a href="https://www.tumblr.com/nocturne-21" target="_blank">
-        <img src="img/social/tumblr.png">
-      </a>
-
-      <a href="https://instagram.com/aprilferreroart" target="_blank">
-        <img src="img/social/instagram.png">
-      </a>
-
-      <a href="https://www.patreon.com/nocturne21" target="_blank">
-        <img src="img/social/patreon.png">
-      </a>
-
-      <a href="https://www.tiktok.com/@aprilferrero?_t=8p1tFELZj6X&_r=1" target="_blank">
-        <img src="img/social/tiktok.png">
-      </a>
-
-      <br><br>
-    </div>
-
   </header>
 `;
 
