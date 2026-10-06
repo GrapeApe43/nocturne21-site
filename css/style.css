@@ -388,6 +388,76 @@ border {
   width: 900px;
   max-width: 98%;
 }
+/* ========================================
+   AUTHOR NOTES
+   ======================================== */
+
+.author-notes-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Avatar */
+
+.author-notes-avatar {
+  flex: 0 0 auto;
+}
+
+.author-notes-avatar img {
+  display: block;
+
+  width: 75px;
+  height: 75px;
+
+  object-fit: cover;
+
+  border-radius: 12px;
+}
+
+
+/* Notes */
+
+.author-notes-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.author-notes-heading {
+  margin-bottom: 5px;
+}
+
+.author-notes-name {
+  font-weight: bold;
+}
+
+.author-notes-text {
+  width: 100%;
+}
+
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+  .author-notes-card {
+    gap: 12px;
+  }
+
+  .author-notes-avatar img {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 10px;
+  }
+
+}
+
+
 
 ul.horizontal-list {
   list-style-type: none;
