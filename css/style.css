@@ -4487,3 +4487,98 @@ a.jump-comments-btn:hover {
 .latest-journal-date {
   color: rgba(255, 255, 255, 0.84) !important;
 }
+
+/* ========================================
+   FOOTER — FINAL LAYOUT SAFETY
+   Keep socials + nav from overlapping
+======================================== */
+
+.footer-top-row {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 100% !important;
+  min-height: 52px !important;
+
+  padding: 8px 12px 14px !important;
+  box-sizing: border-box !important;
+}
+
+/* Social icons stay on the left on wide screens */
+.footer-socialicons {
+  position: absolute !important;
+  left: 12px !important;
+  top: 50% !important;
+
+  transform: translateY(-50%) !important;
+
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+}
+
+/* Bottom navigation stays centered */
+.footer-nav {
+  position: relative !important;
+
+  width: auto !important;
+  max-width: calc(100% - 360px) !important;
+
+  margin: 0 auto !important;
+  padding: 0 !important;
+
+  text-align: center !important;
+  white-space: normal !important;
+}
+
+
+/* ========================================
+   TABLETS / PHONES / LANDSCAPE PHONES
+======================================== */
+
+@media (max-width: 950px) {
+
+  .footer-top-row {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 12px !important;
+
+    min-height: 0 !important;
+    padding: 12px !important;
+  }
+
+  .footer-socialicons {
+    position: static !important;
+
+    left: auto !important;
+    top: auto !important;
+
+    transform: none !important;
+
+    width: 100% !important;
+
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+
+    margin: 0 !important;
+  }
+
+  .footer-nav {
+    position: static !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+
+    text-align: center !important;
+  }
+}
