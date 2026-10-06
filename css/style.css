@@ -4302,3 +4302,55 @@ div.jumpring a:hover {
       transparent 50%
     ) !important;
 }
+
+/* ========================================
+   FINAL COLOR OVERRIDES
+   Blood-red headings + Jump to Comments
+======================================== */
+
+/* Main section headings */
+h1,
+h2,
+h3,
+h4,
+.comments-title,
+.section-title,
+.reads-copy h4,
+#authorNotes h1,
+#authorNotes h2,
+#authorNotes h3,
+#authorNotes h4 {
+  color: #c91f36 !important;
+  text-shadow:
+    0 0 6px rgba(201, 31, 54, 0.28) !important;
+}
+
+
+/* Jump to Comments button */
+.jump-comments-btn,
+a.jump-comments-btn {
+  background: linear-gradient(
+    145deg,
+    rgba(238, 71, 87, 0.95),
+    rgba(154, 39, 54, 0.96)
+  ) !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid rgba(255, 214, 220, 0.22) !important;
+
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.24),
+    0 0 10px rgba(238, 71, 87, 0.12) !important;
+}
+
+.jump-comments-btn:hover,
+a.jump-comments-btn:hover {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 110, 126, 0.95),
+    rgba(180, 50, 67, 0.96)
+  ) !important;
+
+  color: #ffffff !important;
+}
