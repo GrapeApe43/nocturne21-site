@@ -4354,3 +4354,17 @@ a.jump-comments-btn:hover {
 
   color: #ffffff !important;
 }
+
+/* ========================================
+   ABOUT THE AUTHOR — TEXT / IMAGE SPACING
+======================================== */
+
+.about-author-text {
+  max-width: 430px;
+  padding-right: 28px;
+  box-sizing: border-box;
+}
+
+.about-author-image {
+  flex: 0 0 auto;
+}
