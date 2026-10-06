@@ -4420,3 +4420,70 @@ a.jump-comments-btn:hover {
     margin: 0 auto !important;
   }
 }
+
+/* ========================================
+   HOMEPAGE — LATEST JOURNAL CARD
+   Match journal entry palette
+======================================== */
+
+.latest-journal-box {
+  background: linear-gradient(
+    145deg,
+    rgba(53, 45, 88, 0.90),
+    rgba(18, 20, 42, 0.96)
+  ) !important;
+
+  border: 1px solid rgba(137, 143, 220, 0.52) !important;
+
+  box-shadow:
+    0 0 0 1px rgba(173, 178, 238, 0.10),
+    0 14px 30px rgba(0, 0, 0, 0.38),
+    inset 0 0 18px rgba(125, 132, 215, 0.06) !important;
+}
+
+.latest-journal-box::before {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(185, 180, 240, 0.07),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(93, 97, 171, 0.10),
+      transparent 40%
+    ) !important;
+}
+
+/* ========================================
+   HOMEPAGE JOURNAL — TEAL TEXT ACCENTS
+======================================== */
+
+/* Journal label / heading */
+.latest-journal-label {
+  color: #9ffcff !important;
+  text-shadow:
+    0 0 10px rgba(159, 252, 255, 0.16) !important;
+}
+
+/* Journal post title link */
+.latest-journal-title,
+.latest-journal-title a {
+  color: #9ffcff !important;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.latest-journal-title a:hover {
+  color: #d7feff !important;
+  text-shadow:
+    0 0 10px rgba(159, 252, 255, 0.30) !important;
+}
+
+/* Keep the journal excerpt readable */
+.latest-journal-excerpt,
+.latest-journal-date {
+  color: rgba(255, 255, 255, 0.84) !important;
+}
