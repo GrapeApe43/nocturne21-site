@@ -155,7 +155,7 @@ footerStyle.textContent = `
    MOBILE
    ======================================== */
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
 
   .footer-top-row {
     display: flex;
