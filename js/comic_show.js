@@ -221,9 +221,35 @@ function writePageTitle(div, toggleNum, char) {
 }
 
 
-function writeAuthorNotes(div) { //display author notes
+function writeAuthorNotes(div) {
   if (pgData.length >= pg) {
-    return document.querySelector(div).innerHTML = `${pgData[pg-1].authorNotes}`
+
+    const notes = pgData[pg - 1].authorNotes;
+
+    document.querySelector(div).innerHTML = `
+      <div class="author-notes-card">
+
+        <div class="author-notes-avatar">
+          <img
+            src="img/avatar.jpg"
+            alt="April Ferrero"
+          >
+        </div>
+
+        <div class="author-notes-content">
+
+          <div class="author-notes-heading">
+            <span class="author-notes-name">APRIL'S NOTES</span>
+          </div>
+
+          <div class="author-notes-text">
+            ${notes}
+          </div>
+
+        </div>
+
+      </div>
+    `;
   }
 }
 
