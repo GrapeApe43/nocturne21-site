@@ -404,10 +404,6 @@ border {
 
 /* Avatar */
 
-.author-notes-avatar {
-  flex: 0 0 auto;
-}
-
 .author-notes-avatar img {
   display: block;
 
@@ -417,8 +413,15 @@ border {
   object-fit: cover;
 
   border-radius: 12px;
-}
 
+  border: 2px solid rgba(238, 71, 87, 0.55);
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.55),
+    0 0 8px rgba(238, 71, 87, 0.16);
+
+  transform: rotate(-1.5deg);
+}
 
 /* Notes */
 
