@@ -229,22 +229,26 @@ header #nav a:hover {
 }
 
 .subPage {
-  width: 900px;
-  max-width: 90%;
-  float: inherit;
+  width: min(900px, calc(100% - 24px));
+  max-width: calc(100% - 24px);
+  box-sizing: border-box;
+  float: none;
+
   background: linear-gradient(
     145deg,
     var(--n21-panel-bg-2),
     var(--n21-panel-bg)
   );
+
   border: 1px solid var(--n21-border);
   border-radius: var(--n21-radius-lg);
+
   box-shadow:
     0 0 0 1px var(--n21-border-soft),
     0 14px 34px var(--n21-shadow),
     inset 0 0 20px rgba(255, 214, 220, 0.04);
-  margin: auto;
-  margin-bottom: 14px;
+
+  margin: 0 auto 14px;
   padding: 0 12px 12px;
   opacity: 1;
 }
@@ -253,9 +257,6 @@ header #nav a:hover {
   text-align: center;
 }
 
-.page-box-gap .subPage {
-  margin-top: 1.5rem;
-}
 
 /* pictures */
 .leftPic {
@@ -1646,8 +1647,10 @@ footer a:hover {
 }
 
 .support-page {
-  max-width: 700px;
-  margin: 0 auto;
+  width: min(900px, calc(100% - 24px));
+  max-width: calc(100% - 24px);
+  box-sizing: border-box;
+  margin: 0 auto 14px;
   padding: 20px;
 }
 
@@ -1707,7 +1710,9 @@ footer a:hover {
 .extras-wrap,
 .fanart-wrap,
 .gallery-wrap {
-  max-width: 1100px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 1rem 1rem 3rem;
 }
@@ -1732,9 +1737,6 @@ footer a:hover {
   color: var(--n21-red-pale);
 }
 
-.page-box-gap .subPage {
-  margin-top: 1.5rem;
-}
 
 .polaroid-gallery {
   display: grid;
@@ -4583,23 +4585,4 @@ a.jump-comments-btn:hover {
   }
 }
 
-/* ========================================
-   ARCHIVE — MATCH STANDARD PAGE WIDTH
-======================================== */
 
-.archivePage.subPage {
-  width: 90% !important;
-  max-width: 1000px !important;
-  box-sizing: border-box !important;
-
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* ========================================
-   KEEP PAGE WIDTH STABLE BETWEEN PAGES
-======================================== */
-
-html {
-  overflow-y: scroll;
-}
