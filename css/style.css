@@ -4585,4 +4585,46 @@ a.jump-comments-btn:hover {
   }
 }
 
+/* ========================================
+   ARCHIVE OVERFLOW DIAGNOSTIC
+======================================== */
 
+.archivePage,
+.archive-section,
+.archiveTable,
+.archiveTable tbody,
+.archiveTable tr,
+.archiveTable td {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.archivePage {
+  overflow-x: hidden !important;
+}
+
+.archiveTable {
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+
+.archiveTable td {
+  min-width: 0 !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+.archiveCellThumb {
+  width: 70px !important;
+}
+
+.archiveCellThumb img {
+  width: 60px !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.archiveCellDate {
+  width: 130px !important;
+  min-width: 0 !important;
+}
