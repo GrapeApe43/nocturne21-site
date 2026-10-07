@@ -4595,3 +4595,11 @@ a.jump-comments-btn:hover {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+/* ========================================
+   KEEP PAGE WIDTH STABLE BETWEEN PAGES
+======================================== */
+
+html {
+  overflow-y: scroll;
+}
