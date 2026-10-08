@@ -39,6 +39,53 @@ writePageTitle(".writePageTitle", false," - "); //write title of page. true/fals
   }
 }
 
+// SOCIAL SHARING SEO
+// Keep the homepage preview unchanged, but give individual
+// comic pages their own Open Graph and Twitter metadata.
+{
+  const params = new URLSearchParams(window.location.search);
+  const requestedPage = params.get("pg");
+
+  if (requestedPage && pg >= 1 && pg <= pgData.length) {
+    const pageData = pgData[pg - 1];
+
+    const pageUrl = `https://nocturne21.com/?pg=${pg}`;
+    const pageTitle = `Nocturne 21 — ${pageData.title}`;
+    const pageDescription =
+      `Read ${pageData.title} of Nocturne 21, a sci-fi drama webcomic by April Ferrero.`;
+
+    const pageImage =
+      `https://nocturne21.com/img/preview/pg${pg}.png`;
+
+    function updateSocialMeta(attribute, name, content) {
+      let meta = document.querySelector(
+        `meta[${attribute}="${name}"]`
+      );
+
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.setAttribute(attribute, name);
+        document.head.appendChild(meta);
+      }
+
+      meta.setAttribute("content", content);
+    }
+
+    // Open Graph
+    updateSocialMeta("property", "og:type", "article");
+    updateSocialMeta("property", "og:url", pageUrl);
+    updateSocialMeta("property", "og:title", pageTitle);
+    updateSocialMeta("property", "og:description", pageDescription);
+    updateSocialMeta("property", "og:image", pageImage);
+
+    // Twitter / X
+    updateSocialMeta("name", "twitter:card", "summary_large_image");
+    updateSocialMeta("name", "twitter:title", pageTitle);
+    updateSocialMeta("name", "twitter:description", pageDescription);
+    updateSocialMeta("name", "twitter:image", pageImage);
+  }
+}
+
 // SEO: set the correct canonical URL
 // The homepage keeps its own canonical.
 // Individual comic pages get their own ?pg= canonical.
