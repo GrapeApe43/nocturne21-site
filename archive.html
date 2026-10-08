@@ -1,245 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" href="img/favicon.png">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
-   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
-   <title>Nocturne 21 Comic Archive | Chapters & Pages</title>
-
-<meta name="description"
-      content="Browse the Nocturne 21 webcomic archive by volume and chapter, from Volume One: Robot Boy through Volume Two: Trust Falls.">
-
-<meta name="author" content="April Ferrero">
-<meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://nocturne21.com/archive.html">
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://nocturne21.com/archive.html">
-<meta property="og:title" content="Nocturne 21 Comic Archive">
-<meta property="og:description" content="Browse every chapter and page of Nocturne 21, a sci-fi drama webcomic by April Ferrero.">
-<meta property="og:image" content="https://nocturne21.com/img/promo-art.jpg">
-
-<!-- Twitter / X -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Nocturne 21 Comic Archive">
-<meta name="twitter:description" content="Browse every chapter and page of Nocturne 21, a sci-fi drama webcomic by April Ferrero.">
-<meta name="twitter:image" content="https://nocturne21.com/img/promo-art.jpg">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Nocturne 21 Comic Archive",
-  "url": "https://nocturne21.com/archive.html",
-  "description": "The complete comic archive for Nocturne 21, organized by volume and chapter.",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Nocturne 21",
-    "url": "https://nocturne21.com/"
-  },
-  "about": {
-    "@type": "ComicSeries",
-    "name": "Nocturne 21",
-    "url": "https://nocturne21.com/",
-    "author": {
-      "@type": "Person",
-      "name": "April Ferrero"
-    },
-    "genre": [
-      "Science fiction",
-      "Drama"
-    ]
+  <title>Nocturne 21 Comic Archive | Chapters &amp; Pages</title>
+  <meta name="description" content="Browse the Nocturne 21 webcomic archive by volume and chapter, from Volume One: Robot Boy through Volume Two: Trust Falls.">
+  <meta name="author" content="April Ferrero">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://nocturne21.com/archive.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nocturne21.com/archive.html">
+  <meta property="og:title" content="Nocturne 21 Comic Archive">
+  <meta property="og:description" content="Browse every chapter and page of Nocturne 21, a sci-fi drama webcomic by April Ferrero.">
+  <meta property="og:image" content="https://nocturne21.com/img/promo-art.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nocturne 21 Comic Archive">
+  <meta name="twitter:description" content="Browse every chapter and page of Nocturne 21, a sci-fi drama webcomic by April Ferrero.">
+  <meta name="twitter:image" content="https://nocturne21.com/img/promo-art.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Nocturne 21 Comic Archive",
+    "url": "https://nocturne21.com/archive.html",
+    "description": "The complete comic archive for Nocturne 21, organized by volume and chapter.",
+    "isPartOf": {"@type": "WebSite", "name": "Nocturne 21", "url": "https://nocturne21.com/"},
+    "about": {
+      "@type": "ComicSeries",
+      "name": "Nocturne 21",
+      "url": "https://nocturne21.com/",
+      "author": {"@type": "Person", "name": "April Ferrero"},
+      "genre": ["Science fiction", "Drama"]
+    }
   }
-}
-</script>
-
-  
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <!-- Cherry Cream Soda -->
-    <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
+  </script>
+  <link href="css/style.css" rel="stylesheet" media="all">
+  <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body align="center" background="img/lily.png">
+  <!-- Shared social bar: same markup as other site pages -->
+  <div class="floating-share" id="shareBar">
+    <button class="share-toggle" type="button" onclick="toggleShare(event)">Share</button>
+    <a href="/rss.html" title="Subscribe" aria-label="RSS"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2"/><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/></svg></a>
+    <a href="https://bsky.app/" target="_blank" rel="noopener noreferrer" data-platform="bluesky" aria-label="Bluesky"><img src="img/bluesky.png" alt="Bluesky"></a>
+    <a href="#" onclick="copyLink(); alert('Link copied! Paste into Discord ✧'); return false;" data-platform="discord" aria-label="Share on Discord"><svg viewBox="0 0 24 24"><path d="M20 4.5A19 19 0 0 0 15.5 3l-.3.6a17 17 0 0 0-6.4 0L8.5 3A19 19 0 0 0 4 4.5C1.8 8 1.2 11.4 1.5 14.7c2.5 1.8 4.9 2.9 7.2 3.6l.9-1.3c-.8-.3-1.5-.7-2.2-1.1.2-.2.3-.3.5-.5 4.2 2 8.7 2 12.9 0 .2.2.3.5.5-.7.4-1.4.8-2.2 1.1l.9 1.3c2.3-.7 4.7-1.8 7.2-3.6.4-3.8-.7-7.2-2.8-10.2z"/></svg></a>
+    <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://nocturne21.com" target="_blank" rel="noopener noreferrer" data-platform="tumblr" aria-label="Share on Tumblr"><svg viewBox="0 0 24 24"><path d="M10 2v6h4v3h-4v5c0 2 1 3 3 3h1v3h-2c-4 0-6-2-6-6v-5H4V8c3-1 5-3 6-6z"/></svg></a>
+    <a href="#" onclick="copyLink(); alert('Link copied! Open Instagram to share ✧'); return false;" data-platform="instagram" aria-label="Share on Instagram"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-1a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg></a>
+    <a href="https://www.reddit.com/submit?url=https://nocturne21.com&amp;title=Nocturne%2021%20Webcomic" target="_blank" rel="noopener noreferrer" data-platform="reddit" aria-label="Share on Reddit"><svg viewBox="0 0 24 24"><path d="M24 12c0 6.6-5.4 12-12 12S0 18.6 0 12 5.4 0 12 0s12 5.4 12 12zm-5-1.5c0-1-.8-1.8-1.8-1.8-.5 0-1 .2-1.3.6-1.3-.9-3-1.5-4.9-1.6l1-3.1 2.6.6c0 .8.7 1.5 1.5 1.5.8 0 1.5-.7 1.5-1.5S16.9 4 16.1 4c-.6 0-1.2.4-1.4 1l-3-.7c-.3-.1-.6.1-.7.4l-1.2 3.7c-1.9.1-3.6.7-4.9 1.6-.3-.4-.8-.6-1.3-.6-1 0-1.8.8-1.8 1.8 0 .7.4 1.3 1 1.6 0 .2-.1.5-.1.7 0 3.2 3.8 5.8 8.5 5.8s8.5-2.6 8.5-5.8c0-.2 0-.5-.1-.7.6-.3 1-1 1-1.6z"/></svg></a>
+    <a href="https://twitter.com/intent/tweet?url=https://nocturne21.com&amp;text=I%20just%20found%20this%20webcomic%20%E2%9C%A7" target="_blank" rel="noopener noreferrer" data-platform="twitter" aria-label="Share on X"><svg viewBox="0 0 24 24"><path d="M18 2h3l-7 8 8 12h-6l-5-8-7 8H1l8-9L2 2h6l4 7 6-7z"/></svg></a>
+  </div>
 
+  <!-- Shared site header must be a direct body child -->
+  <div class="writeHeader"></div>
 
-<div class="floating-share" id="shareBar">
-  <button class="share-toggle" type="button" onclick="toggleShare(event)">Share</button>
+  <!-- Archive content: self-contained sibling of header and footer -->
+  <main class="archivePage subPage" id="archive-main">
+    <h1>Nocturne 21 Comic Archive</h1>
+    <p class="archive-intro">Read <strong>Nocturne 21</strong> from the beginning or browse the complete sci-fi drama webcomic archive by volume and chapter.</p>
 
-   <!-- RSS -->
-<a href="/rss.html" title="Subscribe">
-  <svg viewBox="0 0 24 24">
-    <circle cx="6" cy="18" r="2"/>
-    <path d="M4 11a9 9 0 0 1 9 9"/>
-    <path d="M4 4a16 16 0 0 1 16 16"/>
-  </svg>
-</a>
- 
- 
-  <!-- Bluesky -->
-<a href="https://bsky.app/" target="_blank" data-platform="bluesky">
-  <img src="img/bluesky.png" alt="Bluesky">
-</a>
+    <h2>Volume One: Robot Boy</h2>
+    <nav class="archive-chapter-nav" aria-label="Volume One chapters">
+      <a href="#chapter1">The Red Rain</a> |
+      <a href="#chapter2">Glass</a> |
+      <a href="#chapter3">Snow Day</a> |
+      <a href="#kaijournal">The Kai Journals</a> |
+      <a href="#chapter4">The Stranger</a>
+    </nav>
+    <br>
+    <h2>Volume Two: Trust Falls</h2>
+    <nav class="archive-chapter-nav" aria-label="Volume Two chapters"><a href="#chapter5">The Voice from Below</a></nav>
+    <br>
 
-
-<!--Discord -->
-
-<a href="#" onclick="copyLink(); alert('Link copied! Paste into Discord ✧'); return false;" data-platform="discord">
-<svg viewBox="0 0 24 24">
-  <path d="M20 4.5A19 19 0 0 0 15.5 3l-.3.6a17 17 0 0 0-6.4 0L8.5 3A19 19 0 0 0 4 4.5C1.8 8 1.2 11.4 1.5 14.7c2.5 1.8 4.9 2.9 7.2 3.6l.9-1.3c-.8-.3-1.5-.7-2.2-1.1.2-.2.3-.3.5-.5 4.2 2 8.7 2 12.9 0 .2.2.3.3.5.5-.7.4-1.4.8-2.2 1.1l.9 1.3c2.3-.7 4.7-1.8 7.2-3.6.4-3.8-.7-7.2-2.8-10.2z"/>
-</svg>
-  </a>
-
-  <!-- Tumblr -->
-  <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://nocturne21.com"
-     target="_blank" data-platform="tumblr">
-    <svg viewBox="0 0 24 24"><path d="M10 2v6h4v3h-4v5c0 2 1 3 3 3h1v3h-2c-4 0-6-2-6-6v-5H4V8c3-1 5-3 6-6z"/></svg>
-  </a>
-
-<!-- Instagram -->
-<a href="#" onclick="copyLink(); alert('Link copied! Open Instagram to share ✧'); return false;" data-platform="instagram">
-  <!-- svg --><svg viewBox="0 0 24 24">
-  <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-1a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-</svg>
-</a>
-
-  <!-- Reddit -->
-<a href="https://www.reddit.com/submit?url=https://nocturne21.com&title=Nocturne%2021%20Webcomic"
-   target="_blank" data-platform="reddit">
-   <svg viewBox="0 0 24 24">
-  <path d="M24 12c0 6.6-5.4 12-12 12S0 18.6 0 12 5.4 0 12 0s12 5.4 12 12zm-5-1.5c0-1-.8-1.8-1.8-1.8-.5 0-1 .2-1.3.6-1.3-.9-3-1.5-4.9-1.6l1-3.1 2.6.6c0 .8.7 1.5 1.5 1.5.8 0 1.5-.7 1.5-1.5S16.9 4 16.1 4c-.6 0-1.2.4-1.4 1l-3-.7c-.3-.1-.6.1-.7.4l-1.2 3.7c-1.9.1-3.6.7-4.9 1.6-.3-.4-.8-.6-1.3-.6-1 0-1.8.8-1.8 1.8 0 .7.4 1.3 1 1.6 0 .2-.1.5-.1.7 0 3.2 3.8 5.8 8.5 5.8s8.5-2.6 8.5-5.8c0-.2 0-.5-.1-.7.6-.3 1-1 1-1.6z"/>
-</svg>
-  </a>
-  
-    <!-- Twitter/X -->
-  <a href="https://twitter.com/intent/tweet?url=https://nocturne21.com&text=I just found this webcomic ✧"
-     target="_blank" data-platform="twitter">
-    <svg viewBox="0 0 24 24"><path d="M18 2h3l-7 8 8 12h-6l-5-8-7 8H1l8-9L2 2h6l4 7 6-7z"/></svg>
-  </a>
-
-</div>
-
-
-
-
-    <!-- header -->
-    <div class="writeHeader"></div>
-
-
-    <div class="archivePage subPage" align="center">
-    
-
-<h1>Nocturne 21 Comic Archive</h1>
-
-<p class="archive-intro">
-  Read <strong>Nocturne 21</strong> from the beginning or browse the complete
-  sci-fi drama webcomic archive by volume and chapter.
-</p>
-
-<h2>Volume One: Robot Boy</h2>
-
-<nav class="archive-chapter-nav" aria-label="Volume One chapters">
-  <a href="#chapter1">The Red Rain</a> |
-  <a href="#chapter2">Glass</a> |
-  <a href="#chapter3">Snow Day</a> |
-  <a href="#kaijournal">The Kai Journals</a> |
-  <a href="#chapter4">The Stranger</a>
-</nav>
-
-<br>
-
-<h2>Volume Two: Trust Falls</h2>
-
-<nav class="archive-chapter-nav" aria-label="Volume Two chapters">
-  <a href="#chapter5">The Voice from Below</a>
-</nav>
-
-<br>
-
-      
-        <script>
-        indexPage = "index.html" //set which html page your comics are on, supremely important. archive system will break otherwise
-        </script>
-
-<div id="continue-reading-wrap" style="display:none;">
-  <a id="continue-reading-btn" href="#">Continue Reading →</a>
-</div>
-
-<div id="chapter1" class="chapter1 archive-section">
-  <button class="archive-toggle">Chapter 1: The Red Rain</button>
-</div>
-
-<div id="chapter2" class="chapter2 archive-section">
-  <button class="archive-toggle">Chapter 2: Glass</button>
-</div>
-
-<div id="chapter3" class="chapter3 archive-section">
-  <button class="archive-toggle">Chapter 3: Snow Day</button>
-</div>
-
-<div id="kaijournal" class="kaijournal archive-section">
-  <button class="archive-toggle">Kai Journals</button>
-</div>
-
-<div id="chapter4" class="chapter4 archive-section">
-  <button class="archive-toggle">Chapter 4: The Stranger</button>
-</div>
-
-<div id="chapter5" class="chapter5 archive-section">
-  <button class="archive-toggle">Chapter 5: The Voice from Below</button>
-
-</div>
-
-      
-    
-  
-  
+    <div id="continue-reading-wrap" style="display:none;">
+      <a id="continue-reading-btn" href="#">Continue Reading →</a>
     </div>
-    
-    <!-- footer-->
-    <div class="writeFooter"></div>
-    
 
-<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-<script>
-  kofiWidgetOverlay.draw('nocturne21', {
-    'type': 'floating-chat',
-    'floating-chat.donateButton.text': 'Coffee',
-    'floating-chat.donateButton.background-color': '#5D61AB',
-    'floating-chat.donateButton.text-color': '#fff'
-  });
-</script>
+    <!-- The existing archive JS populates these containers. Keep IDs and classes. -->
+    <div id="chapter1" class="chapter1 archive-section"><button class="archive-toggle" type="button">Chapter 1: The Red Rain</button></div>
+    <div id="chapter2" class="chapter2 archive-section"><button class="archive-toggle" type="button">Chapter 2: Glass</button></div>
+    <div id="chapter3" class="chapter3 archive-section"><button class="archive-toggle" type="button">Chapter 3: Snow Day</button></div>
+    <div id="kaijournal" class="kaijournal archive-section"><button class="archive-toggle" type="button">Kai Journals</button></div>
+    <div id="chapter4" class="chapter4 archive-section"><button class="archive-toggle" type="button">Chapter 4: The Stranger</button></div>
+    <div id="chapter5" class="chapter5 archive-section"><button class="archive-toggle" type="button">Chapter 5: The Voice from Below</button></div>
+  </main>
 
+  <div class="writeFooter"></div>
 
+  <!-- Ring lives after the footer, never inside the archive panel. -->
+  <div id="webcomicwebring" align="center"></div>
 
-
-<!-- really important- every js script is called here, be sure to always put them just before the closing body tag, use a defer attribute, and call them in this specific order.-->
-<script src="js/comic_header.js" defer></script>
-<script src="js/comic_settings.js" defer></script>
-<script src="js/comic_chapters.js" defer></script>
-<script src="js/comic_archive.js" defer></script>
-<script src="js/comic_footer.js" defer></script>
-<script src="/js/n21-analytics.js"></script>
-<script src="js/sharebar.js"></script>
-
-    <div id='webcomicwebring' align="center">
-<script type="text/javascript" src="https://webcomicring.org/js/comicring-variables.js"></script>
-<script type="text/javascript" src="https://webcomicring.org/js/comicring-widget.js"></script>
-</div>
-
-<script>
-  document.querySelectorAll("img").forEach(img => {
-    img.loading = "lazy";
-  });
-</script>
-
-
-
-
-
+  <script>var indexPage = "index.html";</script>
+  <!-- Preserve script order required by Rarebit archive system. -->
+  <script src="js/comic_header.js" defer></script>
+  <script src="js/comic_settings.js" defer></script>
+  <script src="js/comic_chapters.js" defer></script>
+  <script src="js/comic_archive.js" defer></script>
+  <script src="js/comic_footer.js" defer></script>
+  <script src="/js/n21-analytics.js" defer></script>
+  <script src="js/sharebar.js" defer></script>
+  <script src="https://webcomicring.org/js/comicring-variables.js" defer></script>
+  <script src="https://webcomicring.org/js/comicring-widget.js" defer></script>
+  <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js" onload="if (window.kofiWidgetOverlay) kofiWidgetOverlay.draw('nocturne21', {'type':'floating-chat','floating-chat.donateButton.text':'Coffee','floating-chat.donateButton.background-color':'#5D61AB','floating-chat.donateButton.text-color':'#fff'});"></script>
 </body>
 </html>
