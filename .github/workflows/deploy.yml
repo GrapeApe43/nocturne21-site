@@ -1,3 +1,4 @@
+
 name: Deploy to Neocities
 
 on:
@@ -26,6 +27,9 @@ jobs:
           cp -r fonts deploy/
           cp -r lytebox deploy/ 2>/dev/null || true
 
+          # SOCIAL SHARING PAGES
+          cp -r share deploy/ 2>/dev/null || true
+
           # HTML FILES
           cp *.html deploy/
 
@@ -33,11 +37,11 @@ jobs:
           cp *.xml deploy/ 2>/dev/null || true
           cp *.js deploy/ 2>/dev/null || true
 
-          # OPTIONAL (if you use them)
+          # OPTIONAL
           cp favicon.* deploy/ 2>/dev/null || true
 
       - name: Deploy to Neocities
         uses: jonchang/deploy-neocities@master
         with:
-          key: ${{ secrets.NEOCITIES_API_KEY }}
+          key: $&#123;&#123; secrets.NEOCITIES_API_KEY &#125;&#125;
           dir: deploy
