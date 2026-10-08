@@ -43,5 +43,5 @@ jobs:
       - name: Deploy to Neocities
         uses: jonchang/deploy-neocities@master
         with:
-          key: $&#123;&#123; secrets.NEOCITIES_API_KEY &#125;&#125;
+          key: ${{ secrets.NEOCITIES_API_KEY }}
           dir: deploy
