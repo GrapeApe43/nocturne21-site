@@ -13,7 +13,7 @@ document.querySelector(".writeHeader").innerHTML = `
   <header class="site-header">
 
     <a href="index.html" class="site-banner-link">
-      <img src="./img/logo.png" alt="Nocturne 21" class="site-banner" />
+      <img src="./img/logo.png" alt="Nocturne 21" class="site-banner" width="2400" height="800" />
     </a>
 
     <div id="nav">
