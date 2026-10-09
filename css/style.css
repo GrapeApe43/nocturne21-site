@@ -229,26 +229,22 @@ header #nav a:hover {
 }
 
 .subPage {
-  width: min(900px, calc(100% - 24px));
-  max-width: calc(100% - 24px);
-  box-sizing: border-box;
-  float: none;
-
+  width: 900px;
+  max-width: 90%;
+  float: inherit;
   background: linear-gradient(
     145deg,
     var(--n21-panel-bg-2),
     var(--n21-panel-bg)
   );
-
   border: 1px solid var(--n21-border);
   border-radius: var(--n21-radius-lg);
-
   box-shadow:
     0 0 0 1px var(--n21-border-soft),
     0 14px 34px var(--n21-shadow),
     inset 0 0 20px rgba(255, 214, 220, 0.04);
-
-  margin: 0 auto 14px;
+  margin: auto;
+  margin-bottom: 14px;
   padding: 0 12px 12px;
   opacity: 1;
 }
@@ -257,6 +253,9 @@ header #nav a:hover {
   text-align: center;
 }
 
+.page-box-gap .subPage {
+  margin-top: 1.5rem;
+}
 
 /* pictures */
 .leftPic {
@@ -1647,10 +1646,8 @@ footer a:hover {
 }
 
 .support-page {
-  width: min(900px, calc(100% - 24px));
-  max-width: calc(100% - 24px);
-  box-sizing: border-box;
-  margin: 0 auto 14px;
+  max-width: 700px;
+  margin: 0 auto;
   padding: 20px;
 }
 
@@ -1710,9 +1707,7 @@ footer a:hover {
 .extras-wrap,
 .fanart-wrap,
 .gallery-wrap {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 1rem 1rem 3rem;
 }
@@ -1737,6 +1732,9 @@ footer a:hover {
   color: var(--n21-red-pale);
 }
 
+.page-box-gap .subPage {
+  margin-top: 1.5rem;
+}
 
 .polaroid-gallery {
   display: grid;
@@ -4268,12 +4266,12 @@ div.jumpring a:hover {
 .comments-shell {
   background: var(--n21-blue-panel) !important;
 
-border: 1px solid rgba(125, 132, 215, 0.58) !important;
+  border: 1px solid var(--n21-blue-border) !important;
 
-box-shadow:
-  0 0 0 1px rgba(173, 178, 238, 0.12),
-  0 14px 34px rgba(0, 0, 0, 0.45),
-  inset 0 0 20px rgba(125, 132, 215, 0.05) !important;
+  box-shadow:
+    0 0 0 1px var(--n21-blue-border-soft),
+    0 14px 30px rgba(0, 0, 0, 0.4),
+    inset 0 0 18px rgba(93, 97, 171, 0.05) !important;
 }
 
 
@@ -4304,285 +4302,9 @@ box-shadow:
       transparent 50%
     ) !important;
 }
-
-/* ========================================
-   FINAL COLOR OVERRIDES
-   Blood-red headings + Jump to Comments
-======================================== */
-
-/* Main section headings */
-h1,
-h2,
-h3,
-h4,
-.comments-title,
-.section-title,
-.reads-copy h4,
-#authorNotes h1,
-#authorNotes h2,
-#authorNotes h3,
-#authorNotes h4 {
-  color: #fa4157 !important;
-  text-shadow:
-    0 0 6px rgba(201, 31, 54, 0.28) !important;
-}
-
-
-/* Jump to Comments button */
-.jump-comments-btn,
-a.jump-comments-btn {
-  background: linear-gradient(
-    145deg,
-    rgba(238, 71, 87, 0.95),
-    rgba(154, 39, 54, 0.96)
-  ) !important;
-
-  color: #ffffff !important;
-
-  border: 1px solid rgba(255, 214, 220, 0.22) !important;
-
-  box-shadow:
-    0 6px 14px rgba(0, 0, 0, 0.24),
-    0 0 10px rgba(238, 71, 87, 0.12) !important;
-}
-
-.jump-comments-btn:hover,
-a.jump-comments-btn:hover {
-  background: linear-gradient(
-    145deg,
-    rgba(255, 110, 126, 0.95),
-    rgba(180, 50, 67, 0.96)
-  ) !important;
-
-  color: #ffffff !important;
-}
-
-/* ========================================
-   ABOUT PAGE — AUTHOR SECTION
-======================================== */
-
-.about-author-section {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-
-  gap: 44px;
-
-  width: 100%;
-  margin-top: 24px;
-
-  text-align: left;
-}
-
-.about-author-copy {
-  flex: 1 1 auto;
-
-  /* keeps the text from creeping right up against the art */
-  max-width: 540px;
-  min-width: 0;
-}
-
-.about-author-copy h2 {
-  margin-top: 10px;
-}
-
-.about-author-copy p {
-  margin-right: 0;
-  line-height: 1.55;
-}
-
-.about-author-image {
-  flex: 0 0 auto;
-
-  width: 270px;
-  max-width: 38%;
-  height: auto;
-
-  margin: 0 !important;
-}
-
-
-/* Stack cleanly on smaller screens */
-@media (max-width: 700px) {
-
-  .about-author-section {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .about-author-copy {
-    max-width: none;
-    width: 100%;
-  }
-
-  .about-author-image {
-    width: min(100%, 320px);
-    max-width: 100%;
-
-    margin: 0 auto !important;
-  }
-}
-
-/* ========================================
-   HOMEPAGE — LATEST JOURNAL CARD
-   Match journal entry palette
-======================================== */
-
-.latest-journal-box {
-  background: linear-gradient(
-    145deg,
-    rgba(53, 45, 88, 0.90),
-    rgba(18, 20, 42, 0.96)
-  ) !important;
-
-  border: 1px solid rgba(137, 143, 220, 0.52) !important;
-
-  box-shadow:
-    0 0 0 1px rgba(173, 178, 238, 0.10),
-    0 14px 30px rgba(0, 0, 0, 0.38),
-    inset 0 0 18px rgba(125, 132, 215, 0.06) !important;
-}
-
-.latest-journal-box::before {
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(185, 180, 240, 0.07),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      rgba(93, 97, 171, 0.10),
-      transparent 40%
-    ) !important;
-}
-
-/* ========================================
-   HOMEPAGE JOURNAL — TEAL TEXT ACCENTS
-======================================== */
-
-/* Journal label / heading */
-.latest-journal-label {
-  color: #9ffcff !important;
-  text-shadow:
-    0 0 10px rgba(159, 252, 255, 0.16) !important;
-}
-
-/* Journal post title link */
-.latest-journal-title,
-.latest-journal-title a {
-  color: #9ffcff !important;
-  text-decoration: none;
-  transition:
-    color 0.2s ease,
-    text-shadow 0.2s ease;
-}
-
-.latest-journal-title a:hover {
-  color: #d7feff !important;
-  text-shadow:
-    0 0 10px rgba(159, 252, 255, 0.30) !important;
-}
-
-/* Keep the journal excerpt readable */
-.latest-journal-excerpt,
-.latest-journal-date {
-  color: rgba(255, 255, 255, 0.84) !important;
-}
-
-/* ========================================
-   FOOTER — FINAL LAYOUT SAFETY
-   Keep socials + nav from overlapping
-======================================== */
-
-.footer-top-row {
-  position: relative !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  width: 100% !important;
-  min-height: 52px !important;
-
-  padding: 8px 12px 14px !important;
-  box-sizing: border-box !important;
-}
-
-/* Social icons stay on the left on wide screens */
-.footer-socialicons {
-  position: absolute !important;
-  left: 12px !important;
-  top: 50% !important;
-
-  transform: translateY(-50%) !important;
-
-  width: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  gap: 8px !important;
-}
-
-/* Bottom navigation stays centered */
-.footer-nav {
-  position: relative !important;
-
-  width: auto !important;
-  max-width: calc(100% - 360px) !important;
-
-  margin: 0 auto !important;
-  padding: 0 !important;
-
-  text-align: center !important;
-  white-space: normal !important;
-}
-
-
-/* ========================================
-   TABLETS / PHONES / LANDSCAPE PHONES
-======================================== */
-
-@media (max-width: 950px) {
-
-  .footer-top-row {
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    gap: 12px !important;
-
-    min-height: 0 !important;
-    padding: 12px !important;
-  }
-
-  .footer-socialicons {
-    position: static !important;
-
-    left: auto !important;
-    top: auto !important;
-
-    transform: none !important;
-
-    width: 100% !important;
-
-    justify-content: center !important;
-    flex-wrap: wrap !important;
-
-    margin: 0 !important;
-  }
-
-  .footer-nav {
-    position: static !important;
-
-    width: 100% !important;
-    max-width: 100% !important;
-
-    margin: 0 !important;
-
-    text-align: center !important;
-  }
-}
-
-
+/* Archive-only text alignment. No changes to panel/header/nav widths. */
+.archivePage .archiveTable td { vertical-align: middle; }
+.archivePage .archiveTable .archiveCellTitle { text-align: left !important; }
+.archivePage .archiveTable .archiveCellNum { text-align: center !important; }
+.archivePage .archiveTable .archiveCellDate { text-align: right !important; }
+.archivePage .archiveTable .archiveCellThumb { text-align: center !important; }
