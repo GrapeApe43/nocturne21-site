@@ -70,6 +70,16 @@
 .n21-jump-pages a {min-width:0;overflow-wrap:anywhere;padding:7px 3px;border-radius:5px;background:#252943;text-align:center;color:#e7e5fa;text-decoration:none;font-size:10px;line-height:1.4}
 .n21-jump-pages a:hover,.n21-jump-pages a:focus-visible {background:#484276;color:white}
 @media(max-width:420px){.n21-jump-panel{width:270px}}
+
+/* Reading controls: keep both actions together, never floating over artwork */
+.n21-reading-controls {display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:10px auto 0;position:relative;z-index:30}
+.n21-reading-controls .n21-jump {margin:0;display:block}
+.n21-reading-controls #continueReadingBtn,
+.n21-reading-controls #continueReadingBtn.show {position:static!important;inset:auto!important;transform:none!important;float:none!important;display:none;visibility:visible!important;opacity:1!important;width:235px;max-width:calc(100vw - 32px);box-sizing:border-box;min-height:38px;margin:0;padding:9px 14px;border:1px solid #7771b4;border-radius:12px;background:linear-gradient(135deg,#242743,#101424);color:#eeeaff;box-shadow:0 3px 14px #0008;font:600 12px 'Open Sans',sans-serif;text-align:center;text-decoration:none;line-height:18px;z-index:auto!important}
+.n21-reading-controls #continueReadingBtn.show {display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.n21-reading-controls #continueReadingBtn.show:hover,
+.n21-reading-controls #continueReadingBtn.show:focus-visible {border-color:#b3a4ed;box-shadow:0 0 12px #7269c366;color:#fff}
+@media(max-width:510px){.n21-reading-controls{gap:8px}.n21-reading-controls .n21-jump-trigger,.n21-reading-controls #continueReadingBtn.show{width:min(235px,calc(100vw - 32px))}}
   </style>
   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
 
@@ -197,6 +207,8 @@
 
 </div>
  
+<div class="n21-reading-controls" aria-label="Comic reading controls">
+<a id="continueReadingBtn" href="#" aria-label="Continue reading"><span aria-hidden="true">▣</span> Pick Up Here <span aria-hidden="true">→</span></a>
 <div class="n21-jump" id="n21Jump">
   <button type="button" class="n21-jump-trigger" aria-expanded="false" aria-controls="n21JumpPanel">✦ Jump to Page <span aria-hidden="true">⌄</span></button>
   <div class="n21-jump-panel" id="n21JumpPanel" hidden>
@@ -448,6 +460,7 @@
   });
 })();
 </script>
+</div><!-- end reading controls -->
 <div class="jump-comments-wrap">
   <a href="#commentsWrap" class="jump-comments-btn">↓ Jump to Comments</a>
 </div>
@@ -484,9 +497,7 @@
 </div>
 
 
-<a id="continueReadingBtn" href="#" aria-label="Continue reading">
-  Pick Up Here
-</a>
+
 
 
 <div class="comments-shell" id="commentsWrap" style="clear: both; overflow: visible; position: relative; z-index: 1;">
