@@ -4308,8 +4308,3 @@ div.jumpring a:hover {
 .archivePage .archiveTable .archiveCellNum { text-align: center !important; }
 .archivePage .archiveTable .archiveCellDate { text-align: right !important; }
 .archivePage .archiveTable .archiveCellThumb { text-align: center !important; }
-
-/* Firefox jolt diagnostic: reserve scrollbar space */
-html {
-  scrollbar-gutter: stable;
-}
