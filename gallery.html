@@ -1,240 +1,195 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head align="center">
-  <link rel="icon" href="img/favicon.png">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nocturne 21 | Gallery</title>
+<head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="img/favicon.png" rel="icon"/>
+<title>Nocturne 21 | Gallery</title>
+<meta content="Illustrations, crossovers, and special artwork from Nocturne 21." name="description"/>
+<link href="https://nocturne21.com/gallery.html" rel="canonical"/>
+<link href="css/style.css" media="all" rel="stylesheet"/>
+<link href="https://webcomicring.org/js/comicring.css" rel="stylesheet"/>
+<link href="lytebox/lytebox.css" media="screen" rel="stylesheet"/>
+<link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+@font-face{font-family:"Ubbing";src:url("/fonts/Ubbing-Regular.otf") format("opentype");font-display:swap;}
+.extras-page .polaroid span,.extras-page .polaroid .caption{font-family:"Ubbing",cursive!important;color:#161116!important;font-size:1.05rem!important;line-height:1.3!important;font-weight:normal!important;}
+.extras-page .polaroid,.extras-page .polaroid:visited{color:#161116!important;}
 
-  <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
-  <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
+/* Extras redesign — scoped so other site pages remain unchanged */
+.extras-page .extras-layout{width:min(1180px,calc(100% - 30px));margin:28px auto 55px;display:grid;grid-template-columns:245px minmax(0,1fr);gap:22px;align-items:start;text-align:left;font-family:'Open Sans',sans-serif;color:#e9eaf7}
+.extras-page .extras-sidebar{display:grid;gap:16px}
+.extras-page .extras-panel{background:rgba(18,23,45,.95);border:1px solid #6764a0;box-shadow:0 4px 16px #0005;padding:18px;border-radius:8px;min-width:0}
+.extras-page .extras-sidebar h2{font:normal 1.15rem 'Lacquer Regular',cursive;color:#bcb3ff;margin:0 0 13px}
+.extras-page .extras-side-links{display:grid;gap:9px}
+.extras-page .extras-side-links a{display:block;text-align:center;text-decoration:none;color:white;font:normal 1.05rem 'Lacquer Regular',cursive;background:linear-gradient(#a72b3d,#601325);border:1px solid #b9485b;border-radius:6px;padding:11px 8px;box-shadow:0 3px 0 #350c18;transition:filter .2s,transform .2s}
+.extras-page .extras-side-links a:hover,.extras-page .extras-side-links a:focus-visible{filter:brightness(1.23);transform:translateY(-1px)}
+.extras-page .extras-reads ul{padding:0;margin:0;list-style:none}
+.extras-page .extras-reads li{padding:9px 0;border-bottom:1px solid #49456a;font-size:.82rem;line-height:1.4}
+.extras-page .extras-reads li:last-child{border-bottom:0}
+.extras-page .extras-reads a{color:#ded5ff;text-decoration:none;font-weight:700}
+.extras-page .extras-reads a:hover{text-decoration:underline}
+.extras-page .extras-reads li span{display:block;color:#aaa9c3;font-size:.74rem}
+.extras-page .extras-reads .reads-note{font-size:.76rem;line-height:1.6;color:#b9b8d0;margin:14px 0 0}
+.extras-page .extras-mascot{display:block;width:min(175px,100%);height:auto;margin:0 auto}
+.extras-page .extras-content{min-width:0;display:grid;gap:20px}
+.extras-page .extras-hero{text-align:center;background:linear-gradient(145deg,#1e2244,#11162c);border:1px solid #7870b2;border-radius:8px;padding:24px 22px}
+.extras-page .extras-kicker{font-size:.77rem;letter-spacing:.13em;text-transform:uppercase;color:#bfb1ef;font-weight:700}
+.extras-page h1,.extras-page .extras-content h2{font-family:'Lacquer Regular',cursive;font-weight:400;color:#d7caff}
+.extras-page h1{font-size:clamp(1.8rem,4vw,2.8rem);margin:10px 0}
+.extras-page .extras-hero p{max-width:650px;margin:10px auto 0;line-height:1.7;color:#e1dff0}
+.extras-page .extras-content h2{font-size:1.65rem;margin:0 0 14px}
+.extras-page .extras-content p{line-height:1.7}
+.extras-page .comparison{margin:0}
+.extras-page .comparison img{display:block;width:100%;height:auto;border:1px solid #747095;border-radius:4px}
+.extras-page .comparison figcaption{font-size:.85rem;color:#c6c0dc;text-align:center;margin-top:12px}
+.extras-page .facts-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.extras-page .fact{background:#e6e9c9;color:#16151d;padding:17px 19px;border-radius:3px;box-shadow:2px 3px 0 #5e5b70;transform:rotate(-.3deg)}
+.extras-page .fact:nth-child(3n){transform:rotate(.35deg)}
+.extras-page .fact h3{font:700 1rem 'Open Sans',sans-serif;color:#50212c;margin:0 0 8px}
+.extras-page .fact p{font-size:.85rem;line-height:1.65;margin:0}
+.extras-page .polaroid-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.extras-page .polaroid{display:block;background:#e8e8df;padding:9px 9px 13px;text-decoration:none;color:#1d1b22;box-shadow:0 4px 12px #0007;border-radius:3px;transition:transform .2s}
+.extras-page .polaroid:hover{transform:translateY(-4px)}
+.extras-page .polaroid img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.extras-page .polaroid span{display:block;text-align:center;font-size:.75rem;padding-top:9px}
+.extras-page .extras-small{font-size:.85rem;color:#b9b4d3}
+@media(max-width:820px){.extras-page .extras-layout{grid-template-columns:1fr}.extras-page .extras-sidebar{grid-template-columns:1fr 1fr;align-items:start}.extras-page .extras-mascot{display:none}.extras-page .extras-reads{grid-row:span 2}}
+@media(max-width:560px){.extras-page .extras-layout{width:calc(100% - 20px);gap:15px}.extras-page .extras-sidebar{grid-template-columns:1fr}.extras-page .extras-side-links{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.extras-page .extras-side-links a{font-size:.84rem;padding:10px 3px}.extras-page .extras-panel{padding:14px}.extras-page .facts-grid{grid-template-columns:1fr}.extras-page .polaroid-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.extras-page .extras-hero{padding:20px 14px}}
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+/* Refinements: reset site-wide heading effects inside anniversary hero */
+.extras-page .extras-content .extras-hero{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0;padding:30px 24px 27px;overflow:visible}
+.extras-page .extras-content .extras-hero .extras-kicker{position:static;display:block;margin:0 0 10px;line-height:1.5}
+.extras-page .extras-content .extras-hero h1{position:static!important;float:none!important;display:block!important;transform:none!important;width:auto!important;max-width:100%;height:auto!important;min-height:0!important;line-height:1.15!important;font-size:clamp(1.6rem,3.1vw,2.45rem)!important;margin:0 0 16px!important;padding:0!important;text-align:center!important;letter-spacing:.015em;white-space:normal!important;text-shadow:none!important}
+.extras-page .extras-content .extras-hero p{position:static!important;display:block;margin:0 auto!important;max-width:650px;line-height:1.65!important;font-size:.92rem;color:#e5e2f3!important;text-align:center}
+/* Red fact cards: text colors explicitly scoped to beat global site rules */
+.extras-page .facts-grid .fact{background:linear-gradient(145deg,#922139 0%,#69192e 55%,#4c1426 100%);border:1px solid #b34b61;border-radius:7px;box-shadow:0 4px 12px #0005;transform:none;padding:18px 19px;color:#f7e6ed!important;transition:filter .2s,transform .2s}
+.extras-page .facts-grid .fact:nth-child(3n){transform:none}
+.extras-page .facts-grid .fact:hover{filter:brightness(1.09);transform:translateY(-2px)}
+.extras-page .facts-grid .fact h3{color:#fff4f6!important;font-family:'Open Sans',sans-serif!important;font-size:.98rem!important;line-height:1.4!important;font-weight:700!important;position:static!important;transform:none!important;margin:0 0 9px!important;text-align:left!important}
+.extras-page .facts-grid .fact p{color:#f5dce5!important;font-size:.86rem!important;line-height:1.7!important;margin:0!important;text-align:left!important}
+@media(max-width:560px){.extras-page .extras-content .extras-hero{padding:24px 16px}.extras-page .extras-content .extras-hero h1{font-size:1.75rem!important}}
 
-  <script type="text/javascript" language="javascript" src="lytebox/lytebox.js"></script>
-  <link rel="stylesheet" href="lytebox/lytebox.css" type="text/css" media="screen" />
+.extras-page .extras-content .polaroid-gallery .polaroid{background:#eeeae1!important;color:#161116!important;min-width:0;box-sizing:border-box}
+.extras-page .extras-content .polaroid-gallery .polaroid .caption,.extras-page .extras-content .polaroid-gallery .polaroid span{font-family:"Ubbing",cursive!important;color:#171217!important;font-weight:normal!important;font-size:1.08rem!important;line-height:1.35!important;display:block;text-align:center;padding:9px 3px 2px}
+.extras-page .extras-content .polaroid-gallery .polaroid img{max-width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;background:#171829}
+.extras-page .extras-content .extras-panel h3{font-family:'Lacquer Regular',cursive;color:#d7caff;font-size:1.25rem;margin:22px 0 12px}
+.extras-page .extras-content .extras-panel h3:first-child{margin-top:0}
+.extras-page .extras-content .music-card{margin-top:20px;padding:18px;background:#222744;border:1px solid #625e94;border-radius:8px;text-align:center}
+.extras-page .extras-content .music-card audio{width:min(100%,440px)}
+.extras-page .extras-content .back-to-extras{margin:8px auto;text-align:center}
+.extras-page .extras-content .back-to-extras a{color:#dcd2ff}
+.extras-page .extras-content .then-now-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.extras-page .extras-content .then-now-grid .polaroid img{aspect-ratio:auto;max-height:360px;object-fit:contain}
+@media(max-width:600px){.extras-page .extras-content .then-now-grid{grid-template-columns:1fr}}
+</style>
 </head>
+<body background="img/lily.png" class="extras-page">
+<div class="floating-share" id="shareBar"><button class="share-toggle" onclick="toggleShare(event)" type="button">Share</button>
+<a aria-label="RSS" href="/rss.html" title="Subscribe"><svg viewbox="0 0 24 24"><circle cx="6" cy="18" r="2"></circle><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path></svg></a>
+<a data-platform="bluesky" href="https://bsky.app/" target="_blank"><img alt="Bluesky" src="img/bluesky.png"/></a>
+<a aria-label="Copy link for Discord" data-platform="discord" href="#" onclick="copyLink();return false"><svg viewbox="0 0 24 24"><path d="M20 4.5A19 19 0 0 0 15.5 3l-.3.6a17 17 0 0 0-6.4 0L8.5 3A19 19 0 0 0 4 4.5C1.8 8 1.2 11.4 1.5 14.7c2.5 1.8 4.9 2.9 7.2 3.6l.9-1.3c-.8-.3-1.5-.7-2.2-1.1.2-.2.3-.3.5-.5 4.2 2 8.7 2 12.9 0 .2.2.3.5.5-.7.4-1.4.8-2.2 1.1l.9 1.3c2.3-.7 4.7-1.8 7.2-3.6.4-3.8-.7-7.2-2.8-10.2z"></path></svg></a>
+<a data-platform="tumblr" href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://nocturne21.com" target="_blank"><svg viewbox="0 0 24 24"><path d="M10 2v6h4v3h-4v5c0 2 1 3 3 3h1v3h-2c-4 0-6-2-6-6v-5H4V8c3-1 5-3 6-6z"></path></svg></a>
+<a aria-label="Copy link for Instagram" data-platform="instagram" href="#" onclick="copyLink();return false"><svg viewbox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-1a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path></svg></a>
+<a data-platform="reddit" href="https://www.reddit.com/submit?url=https://nocturne21.com&amp;title=Nocturne%2021%20Webcomic" target="_blank"><svg viewbox="0 0 24 24"><path d="M24 12c0 6.6-5.4 12-12 12S0 18.6 0 12 5.4 0 12 0s12-5.4 12-12z"></path></svg></a>
+<a data-platform="twitter" href="https://twitter.com/intent/tweet?url=https://nocturne21.com&amp;text=I%20just%20found%20this%20webcomic" target="_blank"><svg viewbox="0 0 24 24"><path d="M18 2h3l-7 8 8 12h-6l-5-8-7 8H1l8-9L2 2h6l4 7 6-7z"></path></svg></a></div>
+<div class="writeHeader"></div>
+<main class="extras-layout">
+<aside aria-label="Extras navigation and recommendations" class="extras-sidebar">
+<section class="extras-panel"><h2>Explore</h2><nav aria-label="Extras sections" class="extras-side-links"><a aria-current="page" href="gallery.html">Gallery</a><a href="fanart.html">Fan Art</a><a href="memes.html">Memes</a></nav></section>
 
-<body class="page-box-gap" align="center" background="img/lily.png" max-width="100%">
-  <div class="floating-share" id="shareBar">
-    <button class="share-toggle" type="button" onclick="toggleShare(event)">Share</button>
-
-<a href="/rss.html" title="Subscribe">
-  <svg viewBox="0 0 24 24">
-    <circle cx="6" cy="18" r="2"/>
-    <path d="M4 11a9 9 0 0 1 9 9"/>
-    <path d="M4 4a16 16 0 0 1 16 16"/>
-  </svg>
+</aside>
+<div class="extras-content"><header class="extras-hero"><div class="extras-kicker">Bonus content · Illustrations</div><h1>Gallery</h1><p>Illustrations, crossovers, and special artwork from Nocturne 21.</p></header><section class="extras-panel"><h2>Artwork &amp; Specials</h2><h3>Nocturne Illustrations</h3><section class="polaroid-gallery">
+<a class="polaroid lytebox" data-description="Volume One Cover: Robot Boy" data-lyte-options="group:gallery1" href="/img/gallery/N21-cover.jpg">
+<img alt="Volume One Cover Robot Boy" loading="lazy" src="/img/gallery/N21-cover.jpg"/>
+<span class="caption">Volume One Cover: Robot Boy</span>
 </a>
-
-    <a href="https://bsky.app/" target="_blank" data-platform="bluesky">
-      <img src="img/bluesky.png" alt="Bluesky">
-    </a>
-
-    <a href="#" onclick="copyLink(); alert('Link copied! Paste into Discord ✧'); return false;" data-platform="discord">
-      <svg viewBox="0 0 24 24">
-        <path d="M20 4.5A19 19 0 0 0 15.5 3l-.3.6a17 17 0 0 0-6.4 0L8.5 3A19 19 0 0 0 4 4.5C1.8 8 1.2 11.4 1.5 14.7c2.5 1.8 4.9 2.9 7.2 3.6l.9-1.3c-.8-.3-1.5-.7-2.2-1.1.2-.2.3-.3.5-.5 4.2 2 8.7 2 12.9 0 .2.2.3.3.5.5-.7.4-1.4.8-2.2 1.1l.9 1.3c2.3-.7 4.7-1.8 7.2-3.6.4-3.8-.7-7.2-2.8-10.2z"/>
-      </svg>
-    </a>
-
-    <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://nocturne21.com" target="_blank" data-platform="tumblr">
-      <svg viewBox="0 0 24 24"><path d="M10 2v6h4v3h-4v5c0 2 1 3 3 3h1v3h-2c-4 0-6-2-6-6v-5H4V8c3-1 5-3 6-6z"/></svg>
-    </a>
-
-    <a href="#" onclick="copyLink(); alert('Link copied! Open Instagram to share ✧'); return false;" data-platform="instagram">
-      <svg viewBox="0 0 24 24">
-        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-1a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-      </svg>
-    </a>
-
-    <a href="https://www.reddit.com/submit?url=https://nocturne21.com&title=Nocturne%2021%20Webcomic" target="_blank" data-platform="reddit">
-      <svg viewBox="0 0 24 24">
-        <path d="M24 12c0 6.6-5.4 12-12 12S0 18.6 0 12 5.4 0 12 0s12 5.4 12 12zm-5-1.5c0-1-.8-1.8-1.8-1.8-.5 0-1 .2-1.3.6-1.3-.9-3-1.5-4.9-1.6l1-3.1 2.6.6c0 .8.7 1.5 1.5 1.5.8 0 1.5-.7 1.5-1.5S16.9 4 16.1 4c-.6 0-1.2.4-1.4 1l-3-.7c-.3-.1-.6.1-.7.4l-1.2 3.7c-1.9.1-3.6.7-4.9 1.6-.3-.4-.8-.6-1.3-.6-1 0-1.8.8-1.8 1.8 0 .7.4 1.3 1 1.6 0 .2-.1.5-.1.7 0 3.2 3.8 5.8 8.5 5.8s8.5-2.6 8.5-5.8c0-.2 0-.5-.1-.7.6-.3 1-1 1-1.6z"/>
-      </svg>
-    </a>
-
-    <a href="https://twitter.com/intent/tweet?url=https://nocturne21.com&text=I just found this webcomic ✧" target="_blank" data-platform="twitter">
-      <svg viewBox="0 0 24 24"><path d="M18 2h3l-7 8 8 12h-6l-5-8-7 8H1l8-9L2 2h6l4 7 6-7z"/></svg>
-    </a>
-  </div>
-
-  <div class="writeHeader"></div>
-
-  <div class="subPage clearfix" align="right">
-    <div class="gallery-wrap">
-      <section class="page-intro">
-        <h1>GALLERY</h1>
-      </section>
-
-      <h3 class="section-title">Nocturne Illustrations</h3>
-      <section class="polaroid-gallery">
-        <a href="/img/gallery/N21-cover.jpg" class="polaroid lytebox" data-lyte-options="group:gallery1" data-description="Volume One Cover: Robot Boy">
-          <img src="/img/gallery/N21-cover.jpg" alt="Volume One Cover Robot Boy">
-          <div class="caption">Volume One Cover: Robot Boy</div>
-        </a>
-
-        <a href="/img/gallery/part2-teaser.jpg" class="polaroid lytebox" data-lyte-options="group:gallery1" data-description="Chapter 5-7 Teaser: Rough Day">
-          <img src="/img/gallery/part2-teaser.jpg" alt="Chapter 5-7 Teaser Rough Day">
-          <div class="caption">Chapter 5-7 Teaser: Rough Day</div>
-        </a>
-
-        <a href="/img/gallery/Kai_rain.jpg" class="polaroid lytebox" data-lyte-options="group:gallery1" data-description="Chapter One Endpage">
-          <img src="/img/gallery/Kai_rain.jpg" alt="Chapter One Endpage">
-          <div class="caption">Chapter One Endpage</div>
-        </a>
-
-        <a href="/img/gallery/Yoshiko-illustration.jpg" class="polaroid lytebox" data-lyte-options="group:gallery1" data-description="Chapter Two Endpage">
-          <img src="/img/gallery/Yoshiko-illustration.jpg" alt="Chapter Two Endpage">
-          <div class="caption">Chapter Two Endpage</div>
-        </a>
-
-        <a href="/img/gallery/Kai-illustration2.jpg" class="polaroid lytebox" data-lyte-options="group:gallery1" data-description="Chapter Three Endpage">
-          <img src="/img/gallery/Kai-illustration2.jpg" alt="Chapter Three Endpage">
-          <div class="caption">Chapter Three Endpage</div>
-        </a>
-
-        <a href="/img/gallery/riyu-endpage.jpg" class="polaroid lytebox" data-lyte-options="group:gallery1" data-description="Chapter Five Endpage">
-          <img src="/img/gallery/riyu-endpage.jpg" alt="Chapter Five Endpage">
-          <div class="caption">Chapter Five Endpage</div>
-        </a>
-
-        <a href="/img/gallery/Gion1984.jpg" class="polaroid lytebox" data-lyte-options="group:gallery1" data-description="Good Ole Days in Gion">
-          <img src="/img/gallery/Gion1984.jpg" alt="Good Ole Days in Gion">
-          <div class="caption">Good Ole Days in Gion</div>
-        </a>
-
-        <a href="/img/gallery/Shimizu-family-picture.jpg" class="polaroid lytebox" data-lyte-options="group:gallery1" data-description="Shimizu Family Portrait">
-          <img src="/img/gallery/Shimizu-family-picture.jpg" alt="Shimizu Family Portrait">
-          <div class="caption">Shimizu Family Portrait</div>
-        </a>
-
-        <a href="/img/gallery/Sleep.jpg" class="polaroid lytebox" data-lyte-options="group:gallery1" data-description="Chapter Four Illustration: Safe">
-          <img src="/img/gallery/Sleep.jpg" alt="Chapter Four Illustration Safe">
-          <div class="caption">Chapter Four Illustration: Safe</div>
-        </a>
-
-        <a href="/img/gallery/Nightmare 2.jpg" class="polaroid lytebox" data-lyte-options="group:gallery1" data-description="The Nightmare">
-          <img src="/img/gallery/Nightmare 2.jpg" alt="The Nightmare">
-          <div class="caption">The Nightmare</div>
-        </a>
-
-        <a href="/img/gallery/dreamscape.jpg" class="polaroid lytebox" data-lyte-options="group:gallery1" data-description="Mindscape">
-          <img src="/img/gallery/dreamscape.jpg" alt="Mindscape">
-          <div class="caption">Mindscape</div>
-        </a>
-      </section>
-
-      <h3 class="section-title">Nocturne 21 Specials</h3>
-
-      <h4 class="section-title">Crossover Art</h4>
-      <section class="polaroid-gallery">
-        <a href="/img/gallery/crossover-fanart.jpg" class="polaroid lytebox" data-lyte-options="group:gallery2" data-description="Nocturne 21, Here I Lie Awake, The Angel Professor crossover fan art">
-          <img src="/img/gallery/crossover-fanart.jpg" alt="Crossover fan art">
-          <div class="caption">Nocturne 21, Here I Lie Awake, The Angel Professor crossover fan art</div>
-        </a>
-
-        <a href="/img/gallery/New-Years-Swap.jpg" class="polaroid lytebox" data-lyte-options="group:gallery2" data-description="New Year's Costume Exchange featuring Kai & Yosh sporting Isadore's wardrobe, character created by Hantu-Ayam">
-          <img src="/img/gallery/New-Years-Swap.jpg" alt="New Year's Costume Exchange">
-          <div class="caption">New Year's Costume Exchange featuring Kai &amp; Yosh sporting Isadore's wardrobe</div>
-        </a>
-
-        <a href="/img/gallery/Imp-kai.jpg" class="polaroid lytebox" data-lyte-options="group:gallery2" data-description="Imp Kai in the style of Wirecat's The Imp and her Knight">
-          <img src="/img/gallery/Imp-kai.jpg" alt="Imp Kai">
-          <div class="caption">Imp Kai in the style of Wirecat's <i>The Imp and her Knight</i></div>
-        </a>
-
-        <a href="/img/gallery/cool-girl-24-7.jpg" class="polaroid lytebox" data-lyte-options="group:gallery2" data-description="Crossover character between Nocturne 21 and D-Wrek's Twenty-Four/Seven">
-          <img src="/img/gallery/cool-girl-24-7.jpg" alt="Twenty-Four Seven crossover">
-          <div class="caption">Crossover character between <i>Nocturne 21</i> and D-Wrek's <i>Twenty-Four/Seven</i></div>
-        </a>
-      </section>
-
-      <h4 class="section-title">April Fool's Day</h4>
-      <section class="polaroid-gallery">
-        <a href="/img/gallery/Aprilfoolsday.jpg" class="polaroid lytebox" data-lyte-options="group:gallery2" data-description="April Fool's Day 2023: I pranked that was redoing Nocturne 21 for the 6th time and returning to the the Shoujo manga style">
-          <img src="/img/gallery/Aprilfoolsday.jpg" alt="April Fool's Day 2023">
-          <div class="caption">April Fool's Day 2023</div>
-        </a>
-
-        <a href="/img/gallery/April-fools-2024.jpg" class="polaroid lytebox" data-lyte-options="group:gallery2" data-description="April Fool's Day 2024: The classic 'it was all a dream prank'">
-          <img src="/img/gallery/April-fools-2024-1.jpg" alt="April Fool's Day 2024">
-          <div class="caption">April Fool's Day 2024</div>
-        </a>
-      </section>
-
-      <h4 class="section-title">Halloween</h4>
-      <section class="polaroid-gallery">
-        <a href="/img/gallery/N21-Halloween.jpg" class="polaroid lytebox" data-lyte-options="group:gallery2" data-description="Halloween Hospital Shenanigans">
-          <img src="/img/gallery/N21-Halloween.jpg" alt="Halloween Hospital Shenanigans">
-          <div class="caption">Halloween Hospital Shenanigans</div>
-        </a>
-      </section>
-
-      <h4 class="section-title">Christmas</h4>
-      <section class="polaroid-gallery">
-        <a href="/img/gallery/N21-christmascard.jpg" class="polaroid lytebox" data-lyte-options="group:gallery2" data-description="Christmas 2022">
-          <img src="/img/gallery/N21-christmascard.jpg" alt="Christmas 2022">
-          <div class="caption">Christmas 2022</div>
-        </a>
-
-        <a href="/img/gallery/Christmas2023.jpg" class="polaroid lytebox" data-lyte-options="group:gallery2" data-description="Christmas 2023">
-          <img src="/img/gallery/Christmas2023.jpg" alt="Christmas 2023">
-          <div class="caption">Christmas 2023</div>
-        </a>
-      </section>
-    </div>
-  
-  <div class="back-to-extras">
-  <a href="extras.html">← Back to Extras</a>
-</div>
-  
-  </div>
-  
-
-  <div class="writeFooter"></div>
-
-<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-<script>
-  kofiWidgetOverlay.draw('nocturne21', {
-    'type': 'floating-chat',
-    'floating-chat.donateButton.text': 'Coffee',
-    'floating-chat.donateButton.background-color': '#5D61AB',
-    'floating-chat.donateButton.text-color': '#fff'
-  });
-</script>
-
-
-  <script>
-    document.querySelectorAll("img").forEach(img => {
-      img.loading = "lazy";
-    });
-  </script>
-  <script src="js/sharebar.js"></script>
-  <script src="js/comic_header.js" defer></script>
-  <script src="js/comic_footer.js" defer></script>
-  <script src="/js/n21-analytics.js"></script>
-  
-      <div id='webcomicwebring' align="center">
-<script type="text/javascript" src="https://webcomicring.org/js/comicring-variables.js"></script>
-<script type="text/javascript" src="https://webcomicring.org/js/comicring-widget.js"></script>
-</div>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
+<a class="polaroid lytebox" data-description="Chapter 5-7 Teaser: Rough Day" data-lyte-options="group:gallery1" href="/img/gallery/part2-teaser.jpg">
+<img alt="Chapter 5-7 Teaser Rough Day" loading="lazy" src="/img/gallery/part2-teaser.jpg"/>
+<span class="caption">Chapter 5-7 Teaser: Rough Day</span>
+</a>
+<a class="polaroid lytebox" data-description="Chapter One Endpage" data-lyte-options="group:gallery1" href="/img/gallery/Kai_rain.jpg">
+<img alt="Chapter One Endpage" loading="lazy" src="/img/gallery/Kai_rain.jpg"/>
+<span class="caption">Chapter One Endpage</span>
+</a>
+<a class="polaroid lytebox" data-description="Chapter Two Endpage" data-lyte-options="group:gallery1" href="/img/gallery/Yoshiko-illustration.jpg">
+<img alt="Chapter Two Endpage" loading="lazy" src="/img/gallery/Yoshiko-illustration.jpg"/>
+<span class="caption">Chapter Two Endpage</span>
+</a>
+<a class="polaroid lytebox" data-description="Chapter Three Endpage" data-lyte-options="group:gallery1" href="/img/gallery/Kai-illustration2.jpg">
+<img alt="Chapter Three Endpage" loading="lazy" src="/img/gallery/Kai-illustration2.jpg"/>
+<span class="caption">Chapter Three Endpage</span>
+</a>
+<a class="polaroid lytebox" data-description="Chapter Five Endpage" data-lyte-options="group:gallery1" href="/img/gallery/riyu-endpage.jpg">
+<img alt="Chapter Five Endpage" loading="lazy" src="/img/gallery/riyu-endpage.jpg"/>
+<span class="caption">Chapter Five Endpage</span>
+</a>
+<a class="polaroid lytebox" data-description="Good Ole Days in Gion" data-lyte-options="group:gallery1" href="/img/gallery/Gion1984.jpg">
+<img alt="Good Ole Days in Gion" loading="lazy" src="/img/gallery/Gion1984.jpg"/>
+<span class="caption">Good Ole Days in Gion</span>
+</a>
+<a class="polaroid lytebox" data-description="Shimizu Family Portrait" data-lyte-options="group:gallery1" href="/img/gallery/Shimizu-family-picture.jpg">
+<img alt="Shimizu Family Portrait" loading="lazy" src="/img/gallery/Shimizu-family-picture.jpg"/>
+<span class="caption">Shimizu Family Portrait</span>
+</a>
+<a class="polaroid lytebox" data-description="Chapter Four Illustration: Safe" data-lyte-options="group:gallery1" href="/img/gallery/Sleep.jpg">
+<img alt="Chapter Four Illustration Safe" loading="lazy" src="/img/gallery/Sleep.jpg"/>
+<span class="caption">Chapter Four Illustration: Safe</span>
+</a>
+<a class="polaroid lytebox" data-description="The Nightmare" data-lyte-options="group:gallery1" href="/img/gallery/Nightmare 2.jpg">
+<img alt="The Nightmare" loading="lazy" src="/img/gallery/Nightmare 2.jpg"/>
+<span class="caption">The Nightmare</span>
+</a>
+<a class="polaroid lytebox" data-description="Mindscape" data-lyte-options="group:gallery1" href="/img/gallery/dreamscape.jpg">
+<img alt="Mindscape" loading="lazy" src="/img/gallery/dreamscape.jpg"/>
+<span class="caption">Mindscape</span>
+</a>
+</section><h3>Nocturne 21 Specials</h3><h3>Crossover Art</h3><section class="polaroid-gallery">
+<a class="polaroid lytebox" data-description="Nocturne 21, Here I Lie Awake, The Angel Professor crossover fan art" data-lyte-options="group:gallery2" href="/img/gallery/crossover-fanart.jpg">
+<img alt="Crossover fan art" loading="lazy" src="/img/gallery/crossover-fanart.jpg"/>
+<span class="caption">Nocturne 21, Here I Lie Awake, The Angel Professor crossover fan art</span>
+</a>
+<a class="polaroid lytebox" data-description="New Year's Costume Exchange featuring Kai &amp; Yosh sporting Isadore's wardrobe, character created by Hantu-Ayam" data-lyte-options="group:gallery2" href="/img/gallery/New-Years-Swap.jpg">
+<img alt="New Year's Costume Exchange" loading="lazy" src="/img/gallery/New-Years-Swap.jpg"/>
+<span class="caption">New Year's Costume Exchange featuring Kai &amp; Yosh sporting Isadore's wardrobe</span>
+</a>
+<a class="polaroid lytebox" data-description="Imp Kai in the style of Wirecat's The Imp and her Knight" data-lyte-options="group:gallery2" href="/img/gallery/Imp-kai.jpg">
+<img alt="Imp Kai" loading="lazy" src="/img/gallery/Imp-kai.jpg"/>
+<span class="caption">Imp Kai in the style of Wirecat's <i>The Imp and her Knight</i></span>
+</a>
+<a class="polaroid lytebox" data-description="Crossover character between Nocturne 21 and D-Wrek's Twenty-Four/Seven" data-lyte-options="group:gallery2" href="/img/gallery/cool-girl-24-7.jpg">
+<img alt="Twenty-Four Seven crossover" loading="lazy" src="/img/gallery/cool-girl-24-7.jpg"/>
+<span class="caption">Crossover character between <i>Nocturne 21</i> and D-Wrek's <i>Twenty-Four/Seven</i></span>
+</a>
+</section><h3>April Fool's Day</h3><section class="polaroid-gallery">
+<a class="polaroid lytebox" data-description="April Fool's Day 2023: I pranked that was redoing Nocturne 21 for the 6th time and returning to the the Shoujo manga style" data-lyte-options="group:gallery2" href="/img/gallery/Aprilfoolsday.jpg">
+<img alt="April Fool's Day 2023" loading="lazy" src="/img/gallery/Aprilfoolsday.jpg"/>
+<span class="caption">April Fool's Day 2023</span>
+</a>
+<a class="polaroid lytebox" data-description="April Fool's Day 2024: The classic 'it was all a dream prank'" data-lyte-options="group:gallery2" href="/img/gallery/April-fools-2024.jpg">
+<img alt="April Fool's Day 2024" loading="lazy" src="/img/gallery/April-fools-2024-1.jpg"/>
+<span class="caption">April Fool's Day 2024</span>
+</a>
+</section><h3>Halloween</h3><section class="polaroid-gallery">
+<a class="polaroid lytebox" data-description="Halloween Hospital Shenanigans" data-lyte-options="group:gallery2" href="/img/gallery/N21-Halloween.jpg">
+<img alt="Halloween Hospital Shenanigans" loading="lazy" src="/img/gallery/N21-Halloween.jpg"/>
+<span class="caption">Halloween Hospital Shenanigans</span>
+</a>
+</section><h3>Christmas</h3><section class="polaroid-gallery">
+<a class="polaroid lytebox" data-description="Christmas 2022" data-lyte-options="group:gallery2" href="/img/gallery/N21-christmascard.jpg">
+<img alt="Christmas 2022" loading="lazy" src="/img/gallery/N21-christmascard.jpg"/>
+<span class="caption">Christmas 2022</span>
+</a>
+<a class="polaroid lytebox" data-description="Christmas 2023" data-lyte-options="group:gallery2" href="/img/gallery/Christmas2023.jpg">
+<img alt="Christmas 2023" loading="lazy" src="/img/gallery/Christmas2023.jpg"/>
+<span class="caption">Christmas 2023</span>
+</a>
+</section></section><div class="back-to-extras"><a href="extras.html">← Back to Extras</a></div></div></main>
+<div class="writeFooter"></div>
+<script src="lytebox/lytebox.js"></script>
+<script src="js/sharebar.js"></script><script defer="" src="js/comic_header.js"></script><script defer="" src="js/comic_footer.js"></script><script src="/js/n21-analytics.js"></script>
+<script>function copyLink(){navigator.clipboard.writeText(location.href).then(()=>alert('Link copied ✧')).catch(()=>alert('Copy the address from your browser to share!'));}</script>
+<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script><script>if(window.kofiWidgetOverlay){kofiWidgetOverlay.draw('nocturne21',{'type':'floating-chat','floating-chat.donateButton.text':'Coffee','floating-chat.donateButton.background-color':'#5D61AB','floating-chat.donateButton.text-color':'#fff'});}</script>
+<div align="center" id="webcomicwebring"><script src="https://webcomicring.org/js/comicring-variables.js"></script><script src="https://webcomicring.org/js/comicring-widget.js"></script></div>
+</body></html>
