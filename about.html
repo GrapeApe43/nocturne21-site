@@ -66,6 +66,49 @@
 <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
     <!-- Open Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <!-- About-the-author layout: scoped to this section only -->
+  <style>
+    .about-author-section {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 28px;
+      margin: 26px 0 32px;
+      text-align: left;
+    }
+    .about-author-copy {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .about-author-copy h2 {
+      margin-top: 0;
+    }
+    .about-author-copy p {
+      margin-top: 12px;
+      line-height: 1.65;
+    }
+    .about-author-section .about-author-image {
+      display: block;
+      flex: 0 0 auto;
+      width: min(38%, 325px);
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+      float: none;
+    }
+    @media (max-width: 620px) {
+      .about-author-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+      }
+      .about-author-copy { width: 100%; }
+      .about-author-section .about-author-image {
+        width: min(100%, 325px);
+      }
+    }
+  </style>
 </head>
 <body align="center" background="img/lily.png">
 
