@@ -31,7 +31,7 @@
 .extras-page .extras-reads a:hover{text-decoration:underline}
 .extras-page .extras-reads li span{display:block;color:#aaa9c3;font-size:.74rem}
 .extras-page .extras-reads .reads-note{font-size:.76rem;line-height:1.6;color:#b9b8d0;margin:14px 0 0}
-.extras-page .extras-mascot{display:block;width:min(175px,100%);height:auto;margin:0 auto}
+.extras-page .extras-mascot{display:block;width:min(175px,100%);height:auto;margin:22px auto 0;object-fit:contain}
 .extras-page .extras-content{min-width:0;display:grid;gap:20px}
 .extras-page .extras-hero{text-align:center;background:linear-gradient(145deg,#1e2244,#11162c);border:1px solid #7870b2;border-radius:8px;padding:24px 22px}
 .extras-page .extras-kicker{font-size:.77rem;letter-spacing:.13em;text-transform:uppercase;color:#bfb1ef;font-weight:700}
@@ -54,7 +54,7 @@
 .extras-page .polaroid img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
 .extras-page .polaroid span{display:block;text-align:center;font-size:.75rem;padding-top:9px}
 .extras-page .extras-small{font-size:.85rem;color:#b9b4d3}
-@media(max-width:820px){.extras-page .extras-layout{grid-template-columns:1fr}.extras-page .extras-sidebar{grid-template-columns:1fr 1fr;align-items:start}.extras-page .extras-mascot{display:none}.extras-page .extras-reads{grid-row:span 2}}
+@media(max-width:820px){.extras-page .extras-layout{grid-template-columns:1fr}.extras-page .extras-sidebar{grid-template-columns:1fr 1fr;align-items:start}.extras-page .extras-mascot{display:block}.extras-page .extras-reads{grid-row:span 2}}
 @media(max-width:560px){.extras-page .extras-layout{width:calc(100% - 20px);gap:15px}.extras-page .extras-sidebar{grid-template-columns:1fr}.extras-page .extras-side-links{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.extras-page .extras-side-links a{font-size:.84rem;padding:10px 3px}.extras-page .extras-panel{padding:14px}.extras-page .facts-grid{grid-template-columns:1fr}.extras-page .polaroid-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.extras-page .extras-hero{padding:20px 14px}}
 
 /* Refinements: reset site-wide heading effects inside anniversary hero */
@@ -83,10 +83,7 @@
 <div class="writeHeader"></div>
 <main class="extras-layout">
 <aside class="extras-sidebar" aria-label="Extras navigation and recommendations">
-<section class="extras-panel"><h2>Explore</h2><nav class="extras-side-links" aria-label="Extras sections"><a href="gallery.html">Gallery</a><a href="fanart.html">Fan Art</a><a href="memes.html" aria-current="page">Memes</a></nav></section>
-
-
-<img src="img/Gator-kai.png" class="extras-mascot" alt="Gator Kai" loading="lazy">
+<section class="extras-panel"><h2>Explore</h2><nav class="extras-side-links" aria-label="Extras sections"><a href="gallery.html">Gallery</a><a href="fanart.html">Fan Art</a><a href="memes.html" aria-current="page">Memes</a></nav><img src="img/Gator-kai.png" class="extras-mascot" alt="Gator Kai" loading="lazy"></section>
 </aside>
 <div class="extras-content">
 <header class="extras-hero"><div class="extras-kicker">Bonus content · Questionable humor</div><h1>Nocturne 21 Memes</h1><p>Welcome to the collection of terrible jokes, fan-made treasures, and assorted Nocturne 21 nonsense. Gator Kai is in charge. This was probably a mistake.</p></header>
