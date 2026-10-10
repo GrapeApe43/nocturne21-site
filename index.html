@@ -53,6 +53,23 @@
         font-size: 1.35em;
       }
     }
+
+/* Compact, floating chapter navigator */
+.n21-jump {position:relative;display:table;margin:8px auto 0;z-index:30;font-family:'Open Sans',sans-serif;text-align:left}
+.n21-jump-trigger {width:235px;max-width:calc(100vw - 32px);padding:9px 14px;border:1px solid #7771b4;border-radius:12px;background:linear-gradient(135deg,#242743,#101424);color:#eeeaff;box-shadow:0 3px 14px #0008;cursor:pointer;font:600 12px 'Open Sans',sans-serif;display:flex;justify-content:space-between;align-items:center}
+.n21-jump-trigger:hover,.n21-jump-trigger:focus-visible {border-color:#b3a4ed;box-shadow:0 0 12px #7269c366;outline-offset:2px}
+.n21-jump-panel {position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);width:290px;max-width:calc(100vw - 24px);max-height:min(420px,65vh);overflow-y:auto;overscroll-behavior:contain;padding:10px;box-sizing:border-box;border:1px solid #7973af;border-radius:14px;background:#101323;box-shadow:0 12px 32px #000c;color:#eeeaff;z-index:100}
+.n21-jump-panel[hidden] {display:none}
+.n21-jump-volume + .n21-jump-volume {border-top:1px solid #4c486d;margin-top:12px;padding-top:12px}
+.n21-jump-volume-title {color:#b4a9ed;font-size:11px;letter-spacing:.06em;font-weight:700;text-transform:uppercase}
+.n21-jump-volume-link {display:inline-block;margin:5px 0 7px;color:#ddd8fa;font-size:11px;text-decoration:none}
+.n21-jump-chapter {margin:5px 0;border:1px solid #343754;border-radius:8px;background:#1a1d33}
+.n21-jump-chapter summary {cursor:pointer;padding:9px 10px;font-size:12px;color:#eeeaff;list-style-position:inside}
+.n21-jump-chapter[open] summary {border-bottom:1px solid #343754;color:#c4baff}
+.n21-jump-pages {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:8px}
+.n21-jump-pages a {min-width:0;overflow-wrap:anywhere;padding:7px 3px;border-radius:5px;background:#252943;text-align:center;color:#e7e5fa;text-decoration:none;font-size:10px;line-height:1.4}
+.n21-jump-pages a:hover,.n21-jump-pages a:focus-visible {background:#484276;color:white}
+@media(max-width:420px){.n21-jump-panel{width:270px}}
   </style>
   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
 
@@ -180,235 +197,257 @@
 
 </div>
  
-      <!--DROPWDONW CODE-->
-<!-- HTML drop down menu courtesy of HTML Basix - www.htmlbasix.com -->
-   <select name ='menu1' id ='menu1' class = 'menu1' style = "color: #006699;font-family: 'lacquer';font-size: 12px;font-style: normal;background-color: #FFFFFF;padding: 2px">
-    <optgroup label = "VOLUME ONE: ROBOT BOY">
-    <option value = "https://nocturne21.com/?pg=1">Volume One: Robot Boy</option>
-     <optgroup label="Chapter One: The Red Rain">
-      <option value = "https://nocturne21.com/?pg=2">Chapter One: The Red Rain</option>
-      <option value = "https://nocturne21.com/?pg=3">Page 1</option>
-      <option value = "https://nocturne21.com/?pg=4">Page 2</option>
-      <option value = "https://nocturne21.com/?pg=5">Page 3</option>
-      <option value = "https://nocturne21.com/?pg=6">Page 4</option>
-      <option value = "https://nocturne21.com/?pg=7">Page 5</option>
-      <option value = "https://nocturne21.com/?pg=8">Page 6</option>
-      <option value = "https://nocturne21.com/?pg=9">Page 7</option>
-      <option value = "https://nocturne21.com/?pg=10">Page 8</option>
-      <option value = "https://nocturne21.com/?pg=11">Page 9</option>
-      <option value = "https://nocturne21.com/?pg=12">Page 10</option>
-      <option value = "https://nocturne21.com/?pg=13">Page 11</option>
-      <option value = "https://nocturne21.com/?pg=14">Page 12</option>
-      <option value = "https://nocturne21.com/?pg=15">Page 13</option>
-      <option value = "https://nocturne21.com/?pg=16">Page 14</option>
-      <option value = "https://nocturne21.com/?pg=17">Page 15</option>
-      <option value = "https://nocturne21.com/?pg=18">Page 16</option>
-      <option value = "https://nocturne21.com/?pg=19">Page 17</option>
-      <option value = "https://nocturne21.com/?pg=20">Page 18</option>
-      <option value = "https://nocturne21.com/?pg=21">Page 19</option>
-      <option value = "https://nocturne21.com/?pg=22">Page 20</option>
-      <option value = "https://nocturne21.com/?pg=23">Page 21</option>
-      <option value = "https://nocturne21.com/?pg=24">Page 22</option>
-      <option value = "https://nocturne21.com/?pg=25">Page 23</option>
-      <option value = "https://nocturne21.com/?pg=26">Page 24</option>
-      <option value = "https://nocturne21.com/?pg=27">Page 25</option>
-      <option value = "https://nocturne21.com/?pg=28">Page 26</option>
-      <option value = "https://nocturne21.com/?pg=29">Page 27</option>
-      <option value = "https://nocturne21.com/?pg=30">Page 28</option>
-      <option value = "https://nocturne21.com/?pg=31">Page 29</option>
-      <option value = "https://nocturne21.com/?pg=32">Page 30</option>
-      <option value = "https://nocturne21.com/?pg=33">Page 3 1</option>
-      <option value = "https://nocturne21.com/?pg=34">Page 32</option></optgroup>
-      
-    <optgroup label= "Chapter Two: Glass"><option value = "https://nocturne21.com/?pg=35">Chapter Two: Glass</option>
-      <option value = "https://nocturne21.com/?pg=36">Page 33</option>
-      <option value = "https://nocturne21.com/?pg=37">Page 34</option>
-      <option value = "https://nocturne21.com/?pg=38">Page 35</option>
-      <option value = "https://nocturne21.com/?pg=39">Page 36</option>
-      <option value = "https://nocturne21.com/?pg=40">Page 37</option>
-      <option value = "https://nocturne21.com/?pg=41">Page 38</option>
-      <option value = "https://nocturne21.com/?pg=42">Page 39</option>
-      <option value = "https://nocturne21.com/?pg=43">Page 40</option>
-      <option value = "https://nocturne21.com/?pg=44">Page 41</option>
-      <option value = "https://nocturne21.com/?pg=45">Page 42</option>
-      <option value = "https://nocturne21.com/?pg=46">Page 43</option>
-      <option value = "https://nocturne21.com/?pg=47">Page 44</option>
-      <option value = "https://nocturne21.com/?pg=48">Page 45</option>
-      <option value = "https://nocturne21.com/?pg=49">Page 46</option>
-      <option value = "https://nocturne21.com/?pg=50">Page 47</option>
-      <option value = "https://nocturne21.com/?pg=51">Page 48</option>
-      <option value = "https://nocturne21.com/?pg=52">Page 49</option>
-      <option value = "https://nocturne21.com/?pg=53">Page 50</option>
-      <option value = "https://nocturne21.com/?pg=54">Page 51 & 52</option>
-      <option value = "https://nocturne21.com/?pg=55">Page 53</option>
-      <option value = "https://nocturne21.com/?pg=56">Page 54</option>
-      <option value = "https://nocturne21.com/?pg=57">Page 55</option>
-      <option value = "https://nocturne21.com/?pg=58">Page 56</option>
-      <option value = "https://nocturne21.com/?pg=59">Page 57</option>
-      <option value = "https://nocturne21.com/?pg=60">Page 58</option>
-      <option value = "https://nocturne21.com/?pg=61">Page 59</option>
-      <option value = "https://nocturne21.com/?pg=62">Page 60</option>
-      <option value = "https://nocturne21.com/?pg=63">Page 61</option>
-      <option value = "https://nocturne21.com/?pg=64">Page 62</option></optgroup>
-      
-      <optgroup label="Chapter Three: Snow Day">
-      <option value = "https://nocturne21.com/?pg=65">Chapter Three: Snow Day</option>
-      <option value = "https://nocturne21.com/?pg=66">Page 63</option>
-      <option value = "https://nocturne21.com/?pg=67">Page 64</option>
-      <option value = "https://nocturne21.com/?pg=68">Page 65</option>
-      <option value = "https://nocturne21.com/?pg=69">Page 66</option>
-      <option value = "https://nocturne21.com/?pg=70">Page 67</option>
-      <option value = "https://nocturne21.com/?pg=71">Page 68</option>
-      <option value = "https://nocturne21.com/?pg=72">Page 69</option>
-      <option value = "https://nocturne21.com/?pg=73">Page 70</option>
-      <option value = "https://nocturne21.com/?pg=74">Page 71</option>
-      <option value = "https://nocturne21.com/?pg=75">Page 72</option>
-      <option value = "https://nocturne21.com/?pg=76">Page 73</option>
-      <option value = "https://nocturne21.com/?pg=77">Page 74</option>
-      <option value = "https://nocturne21.com/?pg=78">Page 75</option>
-      <option value = "https://nocturne21.com/?pg=79">Page 76</option>
-      <option value = "https://nocturne21.com/?pg=80">Page 77</option>
-      <option value = "https://nocturne21.com/?pg=81">Page 78</option>
-      <option value = "https://nocturne21.com/?pg=82">Page 79</option>
-      <option value = "https://nocturne21.com/?pg=83">Page 80</option>
-      <option value = "https://nocturne21.com/?pg=84">Page 81</option>
-      <option value = "https://nocturne21.com/?pg=85">Page 82</option>
-      <option value = "https://nocturne21.com/?pg=86">Page 83</option>
-      <option value = "https://nocturne21.com/?pg=87">Page 84</option>
-      <option value = "https://nocturne21.com/?pg=88">Page 85</option>
-      <option value = "https://nocturne21.com/?pg=89">Page 86</option>
-      <option value = "https://nocturne21.com/?pg=90">Page 87</option>
-      <option value = "https://nocturne21.com/?pg=91">Page 88</option>
-      <option value = "https://nocturne21.com/?pg=92">Page 89</option>
-      <option value = "https://nocturne21.com/?pg=93">Page 90</option></optgroup>
-      
-            <optgroup label="The Kai Journals">
-      <option value = "https://nocturne21.com/?pg=94">The Kai Journals: Part 1</option>
-      <option value = "https://nocturne21.com/?pg=95">The Kai Journals: Part 2</option>
-      <option value = "https://nocturne21.com/?pg=96">The Kai Journals: Part 3</option>
-      <option value = "https://nocturne21.com/?pg=97">The Kai Journals: Part 4</option></optgroup>
-      
-      <optgroup label="Chapter Four: The Stranger">
-      <option value = "https://nocturne21.com/?pg=98">Chapter Four: The Stranger</option>
-      <option value = "https://nocturne21.com/?pg=99">Page 91</option>
-      <option value = "https://nocturne21.com/?pg=100">Page 92</option>
-      <option value = "https://nocturne21.com/?pg=101">Page 93</option>
-      <option value = "https://nocturne21.com/?pg=102">Page 94</option>
-      <option value = "https://nocturne21.com/?pg=103">Page 95</option>
-      <option value = "https://nocturne21.com/?pg=104">Page 96</option>
-      <option value = "https://nocturne21.com/?pg=105">Page 97</option>
-      <option value = "https://nocturne21.com/?pg=106">Page 98</option>
-      <option value = "https://nocturne21.com/?pg=107">Page 99</option>
-      <option value = "https://nocturne21.com/?pg=108">Page 100</option>
-      <option value = "https://nocturne21.com/?pg=109">Page 101</option>
-      <option value = "https://nocturne21.com/?pg=110">Page 102</option>
-      <option value = "https://nocturne21.com/?pg=111">Page 103</option>
-      <option value = "https://nocturne21.com/?pg=112">Page 104</option>
-      <option value = "https://nocturne21.com/?pg=113">Page 105</option>
-      <option value = "https://nocturne21.com/?pg=114">Page 106</option>
-      <option value = "https://nocturne21.com/?pg=115">Page 107</option>
-      <option value = "https://nocturne21.com/?pg=116">Page 108</option>
-      <option value = "https://nocturne21.com/?pg=117">Page 109</option>
-      <option value = "https://nocturne21.com/?pg=118">Page 110</option>
-      <option value = "https://nocturne21.com/?pg=119">Page 111</option>
-      <option value = "https://nocturne21.com/?pg=120">Page 112</option>
-      <option value = "https://nocturne21.com/?pg=121">Page 113</option>
-      <option value = "https://nocturne21.com/?pg=122">Page 114</option>
-      <option value = "https://nocturne21.com/?pg=123">Page 115</option>
-      <option value = "https://nocturne21.com/?pg=124">Page 116</option>
-      <option value = "https://nocturne21.com/?pg=125">Page 117</option>
-      <option value = "https://nocturne21.com/?pg=126">Page 118</option>
-      <option value = "https://nocturne21.com/?pg=127">Page 119</option>
-      <option value = "https://nocturne21.com/?pg=128">Page 120</option>
-      <option value = "https://nocturne21.com/?pg=129">Sleep: Part 1</option>
-      <option value = "https://nocturne21.com/?pg=130">Sleep: Part 2</option>
-      <option value = "https://nocturne21.com/?pg=131">Sleep: Part 3</option>
-      <option value = "https://nocturne21.com/?pg=132">Sleep: Part 4</option>
-      <option value = "https://nocturne21.com/?pg=133">Sleep: Part 5</option>
-      <option value = "https://nocturne21.com/?pg=134">Sleep: Part 6/Page 121</option>
-      <option value = "https://nocturne21.com/?pg=135">Page 122</option>
-      <option value = "https://nocturne21.com/?pg=136">The Kai Journals: Part 5</option>
-      <option value = "https://nocturne21.com/?pg=137">Page 123</option>
-      <option value = "https://nocturne21.com/?pg=138">Page 124</option>
-      <option value = "https://nocturne21.com/?pg=139">Page 125</option>
-      <option value = "https://nocturne21.com/?pg=140">Page 126</option>
-      <option value = "https://nocturne21.com/?pg=141">Page 127</option>
-      <option value = "https://nocturne21.com/?pg=142">Page 128</option>
-      <option value = "https://nocturne21.com/?pg=143">Page 129</option>
-      <option value = "https://nocturne21.com/?pg=144">Page 130</option>
-      <option value = "https://nocturne21.com/?pg=145">Page 131</option>
-      <option value = "https://nocturne21.com/?pg=146">Page 132</option>
-      <option value = "https://nocturne21.com/?pg=147">Page 133</option>
-      <option value = "https://nocturne21.com/?pg=148">Page 134</option>
-      <option value = "https://nocturne21.com/?pg=149">Page 135</option>
-      <option value = "https://nocturne21.com/?pg=150">Page 136</option></optgroup>
-      
-      <optgroup label = "VOLUME TWO: TRUST FALLS">
-      <option value = "https://nocturne21.com/?pg=151">Volume Two: Trust Falls
-      <optgroup label="Chapter Five: The Voice From Below"> 
-      <option value = "https://nocturne21.com/?pg=152">Chapter Five: The Voice From Below</option>
-      <option value = "https://nocturne21.com/?pg=153">Page 137</option>
-      <option value = "https://nocturne21.com/?pg=154">Page 138</option>
-      <option value = "https://nocturne21.com/?pg=155">Page 139</option>
-      <option value = "https://nocturne21.com/?pg=156">Page 140</option>
-      <option value = "https://nocturne21.com/?pg=157">Page 141</option>
-      <option value = "https://nocturne21.com/?pg=158">Page 142</option>
-      <option value = "https://nocturne21.com/?pg=159">Page 143</option>
-      <option value = "https://nocturne21.com/?pg=160">Page 144</option>
-      <option value = "https://nocturne21.com/?pg=161">Page 145</option>
-      <option value = "https://nocturne21.com/?pg=162">Page 146</option>
-      <option value = "https://nocturne21.com/?pg=163">Page 147</option>
-      <option value = "https://nocturne21.com/?pg=164">Page 148</option>
-      <option value = "https://nocturne21.com/?pg=165">Page 149</option>
-      <option value = "https://nocturne21.com/?pg=166">Page 150</option>
-      <option value = "https://nocturne21.com/?pg=167">Page 151</option>
-      <option value = "https://nocturne21.com/?pg=168">Page 152</option>
-      <option value = "https://nocturne21.com/?pg=169">Page 153</option>
-      <option value = "https://nocturne21.com/?pg=170">Page 154</option>
-      <option value = "https://nocturne21.com/?pg=171">Page 155</option>
-      <option value = "https://nocturne21.com/?pg=172">Page 156</option>
-      <option value = "https://nocturne21.com/?pg=173">Page 157</option>
-      <option value = "https://nocturne21.com/?pg=174">Page 158</option>
-      <option value = "https://nocturne21.com/?pg=175">Page 159</option>
-      <option value = "https://nocturne21.com/?pg=176">Page 160</option>
-      <option value = "https://nocturne21.com/?pg=177">Page 161</option>
-      <option value = "https://nocturne21.com/?pg=178">Page 162</option>
-      <option value = "https://nocturne21.com/?pg=179">Page 163</option>
-      <option value = "https://nocturne21.com/?pg=180">Page 164</option>
-      <option value = "https://nocturne21.com/?pg=181">Page 165</option>
-      <option value = "https://nocturne21.com/?pg=182">Page 166</option>
-      <option value = "https://nocturne21.com/?pg=183">Page 167</option>
-      <option value = "https://nocturne21.com/?pg=184">Page 168</option>
-      <option value = "https://nocturne21.com/?pg=185">Page 169</option>
-      <option value = "https://nocturne21.com/?pg=186">Page 170</option>
-      <option value = "https://nocturne21.com/?pg=187">Page 171</option>
-      <option value = "https://nocturne21.com/?pg=188">Page 172</option>
-      <option value = "https://nocturne21.com/?pg=189">Page 173</option>
-      <option value = "https://nocturne21.com/?pg=190">Page 174</option>
-      <option value = "https://nocturne21.com/?pg=191">Page 175</option>
-      <option value = "https://nocturne21.com/?pg=192">Page 176</option>
-      <option value = "https://nocturne21.com/?pg=193">Page 177</option>
-      <option value = "https://nocturne21.com/?pg=194">Page 178</option>
-      <option value = "https://nocturne21.com/?pg=195">Page 179</option>
-      <option value = "https://nocturne21.com/?pg=196">Page 180</option>
-      <option value = "https://nocturne21.com/?pg=197">Page 181</option>
-      <option value = "https://nocturne21.com/?pg=198">Page 182</option>
-      <option value = "https://nocturne21.com/?pg=199">Page 183</option>
-      <option value = "https://nocturne21.com/?pg=200">Page 184</option>
-      <option value = "https://nocturne21.com/?pg=201">Page 185</option>
-      <option value = "https://nocturne21.com/?pg=202">Page 186</option>
-      <option value = "https://nocturne21.com/?pg=203">Page 187</option>
-      <option value = "https://nocturne21.com/?pg=204">Page 188</option>
-      <option value = "https://nocturne21.com/?pg=205">Page 189</option>
-      <option value = "https://nocturne21.com/?pg=206">Page 190</option>
-      </optgroup>
-    
-      
-    
-   </select>
-   <input type = 'button' id = 'btnmenu1' class = 'btnmenu1' style = "color: #FFFFFF;font-family: 'lacquer';font-size: 12px;font-style: normal;background-color: #006699;padding: 2px;cursor: pointer" onmouseover = "this.style.backgroundColor = '#008FD6'"  onmouseout = "this.style.backgroundColor = '#006699'"  onclick = 'window.open(document.getElementById("menu1").options[document.getElementById("menu1").selectedIndex].value)' value = 'Go!'>
-
-<!-- End HTML drop down menu -->
+<div class="n21-jump" id="n21Jump">
+  <button type="button" class="n21-jump-trigger" aria-expanded="false" aria-controls="n21JumpPanel">✦ Jump to Page <span aria-hidden="true">⌄</span></button>
+  <div class="n21-jump-panel" id="n21JumpPanel" hidden>
+    <section class="n21-jump-volume">
+      <div class="n21-jump-volume-title">VOLUME ONE: ROBOT BOY</div>
+      <a class="n21-jump-volume-link" href="https://nocturne21.com/?pg=1">Volume cover ↗</a>
+      <details class="n21-jump-chapter"><summary>Chapter One: The Red Rain</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=2">Chapter One: The Red Rain</a>
+        <a href="https://nocturne21.com/?pg=3">Page 1</a>
+        <a href="https://nocturne21.com/?pg=4">Page 2</a>
+        <a href="https://nocturne21.com/?pg=5">Page 3</a>
+        <a href="https://nocturne21.com/?pg=6">Page 4</a>
+        <a href="https://nocturne21.com/?pg=7">Page 5</a>
+        <a href="https://nocturne21.com/?pg=8">Page 6</a>
+        <a href="https://nocturne21.com/?pg=9">Page 7</a>
+        <a href="https://nocturne21.com/?pg=10">Page 8</a>
+        <a href="https://nocturne21.com/?pg=11">Page 9</a>
+        <a href="https://nocturne21.com/?pg=12">Page 10</a>
+        <a href="https://nocturne21.com/?pg=13">Page 11</a>
+        <a href="https://nocturne21.com/?pg=14">Page 12</a>
+        <a href="https://nocturne21.com/?pg=15">Page 13</a>
+        <a href="https://nocturne21.com/?pg=16">Page 14</a>
+        <a href="https://nocturne21.com/?pg=17">Page 15</a>
+        <a href="https://nocturne21.com/?pg=18">Page 16</a>
+        <a href="https://nocturne21.com/?pg=19">Page 17</a>
+        <a href="https://nocturne21.com/?pg=20">Page 18</a>
+        <a href="https://nocturne21.com/?pg=21">Page 19</a>
+        <a href="https://nocturne21.com/?pg=22">Page 20</a>
+        <a href="https://nocturne21.com/?pg=23">Page 21</a>
+        <a href="https://nocturne21.com/?pg=24">Page 22</a>
+        <a href="https://nocturne21.com/?pg=25">Page 23</a>
+        <a href="https://nocturne21.com/?pg=26">Page 24</a>
+        <a href="https://nocturne21.com/?pg=27">Page 25</a>
+        <a href="https://nocturne21.com/?pg=28">Page 26</a>
+        <a href="https://nocturne21.com/?pg=29">Page 27</a>
+        <a href="https://nocturne21.com/?pg=30">Page 28</a>
+        <a href="https://nocturne21.com/?pg=31">Page 29</a>
+        <a href="https://nocturne21.com/?pg=32">Page 30</a>
+        <a href="https://nocturne21.com/?pg=33">Page 3 1</a>
+        <a href="https://nocturne21.com/?pg=34">Page 32</a>
+      </div></details>
+      <details class="n21-jump-chapter"><summary>Chapter Two: Glass</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=35">Chapter Two: Glass</a>
+        <a href="https://nocturne21.com/?pg=36">Page 33</a>
+        <a href="https://nocturne21.com/?pg=37">Page 34</a>
+        <a href="https://nocturne21.com/?pg=38">Page 35</a>
+        <a href="https://nocturne21.com/?pg=39">Page 36</a>
+        <a href="https://nocturne21.com/?pg=40">Page 37</a>
+        <a href="https://nocturne21.com/?pg=41">Page 38</a>
+        <a href="https://nocturne21.com/?pg=42">Page 39</a>
+        <a href="https://nocturne21.com/?pg=43">Page 40</a>
+        <a href="https://nocturne21.com/?pg=44">Page 41</a>
+        <a href="https://nocturne21.com/?pg=45">Page 42</a>
+        <a href="https://nocturne21.com/?pg=46">Page 43</a>
+        <a href="https://nocturne21.com/?pg=47">Page 44</a>
+        <a href="https://nocturne21.com/?pg=48">Page 45</a>
+        <a href="https://nocturne21.com/?pg=49">Page 46</a>
+        <a href="https://nocturne21.com/?pg=50">Page 47</a>
+        <a href="https://nocturne21.com/?pg=51">Page 48</a>
+        <a href="https://nocturne21.com/?pg=52">Page 49</a>
+        <a href="https://nocturne21.com/?pg=53">Page 50</a>
+        <a href="https://nocturne21.com/?pg=54">Page 51 &amp; 52</a>
+        <a href="https://nocturne21.com/?pg=55">Page 53</a>
+        <a href="https://nocturne21.com/?pg=56">Page 54</a>
+        <a href="https://nocturne21.com/?pg=57">Page 55</a>
+        <a href="https://nocturne21.com/?pg=58">Page 56</a>
+        <a href="https://nocturne21.com/?pg=59">Page 57</a>
+        <a href="https://nocturne21.com/?pg=60">Page 58</a>
+        <a href="https://nocturne21.com/?pg=61">Page 59</a>
+        <a href="https://nocturne21.com/?pg=62">Page 60</a>
+        <a href="https://nocturne21.com/?pg=63">Page 61</a>
+        <a href="https://nocturne21.com/?pg=64">Page 62</a>
+      </div></details>
+      <details class="n21-jump-chapter"><summary>Chapter Three: Snow Day</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=65">Chapter Three: Snow Day</a>
+        <a href="https://nocturne21.com/?pg=66">Page 63</a>
+        <a href="https://nocturne21.com/?pg=67">Page 64</a>
+        <a href="https://nocturne21.com/?pg=68">Page 65</a>
+        <a href="https://nocturne21.com/?pg=69">Page 66</a>
+        <a href="https://nocturne21.com/?pg=70">Page 67</a>
+        <a href="https://nocturne21.com/?pg=71">Page 68</a>
+        <a href="https://nocturne21.com/?pg=72">Page 69</a>
+        <a href="https://nocturne21.com/?pg=73">Page 70</a>
+        <a href="https://nocturne21.com/?pg=74">Page 71</a>
+        <a href="https://nocturne21.com/?pg=75">Page 72</a>
+        <a href="https://nocturne21.com/?pg=76">Page 73</a>
+        <a href="https://nocturne21.com/?pg=77">Page 74</a>
+        <a href="https://nocturne21.com/?pg=78">Page 75</a>
+        <a href="https://nocturne21.com/?pg=79">Page 76</a>
+        <a href="https://nocturne21.com/?pg=80">Page 77</a>
+        <a href="https://nocturne21.com/?pg=81">Page 78</a>
+        <a href="https://nocturne21.com/?pg=82">Page 79</a>
+        <a href="https://nocturne21.com/?pg=83">Page 80</a>
+        <a href="https://nocturne21.com/?pg=84">Page 81</a>
+        <a href="https://nocturne21.com/?pg=85">Page 82</a>
+        <a href="https://nocturne21.com/?pg=86">Page 83</a>
+        <a href="https://nocturne21.com/?pg=87">Page 84</a>
+        <a href="https://nocturne21.com/?pg=88">Page 85</a>
+        <a href="https://nocturne21.com/?pg=89">Page 86</a>
+        <a href="https://nocturne21.com/?pg=90">Page 87</a>
+        <a href="https://nocturne21.com/?pg=91">Page 88</a>
+        <a href="https://nocturne21.com/?pg=92">Page 89</a>
+        <a href="https://nocturne21.com/?pg=93">Page 90</a>
+      </div></details>
+      <details class="n21-jump-chapter"><summary>The Kai Journals</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=94">The Kai Journals: Part 1</a>
+        <a href="https://nocturne21.com/?pg=95">The Kai Journals: Part 2</a>
+        <a href="https://nocturne21.com/?pg=96">The Kai Journals: Part 3</a>
+        <a href="https://nocturne21.com/?pg=97">The Kai Journals: Part 4</a>
+      </div></details>
+      <details class="n21-jump-chapter"><summary>Chapter Four: The Stranger</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=98">Chapter Four: The Stranger</a>
+        <a href="https://nocturne21.com/?pg=99">Page 91</a>
+        <a href="https://nocturne21.com/?pg=100">Page 92</a>
+        <a href="https://nocturne21.com/?pg=101">Page 93</a>
+        <a href="https://nocturne21.com/?pg=102">Page 94</a>
+        <a href="https://nocturne21.com/?pg=103">Page 95</a>
+        <a href="https://nocturne21.com/?pg=104">Page 96</a>
+        <a href="https://nocturne21.com/?pg=105">Page 97</a>
+        <a href="https://nocturne21.com/?pg=106">Page 98</a>
+        <a href="https://nocturne21.com/?pg=107">Page 99</a>
+        <a href="https://nocturne21.com/?pg=108">Page 100</a>
+        <a href="https://nocturne21.com/?pg=109">Page 101</a>
+        <a href="https://nocturne21.com/?pg=110">Page 102</a>
+        <a href="https://nocturne21.com/?pg=111">Page 103</a>
+        <a href="https://nocturne21.com/?pg=112">Page 104</a>
+        <a href="https://nocturne21.com/?pg=113">Page 105</a>
+        <a href="https://nocturne21.com/?pg=114">Page 106</a>
+        <a href="https://nocturne21.com/?pg=115">Page 107</a>
+        <a href="https://nocturne21.com/?pg=116">Page 108</a>
+        <a href="https://nocturne21.com/?pg=117">Page 109</a>
+        <a href="https://nocturne21.com/?pg=118">Page 110</a>
+        <a href="https://nocturne21.com/?pg=119">Page 111</a>
+        <a href="https://nocturne21.com/?pg=120">Page 112</a>
+        <a href="https://nocturne21.com/?pg=121">Page 113</a>
+        <a href="https://nocturne21.com/?pg=122">Page 114</a>
+        <a href="https://nocturne21.com/?pg=123">Page 115</a>
+        <a href="https://nocturne21.com/?pg=124">Page 116</a>
+        <a href="https://nocturne21.com/?pg=125">Page 117</a>
+        <a href="https://nocturne21.com/?pg=126">Page 118</a>
+        <a href="https://nocturne21.com/?pg=127">Page 119</a>
+        <a href="https://nocturne21.com/?pg=128">Page 120</a>
+        <a href="https://nocturne21.com/?pg=129">Sleep: Part 1</a>
+        <a href="https://nocturne21.com/?pg=130">Sleep: Part 2</a>
+        <a href="https://nocturne21.com/?pg=131">Sleep: Part 3</a>
+        <a href="https://nocturne21.com/?pg=132">Sleep: Part 4</a>
+        <a href="https://nocturne21.com/?pg=133">Sleep: Part 5</a>
+        <a href="https://nocturne21.com/?pg=134">Sleep: Part 6/Page 121</a>
+        <a href="https://nocturne21.com/?pg=135">Page 122</a>
+        <a href="https://nocturne21.com/?pg=136">The Kai Journals: Part 5</a>
+        <a href="https://nocturne21.com/?pg=137">Page 123</a>
+        <a href="https://nocturne21.com/?pg=138">Page 124</a>
+        <a href="https://nocturne21.com/?pg=139">Page 125</a>
+        <a href="https://nocturne21.com/?pg=140">Page 126</a>
+        <a href="https://nocturne21.com/?pg=141">Page 127</a>
+        <a href="https://nocturne21.com/?pg=142">Page 128</a>
+        <a href="https://nocturne21.com/?pg=143">Page 129</a>
+        <a href="https://nocturne21.com/?pg=144">Page 130</a>
+        <a href="https://nocturne21.com/?pg=145">Page 131</a>
+        <a href="https://nocturne21.com/?pg=146">Page 132</a>
+        <a href="https://nocturne21.com/?pg=147">Page 133</a>
+        <a href="https://nocturne21.com/?pg=148">Page 134</a>
+        <a href="https://nocturne21.com/?pg=149">Page 135</a>
+        <a href="https://nocturne21.com/?pg=150">Page 136</a>
+      </div></details>
+    </section>
+    <section class="n21-jump-volume">
+      <div class="n21-jump-volume-title">VOLUME TWO: TRUST FALLS</div>
+      <a class="n21-jump-volume-link" href="https://nocturne21.com/?pg=151">Volume cover ↗</a>
+      <details class="n21-jump-chapter"><summary>Chapter Five: The Voice From Below</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=152">Chapter Five: The Voice From Below</a>
+        <a href="https://nocturne21.com/?pg=153">Page 137</a>
+        <a href="https://nocturne21.com/?pg=154">Page 138</a>
+        <a href="https://nocturne21.com/?pg=155">Page 139</a>
+        <a href="https://nocturne21.com/?pg=156">Page 140</a>
+        <a href="https://nocturne21.com/?pg=157">Page 141</a>
+        <a href="https://nocturne21.com/?pg=158">Page 142</a>
+        <a href="https://nocturne21.com/?pg=159">Page 143</a>
+        <a href="https://nocturne21.com/?pg=160">Page 144</a>
+        <a href="https://nocturne21.com/?pg=161">Page 145</a>
+        <a href="https://nocturne21.com/?pg=162">Page 146</a>
+        <a href="https://nocturne21.com/?pg=163">Page 147</a>
+        <a href="https://nocturne21.com/?pg=164">Page 148</a>
+        <a href="https://nocturne21.com/?pg=165">Page 149</a>
+        <a href="https://nocturne21.com/?pg=166">Page 150</a>
+        <a href="https://nocturne21.com/?pg=167">Page 151</a>
+        <a href="https://nocturne21.com/?pg=168">Page 152</a>
+        <a href="https://nocturne21.com/?pg=169">Page 153</a>
+        <a href="https://nocturne21.com/?pg=170">Page 154</a>
+        <a href="https://nocturne21.com/?pg=171">Page 155</a>
+        <a href="https://nocturne21.com/?pg=172">Page 156</a>
+        <a href="https://nocturne21.com/?pg=173">Page 157</a>
+        <a href="https://nocturne21.com/?pg=174">Page 158</a>
+        <a href="https://nocturne21.com/?pg=175">Page 159</a>
+        <a href="https://nocturne21.com/?pg=176">Page 160</a>
+        <a href="https://nocturne21.com/?pg=177">Page 161</a>
+        <a href="https://nocturne21.com/?pg=178">Page 162</a>
+        <a href="https://nocturne21.com/?pg=179">Page 163</a>
+        <a href="https://nocturne21.com/?pg=180">Page 164</a>
+        <a href="https://nocturne21.com/?pg=181">Page 165</a>
+        <a href="https://nocturne21.com/?pg=182">Page 166</a>
+        <a href="https://nocturne21.com/?pg=183">Page 167</a>
+        <a href="https://nocturne21.com/?pg=184">Page 168</a>
+        <a href="https://nocturne21.com/?pg=185">Page 169</a>
+        <a href="https://nocturne21.com/?pg=186">Page 170</a>
+        <a href="https://nocturne21.com/?pg=187">Page 171</a>
+        <a href="https://nocturne21.com/?pg=188">Page 172</a>
+        <a href="https://nocturne21.com/?pg=189">Page 173</a>
+        <a href="https://nocturne21.com/?pg=190">Page 174</a>
+        <a href="https://nocturne21.com/?pg=191">Page 175</a>
+        <a href="https://nocturne21.com/?pg=192">Page 176</a>
+        <a href="https://nocturne21.com/?pg=193">Page 177</a>
+        <a href="https://nocturne21.com/?pg=194">Page 178</a>
+        <a href="https://nocturne21.com/?pg=195">Page 179</a>
+        <a href="https://nocturne21.com/?pg=196">Page 180</a>
+        <a href="https://nocturne21.com/?pg=197">Page 181</a>
+        <a href="https://nocturne21.com/?pg=198">Page 182</a>
+        <a href="https://nocturne21.com/?pg=199">Page 183</a>
+        <a href="https://nocturne21.com/?pg=200">Page 184</a>
+        <a href="https://nocturne21.com/?pg=201">Page 185</a>
+        <a href="https://nocturne21.com/?pg=202">Page 186</a>
+        <a href="https://nocturne21.com/?pg=203">Page 187</a>
+        <a href="https://nocturne21.com/?pg=204">Page 188</a>
+        <a href="https://nocturne21.com/?pg=205">Page 189</a>
+        <a href="https://nocturne21.com/?pg=206">Page 190</a>
+      </div></details>
+    </section>
+  </div>
+</div>
+<script>
+(function () {
+  const root = document.getElementById('n21Jump');
+  if (!root) return;
+  const trigger = root.querySelector('.n21-jump-trigger');
+  const panel = root.querySelector('.n21-jump-panel');
+  function close() { panel.hidden = true; trigger.setAttribute('aria-expanded','false'); }
+  trigger.addEventListener('click', function () {
+    panel.hidden = !panel.hidden;
+    trigger.setAttribute('aria-expanded', String(!panel.hidden));
+  });
+  document.addEventListener('click', function (event) { if (!root.contains(event.target)) close(); });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !panel.hidden) { close(); trigger.focus(); }
+  });
+  root.querySelectorAll('details').forEach(function (details) {
+    details.addEventListener('toggle', function () {
+      if (details.open) root.querySelectorAll('details').forEach(function (other) { if (other !== details) other.open = false; });
+    });
+  });
+})();
+</script>
 <div class="jump-comments-wrap">
   <a href="#commentsWrap" class="jump-comments-btn">↓ Jump to Comments</a>
 </div>
@@ -743,7 +782,6 @@
     
   </body>
 </html>
-
 
 
 
