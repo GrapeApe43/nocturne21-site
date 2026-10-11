@@ -451,20 +451,29 @@ word-spacing: 0.06em;
         mix-blend-mode: multiply;
         opacity: .85;
       }
-      /* Continue the artist's splatter into the lower part of the panel.
-         A separate layer avoids stretching the original top splatter. */
+      /* Layer the original splatter at the bottom AND along both notebook sides.
+         All three layers use the artist's existing image, behind the paper. */
       #characterDisplay.n21-cast-display::after {
         content: "";
         position: absolute;
-        left: -22%;
-        bottom: -100px;
-        width: 144%;
-        height: 390px;
+        left: -8%;
+        right: -8%;
+        bottom: -35px;
+        height: 78%;
         z-index: 0;
         pointer-events: none;
-        background: url("img/profile-splatter.png") center bottom / contain no-repeat;
-        transform: rotate(180deg);
-        opacity: .55;
+        background-image:
+          url("img/profile-splatter.png"),
+          url("img/profile-splatter.png"),
+          url("img/profile-splatter.png");
+        background-repeat: no-repeat;
+        /* Narrow, offset impressions reach the blank left/right margins. */
+        background-size: 100% 370px, 88% 80%, 88% 74%;
+        background-position:
+          center bottom -65px,
+          left -145px center,
+          right -145px bottom 45px;
+        opacity: .58;
         mix-blend-mode: multiply;
       }
       /* Keep both the portrait and notebook above the full-panel splatter. */
