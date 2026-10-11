@@ -453,6 +453,22 @@ word-spacing: 0.06em;
         margin: 0 auto 4px;
         padding: 32px 15px 25px 25px;
       }
+      /* First-pass artist-made torn paper: use the PNG alpha as the edge mask.
+         Keeps the dynamic paper colors, ruled lines and biography text. */
+      .n21-cast-bio {
+        clip-path: none;
+        -webkit-mask-image: url("img/paper.png");
+        mask-image: url("img/paper.png");
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        padding: 34px 18px 34px 43px;
+      }
+      /* Remove the old synthetic torn-edge and wrinkle overlay on mobile. */
+      .n21-cast-bio::after { content: none; }
       .n21-cast-name { font-size: 1.45rem; }
       .n21-cast-text {
         font-size: 19px;
