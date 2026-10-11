@@ -520,97 +520,46 @@ word-spacing: 0.06em;
 
 
 /* ========================================
-   DESKTOP SCRAPBOOK CAST — mobile unchanged
+   DESKTOP CAST: ORIGINAL COMPOSITION, NEW PAPER + INK
+   Mobile scrapbook styling stays untouched.
    ======================================== */
 @media (min-width: 801px) {
   #characterDisplay.n21-cast-display {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    min-height: 0;
-    padding: 38px 32px 42px;
   }
   #characterDisplay.n21-cast-display::before {
     content: "";
     position: absolute;
-    inset: -12% -10%;
-    pointer-events: none;
+    inset: -7% -8%;
     z-index: 0;
+    pointer-events: none;
     background: url("img/profile-splatter.png") center / cover no-repeat;
     mix-blend-mode: multiply;
-    opacity: .72;
+    opacity: .66;
   }
   #characterDisplay.n21-cast-display::after {
     content: "";
     position: absolute;
     inset: 0;
-    pointer-events: none;
     z-index: 0;
+    pointer-events: none;
     background:
-      url("img/profile-splatter.png") left -140px bottom -110px / 65% auto no-repeat,
-      url("img/profile-splatter.png") right -170px top -90px / 70% auto no-repeat;
+      url("img/profile-splatter.png") left -125px bottom -95px / 65% auto no-repeat,
+      url("img/profile-splatter.png") right -150px top -80px / 64% auto no-repeat;
     mix-blend-mode: multiply;
-    opacity: .38;
+    opacity: .30;
   }
   #characterDisplay .n21-cast-image-wrap {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
-    align-items: center;
-    column-gap: 10px;
-    min-height: 0;
-    height: auto;
   }
-  /* Use the same portrait artwork as mobile, not a stretched full-body image. */
-  #characterDisplay .n21-cast-image { display: none; }
-  #characterDisplay .n21-cast-mobile-photo {
-    display: block;
-    position: relative;
-    z-index: 3;
-    box-sizing: border-box;
-    width: min(100%, 305px);
-    margin: 0 -15px 0 auto;
-    padding: 11px 11px 34px;
-    background: #f4eee4;
-    border: 1px solid rgba(80,60,55,.22);
-    box-shadow: 6px 14px 24px rgba(0,0,0,.4);
-    transform: rotate(-5deg);
-    transition: opacity .25s ease;
-  }
-  #characterDisplay .n21-cast-mobile-photo img {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: center top;
-    border: 1px solid rgba(0,0,0,.12);
-  }
-  #characterDisplay .n21-cast-mobile-photo::before,
-  #characterDisplay .n21-cast-mobile-photo::after {
-    content: "";
-    position: absolute;
-    top: -23px;
-    width: 66%;
-    height: 90px;
-    z-index: 5;
-    pointer-events: none;
-    background: url("img/tape.png") center / contain no-repeat;
-    opacity: .94;
-    filter: drop-shadow(1px 2px 2px rgba(0,0,0,.22));
-  }
-  #characterDisplay .n21-cast-mobile-photo::before { left: -29%; transform: rotate(28deg); }
-  #characterDisplay .n21-cast-mobile-photo::after { right: -29%; transform: rotate(-28deg); }
+  /* Retain original full-body artwork and its desktop dimensions. */
+  #characterDisplay .n21-cast-image { display: block; }
+  #characterDisplay .n21-cast-mobile-photo { display: none; }
+  /* Retain original notebook position and size, but use actual paper edges. */
   #characterDisplay .n21-cast-bio {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
-    max-width: none;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 38px 22px 38px 47px;
     clip-path: none;
     -webkit-mask-image: url("img/paper.png");
     mask-image: url("img/paper.png");
@@ -618,16 +567,11 @@ word-spacing: 0.06em;
     mask-size: 100% 100%;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
-    filter: drop-shadow(4px 8px 5px rgba(0,0,0,.28));
-    transform: rotate(1deg);
+    -webkit-mask-position: center;
+    mask-position: center;
+    padding: 28px 20px 28px 40px;
   }
   #characterDisplay .n21-cast-bio::after { content: none; }
-  #characterDisplay .n21-cast-name { font-size: 1.55rem; }
-  #characterDisplay .n21-cast-text {
-    font-size: clamp(17px, 1.65vw, 21px);
-    line-height: 1.5;
-    overflow-wrap: break-word;
-  }
 }
 
 /* Floating Cast heading; notebook bio styling above is untouched. */
@@ -852,8 +796,8 @@ const characters = [
        const stripStarts = [.30, .46, .57].map(f =>
          Math.min(Math.round(sourceH * f), bottomStart - stripHeight)
        );
-       const topH = Math.min(Math.round(topEnd * scale), Math.floor(h * .42));
-       const bottomH = Math.min(Math.round((sourceH - bottomStart) * scale), Math.floor(h * .42));
+       const topH = Math.round(topEnd * scale);
+       const bottomH = Math.round((sourceH - bottomStart) * scale);
        const stripH = Math.max(1, Math.round(stripHeight * scale));
        ctx.drawImage(paperArtwork, 0, 0, sourceW, topEnd, 0, 0, w, topH);
        for (let y = topH, piece = 0; y < h - bottomH; y += stripH, piece++) {
