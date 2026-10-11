@@ -558,7 +558,23 @@ word-spacing: 0.06em;
   /* Retain original full-body artwork and its desktop dimensions. */
   #characterDisplay .n21-cast-image { display: block; }
   #characterDisplay .n21-cast-mobile-photo { display: none; }
-  /* Retain original notebook position and size, but use actual paper edges. */
+  /* Larger, more readable desktop notebook; mobile rules are unchanged. */
+  #characterDisplay .n21-cast-bio {
+    left: 3%;
+    top: 4%;
+    width: 56%;
+    max-width: 490px;
+    box-sizing: border-box;
+  }
+  #characterDisplay .n21-cast-name {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+  #characterDisplay .n21-cast-text {
+    font-size: 24px;
+    line-height: 1.48;
+  }
+  /* Keep the existing handmade torn-paper mask. */
   #characterDisplay .n21-cast-bio {
     clip-path: none;
     -webkit-mask-image: url("img/paper.png");
