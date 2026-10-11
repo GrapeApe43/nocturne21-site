@@ -30,8 +30,8 @@
 <style>
 /* Archive-only Extras-inspired visual treatment. No global CSS changes. */
 .n21-archive-hero-outside {
-  width: min(92%, 980px);
-  max-width: 980px;
+  width: min(92%, 980px); /* fallback until measured against archive panel */
+  max-width: none;
   margin: 20px auto 16px !important;
   position: relative;
   z-index: 1;
@@ -40,14 +40,14 @@
 .n21-archive-hero-outside h1,
 .n21-archive-hero-outside .archive-intro { text-align:center !important; }
 
-#archive-main.archivePage { box-sizing:border-box; }
+#archive-main.archivePage { box-sizing:border-box; padding-top: 14px !important; }
 .n21-archive-hero-outside {
   box-sizing:border-box;
   margin: 0 auto 18px;
   padding: 22px clamp(15px, 4vw, 32px) 24px;
-  border: 1px solid #716797;
+  border: 1px solid #7870b2;
   border-radius: 9px;
-  background: rgba(7,8,17,.30);
+  background: rgba(7, 6, 16, .70);
   text-align:center;
 }
 .n21-archive-hero-outside .n21-archive-kicker {
@@ -66,8 +66,8 @@
 #archive-main .n21-volume-panel {
   box-sizing:border-box; margin: 0 0 16px;
   padding:18px clamp(14px,3vw,26px);
-  background:rgba(22,28,50,.94);
-  border:1px solid #68628d; border-radius:8px;
+  background:rgba(18,23,45,.95);
+  border:1px solid #6764a0; border-radius:8px;
   text-align:center;
 }
 #archive-main .n21-volume-panel h2 {
@@ -173,6 +173,21 @@
 </main>
 <div class="writeFooter"></div>
 <div id="webcomicwebring" align="center"></div>
+<script>
+(function () {
+  const hero = document.querySelector(".n21-archive-hero-outside");
+  const archive = document.getElementById("archive-main");
+  if (!hero || !archive) return;
+  function matchArchiveWidth() {
+    const width = archive.getBoundingClientRect().width;
+    if (width > 0) hero.style.width = width + "px";
+  }
+  matchArchiveWidth();
+  window.addEventListener("load", matchArchiveWidth);
+  window.addEventListener("resize", matchArchiveWidth, { passive: true });
+  if (window.ResizeObserver) new ResizeObserver(matchArchiveWidth).observe(archive);
+})();
+</script>
 <script>var indexPage = "index.html";</script>
 <script src="js/comic_settings.js" defer></script>
 <script src="js/comic_chapters.js" defer></script>
