@@ -711,14 +711,17 @@ const characters = [
        // All source sections retain the same scale; only the middle repeats.
        const topEnd = Math.round(sourceH * .27);
        const bottomStart = Math.round(sourceH * .76);
-       const stripStart = Math.round(sourceH * .40);
-       const stripHeight = Math.max(12, Math.round(sourceH * .077));
+       const stripHeight = Math.max(12, Math.round(sourceH * .15));
+       const stripStarts = [.30, .46, .57].map(f =>
+         Math.min(Math.round(sourceH * f), bottomStart - stripHeight)
+       );
        const topH = Math.round(topEnd * scale);
        const bottomH = Math.round((sourceH - bottomStart) * scale);
        const stripH = Math.max(1, Math.round(stripHeight * scale));
        ctx.drawImage(paperArtwork, 0, 0, sourceW, topEnd, 0, 0, w, topH);
-       for (let y = topH; y < h - bottomH; y += stripH) {
+       for (let y = topH, piece = 0; y < h - bottomH; y += stripH, piece++) {
          const drawH = Math.min(stripH, h - bottomH - y);
+         const stripStart = stripStarts[piece % stripStarts.length];
          ctx.drawImage(paperArtwork, 0, stripStart, sourceW,
            stripHeight * drawH / stripH, 0, y, w, drawH);
        }
@@ -875,7 +878,6 @@ bio.style.background = `
 </script>
 </body>
 </html>
-
 
 
 
