@@ -79,7 +79,56 @@
 .n21-reading-controls #continueReadingBtn.show {display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .n21-reading-controls #continueReadingBtn.show:hover,
 .n21-reading-controls #continueReadingBtn.show:focus-visible {border-color:#b3a4ed;box-shadow:0 0 12px #7269c366;color:#fff}
-@media(max-width:510px){.n21-reading-controls{gap:8px}.n21-reading-controls .n21-jump-trigger,.n21-reading-controls #continueReadingBtn.show{width:min(235px,calc(100vw - 32px))}}
+/* Mobile: two reading actions in one tidy row. Desktop remains unchanged. */
+@media (max-width: 600px) {
+  .n21-reading-controls {
+    display: flex;
+    flex-wrap: nowrap;
+    width: calc(100% - 32px);
+    max-width: 500px;
+    box-sizing: border-box;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .n21-reading-controls #continueReadingBtn.show,
+  .n21-reading-controls .n21-jump {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    box-sizing: border-box;
+  }
+
+  .n21-reading-controls #continueReadingBtn.show,
+  .n21-reading-controls .n21-jump-trigger {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 46px;
+    padding: 9px 7px;
+    box-sizing: border-box;
+    font-size: clamp(10px, 2.8vw, 12px);
+    white-space: nowrap;
+  }
+
+  .n21-reading-controls .n21-jump-trigger { gap: 4px; }
+
+  /* Keep the expanded chapter menu inside the phone viewport. */
+  .n21-reading-controls .n21-jump-panel {
+    left: auto;
+    right: 0;
+    transform: none;
+    width: min(290px, calc(100vw - 32px));
+    max-width: calc(100vw - 32px);
+  }
+
+  /* Without saved reading progress, let the page picker fill the row. */
+  .n21-reading-controls:not(:has(#continueReadingBtn.show)) .n21-jump {
+    flex: 0 1 235px;
+    margin-inline: auto;
+  }
+}
 /* Homepage title panel — matches Extras/Archive; scoped to home only. */
 .n21-home-hero {
   box-sizing:border-box;
@@ -898,7 +947,6 @@
     
   </body>
 </html>
-
 
 
 
