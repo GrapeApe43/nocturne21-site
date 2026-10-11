@@ -16,7 +16,7 @@
       width: calc(100% - 40px);
       max-width: 900px;
       box-sizing: border-box;
-      margin: 28px auto 30px;
+      margin: 28px auto 14px;
       padding: 20px 24px;
       background: rgba(17, 24, 39, 0.82);
       border: 1px solid rgba(93, 97, 171, 0.85);
@@ -136,6 +136,15 @@
 .n21-discussion-panel #authorNotes h2,.n21-discussion-panel .comments-title {text-align:center}
 .n21-discussion-divider {border:0;border-top:1px solid rgba(177,164,237,.38);margin:24px 0}
 @media(max-width:600px){.n21-discussion-panel{width:calc(100% - 24px);padding:18px 16px}}
+
+/* Top Web Comics voting art beside the comic's bottom navigation. */
+.n21-comic-nav-row { position:relative; width:calc(100% - 24px); max-width:900px; margin:0 auto; min-height:72px; display:flex; align-items:center; justify-content:center; }
+.n21-comic-nav-row > .writeNav { width:100%; text-align:center; }
+.n21-vote-button { position:absolute; right:0; top:50%; transform:translateY(-50%); display:block; width:168px; max-width:24%; z-index:2; line-height:0; border-radius:11px; }
+.n21-vote-button img { width:100%; height:auto; display:block; border-radius:11px; border:1px solid #7771b4; box-sizing:border-box; box-shadow:0 3px 12px #0008; transition:transform .2s ease,box-shadow .2s ease; }
+.n21-vote-button:hover img,.n21-vote-button:focus-visible img { transform:translateY(-2px); box-shadow:0 0 15px #9682e68c; }
+.n21-vote-button:focus-visible { outline:2px solid #c5b6ff; outline-offset:4px; }
+@media(max-width:1000px) { .n21-comic-nav-row { flex-direction:column; gap:12px; padding-bottom:8px; } .n21-vote-button { position:static; transform:none; width:180px; max-width:75%; } }
   </style>
   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
 
@@ -265,8 +274,13 @@
     <!-- write the current page of your comic -->
     <div class="writePageClickable"></div>
 
-    <!-- write bottom navigation -->
-    <div class="writeNav"></div>
+    <!-- Comic navigation and optional vote button -->
+    <div class="n21-comic-nav-row">
+      <div class="writeNav"></div>
+      <a class="n21-vote-button" href="https://www.topwebcomics.com/vote/27158" target="_blank" rel="noopener noreferrer" aria-label="Vote for Nocturne 21 on Top Web Comics (opens in new tab)">
+        <img src="img/Vote-icon.png" alt="Vote on Top Web Comics!" width="240" height="80" loading="lazy">
+      </a>
+    </div>
 
 </div>
  
@@ -543,8 +557,7 @@
       </div>
     </section>
 
-    <br><br>
-
+    <!-- Journal preview follows the About panel with a tighter gap. -->
  <div id="latest-journal-box" class="latest-journal-box"></div>  
  <div id="relatedJournalBox"></div>
   
