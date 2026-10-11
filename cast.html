@@ -411,6 +411,37 @@ word-spacing: 0.06em;
         object-position: center top;
         border: 1px solid rgba(0,0,0,.12);
       }
+      /* Aged masking tape across the two top corners of the mobile Polaroid. */
+      .n21-cast-mobile-photo::before,
+      .n21-cast-mobile-photo::after {
+        content: "";
+        position: absolute;
+        top: -10px;
+        width: 39%;
+        height: 27px;
+        z-index: 5;
+        pointer-events: none;
+        opacity: .88;
+        background:
+          repeating-linear-gradient(108deg, transparent 0 7px,
+            rgba(92,72,43,.10) 8px, transparent 10px 17px),
+          linear-gradient(172deg, rgba(255,255,255,.22),
+            rgba(194,163,108,.18) 52%, rgba(83,65,42,.13)),
+          rgba(215,190,143,.82);
+        box-shadow: 1px 2px 3px rgba(0,0,0,.17);
+        clip-path: polygon(0 8%, 7% 2%, 14% 7%, 23% 0, 33% 5%,
+          44% 0, 55% 5%, 67% 1%, 78% 6%, 88% 0, 100% 5%,
+          97% 95%, 87% 100%, 76% 94%, 65% 100%, 52% 95%,
+          41% 100%, 30% 94%, 19% 100%, 9% 95%, 0 100%);
+      }
+      .n21-cast-mobile-photo::before {
+        left: -16%;
+        transform: rotate(-29deg);
+      }
+      .n21-cast-mobile-photo::after {
+        right: -16%;
+        transform: rotate(27deg);
+      }
       .n21-cast-bio {
         position: relative;
         top: auto;
@@ -764,7 +795,6 @@ bio.style.background = `
 </script>
 </body>
 </html>
-
 
 
 
