@@ -346,64 +346,83 @@ word-spacing: 0.06em;
 
 
 
-    @media (max-width: 800px) {
-      .n21-cast-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
+  
+@media (max-width: 800px) {
+  .n21-cast-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-      .n21-cast-tabs {
-        width: 100%;
-        flex-direction: row;
-        gap: 10px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        margin-right: 0;
-        padding-top: 0;
-      }
+  .n21-cast-tabs {
+    width: 100%;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-right: 0;
+    padding-top: 0;
+  }
 
-      .n21-cast-tab {
-        width: 70px;
-        flex-shrink: 0;
-        border-radius: 10px;
-        transform: none !important;
-      }
+  .n21-cast-tab {
+    width: 70px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    transform: none !important;
+  }
 
-      .n21-cast-tab.active::after {
-        display: none;
-      }
+  .n21-cast-tab.active::after {
+    display: none;
+  }
 
-      #characterDisplay.n21-cast-display {
-  min-height: 0;
-  border: none !important;
-  outline: none !important;
-  border-radius: 15px;
-  padding: 14px;
-  background: var(--n21-panel-color) !important;
+  #characterDisplay.n21-cast-display {
+    min-height: 0;
+    border: none !important;
+    outline: none !important;
+    border-radius: 15px;
+    padding: 14px;
+    background: var(--n21-panel-color) !important;
+  }
+
+  .n21-cast-image-wrap {
+    min-height: 0;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .n21-cast-image {
+    width: 100%;
+    max-height: 340px;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .n21-cast-bio {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    box-sizing: border-box;
+    width: 96%;
+    max-width: 540px;
+    margin: -8px auto 12px;
+    padding: 22px 18px 24px 30px;
+  }
+
+  .n21-cast-name {
+    font-size: 1.55rem;
+  }
+
+  .n21-cast-text {
+    font-size: 19px;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+  }
 }
 
-      .n21-cast-image-wrap {
-        min-height: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .n21-cast-image {
-        width: 100%;
-        height: auto;
-      }
-
-      .n21-cast-bio {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        width: 90%;
-        max-width: none;
-        margin: 12px auto 0 auto;
-      }
-    }
 
 /* Floating Cast heading; notebook bio styling above is untouched. */
 .n21-cast-hero {
