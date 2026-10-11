@@ -6,48 +6,84 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nocturne 21 | Journal</title>
-
   <link rel="stylesheet" href="/css/style.css?v=6001">
   <link rel="stylesheet" href="/css/n21-journal-clean.css?v=1">
   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
-
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    /* Blog title only: match the approved Archive / Extras floating header. */
+    .n21journal-hero {
+      box-sizing: border-box;
+      width: min(92%, 980px);
+      margin: 20px auto 16px;
+      padding: 30px 24px 27px;
+      border: 1px solid #7870b2;
+      border-radius: 8px;
+      background: rgba(7, 6, 16, .18);
+      text-align: center;
+    }
+    .n21journal-hero-kicker {
+      color: #bfb1ef;
+      font: 700 .77rem/1.5 "Open Sans", sans-serif;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .n21journal-hero h1 {
+      margin: 0 0 16px !important;
+      color: #d7caff !important;
+      font-family: "Lacquer Regular", cursive;
+      font-size: clamp(1.6rem, 3.1vw, 2.45rem) !important;
+      line-height: 1.15 !important;
+      font-weight: 400;
+      letter-spacing: .015em;
+      text-align: center !important;
+      position: static !important;
+      transform: none !important;
+      float: none !important;
+      text-shadow: none !important;
+    }
+    .n21journal-hero p {
+      max-width: 650px;
+      margin: 0 auto !important;
+      color: #e5e2f3 !important;
+      font: 400 .92rem/1.65 "Open Sans", sans-serif;
+      text-align: center !important;
+    }
+    @media (max-width: 600px) {
+      .n21journal-hero { padding: 24px 16px; }
+    }
+  </style>
 </head>
-
 <body align="center" background="/img/lily.png">
-
   <div class="writeHeader"></div>
 
+  <section class="n21journal-hero" aria-labelledby="n21journal-title">
+    <div class="n21journal-hero-kicker">THE CREATOR'S CORNER</div>
+    <h1 id="n21journal-title">Nocturne 21 Journal</h1>
+    <p>Site updates, behind-the-scenes notes, and extra thoughts from Nocturne 21.</p>
+  </section>
 
-    <div class="n21journal-page-shell">
-      <div class="n21journal-wrap">
-        <div class="n21journal-panel">
-          <h1 class="n21journal-page-title">Journal</h1>
-          <p class="n21journal-page-intro">
-            Site updates, behind-the-scenes notes, and extra thoughts from Nocturne 21.
-          </p>
-
-          <div class="n21journal-layout">
-            <aside class="n21journal-sidebar">
-              <h2 class="n21journal-sidebar-title">Archive</h2>
-              <div id="journal-archive" class="n21journal-archive"></div>
-            </aside>
-
-            <main class="n21journal-main">
-              <div id="journal-list" class="n21journal-list"></div>
-            </main>
-          </div>
+  <div class="n21journal-page-shell">
+    <div class="n21journal-wrap">
+      <div class="n21journal-panel">
+        <div class="n21journal-layout">
+          <aside class="n21journal-sidebar">
+            <h2 class="n21journal-sidebar-title">Archive</h2>
+            <div id="journal-archive" class="n21journal-archive"></div>
+          </aside>
+          <main class="n21journal-main">
+            <div id="journal-list" class="n21journal-list"></div>
+          </main>
         </div>
       </div>
     </div>
-
+  </div>
 
   <div class="writeFooter"></div>
-
   <script src="/n21-journal-data.js?v=6001"></script>
-
   <script>
     const journalList = document.getElementById("journal-list");
     const journalArchive = document.getElementById("journal-archive");
@@ -78,10 +114,8 @@
 
     function getExcerpt(post) {
       if (post.excerpt && post.excerpt.trim()) return post.excerpt;
-
       const plainText = stripHTML(post.content || "").trim();
       if (!plainText) return "";
-
       return plainText.length > 160
         ? plainText.slice(0, 160).trim() + "..."
         : plainText;
@@ -91,12 +125,10 @@
       if (post.thumbnail && post.thumbnail.trim()) {
         return post.thumbnail;
       }
-
       const match = post.content?.match(/<img[^>]+src=["']([^"']+)["']/i);
       if (match) {
         return match[1];
       }
-
       return DEFAULT_THUMB;
     }
 
@@ -106,33 +138,28 @@
 
     function groupPostsByMonth(posts) {
       const grouped = {};
-
       posts.forEach(post => {
         const key = formatMonthYear(post.date);
         if (!grouped[key]) grouped[key] = [];
         grouped[key].push(post);
       });
-
       return grouped;
     }
 
     function buildJournalList() {
       if (!journalList || !Array.isArray(N21_JOURNAL_POSTS)) return;
-
       const sortedPosts = sortPostsNewestFirst(N21_JOURNAL_POSTS);
-
       journalList.innerHTML = sortedPosts.map(post => `
         <article class="n21journal-card">
           <a class="n21journal-card-link" href="n21-entry-page.html?id=${encodeURIComponent(post.id)}">
             <div class="n21journal-thumb-wrap">
-              <img 
-                src="${getPostThumbnail(post)}" 
-                alt="${post.title}" 
-                class="n21journal-thumb" 
+              <img
+                src="${getPostThumbnail(post)}"
+                alt="${post.title}"
+                class="n21journal-thumb"
                 loading="lazy"
               >
             </div>
-
             <div class="n21journal-card-content">
               <h2 class="n21journal-card-title">${post.title}</h2>
               <p class="n21journal-card-date">${formatDate(post.date)}</p>
@@ -146,18 +173,15 @@
 
     function buildArchive() {
       if (!journalArchive || !Array.isArray(N21_JOURNAL_POSTS)) return;
-
       const sortedPosts = sortPostsNewestFirst(N21_JOURNAL_POSTS);
       const grouped = groupPostsByMonth(sortedPosts);
       const months = Object.keys(grouped);
-
       journalArchive.innerHTML = months.map((month, index) => `
         <div class="n21journal-archive-group">
           <button class="n21journal-archive-toggle ${index === 0 ? "open" : ""}" type="button">
             <span>${month}</span>
             <span class="n21journal-archive-arrow">${index === 0 ? "−" : "+"}</span>
           </button>
-
           <div class="n21journal-archive-posts" style="display:${index === 0 ? "block" : "none"};">
             ${grouped[month].map(post => `
               <a class="n21journal-archive-link" href="n21-entry-page.html?id=${encodeURIComponent(post.id)}">
@@ -169,13 +193,11 @@
       `).join("");
 
       const toggles = journalArchive.querySelectorAll(".n21journal-archive-toggle");
-
       toggles.forEach(toggle => {
         toggle.addEventListener("click", function () {
           const postsBox = this.nextElementSibling;
           const arrow = this.querySelector(".n21journal-archive-arrow");
           const isOpen = postsBox.style.display === "block";
-
           postsBox.style.display = isOpen ? "none" : "block";
           arrow.textContent = isOpen ? "+" : "−";
           this.classList.toggle("open", !isOpen);
@@ -186,7 +208,6 @@
     buildJournalList();
     buildArchive();
   </script>
-
   <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
   <script>
     kofiWidgetOverlay.draw('nocturne21', {
@@ -196,17 +217,29 @@
       'floating-chat.donateButton.text-color': '#fff'
     });
   </script>
-
   <script src="/js/comic_header.js" defer></script>
   <script src="/js/comic_footer.js" defer></script>
   <script src="/js/n21-analytics.js"></script>
-
   <div id="webcomicwebring" align="center">
     <script type="text/javascript" src="https://webcomicring.org/js/comicring-variables.js"></script>
     <script type="text/javascript" src="https://webcomicring.org/js/comicring-widget.js"></script>
   </div>
-
   <script src="/js/sharebar.js"></script>
-
+  <script>
+    /* Match the floating header width to the actual journal panel. */
+    (function () {
+      const hero = document.querySelector(".n21journal-hero");
+      const panel = document.querySelector(".n21journal-panel");
+      if (!hero || !panel) return;
+      function syncWidth() {
+        const width = panel.getBoundingClientRect().width;
+        if (width > 0) hero.style.width = width + "px";
+      }
+      syncWidth();
+      window.addEventListener("load", syncWidth);
+      window.addEventListener("resize", syncWidth, { passive: true });
+      if (window.ResizeObserver) new ResizeObserver(syncWidth).observe(panel);
+    })();
+  </script>
 </body>
 </html>
