@@ -417,16 +417,16 @@ word-spacing: 0.06em;
         content: "";
         position: absolute;
         top: -16px;
-        width: 43%;
-        height: 45px;
+        width: 66%;
+        height: 76px;
         z-index: 5;
         pointer-events: none;
         background: url("img/tape.png") center / contain no-repeat;
         opacity: .94;
         filter: drop-shadow(1px 2px 2px rgba(0,0,0,.22));
       }
-      .n21-cast-mobile-photo::before { left: -20%; transform: rotate(-30deg); }
-      .n21-cast-mobile-photo::after { right: -20%; transform: rotate(28deg); }
+      .n21-cast-mobile-photo::before { left: -28%; transform: rotate(-38deg); }
+      .n21-cast-mobile-photo::after { right: -28%; transform: rotate(38deg); }
 
       /* Artist-made ink splatter behind the photo and notebook. */
       #characterDisplay.n21-cast-display {
@@ -437,10 +437,20 @@ word-spacing: 0.06em;
         content: "";
         position: absolute;
         inset: 0;
-        z-index: -1;
+        z-index: 0;
         pointer-events: none;
-        background: url("img/profile-splatter.png") center top / 100% auto no-repeat;
-        opacity: .65;
+        border-radius: inherit;
+        background-image: url("img/profile-splatter.png");
+        background-position: center;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        mix-blend-mode: multiply;
+        opacity: .85;
+      }
+      /* Keep both the portrait and notebook above the full-panel splatter. */
+      #characterDisplay .n21-cast-image-wrap {
+        position: relative;
+        z-index: 1;
       }
       .n21-cast-bio {
         position: relative;
@@ -459,6 +469,8 @@ word-spacing: 0.06em;
         clip-path: none;
         -webkit-mask-image: url("img/paper.png");
         mask-image: url("img/paper.png");
+        /* JavaScript builds a height-aware mask from the original paper.
+           These fallback rules apply until the image finishes loading. */
         -webkit-mask-size: 100% 100%;
         mask-size: 100% 100%;
         -webkit-mask-repeat: no-repeat;
@@ -674,6 +686,53 @@ const characters = [
       tab.addEventListener("click", () => showCharacter(index));
     });
 
+     // Build a paper mask at its natural proportions: intact top and bottom,
+     // with a tiled strip of binder holes between them. No vertical stretching.
+     const paperArtwork = new Image();
+     paperArtwork.src = "img/paper.png";
+     let paperMaskFrame = 0;
+     function updatePaperMask() {
+       if (window.innerWidth > 800 || !paperArtwork.complete || !paperArtwork.naturalWidth) return;
+       const bio = document.getElementById("charBio");
+       const w = Math.round(bio.getBoundingClientRect().width);
+       const h = Math.round(bio.getBoundingClientRect().height);
+       if (!w || !h) return;
+       const canvas = document.createElement("canvas");
+       canvas.width = w;
+       canvas.height = h;
+       const ctx = canvas.getContext("2d");
+       const sourceW = paperArtwork.naturalWidth;
+       const sourceH = paperArtwork.naturalHeight;
+       const scale = w / sourceW;
+       // All source sections retain the same scale; only the middle repeats.
+       const topEnd = Math.round(sourceH * .27);
+       const bottomStart = Math.round(sourceH * .76);
+       const stripStart = Math.round(sourceH * .40);
+       const stripHeight = Math.max(12, Math.round(sourceH * .077));
+       const topH = Math.round(topEnd * scale);
+       const bottomH = Math.round((sourceH - bottomStart) * scale);
+       const stripH = Math.max(1, Math.round(stripHeight * scale));
+       ctx.drawImage(paperArtwork, 0, 0, sourceW, topEnd, 0, 0, w, topH);
+       for (let y = topH; y < h - bottomH; y += stripH) {
+         const drawH = Math.min(stripH, h - bottomH - y);
+         ctx.drawImage(paperArtwork, 0, stripStart, sourceW,
+           stripHeight * drawH / stripH, 0, y, w, drawH);
+       }
+       ctx.drawImage(paperArtwork, 0, bottomStart, sourceW,
+         sourceH - bottomStart, 0, h - bottomH, w, bottomH);
+       const url = `url("${canvas.toDataURL("image/png")}")`;
+       bio.style.webkitMaskImage = url;
+       bio.style.maskImage = url;
+       bio.style.webkitMaskSize = "100% 100%";
+       bio.style.maskSize = "100% 100%";
+     }
+     function schedulePaperMask() {
+       cancelAnimationFrame(paperMaskFrame);
+       paperMaskFrame = requestAnimationFrame(updatePaperMask);
+     }
+     paperArtwork.addEventListener("load", schedulePaperMask);
+     window.addEventListener("resize", schedulePaperMask, { passive: true });
+
     function showCharacter(index) {
       const char = characters[index];
       const img = document.getElementById("charImage");
@@ -733,6 +792,7 @@ bio.style.background = `
         img.style.transform = "translateX(0)";
         bio.style.opacity = 1;
         bio.style.transform = "translateX(0) rotate(-0.7deg)";
+        schedulePaperMask();
       }, 180);
 
       currentIndex = index;
