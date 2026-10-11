@@ -4308,3 +4308,40 @@ div.jumpring a:hover {
 .archivePage .archiveTable .archiveCellNum { text-align: center !important; }
 .archivePage .archiveTable .archiveCellDate { text-align: right !important; }
 .archivePage .archiveTable .archiveCellThumb { text-align: center !important; }
+
+/* ========================================
+   NOCTURNE 21 — COOL-TONED TYPOGRAPHY
+   Lavender headings, teal interactive accents.
+   Red gradient buttons are intentionally unchanged.
+======================================== */
+:root {
+  --n21-heading-lavender: #e9d9f5;
+  --n21-link-teal: #8ee9ed;
+}
+
+/* Headings throughout the site, including the comic page number. */
+h1, h2, h3, h4,
+.writePageTitle, .writePageTitle h1, .writePageTitle h2,
+.latest-blog-box h2, .related-blog-box h2,
+.latest-journal-label, .related-journal-label,
+.entry-comic-link-label, .entry-patreon-kicker,
+.archive-group h4 {
+  color: var(--n21-heading-lavender) !important;
+  text-shadow: 0 0 12px rgba(180, 159, 227, 0.14);
+}
+
+/* Journal titles and text links, not button backgrounds. */
+.blog-card h2 a, .blog-post-full h2 a,
+.latest-journal-title a {
+  color: var(--n21-heading-lavender) !important;
+}
+.blog-card h2 a:hover, .blog-card h2 a:focus-visible,
+.blog-post-full h2 a:hover, .blog-post-full h2 a:focus-visible,
+.latest-journal-title a:hover, .latest-journal-title a:focus-visible,
+.related-blog-item a:hover, .related-blog-item a:focus-visible,
+.latest-blog-item a:hover, .latest-blog-item a:focus-visible,
+.blog-readmore:hover, .blog-readmore:focus-visible,
+.blog-nav a:hover, .blog-nav a:focus-visible,
+.latest-blog-readmore:hover, .latest-blog-readmore:focus-visible {
+  color: var(--n21-link-teal) !important;
+}
