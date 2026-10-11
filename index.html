@@ -123,6 +123,19 @@
 @media(max-width:600px) {
   .n21-home-hero {width:calc(100% - 24px);padding:24px 16px;}
 }
+
+/* About panel support invitation */
+.comic-intro .n21-about-support {margin-top:18px;padding-top:15px;border-top:1px solid rgba(177,164,237,.35);text-align:center}
+.comic-intro .n21-about-support p {margin:0 0 10px;color:#e8ecf4}
+.comic-intro .n21-about-support strong {color:#d7caff}
+.comic-intro .n21-support-link {display:inline-block;padding:9px 17px;border-radius:8px;border:1px solid #8d82c5;background:linear-gradient(135deg,#71313f,#411b31);color:#fff;font:700 .87rem 'Open Sans',sans-serif;text-decoration:none}
+.comic-intro .n21-support-link:hover,.comic-intro .n21-support-link:focus-visible {background:linear-gradient(135deg,#91445a,#602742);color:white}
+/* Shared notes and comments panel; keep the existing notes and CommentBox hooks. */
+.n21-discussion-panel {box-sizing:border-box;width:calc(100% - 40px);max-width:900px;margin:28px auto 34px;padding:24px;background:rgba(17,24,39,.88);border:1px solid rgba(93,97,171,.85);border-radius:8px;box-shadow:0 2px 8px #0005;text-align:left;clear:both}
+.n21-discussion-panel #authorNotes,.n21-discussion-panel #commentsWrap {box-sizing:border-box;width:100%;max-width:none;margin:0!important;float:none!important;box-shadow:none!important;border:0!important;background:transparent!important;padding:0!important;overflow:visible}
+.n21-discussion-panel #authorNotes h2,.n21-discussion-panel .comments-title {text-align:center}
+.n21-discussion-divider {border:0;border-top:1px solid rgba(177,164,237,.38);margin:24px 0}
+@media(max-width:600px){.n21-discussion-panel{width:calc(100% - 24px);padding:18px 16px}}
   </style>
   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
 
@@ -524,6 +537,10 @@
       <p>
         <strong>Nocturne 21</strong> is an ongoing indie webcomic by <strong>April Ferrero</strong>—a dark, atmospheric sci-fi drama more than 20 years in the making. It follows a troubled teen finding a family of his own as long-hidden secrets slowly unravel the connections between them.
       </p>
+      <div class="n21-about-support">
+        <p><strong>Enjoying Nocturne 21?</strong> Join the inner circle and see what happens behind the scenes.</p>
+        <a class="n21-support-link" href="support.html">Support the Comic →</a>
+      </div>
     </section>
 
     <br><br>
@@ -531,31 +548,21 @@
  <div id="latest-journal-box" class="latest-journal-box"></div>  
  <div id="relatedJournalBox"></div>
   
-  <div id="authorNotes">
-  <h2>Author Notes</h2>
-  <div class="writeAuthorNotes"></div>
-  <br><br>
-  <hr>
+  <!-- Author notes and reader comments share a single panel. -->
+  <section class="n21-discussion-panel" aria-label="Author notes and reader comments">
+    <div id="authorNotes">
+      <h2>Author Notes</h2>
+      <div class="writeAuthorNotes"></div>
+    </div>
 
-  <div align="center" max-width="100%">
-<p class="cta-soft">
-<h2>Enjoying Nocturne 21?</h2>
+    <hr class="n21-discussion-divider">
 
-<span>Join the inner circle and<b> <a href="support.html">see behind-the-scenes</a> →</b></span>
-<p>
-  </div>
-</div>
-
-
-
-
-
-<div class="comments-shell" id="commentsWrap" style="clear: both; overflow: visible; position: relative; z-index: 1;">
-<h2 class="comments-title">Join the Conversation</h2><p class="comment-prompt">
-  What did you think of this page? 👀
-</p>
-  <div class="commentbox"></div>
-</div>
+    <div class="comments-shell" id="commentsWrap" style="clear: both; overflow: visible; position: relative; z-index: 1;">
+      <h2 class="comments-title">Join the Conversation</h2>
+      <p class="comment-prompt">What did you think of this page? 👀</p>
+      <div class="commentbox"></div>
+    </div>
+  </section>
 
 <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
 <script>
@@ -843,7 +850,6 @@
     
   </body>
 </html>
-
 
 
 
