@@ -228,25 +228,27 @@
    if(!id)return;
    sections.forEach(el=>el.hidden=el.id!==id);
    const selected=sections.find(el=>el.id===id);
-   if(selected){
+   // Use the real archive controller to open the selected chapter.
+   // A synthetic click could *close* an already-open chapter, leaving it collapsed.
+   if(typeof setOpenChapter === 'function'){
+    setOpenChapter(id,false);
+   }else if(selected){
+    const table=selected.querySelector('.archiveTable');
     const toggle=selected.querySelector('.archive-toggle');
-    if(toggle && !selected.dataset.n21AutoOpened){
-     selected.dataset.n21AutoOpened='yes';
-     // Existing Rarebit archive handler controls expansion; open once, don't replace it.
-     if(toggle.getAttribute('aria-expanded')!=='true' &&
-        !selected.classList.contains('open') &&
-        !selected.classList.contains('active') &&
-        !selected.classList.contains('expanded')){
-       toggle.click();
-     }
-    }
+    const start=selected.querySelector('.start-chapter-btn');
+    if(table)table.style.display='table';
+    if(toggle)toggle.classList.add('open');
+    if(start)start.style.display='block';
    }
    links.forEach(a=>{if(a.dataset.chapter===id)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});
    if(updateHash)history.replaceState(null,'','#'+id);
   }
   links.forEach(a=>a.addEventListener('click',function(e){e.preventDefault();select(this.dataset.chapter,true);}));
   window.addEventListener('hashchange',()=>select(location.hash.slice(1),false));
-  select(location.hash.slice(1)||'chapter1',false);
+  const hash=location.hash.slice(1);
+  const savedPage=localStorage.getItem('nocturne21_lastPage_v2');
+  const savedChapter=savedPage && typeof getChapterFromPage==='function' ? getChapterFromPage(savedPage) : null;
+  select(hash||savedChapter||'chapter1',false);
  }
  if(document.readyState==='complete')init();else window.addEventListener('load',init,{once:true});
 })();
