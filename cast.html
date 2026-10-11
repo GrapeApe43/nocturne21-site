@@ -376,7 +376,7 @@ word-spacing: 0.06em;
         border: none !important;
         outline: none !important;
         border-radius: 15px;
-        padding: 20px 10px 22px;
+        padding: 20px 10px 10px;
         background: var(--n21-panel-color) !important;
       }
       .n21-cast-image-wrap {
@@ -451,6 +451,22 @@ word-spacing: 0.06em;
         mix-blend-mode: multiply;
         opacity: .85;
       }
+      /* Continue the artist's splatter into the lower part of the panel.
+         A separate layer avoids stretching the original top splatter. */
+      #characterDisplay.n21-cast-display::after {
+        content: "";
+        position: absolute;
+        left: -22%;
+        bottom: -100px;
+        width: 144%;
+        height: 390px;
+        z-index: 0;
+        pointer-events: none;
+        background: url("img/profile-splatter.png") center bottom / contain no-repeat;
+        transform: rotate(180deg);
+        opacity: .55;
+        mix-blend-mode: multiply;
+      }
       /* Keep both the portrait and notebook above the full-panel splatter. */
       #characterDisplay .n21-cast-image-wrap {
         position: relative;
@@ -464,7 +480,7 @@ word-spacing: 0.06em;
         box-sizing: border-box;
         width: 100%;
         max-width: none;
-        margin: 0 auto 4px;
+        margin: 0 auto 0;
         padding: 32px 15px 25px 25px;
       }
       /* First-pass artist-made torn paper: use the PNG alpha as the edge mask.
