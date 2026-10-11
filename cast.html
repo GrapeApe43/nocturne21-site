@@ -264,9 +264,9 @@
   width:min(92%, 980px);
   margin:20px auto 16px;
   padding:30px 24px 27px;
-  border:1px solid #7870b2;
-  border-radius:8px;
-  background:rgba(7,6,16,.18);
+  border:1px solid #7870b2 !important;
+  border-radius:8px !important;
+  background:rgba(7,6,16,.35) !important;
   text-align:center;
 }
 .n21-cast-hero-kicker {
@@ -279,7 +279,7 @@
 .n21-cast-hero h1 {
   margin:0 0 16px !important;
   color:#d7caff !important;
-  font-family:"Lacquer Regular",cursive;
+  font-family:"Lacquer Regular",cursive !important;
   font-size:clamp(1.6rem,3.1vw,2.45rem) !important;
   line-height:1.15 !important;
   text-align:center !important;
@@ -557,11 +557,14 @@ bio.style.background = `
 /* Align floating title to the cast content without changing the cast layout. */
 (function () {
   const hero=document.querySelector(".n21-cast-hero");
-  const panel=document.querySelector(".subPage");
+  const panel=document.querySelector(".n21-cast-layout");
   if (!hero || !panel) return;
   function syncWidth() {
     const w=panel.getBoundingClientRect().width;
-    if(w>0) hero.style.width=w+"px";
+    if(w>0) {
+      hero.style.width=w+"px";
+      hero.style.maxWidth="calc(100% - 24px)";
+    }
   }
   syncWidth();
   window.addEventListener("load",syncWidth);
