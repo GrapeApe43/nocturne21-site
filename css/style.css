@@ -4345,3 +4345,19 @@ h1, h2, h3, h4,
 .latest-blog-readmore:hover, .latest-blog-readmore:focus-visible {
   color: var(--n21-link-teal) !important;
 }
+/* ========================================
+   HEADER LOADING STABILITY TEST
+======================================== */
+
+/* Reserve the banner's 3:1 space before JavaScript inserts it. */
+.writeHeader::before {
+  content: "";
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 1;
+}
+
+/* Remove the placeholder once the header exists. */
+.writeHeader:has(.site-header)::before {
+  display: none;
+}
