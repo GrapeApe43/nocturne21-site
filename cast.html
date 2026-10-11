@@ -446,6 +446,10 @@ word-spacing: 0.06em;
 @media (max-width: 600px) {
   .n21-cast-hero { padding: 24px 16px; }
 }
+  /* Match the heading to the actual cast tabs + character panel. */
+  .n21-cast-hero {
+    width: min(92%, 1000px);
+  }
   </style>
 </head>
 
@@ -703,6 +707,27 @@ bio.style.background = `
 <script type="text/javascript" src="https://webcomicring.org/js/comicring-widget.js"></script>
 </div>  
   
+<script>
+/* Header alignment only. Does not touch notebook styling or character logic. */
+(function () {
+  const hero = document.querySelector(".n21-cast-hero");
+  const cast = document.querySelector(".n21-cast-layout");
+  if (!hero || !cast) return;
+  function alignCastHeader() {
+    const bounds = cast.getBoundingClientRect();
+    if (!bounds.width) return;
+    hero.style.boxSizing = "border-box";
+    hero.style.width = bounds.width + "px";
+    hero.style.maxWidth = "calc(100% - 24px)";
+    hero.style.marginLeft = Math.max(12, bounds.left + window.scrollX) + "px";
+    hero.style.marginRight = "0";
+  }
+  alignCastHeader();
+  window.addEventListener("load", alignCastHeader);
+  window.addEventListener("resize", alignCastHeader, {passive:true});
+  if (window.ResizeObserver) new ResizeObserver(alignCastHeader).observe(cast);
+})();
+</script>
 </body>
 </html>
 
