@@ -35,7 +35,7 @@
   margin: 20px auto 16px !important;
   position: relative;
   z-index: 1;
-  backdrop-filter: blur(2px);
+  /* Extras header uses no backdrop blur. */
 }
 .n21-archive-hero-outside h1,
 .n21-archive-hero-outside .archive-intro { text-align:center !important; }
@@ -44,24 +44,25 @@
 .n21-archive-hero-outside {
   box-sizing:border-box;
   margin: 0 auto 18px;
-  padding: 22px clamp(15px, 4vw, 32px) 24px;
+  padding: 30px 24px 27px;
   border: 1px solid #7870b2;
-  border-radius: 9px;
-  background: rgba(7, 6, 16, .70);
+  border-radius: 8px;
+  background: rgba(7, 6, 16, .18);
   text-align:center;
 }
 .n21-archive-hero-outside .n21-archive-kicker {
-  color:#c8bbde; font:700 11px/1.4 "Open Sans",sans-serif;
-  letter-spacing:.18em; text-transform:uppercase; margin-bottom:8px;
+  color:#bfb1ef; font:700 .77rem/1.5 "Open Sans",sans-serif;
+  letter-spacing:.13em; text-transform:uppercase; margin-bottom:10px;
 }
 .n21-archive-hero-outside h1 {
-  margin:0 0 10px; color:#bb3346;
-  font-family:"Lacquer Regular",cursive; font-size:clamp(26px,4vw,39px);
-  line-height:1.2; text-align:center;
+  margin:0 0 16px !important; color:#d7caff !important;
+  font-family:"Lacquer Regular",cursive; font-size:clamp(1.6rem,3.1vw,2.45rem) !important;
+  line-height:1.15 !important; text-align:center; font-weight:400; letter-spacing:.015em;
+  position:static !important; transform:none !important; float:none !important; text-shadow:none !important;
 }
 .n21-archive-hero-outside .archive-intro {
-  max-width:720px; margin:0 auto; color:#f0ebf7;
-  line-height:1.65; text-align:center;
+  max-width:650px; margin:0 auto !important; color:#e5e2f3 !important;
+  line-height:1.65 !important; font-size:.92rem; text-align:center;
 }
 #archive-main .n21-volume-panel {
   box-sizing:border-box; margin: 0 0 16px;
@@ -89,7 +90,7 @@
 #archive-main .n21-archive-chapters { margin-top:18px; }
 #archive-main .n21-archive-chapters .archive-section { scroll-margin-top:100px; }
 @media(max-width:600px){
- .n21-archive-hero-outside { padding:18px 14px; }
+ .n21-archive-hero-outside { padding:24px 16px; }
  #archive-main .n21-volume-panel { padding:15px 12px; }
 }
 </style>
