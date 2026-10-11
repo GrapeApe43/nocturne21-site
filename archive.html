@@ -29,26 +29,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 <style>
 /* Archive-only Extras-inspired visual treatment. No global CSS changes. */
+.n21-archive-hero-outside {
+  width: min(92%, 980px);
+  max-width: 980px;
+  margin: 20px auto 16px !important;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(2px);
+}
+.n21-archive-hero-outside h1,
+.n21-archive-hero-outside .archive-intro { text-align:center !important; }
+
 #archive-main.archivePage { box-sizing:border-box; }
-#archive-main .n21-archive-hero {
+.n21-archive-hero-outside {
   box-sizing:border-box;
-  margin: 0 0 22px;
+  margin: 0 auto 18px;
   padding: 22px clamp(15px, 4vw, 32px) 24px;
   border: 1px solid #716797;
   border-radius: 9px;
-  background: rgba(7,8,17,.82);
+  background: rgba(7,8,17,.30);
   text-align:center;
 }
-#archive-main .n21-archive-kicker {
+.n21-archive-hero-outside .n21-archive-kicker {
   color:#c8bbde; font:700 11px/1.4 "Open Sans",sans-serif;
   letter-spacing:.18em; text-transform:uppercase; margin-bottom:8px;
 }
-#archive-main .n21-archive-hero h1 {
+.n21-archive-hero-outside h1 {
   margin:0 0 10px; color:#bb3346;
   font-family:"Lacquer Regular",cursive; font-size:clamp(26px,4vw,39px);
   line-height:1.2; text-align:center;
 }
-#archive-main .n21-archive-hero .archive-intro {
+.n21-archive-hero-outside .archive-intro {
   max-width:720px; margin:0 auto; color:#f0ebf7;
   line-height:1.65; text-align:center;
 }
@@ -78,7 +89,7 @@
 #archive-main .n21-archive-chapters { margin-top:18px; }
 #archive-main .n21-archive-chapters .archive-section { scroll-margin-top:100px; }
 @media(max-width:600px){
- #archive-main .n21-archive-hero { padding:18px 14px; }
+ .n21-archive-hero-outside { padding:18px 14px; }
  #archive-main .n21-volume-panel { padding:15px 12px; }
 }
 </style>
@@ -127,12 +138,12 @@
 </div>
 <div class="writeHeader"></div>
 <script src="js/comic_header.js"></script>
-<main class="archivePage subPage" id="archive-main">
-<section class="n21-archive-hero" aria-labelledby="archive-title">
+<section class="n21-archive-hero n21-archive-hero-outside" aria-labelledby="archive-title">
   <div class="n21-archive-kicker">THE COMPLETE COMIC · CHAPTER ARCHIVE</div>
   <h1 id="archive-title">Nocturne 21 Comic Archive</h1>
   <p class="archive-intro">Read <strong>Nocturne 21</strong> from the beginning or browse the complete sci-fi drama webcomic archive by volume and chapter.</p>
 </section>
+<main class="archivePage subPage" id="archive-main">
 <section class="n21-volume-panel" aria-labelledby="volume-one-title">
   <h2 id="volume-one-title">Volume One: Robot Boy</h2>
   <nav class="archive-chapter-nav" aria-label="Volume One chapters">
