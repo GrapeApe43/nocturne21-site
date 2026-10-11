@@ -80,6 +80,49 @@
 .n21-reading-controls #continueReadingBtn.show:hover,
 .n21-reading-controls #continueReadingBtn.show:focus-visible {border-color:#b3a4ed;box-shadow:0 0 12px #7269c366;color:#fff}
 @media(max-width:510px){.n21-reading-controls{gap:8px}.n21-reading-controls .n21-jump-trigger,.n21-reading-controls #continueReadingBtn.show{width:min(235px,calc(100vw - 32px))}}
+/* Homepage title panel — matches Extras/Archive; scoped to home only. */
+.n21-home-hero {
+  box-sizing:border-box;
+  width:calc(100% - 32px);
+  max-width:900px;
+  margin:18px auto 22px;
+  padding:30px 24px 27px;
+  border:1px solid #7870b2;
+  border-radius:8px;
+  background:rgba(7,6,16,.18);
+  text-align:center;
+}
+.n21-home-hero .n21-home-kicker {
+  color:#bfb1ef;
+  font:700 .77rem/1.5 "Open Sans",sans-serif;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.n21-home-hero h1 {
+  margin:0 0 16px !important;
+  color:#d7caff !important;
+  font-family:"Lacquer Regular",cursive;
+  font-size:clamp(1.6rem,3.1vw,2.45rem) !important;
+  line-height:1.15 !important;
+  text-align:center !important;
+  font-weight:400;
+  letter-spacing:.015em;
+  position:static !important;
+  transform:none !important;
+  float:none !important;
+  text-shadow:none !important;
+}
+.n21-home-hero p {
+  max-width:650px;
+  margin:0 auto !important;
+  color:#e5e2f3 !important;
+  font:400 .92rem/1.65 "Open Sans",sans-serif;
+  text-align:center !important;
+}
+@media(max-width:600px) {
+  .n21-home-hero {width:calc(100% - 24px);padding:24px 16px;}
+}
   </style>
   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
 
@@ -191,6 +234,13 @@
   <div align="center">
     <!-- header that has the logo image and top page navigation. don't forget to put this on every page -->
     <div class="writeHeader"></div>
+
+    <!-- Shared visual page heading; comic reader and controls remain untouched. -->
+    <section class="n21-home-hero" aria-labelledby="n21-home-title">
+      <div class="n21-home-kicker">AN ONGOING SCI-FI DRAMA WEBCOMIC</div>
+      <h1 id="n21-home-title">Nocturne 21</h1>
+      <p>A story of identity, family, and finding somewhere to belong.</p>
+    </section>
 
     <!-- make sure that if you want to turn on automatically scrolling to the top of the comic when you load a new page, keep the id of this div and the variable "navScrollTo" in showcomic.js the same-->
 <div id="showComic">
