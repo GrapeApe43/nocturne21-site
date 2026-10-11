@@ -527,3 +527,39 @@
     transform: scale(1.01);
   }
 }
+/* ========================================
+   NOCTURNE 21 — LAVENDER & TEAL PALETTE
+======================================== */
+
+/* Journal headings */
+.n21journal-page-title,
+.n21journal-sidebar-title,
+.n21journal-card-title,
+.n21journal-entry-title {
+  color: #e9d9f5;
+}
+
+/* Journal links and accents */
+.n21journal-readmore,
+.n21journal-backlink {
+  color: #cdd1ff;
+}
+
+/* Teal hover effects */
+.n21journal-card:hover .n21journal-card-title,
+.n21journal-card:hover .n21journal-readmore,
+.n21journal-archive-toggle:hover,
+.n21journal-archive-link:hover,
+.n21journal-backlink:hover,
+.n21journal-backlink:focus-visible {
+  color: #8ee9ed;
+}
+
+/* Links within journal entries */
+.n21journal-entry-body a {
+  color: #8ee9ed;
+}
+
+.n21journal-entry-body a:hover {
+  color: #e9d9f5;
+}
