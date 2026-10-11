@@ -145,6 +145,41 @@
 .n21-vote-button:hover img,.n21-vote-button:focus-visible img { transform:translateY(-2px); box-shadow:0 0 15px #9682e68c; }
 .n21-vote-button:focus-visible { outline:2px solid #c5b6ff; outline-offset:4px; }
 @media(max-width:1000px) { .n21-comic-nav-row { flex-direction:column; gap:12px; padding-bottom:8px; } .n21-vote-button { position:static; transform:none; width:180px; max-width:75%; } }
+
+/* Gentle hover and keyboard focus for the comic page navigation. */
+.n21-comic-nav-row .writeNav a,
+.n21-comic-nav-row .writeNav button,
+.n21-comic-nav-row .writeNav input[type="image"] {
+  display:inline-block;
+  border-radius:9px;
+  transition:transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+.n21-comic-nav-row .writeNav a:hover,
+.n21-comic-nav-row .writeNav a:focus-visible,
+.n21-comic-nav-row .writeNav button:hover,
+.n21-comic-nav-row .writeNav button:focus-visible,
+.n21-comic-nav-row .writeNav input[type="image"]:hover,
+.n21-comic-nav-row .writeNav input[type="image"]:focus-visible {
+  transform:translateY(-2px);
+  filter:brightness(1.15) drop-shadow(0 0 7px rgba(170,145,255,.75));
+}
+.n21-comic-nav-row .writeNav a:focus-visible,
+.n21-comic-nav-row .writeNav button:focus-visible,
+.n21-comic-nav-row .writeNav input[type="image"]:focus-visible {
+  outline:2px solid #c5b6ff;
+  outline-offset:3px;
+}
+@media (prefers-reduced-motion:reduce) {
+  .n21-comic-nav-row .writeNav a,
+  .n21-comic-nav-row .writeNav button,
+  .n21-comic-nav-row .writeNav input[type="image"] {transition:none;}
+  .n21-comic-nav-row .writeNav a:hover,
+  .n21-comic-nav-row .writeNav a:focus-visible,
+  .n21-comic-nav-row .writeNav button:hover,
+  .n21-comic-nav-row .writeNav button:focus-visible,
+  .n21-comic-nav-row .writeNav input[type="image"]:hover,
+  .n21-comic-nav-row .writeNav input[type="image"]:focus-visible {transform:none;}
+}
   </style>
   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
 
