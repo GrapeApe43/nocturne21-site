@@ -5,7 +5,7 @@
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="img/favicon.png" rel="icon"/>
 <title>Nocturne 21 Extras | 20+ Years of Art, History &amp; Fun Facts</title>
-<meta content="Explore 20 years of Nocturne 21: early art, character changes, behind-the-scenes trivia, artwork comparisons, and recommended indie comics." name="description"/>
+<meta content="Explore 20+ years of Nocturne 21: early art, character changes, behind-the-scenes trivia, artwork comparisons, and recommended indie comics." name="description"/>
 <link href="https://nocturne21.com/extras.html" rel="canonical"/>
 <link href="css/style.css" media="all" rel="stylesheet"/>
 <link href="https://webcomicring.org/js/comicring.css" rel="stylesheet"/>
@@ -84,6 +84,47 @@
 .extras-page .extras-content .then-now-grid .then-now-column{display:flex;flex-direction:column;gap:15px;min-width:0}
 .extras-page .extras-content .then-now-grid .polaroid img{aspect-ratio:auto;max-height:360px;object-fit:contain}
 @media(max-width:600px){.extras-page .extras-content .then-now-grid{grid-template-columns:1fr}}
+
+/* Mobile Extras: main story first, navigation next, recommendations last. */
+@media (max-width: 820px) {
+  .extras-page .extras-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .extras-page .extras-sidebar,
+  .extras-page .extras-content {
+    display: contents;
+  }
+  .extras-page .extras-hero { order: 0; }
+  .extras-page .extras-sidebar > .extras-panel:not(.extras-reads) { order: 1; }
+  .extras-page .extras-content > .extras-panel { order: 2; }
+  .extras-page .extras-reads { order: 3; }
+}
+@media (max-width: 560px) {
+  .extras-page .extras-side-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .extras-page .extras-side-links a {
+    font-size: 1rem;
+    padding: 12px 6px;
+  }
+}
+.extras-page .extras-reads-details > summary {
+  cursor: pointer;
+  color: #bcb3ff;
+  font: normal 1.15rem 'Lacquer Regular', cursive;
+  list-style-position: outside;
+}
+.extras-page .extras-reads-details > summary span { display: block; }
+.extras-page .extras-reads-details > summary small {
+  display: block;
+  font: 0.76rem/1.5 'Open Sans', sans-serif;
+  color: #aaa9c3;
+  margin-top: 4px;
+}
+.extras-page .extras-reads-details[open] > summary { margin-bottom: 12px; }
 </style>
 </head>
 <body background="img/lily.png" class="extras-page">
@@ -99,7 +140,7 @@
 <main class="extras-layout">
 <aside aria-label="Extras navigation and recommendations" class="extras-sidebar">
 <section class="extras-panel"><h2>Explore</h2><nav aria-label="Extras sections" class="extras-side-links"><a href="gallery.html">Gallery</a><a href="fanart.html">Fan Art</a><a href="memes.html">Memes</a><a href="crossovers.html">Crossovers</a></nav></section>
-<section class="extras-panel extras-reads"><h2>Grape Ape's Recommended Reads!</h2><ul><li><a href="https://comicfury.com/comicprofile.php?url=aceofthespades" rel="noopener noreferrer" target="_blank">Ace of Spades</a><span>by Mira Kira</span></li>
+<section class="extras-panel extras-reads"><details class="extras-reads-details" open><summary><span>Grape Ape's Recommended Reads!</span><small>10 indie comics worth checking out</small></summary><ul><li><a href="https://comicfury.com/comicprofile.php?url=aceofthespades" rel="noopener noreferrer" target="_blank">Ace of Spades</a><span>by Mira Kira</span></li>
 <li><a href="https://comicfury.com/comicprofile.php?url=hereilieawake" rel="noopener noreferrer" target="_blank">Here I Lie Awake</a><span>by Melaredblu</span></li>
 <li><a href="https://comicfury.com/comicprofile.php?url=dead-life" rel="noopener noreferrer" target="_blank">Deadlife</a><span>by ShoobaQueen</span></li>
 <li><a href="https://comicfury.com/comicprofile.php?url=NowHiring" rel="noopener noreferrer" target="_blank">Now Hiring</a><span>by Spellodello</span></li>
@@ -108,7 +149,7 @@
 <li><a href="https://comicfury.com/comicprofile.php?url=ad6story" rel="noopener noreferrer" target="_blank">A D6 Story</a><span>by mister.dino01</span></li>
 <li><a href="https://comicfury.com/comicprofile.php?url=blindside" rel="noopener noreferrer" target="_blank">Blind/Side</a><span>by D1scord and DeliriumMacabre</span></li>
 <li><a href="https://comicfury.com/comicprofile.php?url=phototaxisofafighter" rel="noopener noreferrer" target="_blank">Phototaxis of a Fighter</a><span>by Tarraxahum</span></li>
-<li><a href="https://comicfury.com/comicprofile.php?url=runningwild" rel="noopener noreferrer" target="_blank">Running Wild</a><span>by Sheisawantedman</span></li></ul><p class="reads-note">I'm severely behind on my comic reading, but these are brilliant. Go give them some love!</p></section>
+<li><a href="https://comicfury.com/comicprofile.php?url=runningwild" rel="noopener noreferrer" target="_blank">Running Wild</a><span>by Sheisawantedman</span></li></ul><p class="reads-note">I'm severely behind on my comic reading, but these are brilliant. Go give them some love!</p></details></section>
 </aside>
 <div class="extras-content">
 <header class="extras-hero"><div class="extras-kicker">The story behind the story</div><h1>20 Years of Nocturne 21</h1><p>Welcome to the twentieth anniversary special! Here are some spoiler-free fun facts, creative detours, and epic glow-ups from the long and occasionally ridiculous history of Nocturne 21.</p></header>
@@ -133,6 +174,19 @@
 <a class="polaroid lytebox" data-description="Stranger Arrival · Then &amp; Now" data-lyte-options="group:then-now" href="/img/extras/stranger-arrival.jpg"><img alt="Stranger Arrival comparison" loading="lazy" src="/img/extras/stranger-arrival.jpg"/><span class="caption">Stranger Arrival</span></a>
 <a class="polaroid lytebox" data-description="The Wire Attack· Then &amp; Now" data-lyte-options="group:then-now" href="/img/extras/pg176-pg93-comparison.jpg"><img alt="Wire Attack Comparison--Originally Kai's haircut scene" loading="lazy" src="/img/extras/pg176-pg93-comparison.jpg"/><span class="caption">The Wire Attack</span></a>  
 </section></section></div></main>
+<script>
+/* Keep desktop recommendations expanded; start mobile collapsed.
+   A reader can expand/collapse the list without affecting desktop. */
+(function () {
+  const recommendations = document.querySelector('.extras-reads-details');
+  const mobile = window.matchMedia('(max-width: 820px)');
+  if (!recommendations) return;
+  function setDefaultState() { recommendations.open = !mobile.matches; }
+  setDefaultState();
+  if (mobile.addEventListener) mobile.addEventListener('change', setDefaultState);
+  else mobile.addListener(setDefaultState);
+})();
+</script>
 <div class="writeFooter"></div>
 <script src="lytebox/lytebox.js"></script>
 <script src="js/sharebar.js"></script><script defer="" src="js/comic_header.js"></script><script defer="" src="js/comic_footer.js"></script><script src="/js/n21-analytics.js"></script>
