@@ -97,7 +97,7 @@
 </style>
 <style>
 /* Archive: Extras-inspired chapter browser */
-#archive-main.n21-archive-layout{box-sizing:border-box;width:min(1180px,calc(100% - 30px));max-width:none;margin:0 auto 55px;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;display:grid;grid-template-columns:245px minmax(0,1fr);gap:22px;align-items:start;text-align:left;font-family:'Open Sans',sans-serif;color:#e9eaf7}
+#archive-main.n21-archive-layout{box-sizing:border-box;width:min(1180px,calc(100% - 30px));max-width:none;margin:20px auto 55px;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;display:grid;grid-template-columns:245px minmax(0,1fr);gap:22px;align-items:start;text-align:left;font-family:'Open Sans',sans-serif;color:#e9eaf7}
 .n21-archive-sidebar{display:grid;gap:16px;min-width:0}
 .n21-archive-side-panel,.n21-archive-content{background:rgba(18,23,45,.95);border:1px solid #6764a0;box-shadow:0 4px 16px #0005;border-radius:8px;min-width:0}
 .n21-archive-side-panel{padding:18px}
@@ -113,6 +113,18 @@
 #archive-main #continue-reading-wrap{margin-bottom:18px}
 @media(max-width:720px){#archive-main.n21-archive-layout{grid-template-columns:1fr;gap:16px}.n21-archive-sidebar{grid-template-columns:1fr 1fr}.n21-archive-side-panel{padding:12px}.n21-archive-side-links a{font-size:.9rem;padding:9px 5px}}
 @media(max-width:480px){.n21-archive-sidebar{grid-template-columns:1fr}.n21-archive-content{padding:16px 12px}}
+
+/* Volume cover miniatures beneath each chapter menu */
+#archive-main .n21-volume-cover {
+  display:block;
+  width:min(138px, 82%);
+  height:auto;
+  margin:20px auto 2px;
+  border:1px solid #8980bb;
+  border-radius:5px;
+  box-shadow:0 5px 14px rgba(0,0,0,.5);
+  object-fit:contain;
+}
 </style></head>
 <body align="center" background="img/lily.png">
 <div class="floating-share" id="shareBar">
@@ -169,7 +181,7 @@
 
 <!-- Rarebit archive JS populates the following sections. IDs and classes preserved. -->
 
-<aside aria-label="Browse chapters" class="n21-archive-sidebar"><section class="n21-archive-side-panel"><h2>Volume One: Robot Boy</h2><nav aria-label="Volume One: Robot Boy chapters" class="n21-archive-side-links"><a data-chapter="chapter1" href="#chapter1">The Red Rain</a><a data-chapter="chapter2" href="#chapter2">Glass</a><a data-chapter="chapter3" href="#chapter3">Snow Day</a><a data-chapter="kaijournal" href="#kaijournal">The Kai Journals</a><a data-chapter="chapter4" href="#chapter4">The Stranger</a></nav></section><section class="n21-archive-side-panel"><h2>Volume Two: Trust Falls</h2><nav aria-label="Volume Two: Trust Falls chapters" class="n21-archive-side-links"><a data-chapter="chapter5" href="#chapter5">The Voice from Below</a></nav></section></aside><div class="n21-archive-content"><div id="continue-reading-wrap" style="display:none;">
+<aside aria-label="Browse chapters" class="n21-archive-sidebar"><section class="n21-archive-side-panel"><h2>Volume One: Robot Boy</h2><nav aria-label="Volume One: Robot Boy chapters" class="n21-archive-side-links"><a data-chapter="chapter1" href="#chapter1">The Red Rain</a><a data-chapter="chapter2" href="#chapter2">Glass</a><a data-chapter="chapter3" href="#chapter3">Snow Day</a><a data-chapter="kaijournal" href="#kaijournal">The Kai Journals</a><a data-chapter="chapter4" href="#chapter4">The Stranger</a></nav><img class="n21-volume-cover" src="/img/gallery/N21-cover.jpg?v=20261010" alt="Volume One: Robot Boy cover" loading="lazy"></section><section class="n21-archive-side-panel"><h2>Volume Two: Trust Falls</h2><nav aria-label="Volume Two: Trust Falls chapters" class="n21-archive-side-links"><a data-chapter="chapter5" href="#chapter5">The Voice from Below</a></nav><img class="n21-volume-cover" src="/img/gallery/volume_02_cover.jpg" alt="Volume Two: Trust Falls cover" loading="lazy"></section></aside><div class="n21-archive-content"><div id="continue-reading-wrap" style="display:none;">
 <a href="#" id="continue-reading-btn">Continue Reading →</a>
 </div><div class="n21-archive-chapters">
 <div class="chapter1 archive-section" id="chapter1"><button class="archive-toggle" type="button">Chapter 1: The Red Rain</button></div>
