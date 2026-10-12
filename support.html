@@ -6,165 +6,83 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nocturne 21 | Support</title>
-
-  <!-- style -->
   <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
-
-  <!-- fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-
   <style>
-    /* Matches the approved Extras / Archive / About page heading. */
-    .n21-support-hero {
-      box-sizing: border-box;
-      width: min(92%, 980px);
-      margin: 20px auto 16px;
-      padding: 30px 24px 27px;
-      border: 1px solid #7870b2;
-      border-radius: 8px;
-      background: rgba(7, 6, 16, .18);
-      text-align: center;
+    .n21-support-hero{box-sizing:border-box;width:min(92%,980px);margin:20px auto 16px;padding:30px 24px 27px;border:1px solid #7870b2;border-radius:8px;background:rgba(7,6,16,.18);text-align:center}
+    .n21-support-hero-kicker{color:#bfb1ef;font:700 .77rem/1.5 "Open Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
+    .n21-support-hero h1{margin:0 0 16px!important;color:#d7caff!important;font-family:"Lacquer Regular",cursive;font-size:clamp(1.6rem,3.1vw,2.45rem)!important;line-height:1.15!important;font-weight:400;letter-spacing:.015em;text-align:center!important;position:static!important;transform:none!important;float:none!important;text-shadow:none!important}
+    .n21-support-hero p{max-width:650px;margin:0 auto!important;color:#e5e2f3!important;font:400 .92rem/1.65 "Open Sans",sans-serif;text-align:center!important}
+    /* Artwork is the complete card, including its illustrated JOIN button. */
+    #n21-support-content .n21-art-tier-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:start;width:100%;margin:24px auto;box-sizing:border-box}
+    #n21-support-content .n21-art-tier{display:block;min-width:0;text-decoration:none;border:0;background:transparent;box-shadow:none;line-height:0;transition:transform .2s ease,filter .2s ease;outline-offset:4px}
+    #n21-support-content .n21-art-tier img{display:block;width:100%;height:auto;max-width:100%;border:0;border-radius:0;box-shadow:none;object-fit:contain}
+    #n21-support-content .n21-art-tier:hover{transform:translateY(-5px);filter:drop-shadow(0 7px 11px rgba(149,110,255,.38))}
+    #n21-support-content .n21-art-tier:focus-visible{outline:3px solid #d5b9ff;border-radius:5px}
+    #n21-support-content .n21-art-tier:active{transform:translateY(-1px) scale(.99)}
+    @media(max-width:760px){
+      #n21-support-content .n21-art-tier-grid{grid-template-columns:1fr;gap:18px;max-width:510px}
+      #n21-support-content .n21-art-tier:hover{transform:none}
     }
-    .n21-support-hero-kicker {
-      color: #bfb1ef;
-      font: 700 .77rem/1.5 "Open Sans", sans-serif;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .n21-support-hero h1 {
-      margin: 0 0 16px !important;
-      color: #d7caff !important;
-      font-family: "Lacquer Regular", cursive;
-      font-size: clamp(1.6rem, 3.1vw, 2.45rem) !important;
-      line-height: 1.15 !important;
-      font-weight: 400;
-      letter-spacing: .015em;
-      text-align: center !important;
-      position: static !important;
-      transform: none !important;
-      float: none !important;
-      text-shadow: none !important;
-    }
-    .n21-support-hero p {
-      max-width: 650px;
-      margin: 0 auto !important;
-      color: #e5e2f3 !important;
-      font: 400 .92rem/1.65 "Open Sans", sans-serif;
-      text-align: center !important;
-    }
-    @media (max-width: 600px) {
-      .n21-support-hero { padding: 24px 16px; }
-    }
+    @media(max-width:600px){.n21-support-hero{padding:24px 16px}}
+    @media(prefers-reduced-motion:reduce){#n21-support-content .n21-art-tier{transition:none}}
   </style>
 </head>
-
 <body class="page-box-gap" align="center" background="img/lily.png" max-width="100%">
-
-  <!-- header -->
   <div class="writeHeader"></div>
-
-  <!-- Floating page heading, separate from the original content panel. -->
   <section class="n21-support-hero" aria-labelledby="n21-support-title">
     <div class="n21-support-hero-kicker">SUPPORT THE STORY</div>
     <h1 id="n21-support-title">Support Nocturne 21</h1>
     <p>Help keep the pages turning, the creativity flowing, and the artist sufficiently caffeinated.</p>
   </section>
-
   <div class="subPage clearfix" id="n21-support-content">
     <div class="support-page">
-      <p class="support-intro">
-        I’ve been working on <em>Nocturne 21</em> for over 22 years.
-        It started when I was a kid — and somehow, I never stopped.
-      </p>
-
-      <p>
-        Over time it’s grown with me — through sketchbooks, redesigns, rewrites, and a lot of late nights trying to get it just right.
-        It’s a story I’ve carried with me for most of my life.
-      </p>
-
-      <p>
-        If you enjoy the comic, supporting it helps me keep creating, improving, and continuing the story — and gives you a closer look at how everything comes together behind the scenes.
-      </p>
-
+      <p class="support-intro">I’ve been working on <em>Nocturne 21</em> for over 22 years. It started when I was a kid — and somehow, I never stopped.</p>
+      <p>Over time it’s grown with me — through sketchbooks, redesigns, rewrites, and a lot of late nights trying to get it just right. It’s a story I’ve carried with me for most of my life.</p>
+      <p>If you enjoy the comic, supporting it helps me keep creating, improving, and continuing the story — and gives you a closer look at how everything comes together behind the scenes.</p>
       <hr>
-
       <h2>Join the Story</h2>
-
-      <div class="tier-grid">
-        <div class="tier-card">
-          <h3>🕯️ Side Character</h3>
-          <p class="tier-price">$3</p>
-          <p>Support the comic and follow along from just outside the spotlight.</p>
-        </div>
-
-        <div class="tier-card featured">
-          <h3>🎭 Inner Circle</h3>
-          <p class="tier-price">$5</p>
-          <p>See sketches, WIPs, and the moments behind the story.</p>
-        </div>
-
-        <div class="tier-card">
-          <h3>🌑 After Hours</h3>
-          <p class="tier-price">$10</p>
-          <p>Deeper access, bonus content, and the raw creative process.</p>
-        </div>
+      <div class="n21-art-tier-grid" aria-label="Patreon membership tiers">
+        <a class="n21-art-tier" href="https://patreon.com/nocturne21" target="_blank" rel="noopener noreferrer" aria-label="Side Character — $3 per month. View on Patreon (opens in a new tab)">
+          <img src="img/tier1.png" alt="Side Character Patreon tier, $3 per month, featuring Griff and the illustrated Join Side Character button" loading="lazy">
+        </a>
+        <a class="n21-art-tier" href="https://patreon.com/nocturne21" target="_blank" rel="noopener noreferrer" aria-label="Inner Circle — $5 per month. View on Patreon (opens in a new tab)">
+          <img src="img/tier2.png" alt="Inner Circle Patreon tier, $5 per month, featuring Kai, Yoshiko and Kuro and the illustrated Join the Inner Circle button" loading="lazy">
+        </a>
+        <a class="n21-art-tier" href="https://patreon.com/nocturne21" target="_blank" rel="noopener noreferrer" aria-label="After Hours — $10 per month. View on Patreon (opens in a new tab)">
+          <img src="img/tier3.png" alt="After Hours Patreon tier, $10 per month, featuring Kai with coffee and the illustrated Join After Hours button" loading="lazy">
+        </a>
       </div>
-
       <div class="support-cta">
         <p>Want to be part of it?</p>
-        <a href="https://patreon.com/nocturne21" target="_blank">
-          Support on Patreon →
-        </a>
+        <a href="https://patreon.com/nocturne21" target="_blank" rel="noopener noreferrer">Support on Patreon →</a>
       </div>
     </div>
   </div>
-
-  <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+  <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
   <script>
-    kofiWidgetOverlay.draw('nocturne21', {
-      'type': 'floating-chat',
-      'floating-chat.donateButton.text': 'Coffee',
-      'floating-chat.donateButton.background-color': '#5D61AB',
-      'floating-chat.donateButton.text-color': '#fff'
-    });
+    if(window.kofiWidgetOverlay){kofiWidgetOverlay.draw('nocturne21',{'type':'floating-chat','floating-chat.donateButton.text':'Coffee','floating-chat.donateButton.background-color':'#5D61AB','floating-chat.donateButton.text-color':'#fff'});}
   </script>
-
-  <!-- footer -->
   <div class="writeFooter"></div>
-
-  <script>
-    document.querySelectorAll("img").forEach(img => {
-      img.loading = "lazy";
-    });
-  </script>
-
+  <script>document.querySelectorAll('img').forEach(img=>{img.loading='lazy';});</script>
   <script src="js/comic_header.js" defer></script>
   <script src="js/comic_footer.js" defer></script>
   <script src="/js/n21-analytics.js"></script>
-
-  <div id='webcomicwebring' align="center">
-    <script type="text/javascript" src="https://webcomicring.org/js/comicring-variables.js"></script>
-    <script type="text/javascript" src="https://webcomicring.org/js/comicring-widget.js"></script>
+  <div id="webcomicwebring" align="center">
+    <script src="https://webcomicring.org/js/comicring-variables.js"></script>
+    <script src="https://webcomicring.org/js/comicring-widget.js"></script>
   </div>
-
   <script>
-    /* Keep the new heading aligned with the existing content panel. */
-    (function () {
-      const hero = document.querySelector('.n21-support-hero');
-      const content = document.getElementById('n21-support-content');
-      if (!hero || !content) return;
-      function syncWidth() {
-        const width = content.getBoundingClientRect().width;
-        if (width > 0) hero.style.width = width + 'px';
-      }
-      syncWidth();
-      window.addEventListener('load', syncWidth);
-      window.addEventListener('resize', syncWidth, { passive: true });
-      if (window.ResizeObserver) new ResizeObserver(syncWidth).observe(content);
+    (function(){
+      const hero=document.querySelector('.n21-support-hero');
+      const content=document.getElementById('n21-support-content');
+      if(!hero||!content)return;
+      function syncWidth(){const width=content.getBoundingClientRect().width;if(width>0)hero.style.width=width+'px';}
+      syncWidth();window.addEventListener('load',syncWidth);window.addEventListener('resize',syncWidth,{passive:true});
+      if(window.ResizeObserver)new ResizeObserver(syncWidth).observe(content);
     })();
   </script>
 </body>
