@@ -36,12 +36,14 @@
       margin-left:auto!important;
       margin-right:auto!important;
     }
-    /* Keep the prose at the original comfortable reading width. */
+    /* Let the introduction relate visually to the wider artwork without stretching across the whole panel. */
     #n21-support-content .support-page > p,
     #n21-support-content .support-page > hr,
     #n21-support-content .support-page > h2,
     #n21-support-content .support-cta{
-      max-width:650px;
+      max-width:900px;
+      width:100%;
+      box-sizing:border-box;
       margin-left:auto!important;
       margin-right:auto!important;
     }
@@ -53,7 +55,11 @@
     #n21-support-content .n21-art-tier:focus-visible{outline:3px solid #d5b9ff;border-radius:5px}
     #n21-support-content .n21-art-tier:active{transform:translateY(-1px) scale(.99)}
     @media(max-width:760px){
-      #n21-support-content .n21-art-tier-grid{grid-template-columns:1fr;gap:18px;width:min(510px,calc(100vw - 32px));max-width:510px;padding:12px}
+      body #n21-support-content.subPage{width:calc(100% - 20px)!important;padding-left:12px!important;padding-right:12px!important;}
+      body #n21-support-content.subPage > .support-page{width:100%!important;max-width:100%!important;padding-left:0!important;padding-right:0!important;}
+      #n21-support-content .n21-art-tier-grid{grid-template-columns:minmax(0,1fr);gap:18px;width:100%!important;max-width:510px!important;margin:24px auto!important;padding:12px;justify-items:center;left:auto!important;right:auto!important;}
+      #n21-support-content .n21-art-tier{width:100%;max-width:460px;margin:0 auto!important;justify-self:center;float:none!important;position:relative;left:auto!important;right:auto!important;}
+      #n21-support-content .n21-art-tier img{width:100%;margin:0 auto!important;}
       #n21-support-content .n21-art-tier:hover{transform:none}
     }
     @media(max-width:600px){.n21-support-hero{padding:24px 16px}}
