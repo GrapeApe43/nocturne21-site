@@ -16,8 +16,26 @@
     .n21-support-hero-kicker{color:#bfb1ef;font:700 .77rem/1.5 "Open Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
     .n21-support-hero h1{margin:0 0 16px!important;color:#d7caff!important;font-family:"Lacquer Regular",cursive;font-size:clamp(1.6rem,3.1vw,2.45rem)!important;line-height:1.15!important;font-weight:400;letter-spacing:.015em;text-align:center!important;position:static!important;transform:none!important;float:none!important;text-shadow:none!important}
     .n21-support-hero p{max-width:650px;margin:0 auto!important;color:#e5e2f3!important;font:400 .92rem/1.65 "Open Sans",sans-serif;text-align:center!important}
+    /* Widen the actual content panel so the artwork cannot be clipped. */
+    body #n21-support-content.subPage{
+      box-sizing:border-box!important;
+      width:min(1360px,calc(100% - 32px))!important;
+      max-width:1360px!important;
+      margin-left:auto!important;
+      margin-right:auto!important;
+      float:none!important;
+    }
+    /* Keep the prose at the original comfortable reading width. */
+    #n21-support-content .support-page > p,
+    #n21-support-content .support-page > hr,
+    #n21-support-content .support-page > h2,
+    #n21-support-content .support-cta{
+      max-width:650px;
+      margin-left:auto!important;
+      margin-right:auto!important;
+    }
     /* Artwork is the complete card, including its illustrated JOIN button. */
-    #n21-support-content .n21-art-tier-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start;width:min(1320px,calc(100vw - 32px));max-width:none;position:relative;left:50%;transform:translateX(-50%);margin:24px 0;box-sizing:border-box;background:#050407;padding:16px;border-radius:4px}
+    #n21-support-content .n21-art-tier-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start;width:100%;max-width:1320px;position:static;transform:none;margin:24px auto;box-sizing:border-box;background:#050407;padding:16px;border-radius:4px}
     #n21-support-content .n21-art-tier{display:block;min-width:0;text-decoration:none;border:0;background:transparent;box-shadow:none;line-height:0;transition:transform .2s ease,filter .2s ease;outline-offset:4px}
     #n21-support-content .n21-art-tier img{display:block;width:100%;height:auto;max-width:100%;border:0;border-radius:0;box-shadow:none;object-fit:contain}
     #n21-support-content .n21-art-tier:hover{transform:translateY(-5px);filter:drop-shadow(0 7px 11px rgba(149,110,255,.38))}
@@ -80,7 +98,7 @@
       const hero=document.querySelector('.n21-support-hero');
       const content=document.getElementById('n21-support-content');
       if(!hero||!content)return;
-      function syncWidth(){const width=content.getBoundingClientRect().width;if(width>0)hero.style.width=width+'px';}
+      function syncWidth(){const width=content.getBoundingClientRect().width;if(width>0)hero.style.width=Math.min(width,980)+'px';}
       syncWidth();window.addEventListener('load',syncWidth);window.addEventListener('resize',syncWidth,{passive:true});
       if(window.ResizeObserver)new ResizeObserver(syncWidth).observe(content);
     })();
