@@ -25,6 +25,17 @@
       margin-right:auto!important;
       float:none!important;
     }
+    /* The shared stylesheet constrains .support-page to a narrow column.
+       Release that constraint so the three artwork cards can fill the panel. */
+    body #n21-support-content.subPage > .support-page{
+      box-sizing:border-box!important;
+      width:100%!important;
+      max-width:none!important;
+      min-width:0!important;
+      float:none!important;
+      margin-left:auto!important;
+      margin-right:auto!important;
+    }
     /* Keep the prose at the original comfortable reading width. */
     #n21-support-content .support-page > p,
     #n21-support-content .support-page > hr,
