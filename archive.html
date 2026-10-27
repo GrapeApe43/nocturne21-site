@@ -126,8 +126,9 @@
   object-fit:contain;
 }
 
-/* Tablet archive repair: keep the desktop layout intact. */
-@media (min-width: 721px) and (max-width: 1100px) {
+/* Tablet archive repair: portrait and landscape iPads; desktop stays unchanged. */
+@media (min-width: 721px) and (max-width: 1100px),
+       (min-width: 1101px) and (max-width: 1500px) and (hover: none) and (pointer: coarse) {
   #archive-main.n21-archive-layout {
     grid-template-columns: minmax(0, 1fr);
     gap: 16px;
