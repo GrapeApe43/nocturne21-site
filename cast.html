@@ -336,6 +336,37 @@
   }
 }
 
+/* Desktop tab sizing: give handmade artwork real layout width, not just scale. */
+@media (min-width: 801px) {
+  .n21-cast-layout .n21-cast-tabs {
+    width: 184px;
+    flex: 0 0 184px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 0;
+    gap: 10px;
+    overflow: visible;
+  }
+  .n21-cast-tabs .n21-cast-tab {
+    box-sizing: border-box;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom {
+    width: 100%;
+    min-height: 0;
+    transform: none;
+    transform-origin: center;
+  }
+  .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active {
+    transform: translateX(2px);
+  }
+  .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover,
+  .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active:hover {
+    transform: translateX(5px) scale(1.045) rotate(-1deg);
+  }
+}
+
 /* Floating Cast heading; notebook bio styling above is untouched. */
 .n21-cast-hero {
   box-sizing: border-box;
