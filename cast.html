@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nocturne 21 Characters & Cast | Sci-Fi Drama Webcomic</title>
+  <title>Nocturne 21 Cast | Sci-Fi Drama Webcomic</title>
 
 <meta name="description"
       content="Meet the characters of Nocturne 21, a sci-fi drama webcomic by April Ferrero, including Kai, Kuro Shimizu, Yoshiko, Shingen, Kiri, and other mysterious figures.">
@@ -18,14 +18,14 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nocturne21.com/cast.html">
-<meta property="og:title" content="Nocturne 21 Characters & Cast">
+<meta property="og:title" content="Nocturne 21 Cast">
 <meta property="og:description"
       content="Meet the characters of Nocturne 21, a sci-fi drama webcomic by April Ferrero.">
 <meta property="og:image" content="https://nocturne21.com/img/promo-art.jpg">
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Nocturne 21 Characters & Cast">
+<meta name="twitter:title" content="Nocturne 21 Cast">
 <meta name="twitter:description"
       content="Meet the characters of Nocturne 21, a sci-fi drama webcomic by April Ferrero.">
 <meta name="twitter:image" content="https://nocturne21.com/img/promo-art.jpg">
@@ -34,7 +34,7 @@
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Nocturne 21 Characters & Cast",
+  "name": "Nocturne 21 Cast",
   "url": "https://nocturne21.com/cast.html",
   "description": "Meet the characters of Nocturne 21, a sci-fi drama webcomic by April Ferrero.",
   "about": {
@@ -412,6 +412,103 @@
   .n21-cast-hero {
     width: min(92%, 1000px);
   }
+
+/* CAST LAYOUT PREVIEW — Extras-style sidebar and scrapbook display */
+body .n21-cast-page.subPage {
+  box-sizing: border-box !important;
+  width: min(1220px, calc(100% - 28px)) !important;
+  max-width: 1220px !important;
+  margin: 20px auto 28px !important;
+  float: none !important;
+}
+.n21-cast-page .n21-cast-wrap { max-width: none; width: 100%; box-sizing: border-box; }
+.n21-cast-page .n21-cast-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
+  max-width: none;
+  margin: 0;
+}
+.n21-cast-board {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 20px 14px 22px;
+  border: 1px solid rgba(172, 155, 221, .55);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(177, 151, 113, .13), transparent 55%),
+    repeating-linear-gradient(25deg, rgba(255,255,255,.018) 0 2px, transparent 2px 8px),
+    linear-gradient(135deg, #302a36, #1c1c2a 65%, #27212f);
+  box-shadow: inset 0 0 25px rgba(0,0,0,.35), 0 10px 22px rgba(0,0,0,.25);
+}
+.n21-board-heading {
+  font: 400 1.12rem/1.3 'Lacquer Regular', cursive;
+  color: #e9d9f5;
+  text-align: center;
+  letter-spacing: .03em;
+  margin-bottom: 15px;
+}
+.n21-cast-page .n21-cast-tabs {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin: 0;
+  padding: 5px 7px 10px;
+  gap: 12px;
+  overflow: visible;
+}
+.n21-cast-page .n21-cast-tabs .n21-cast-tab { width: 100%; box-sizing: border-box; flex: none; }
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom {
+  width: 100%; min-height: 0; padding: 0; border: 0;
+  background: none; box-shadow: none; transform: none;
+}
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover,
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active:hover {
+  transform: translateY(-3px) scale(1.045) rotate(-1deg);
+  filter: drop-shadow(0 7px 9px rgba(170,145,232,.36));
+}
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active {
+  filter: drop-shadow(0 0 8px rgba(182,169,232,.45));
+}
+.n21-cast-main { min-width: 0; }
+.n21-cast-main .n21-cast-hero {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 0 14px !important;
+  padding: 22px 16px !important;
+}
+.n21-cast-main .n21-cast-hero h1 { font-size: clamp(1.55rem, 2.7vw, 2.25rem) !important; }
+.n21-cast-main .n21-story-links {
+  margin: 0 0 14px;
+  text-align: center;
+}
+.n21-cast-main #characterDisplay.n21-cast-display { width: 100%; box-sizing: border-box; }
+@media (max-width: 800px) {
+  .n21-cast-page .n21-cast-layout { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .n21-cast-main { display: contents; }
+  .n21-cast-main .n21-cast-hero { order: 0; }
+  .n21-cast-board { order: 1; padding: 10px; }
+  .n21-cast-main .n21-story-links { order: 2; }
+  .n21-cast-main #characterDisplay.n21-cast-display { order: 3; }
+  .n21-board-heading { font-size: 1rem; margin-bottom: 6px; }
+  .n21-cast-page .n21-cast-tabs {
+    flex-direction: row; overflow-x: auto; overflow-y: hidden;
+    padding: 9px 5px 14px; gap: 12px;
+  }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab { width: 145px; flex: 0 0 145px; }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom { width: 145px; flex: 0 0 145px; }
+}
+@media (max-width: 480px) {
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab,
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom { width: 125px; flex-basis: 125px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover { transform: none; }
+}
+
   </style>
 </head>
 
@@ -466,21 +563,11 @@
 
   <div class="writeHeader"></div>
 
-  <section class="n21-cast-hero" aria-labelledby="n21-cast-heading">
-    <div class="n21-cast-hero-kicker">MEET THE CHARACTERS</div>
-    <h1 id="n21-cast-heading">Nocturne 21 Characters &amp; Cast</h1>
-    <p>Select a character tab to explore their scrapbook profile!</p>
-  </section>
-
-  <div class="subPage clearfix" align="left">
+  <div class="subPage clearfix n21-cast-page" align="left">
     <div class="n21-cast-wrap">
-      <p class="n21-story-links">
-  New to the story? <a href="index.html">Read Nocturne 21</a>,
-  learn more <a href="about.html">about the comic</a>,
-  or browse the <a href="archive.html">complete comic archive</a>.
-</p>
-
       <div class="n21-cast-layout">
+        <aside class="n21-cast-board" aria-label="Character scrapbook navigation">
+          <div class="n21-board-heading">YOSHIKO'S CAST FILES</div>
         <div class="n21-cast-tabs" id="thumbContainer" aria-label="Choose a character">
           <button class="n21-cast-tab n21-cast-tab-custom active" type="button" data-index="0" aria-label="Show Kai" aria-pressed="true"><img class="n21-custom-tab-art" src="img/characters/button-kai.png" alt="" loading="lazy"></button>
           <button class="n21-cast-tab" type="button" data-index="1" aria-label="Show Kuro" aria-pressed="false"><span class="n21-tab-photo"><img src="img/cast/cast-kuro.png" alt="" loading="lazy"></span><span class="n21-tab-label">Kuro</span></button>
@@ -490,16 +577,28 @@
           <button class="n21-cast-tab" type="button" data-index="5" aria-label="Show Creepy Dream Lady" aria-pressed="false"><span class="n21-tab-photo"><img src="img/cast/cast-marunin.png" alt="" loading="lazy"></span><span class="n21-tab-label">Dream Lady</span></button>
           <button class="n21-cast-tab" type="button" data-index="6" aria-label="Show Stranger" aria-pressed="false"><span class="n21-tab-photo"><img src="img/cast/cast-riyu.png" alt="" loading="lazy"></span><span class="n21-tab-label">Stranger</span></button>
         </div>
+        </aside>
+        <main class="n21-cast-main">
+  <section class="n21-cast-hero" aria-labelledby="n21-cast-heading">
+    <div class="n21-cast-hero-kicker">MEET THE CHARACTERS</div>
+    <h1 id="n21-cast-heading">Nocturne 21 Cast</h1>
+    <p>Select a character tab to explore their scrapbook profile!</p>
+  </section>
+      <p class="n21-story-links">
+  New to the story? <a href="index.html">Read Nocturne 21</a>,
+  learn more <a href="about.html">about the comic</a>,
+  or browse the <a href="archive.html">complete comic archive</a>.
+</p>
         <div class="n21-cast-display" id="characterDisplay">
           <img class="n21-cast-art" id="charImage" src="img/characters/profile-kai.jpg" alt="Kai's illustrated scrapbook profile" fetchpriority="high">
           <div class="n21-cast-fallback-bio" id="fallbackBio" hidden></div>
           <p class="n21-cast-visually-hidden" id="charAccessibleBio"></p>
         </div>
+        </main>
       </div>
     </div>
   </div>
 
-  
   <div class="writeFooter"></div>
 
 
@@ -611,27 +710,7 @@
 <script type="text/javascript" src="https://webcomicring.org/js/comicring-widget.js"></script>
 </div>  
   
-<script>
-/* Header alignment only. Does not touch notebook styling or character logic. */
-(function () {
-  const hero = document.querySelector(".n21-cast-hero");
-  const cast = document.querySelector(".n21-cast-layout");
-  if (!hero || !cast) return;
-  function alignCastHeader() {
-    const bounds = cast.getBoundingClientRect();
-    if (!bounds.width) return;
-    hero.style.boxSizing = "border-box";
-    hero.style.width = bounds.width + "px";
-    hero.style.maxWidth = "calc(100% - 24px)";
-    hero.style.marginLeft = Math.max(12, bounds.left + window.scrollX) + "px";
-    hero.style.marginRight = "0";
-  }
-  alignCastHeader();
-  window.addEventListener("load", alignCastHeader);
-  window.addEventListener("resize", alignCastHeader, {passive:true});
-  if (window.ResizeObserver) new ResizeObserver(alignCastHeader).observe(cast);
-})();
-</script>
+
 </body>
 </html>
 
