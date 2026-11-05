@@ -131,464 +131,30 @@
 
   <style>
 
-@font-face {
-  font-family: "Ubbing";
-  src: url("fonts/Ubbing-Regular.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+/* Cast scrapbook gallery: finished artwork, no overlays or cropping. */
+.n21-cast-wrap { max-width: 1000px; margin: 0 auto; }
+.n21-cast-layout { display: flex; align-items: flex-start; max-width: 1000px; margin: 20px auto 0; }
+.n21-cast-tabs { width: 88px; flex: 0 0 88px; display: flex; flex-direction: column; gap: 8px; padding-top: 8px; margin-right: -8px; position: relative; z-index: 2; }
+.n21-cast-tab { display: block; width: 100%; padding: 0; border: 2px solid transparent; border-right: 0; border-radius: 14px 0 0 14px; cursor: pointer; overflow: hidden; background: rgba(90,88,144,.55); transition: transform .2s ease, filter .2s ease; }
+.n21-cast-tab img { width: 100%; height: auto; display: block; }
+.n21-cast-tab:hover { transform: translateX(-4px); filter: brightness(1.12); }
+.n21-cast-tab.active { transform: translateX(-6px); border-color: #b6a9e8; filter: brightness(1.07); }
+.n21-cast-tab:focus-visible { outline: 3px solid #8ee9ed; outline-offset: 3px; }
+#characterDisplay.n21-cast-display { flex: 1; min-width: 0; padding: 12px; border: 1px solid rgba(170,155,222,.5); border-radius: 12px; background: rgba(7,9,22,.78); box-shadow: 0 12px 28px rgba(0,0,0,.3); }
+.n21-cast-art { display: block; width: 100%; height: auto; max-width: 100%; border-radius: 5px; }
+.n21-cast-fallback-bio { padding: 18px 16px 6px; color: #e5e2f3; line-height: 1.65; }
+.n21-cast-fallback-bio h2 { color: #e9d9f5; margin: 0 0 8px; }
+.n21-cast-fallback-bio p { margin: 0; }
+.n21-cast-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+@media (max-width: 800px) {
+  .n21-cast-layout { flex-direction: column; gap: 12px; }
+  .n21-cast-tabs { width: 100%; flex: none; flex-direction: row; gap: 10px; margin: 0; padding: 3px 2px 8px; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; }
+  .n21-cast-tab { width: 70px; flex: 0 0 70px; border: 2px solid transparent; border-radius: 10px; }
+  .n21-cast-tab.active, .n21-cast-tab:hover { transform: none; border-color: #b6a9e8; }
+  #characterDisplay.n21-cast-display { width: 100%; box-sizing: border-box; padding: 8px; }
 }
-    
-    .n21-cast-wrap {
-      --n21-panel-color: #000;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .n21-cast-layout {
-      display: flex;
-      gap: 0;
-      align-items: stretch;
-      max-width: 1000px;
-      margin: 20px auto 0;
-    }
-
-    .n21-cast-tabs {
-  width: 88px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  overflow-y: auto;
-  overflow-x: visible;
-  padding-top: 8px;
-  margin-right: -8px;
-  scrollbar-width: none;
-  position: relative;
-  z-index: 3;
-}
-
-    .n21-cast-tabs::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-    }
-
-    .n21-cast-tab {
-      width: 100%;
-      display: block;
-      box-sizing: border-box;
-      cursor: pointer;
-      border: 2px solid transparent;
-      border-right: none;
-      border-radius: 14px 0 0 14px;
-      position: relative;
-      z-index: 1;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-    }
-
-    .n21-cast-tab:hover {
-      transform: translateX(-4px);
-      filter: brightness(1.06);
-    }
-
-   .n21-cast-tab.active {
-  transform: translateX(-6px);
- 
-  z-index: 4;
-}
-
-.n21-cast-tab.active::after {
-  content: "";
-  position: absolute;
-  top: -2px;
-  right: -10px;
-  width: 12px;
-  height: calc(100% + 4px);
-  background: inherit;
-  z-index: 5;
-}
-
-#characterDisplay.n21-cast-display {
-  flex: 1;
-  min-width: 0;
-  min-height: 620px;
-  border: none !important;
-  outline: none !important;
-  border-left: none !important;
-  border-radius: 12px 12px 12px 12px;
-  background: var(--n21-panel-color) !important;
-  padding: 22px;
-  box-shadow: 0 0 18px rgba(0,0,0,0.2);
-}
-
-    .n21-cast-image-wrap {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: 560px;
-    }
-
-    .n21-cast-image {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
-
-.n21-cast-bio {
-  position: absolute; top: 4%; left: 4%; width: 42%; max-width: 365px;
-  padding: 20px 20px 20px 32px; border: none; border-radius: 0;
-  color: #171313 !important;
-  clip-path: polygon(
-    /* top: small buckle where a crease reaches the edge */
-    6% 1%,22% 0%,37% .6%,43% 1.5%,47% .2%,51% .9%,58% 0%,76% .8%,94% 0%,
-    /* right: a few localized crease dents */
-    99% 2%,100% 20%,99.2% 24%,100% 27%,99.4% 47%,98.6% 50%,100% 53%,
-    100% 70%,99.1% 78%,100% 81%,99% 97%,
-    /* bottom: slight crumple at a fold endpoint */
-    95% 99%,76% 100%,64% 99.2%,60% 100%,56% 98.8%,54% 99.4%,31% 100%,8% 99%,
-    /* torn spiral side */
-    6% 96%,8% 93%,4% 90%,7% 89%,9% 87%,7% 85%,4% 84%,9% 81%,8% 78%,
-    3% 76%,7% 75%,9% 73%,7% 71%,4% 70%,6% 67%,10% 65%,8% 62%,
-    4% 59%,7% 58%,9% 56%,7% 54%,4% 53%,9% 49%,8% 46%,
-    3% 43%,7% 42%,9% 40%,7% 38%,4% 37%,6% 33%,10% 30%,8% 27%,
-    4% 24%,7% 23%,9% 21%,7% 19%,4% 18%,9% 15%,7% 11%,3% 8%,6% 4%
-  );
-  background: repeating-linear-gradient(to bottom,
-    rgba(247,244,233,.97) 0px,rgba(247,244,233,.97) 27px,
-    rgba(95,145,195,.38) 28px,rgba(247,244,233,.97) 29px);
-  box-shadow: none;
-  filter: drop-shadow(2px 3px 1px rgba(0,0,0,.18)) drop-shadow(7px 10px 8px rgba(0,0,0,.24));
-  transform: rotate(-0.7deg); transform-origin: center;
-  transition: opacity .25s ease, transform .25s ease;
-}
-
-/* The binding holes are now open tears cut into the left edge itself,
-   so the artwork/background behind the paper shows through. */
-.n21-cast-bio::before { content: none; }
-
-/* Red margin, stronger folds, wrinkles, grime, and edge wear */
-.n21-cast-bio::after {
-  content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
-  background:
-    /* extra stress where folds meet the outer edges */
-    radial-gradient(ellipse at 46% 1%,rgba(58,40,28,.18),transparent 5%),
-    radial-gradient(ellipse at 99% 50%,rgba(58,40,28,.16),transparent 5%),
-    radial-gradient(ellipse at 60% 99%,rgba(58,40,28,.15),transparent 5%),
-    radial-gradient(ellipse at 99% 79%,rgba(255,255,255,.14),transparent 4%),
-    linear-gradient(to right,transparent 0 30px,rgba(188,63,76,.48) 30px 32px,transparent 32px),
-    linear-gradient(71deg,transparent 0 45.5%,rgba(74,54,40,.15) 46.2%,rgba(52,37,28,.11) 46.8%,rgba(255,255,255,.22) 47.5%,transparent 48.4%),
-    linear-gradient(119deg,transparent 0 61%,rgba(62,44,32,.13) 61.8%,rgba(255,255,255,.19) 62.6%,transparent 63.5%),
-    linear-gradient(103deg,transparent 0 18%,rgba(66,46,32,.10) 19%,rgba(255,255,255,.16) 20%,transparent 21%),
-    linear-gradient(84deg,transparent 0 78%,rgba(64,45,32,.10) 79%,rgba(255,255,255,.15) 80%,transparent 81%),
-    radial-gradient(ellipse at 10% 10%,rgba(75,48,31,.20),transparent 21%),
-    radial-gradient(ellipse at 89% 74%,rgba(71,47,31,.15),transparent 24%),
-    radial-gradient(ellipse at 47% 98%,rgba(66,43,29,.13),transparent 19%),
-    linear-gradient(to right,rgba(58,39,27,.10),transparent 7%,transparent 93%,rgba(58,39,27,.08)),
-    linear-gradient(to bottom,rgba(58,39,27,.08),transparent 7%,transparent 92%,rgba(58,39,27,.10));
-  mix-blend-mode:multiply;
-}
-
-/* character name */
-.n21-cast-name {
-  position: relative;
-  z-index: 2;
-
-  margin: 0 0 8px 0;
-  padding-left: 16px;
-
-  color: #0d0b0b !important;
-  text-shadow: none !important;
-
-  font-family:
-    "Lacquer Regular",
-    "Lacquer",
-    "Patrick Hand",
-    cursive !important;
-
-  font-size: 1.65rem;
-  line-height: 1;
-  letter-spacing: 0.035em;
-
-  transform:
-    rotate(-1.8deg)
-    skewX(-2deg);
-}
-
-.n21-cast-text {
-  position: relative;
-  z-index: 2;
-
-  margin: 0;
-  padding-left: 16px;
-
-  color: #171212 !important;
-  text-shadow: none !important;
-
-font-family:
-  "Ubbing",
-  "Patrick Hand",
-  cursive !important;
-
-font-size: 21px;
-line-height: 1.55;
-letter-spacing: 0.025em;
-word-spacing: 0.06em;
-
-  text-align: left;
-
-  transform: rotate(0.25deg);
-}
-
-
-
-
-
-
-    /* Mobile scrapbook dossier: desktop composition remains unchanged. */
-    .n21-cast-mobile-photo { display: none; }
-
-    @media (max-width: 800px) {
-      .n21-cast-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-      .n21-cast-tabs {
-        width: 100%;
-        flex-direction: row;
-        gap: 10px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        margin-right: 0;
-        padding-top: 0;
-      }
-      .n21-cast-tab {
-        width: 70px;
-        flex-shrink: 0;
-        border-radius: 10px;
-        transform: none !important;
-      }
-      .n21-cast-tab.active::after { display: none; }
-      #characterDisplay.n21-cast-display {
-        min-height: 0;
-        border: none !important;
-        outline: none !important;
-        border-radius: 15px;
-        padding: 20px 10px 10px;
-        background: var(--n21-panel-color) !important;
-      }
-      .n21-cast-image-wrap {
-        min-height: 0;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      /* Hide the full-body artwork on mobile, not on desktop. */
-      .n21-cast-image { display: none; }
-      .n21-cast-mobile-photo {
-        display: block;
-        position: relative;
-        z-index: 3;
-        width: min(58%, 215px);
-        box-sizing: border-box;
-        margin: 2px auto -12px;
-        padding: 8px 8px 23px;
-        background: #f4eee4;
-        border: 1px solid rgba(80, 60, 55, .22);
-        box-shadow: 4px 9px 17px rgba(0,0,0,.32);
-        transform: rotate(-4deg);
-        transition: opacity .25s ease;
-      }
-      .n21-cast-mobile-photo img {
-        display: block;
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-        object-position: center top;
-        border: 1px solid rgba(0,0,0,.12);
-      }
-      /* Custom artwork: two taped corners, using img/tape.png. */
-      .n21-cast-mobile-photo::before,
-      .n21-cast-mobile-photo::after {
-        content: "";
-        position: absolute;
-        top: -16px;
-        width: 66%;
-        height: 76px;
-        z-index: 5;
-        pointer-events: none;
-        background: url("img/tape.png") center / contain no-repeat;
-        opacity: .94;
-        filter: drop-shadow(1px 2px 2px rgba(0,0,0,.22));
-      }
-      .n21-cast-mobile-photo::before { left: -28%; transform: rotate(28deg); }
-      .n21-cast-mobile-photo::after { right: -28%; transform: rotate(-28deg); }
-
-      /* Artist-made ink splatter behind the photo and notebook. */
-      #characterDisplay.n21-cast-display {
-        position: relative;
-        isolation: isolate;
-        overflow: hidden; /* Crop oversized ink at the rounded panel edges. */
-      }
-      #characterDisplay.n21-cast-display::before {
-        content: "";
-        position: absolute;
-        top: -90px;
-        left: -38%;
-        width: 176%;
-        height: 680px;
-        z-index: 0;
-        pointer-events: none;
-        border-radius: inherit;
-        background-image: url("img/profile-splatter.png");
-        background-position: center top;
-        background-size: contain;
-        background-repeat: no-repeat;
-        mix-blend-mode: multiply;
-        opacity: .85;
-      }
-      /* Layer the original splatter at the bottom AND along both notebook sides.
-         All three layers use the artist's existing image, behind the paper. */
-      #characterDisplay.n21-cast-display::after {
-        content: "";
-        position: absolute;
-        left: -8%;
-        right: -8%;
-        bottom: -35px;
-        height: 78%;
-        z-index: 0;
-        pointer-events: none;
-        background-image:
-          url("img/profile-splatter.png"),
-          url("img/profile-splatter.png"),
-          url("img/profile-splatter.png");
-        background-repeat: no-repeat;
-        /* Narrow, offset impressions reach the blank left/right margins. */
-        background-size: 100% 370px, 88% 80%, 88% 74%;
-        background-position:
-          center bottom -65px,
-          left -145px center,
-          right -145px bottom 45px;
-        opacity: .58;
-        mix-blend-mode: multiply;
-      }
-      /* Keep both the portrait and notebook above the full-panel splatter. */
-      #characterDisplay .n21-cast-image-wrap {
-        position: relative;
-        z-index: 1;
-      }
-      .n21-cast-bio {
-        position: relative;
-        top: auto;
-        bottom: auto;
-        left: auto;
-        box-sizing: border-box;
-        width: 100%;
-        max-width: none;
-        margin: 0 auto 0;
-        padding: 32px 15px 25px 25px;
-      }
-      /* First-pass artist-made torn paper: use the PNG alpha as the edge mask.
-         Keeps the dynamic paper colors, ruled lines and biography text. */
-      .n21-cast-bio {
-        clip-path: none;
-        -webkit-mask-image: url("img/paper.png");
-        mask-image: url("img/paper.png");
-        /* JavaScript builds a height-aware mask from the original paper.
-           These fallback rules apply until the image finishes loading. */
-        -webkit-mask-size: 100% 100%;
-        mask-size: 100% 100%;
-        -webkit-mask-repeat: no-repeat;
-        mask-repeat: no-repeat;
-        -webkit-mask-position: center;
-        mask-position: center;
-        padding: 34px 18px 34px 43px;
-      }
-      /* Remove the old synthetic torn-edge and wrinkle overlay on mobile. */
-      .n21-cast-bio::after { content: none; }
-      .n21-cast-name { font-size: 1.45rem; }
-      .n21-cast-text {
-        font-size: 19px;
-        line-height: 1.55;
-        overflow-wrap: break-word;
-      }
-    }
-
-
-/* ========================================
-   DESKTOP CAST: ORIGINAL COMPOSITION, NEW PAPER + INK
-   Mobile scrapbook styling stays untouched.
-   ======================================== */
-@media (min-width: 801px) {
-  #characterDisplay.n21-cast-display {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-  }
-  #characterDisplay.n21-cast-display::before {
-    content: "";
-    position: absolute;
-    inset: -7% -8%;
-    z-index: 0;
-    pointer-events: none;
-    background: url("img/profile-splatter.png") center / cover no-repeat;
-    mix-blend-mode: multiply;
-    opacity: .66;
-  }
-  #characterDisplay.n21-cast-display::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background:
-      url("img/profile-splatter.png") left -125px bottom -95px / 65% auto no-repeat,
-      url("img/profile-splatter.png") right -150px top -80px / 64% auto no-repeat;
-    mix-blend-mode: multiply;
-    opacity: .30;
-  }
-  #characterDisplay .n21-cast-image-wrap {
-    position: relative;
-    z-index: 1;
-  }
-  /* Retain original full-body artwork and its desktop dimensions. */
-  #characterDisplay .n21-cast-image { display: block; }
-  #characterDisplay .n21-cast-mobile-photo { display: none; }
-  /* Larger, more readable desktop notebook; mobile rules are unchanged. */
-  #characterDisplay .n21-cast-bio {
-    left: 3%;
-    top: 4%;
-    width: 56%;
-    max-width: 490px;
-    box-sizing: border-box;
-  }
-  #characterDisplay .n21-cast-name {
-    font-size: 2rem;
-    line-height: 1.1;
-  }
-  #characterDisplay .n21-cast-text {
-    font-size: 24px;
-    line-height: 1.48;
-  }
-  /* Keep the existing handmade torn-paper mask. */
-  #characterDisplay .n21-cast-bio {
-    clip-path: none;
-    -webkit-mask-image: url("img/paper.png");
-    mask-image: url("img/paper.png");
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
-    padding: 28px 20px 28px 40px;
-  }
-  #characterDisplay .n21-cast-bio::after { content: none; }
-}
+@media (max-width: 480px) { .n21-cast-tab { width: 60px; flex-basis: 60px; } #characterDisplay.n21-cast-display { padding: 5px; } }
+@media (prefers-reduced-motion: reduce) { .n21-cast-tab { transition: none; } }
 
 /* Floating Cast heading; notebook bio styling above is untouched. */
 .n21-cast-hero {
@@ -692,7 +258,7 @@ word-spacing: 0.06em;
   <section class="n21-cast-hero" aria-labelledby="n21-cast-heading">
     <div class="n21-cast-hero-kicker">MEET THE CHARACTERS</div>
     <h1 id="n21-cast-heading">Nocturne 21 Characters &amp; Cast</h1>
-    <p>Click on a character image to read their full profile!</p>
+    <p>Select a character tab to explore their scrapbook profile!</p>
   </section>
 
   <div class="subPage clearfix" align="left">
@@ -704,28 +270,19 @@ word-spacing: 0.06em;
 </p>
 
       <div class="n21-cast-layout">
-        <div class="n21-cast-tabs" id="thumbContainer">
-          <img class="n21-cast-tab active" src="img/cast/cast-kai.png" data-index="0" alt="Kai tab">
-          <img class="n21-cast-tab" src="img/cast/cast-kuro.png" data-index="1" alt="Kuro tab">
-          <img class="n21-cast-tab" src="img/cast/cast-yosh.png" data-index="2" alt="Yoshiko tab">
-          <img class="n21-cast-tab" src="img/cast/cast-shin.png" data-index="3" alt="Shingen tab">
-          <img class="n21-cast-tab" src="img/cast/cast-kiri.png" data-index="4" alt="Kiri tab">
-          <img class="n21-cast-tab" src="img/cast/cast-marunin.png" data-index="5" alt="Dream Lady tab">
-          <img class="n21-cast-tab" src="img/cast/cast-riyu.png" data-index="6" alt="Stranger tab">
+        <div class="n21-cast-tabs" id="thumbContainer" aria-label="Choose a character">
+          <button class="n21-cast-tab active" type="button" data-index="0" aria-label="Show Kai" aria-pressed="true"><img src="img/cast/cast-kai.png" alt="" loading="lazy"></button>
+          <button class="n21-cast-tab" type="button" data-index="1" aria-label="Show Kuro" aria-pressed="false"><img src="img/cast/cast-kuro.png" alt="" loading="lazy"></button>
+          <button class="n21-cast-tab" type="button" data-index="2" aria-label="Show Yoshiko" aria-pressed="false"><img src="img/cast/cast-yosh.png" alt="" loading="lazy"></button>
+          <button class="n21-cast-tab" type="button" data-index="3" aria-label="Show Shingen" aria-pressed="false"><img src="img/cast/cast-shin.png" alt="" loading="lazy"></button>
+          <button class="n21-cast-tab" type="button" data-index="4" aria-label="Show Kiri" aria-pressed="false"><img src="img/cast/cast-kiri.png" alt="" loading="lazy"></button>
+          <button class="n21-cast-tab" type="button" data-index="5" aria-label="Show Creepy Dream Lady" aria-pressed="false"><img src="img/cast/cast-marunin.png" alt="" loading="lazy"></button>
+          <button class="n21-cast-tab" type="button" data-index="6" aria-label="Show Stranger" aria-pressed="false"><img src="img/cast/cast-riyu.png" alt="" loading="lazy"></button>
         </div>
-
         <div class="n21-cast-display" id="characterDisplay">
-          <div class="n21-cast-image-wrap">
-            <img class="n21-cast-image" id="charImage" src="img/cast/profile-kai.png" alt="Character profile image">
-            <div class="n21-cast-mobile-photo" id="mobilePhoto" aria-hidden="true">
-              <img id="mobilePortrait" src="img/cast/cast-kai.png" alt="">
-            </div>
-
-            <div class="n21-cast-bio" id="charBio">
-              <h2 class="n21-cast-name" id="charName">Kai</h2>
-              <p class="n21-cast-text" id="charText">Loading...</p>
-            </div>
-          </div>
+          <img class="n21-cast-art" id="charImage" src="img/characters/profile-kai.jpg" alt="Kai's illustrated scrapbook profile" fetchpriority="high">
+          <div class="n21-cast-fallback-bio" id="fallbackBio" hidden></div>
+          <p class="n21-cast-visually-hidden" id="charAccessibleBio"></p>
         </div>
       </div>
     </div>
@@ -736,198 +293,89 @@ word-spacing: 0.06em;
 
 
   <script>
-const characters = [
+    // Finished scrapbook artwork includes the handwritten biography.
+    // Descriptions remain in data for accessibility and later copy revisions.
+    const characters = [
   {
-    name: "Kai",
-    image: "img/cast/profile-kai.png",
-    bio: "Kai is a teenage boy taken in by the Shimizu family after an unknown traumatic incident leaves him with no memory of his identity. Caring, curious, and intensely social, he quickly grows attached to his new family even as serious trust issues make it difficult for him to open up about his past. Strange abilities—including moving objects with his mind—suggest there is much more to Kai than anyone realizes. Despite everything he has endured, he remains determined to explore the world around him and protect the people he loves.",
-    color: "rgba(87,108,153,0.72)"
+    "name": "Kai",
+    "image": "img/characters/profile-kai.jpg",
+    "bio": "Kai is a teenage boy taken in by the Shimizu family after an unknown traumatic incident leaves him with no memory of his identity. Caring, curious, and intensely social, he quickly grows attached to his new family even as serious trust issues make it difficult for him to open up about his past. Strange abilities—including moving objects with his mind—suggest there is much more to Kai than anyone realizes. Despite everything he has endured, he remains determined to explore the world around him and protect the people he loves.",
+    "fallback": false
   },
   {
-    name: "Dr. Kuro Shimizu",
-    image: "img/cast/profile-kuro.png",
-    bio: "Dr. Kuro Shimizu is a 38-year-old surgeon, Yoshiko's father, and the man who takes Kai into his home after finding him injured in the street. Originally from Japan, Kuro moved to the United States with Yoshiko following the death of his wife. Grumpy, frugal, and intensely private, he carries a complicated past and keeps his mind constantly occupied rather than confronting his grief. Beneath his cranky exterior, however, Kuro has an enormous soft spot for his children, his patients, and the people he considers family.",
-    color: "rgba(213,142,133,0.72)"
+    "name": "Dr. Kuro Shimizu",
+    "image": "img/characters/profile-kuro.jpg",
+    "bio": "Dr. Kuro Shimizu is a 38-year-old surgeon, Yoshiko's father, and the man who takes Kai into his home after finding him injured in the street. Originally from Japan, Kuro moved to the United States with Yoshiko following the death of his wife. Grumpy, frugal, and intensely private, he carries a complicated past and keeps his mind constantly occupied rather than confronting his grief. Beneath his cranky exterior, however, Kuro has an enormous soft spot for his children, his patients, and the people he considers family.",
+    "fallback": false
   },
   {
-    name: "Yoshiko Shimizu",
-    image: "img/cast/profile-yoshiko.png",
-    bio: "Yoshiko Shimizu is Kuro's 14-year-old daughter and one of Kai's closest friends. After losing her mother and watching her father struggle with grief, Yoshiko became fiercely independent and self-sufficient at a young age. Sarcastic, artistic, and not particularly interested in socializing, she would still do almost anything for the people she considers family. Her relationship with Kai quickly grows into one of the most important bonds in both of their lives.",
-    color: "rgba(97,66,126,0.72)"
+    "name": "Yoshiko Shimizu",
+    "image": "img/characters/profile-yoshiko.jpg",
+    "bio": "Yoshiko Shimizu is Kuro's 14-year-old daughter and one of Kai's closest friends. After losing her mother and watching her father struggle with grief, Yoshiko became fiercely independent and self-sufficient at a young age. Sarcastic, artistic, and not particularly interested in socializing, she would still do almost anything for the people she considers family. Her relationship with Kai quickly grows into one of the most important bonds in both of their lives.",
+    "fallback": false
   },
   {
-    name: "Shingen Yamagata",
-    image: "img/cast/profile-shingen.png",
-    bio: "Shingen Yamagata is a high school teacher, Kiri's father, and Kuro's longtime best friend and surrogate brother. Neurotic, impulsive, and a little prone to imagining the worst, Shingen has endured his share of messy relationships and family upheaval. Despite his flaws, he is deeply loyal and caring toward the people he considers family, including Kuro and Yoshiko. He may make plenty of mistakes as a father, but his devotion to his family is never in question.",
-    color: "rgba(177,126,54,0.72)"
+    "name": "Shingen Yamagata",
+    "image": "img/characters/profile-shingen.jpg",
+    "bio": "Shingen Yamagata is a high school teacher, Kiri's father, and Kuro's longtime best friend and surrogate brother. Neurotic, impulsive, and a little prone to imagining the worst, Shingen has endured his share of messy relationships and family upheaval. Despite his flaws, he is deeply loyal and caring toward the people he considers family, including Kuro and Yoshiko. He may make plenty of mistakes as a father, but his devotion to his family is never in question.",
+    "fallback": false
   },
   {
-    name: "Kiri Yamagata",
-    image: "img/cast/profile-kiri.png",
-    bio: "Kiri Yamagata is Shingen's 14-year-old son and Yoshiko's longtime friend and surrogate cousin. Insecure, impulsive, and desperate for acceptance, Kiri struggles with abandonment and years of being bullied when he was younger. He and Yoshiko were once extremely close, but his growing need for popularity and attention has strained their relationship. His jealousy and aggressive reactions—particularly where Kai is concerned—frequently create tension between the two families.",
-    color: "rgba(84,95,100,0.72)"
+    "name": "Kiri Yamagata",
+    "image": "img/characters/profile-kiri.jpg",
+    "bio": "Kiri Yamagata is Shingen's 14-year-old son and Yoshiko's longtime friend and surrogate cousin. Insecure, impulsive, and desperate for acceptance, Kiri struggles with abandonment and years of being bullied when he was younger. He and Yoshiko were once extremely close, but his growing need for popularity and attention has strained their relationship. His jealousy and aggressive reactions—particularly where Kai is concerned—frequently create tension between the two families.",
+    "fallback": false
   },
   {
-    name: "Creepy Dream Lady",
-    image: "img/cast/profile-dreamlady.png",
-    bio: "Creepy Dream Lady is a mysterious figure who repeatedly appears in Kai's dreams. Whether she is real remains unclear, but she appears to have some connection to the memories Kai has lost. Although she sometimes speaks to him with an almost loving familiarity, her violent actions and volatile behavior suggest something far more dangerous beneath the surface.",
-    color: "rgba(160,190,202,0.72)"
+    "name": "Creepy Dream Lady",
+    "image": "img/characters/profile-marunin.jpg",
+    "bio": "Creepy Dream Lady is a mysterious figure who repeatedly appears in Kai's dreams. Whether she is real remains unclear, but she appears to have some connection to the memories Kai has lost. Although she sometimes speaks to him with an almost loving familiarity, her violent actions and volatile behavior suggest something far more dangerous beneath the surface.",
+    "fallback": false
   },
   {
-    name: "Stranger",
-    image: "img/cast/profile-stranger.png",
-    bio: "The Stranger is a mysterious young man who suddenly appears outside Caulwyn High School and announces his presence in a rather violent fashion. Almost nothing is known about him, except for one particularly unsettling detail: he has Kai's face. His identity, his purpose, and his connection to Kai remain a mystery.",
-    color: "rgba(253,218,172,0.72)"
+    "name": "Stranger",
+    "image": "img/cast/profile-stranger.png",
+    "bio": "The Stranger is a mysterious young man who suddenly appears outside Caulwyn High School and announces his presence in a rather violent fashion. Almost nothing is known about him, except for one particularly unsettling detail: he has Kai's face. His identity, his purpose, and his connection to Kai remain a mystery.",
+    "fallback": true
   }
 ];
+    const tabs = [...document.querySelectorAll('.n21-cast-tab')];
+    const image = document.getElementById('charImage');
+    const accessibleBio = document.getElementById('charAccessibleBio');
+    const fallbackBio = document.getElementById('fallbackBio');
     let currentIndex = 0;
-    const tabs = document.querySelectorAll(".n21-cast-tab");
-
-    tabs.forEach((tab, index) => {
-      tab.addEventListener("click", () => showCharacter(index));
-    });
-
-     // Build a paper mask at its natural proportions: intact top and bottom,
-     // with a tiled strip of binder holes between them. No vertical stretching.
-     const paperArtwork = new Image();
-     paperArtwork.src = "img/paper.png";
-     let paperMaskFrame = 0;
-     function updatePaperMask() {
-       if (!paperArtwork.complete || !paperArtwork.naturalWidth) return;
-       const bio = document.getElementById("charBio");
-       const w = Math.round(bio.getBoundingClientRect().width);
-       const h = Math.round(bio.getBoundingClientRect().height);
-       if (!w || !h) return;
-       const canvas = document.createElement("canvas");
-       canvas.width = w;
-       canvas.height = h;
-       const ctx = canvas.getContext("2d");
-       const sourceW = paperArtwork.naturalWidth;
-       const sourceH = paperArtwork.naturalHeight;
-       const scale = w / sourceW;
-       // All source sections retain the same scale; only the middle repeats.
-       const topEnd = Math.round(sourceH * .27);
-       const bottomStart = Math.round(sourceH * .76);
-       const stripHeight = Math.max(12, Math.round(sourceH * .15));
-       const stripStarts = [.30, .46, .57].map(f =>
-         Math.min(Math.round(sourceH * f), bottomStart - stripHeight)
-       );
-       const topH = Math.round(topEnd * scale);
-       const bottomH = Math.round((sourceH - bottomStart) * scale);
-       const stripH = Math.max(1, Math.round(stripHeight * scale));
-       ctx.drawImage(paperArtwork, 0, 0, sourceW, topEnd, 0, 0, w, topH);
-       for (let y = topH, piece = 0; y < h - bottomH; y += stripH, piece++) {
-         const drawH = Math.min(stripH, h - bottomH - y);
-         const stripStart = stripStarts[piece % stripStarts.length];
-         ctx.drawImage(paperArtwork, 0, stripStart, sourceW,
-           stripHeight * drawH / stripH, 0, y, w, drawH);
-       }
-       ctx.drawImage(paperArtwork, 0, bottomStart, sourceW,
-         sourceH - bottomStart, 0, h - bottomH, w, bottomH);
-       const url = `url("${canvas.toDataURL("image/png")}")`;
-       bio.style.webkitMaskImage = url;
-       bio.style.maskImage = url;
-       bio.style.webkitMaskSize = "100% 100%";
-       bio.style.maskSize = "100% 100%";
-     }
-     function schedulePaperMask() {
-       cancelAnimationFrame(paperMaskFrame);
-       paperMaskFrame = requestAnimationFrame(updatePaperMask);
-     }
-     paperArtwork.addEventListener("load", schedulePaperMask);
-     window.addEventListener("resize", schedulePaperMask, { passive: true });
-
     function showCharacter(index) {
       const char = characters[index];
-      const img = document.getElementById("charImage");
-      const bio = document.getElementById("charBio");
-
-      tabs.forEach((tab, i) => {
-        tab.classList.remove("active");
-        tab.style.backgroundColor = characters[i].color;
-      });
-
-      tabs[index].classList.add("active");
-      document.querySelector(".n21-cast-wrap").style.setProperty("--n21-panel-color", char.color);
-
-             const mobilePortrait = document.getElementById("mobilePortrait");
-       const mobilePhoto = document.getElementById("mobilePhoto");
-       mobilePhoto.style.opacity = 0;
-       img.style.opacity = 0;
-      img.style.transform = "translateX(18px)";
-      bio.style.opacity = 0;
-      bio.style.transform = "translateX(-10px) rotate(-0.7deg)";
-
-      setTimeout(() => {
-        document.getElementById("charName").textContent = char.name;
-        document.getElementById("charText").textContent = char.bio;
-        img.src = char.image;
-         // Reuse the matching thumbnail art for the mobile Polaroid.
-         mobilePortrait.src = tabs[index].getAttribute("src");
-
-// convert rgba to lighter version
-function lightenColor(color) {
-  return color.replace(/rgba?\(([^)]+)\)/, (match, values) => {
-    let [r, g, b, a] = values.split(',').map(v => parseFloat(v));
-    
-    // push toward white
-    r = Math.min(255, r + 80);
-    g = Math.min(255, g + 80);
-    b = Math.min(255, b + 80);
-
-    return `rgba(${r}, ${g}, ${b}, 0.85)`;
-  });
-}
-
-const lightColor = lightenColor(char.color);
-
-bio.style.background = `
-  repeating-linear-gradient(
-    to bottom,
-    ${lightColor} 0px,
-    ${lightColor} 27px,
-    rgba(95,145,195,0.38) 28px,
-    ${lightColor} 29px
-  )
-`;
-
-                 mobilePhoto.style.opacity = 1;
-         img.style.opacity = 1;
-        img.style.transform = "translateX(0)";
-        bio.style.opacity = 1;
-        bio.style.transform = "translateX(0) rotate(-0.7deg)";
-        schedulePaperMask();
-      }, 180);
-
+      if (!char) return;
       currentIndex = index;
-    }
-
-    document.addEventListener("keydown", function(e) {
-      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
-
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        showCharacter((currentIndex + 1) % characters.length);
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+        tab.setAttribute('aria-pressed', String(i === index));
+      });
+      image.src = char.image;
+      image.alt = char.name + (char.fallback ? ' character illustration' : ' illustrated scrapbook profile');
+      accessibleBio.textContent = char.name + '. ' + char.bio;
+      fallbackBio.hidden = !char.fallback;
+      if (char.fallback) {
+        fallbackBio.replaceChildren();
+        const heading = document.createElement('h2');
+        heading.textContent = char.name;
+        const text = document.createElement('p');
+        text.textContent = char.bio;
+        fallbackBio.append(heading, text);
       }
-
-      if (e.key === "ArrowUp") {
-        e.preventDefault();
-        showCharacter((currentIndex - 1 + characters.length) % characters.length);
-      }
-    });
-
-    function toggleShare(e) {
-      e.preventDefault();
-      document.getElementById("shareBar").classList.toggle("open");
     }
-
-    function copyLink() {
-      navigator.clipboard.writeText("https://nocturne21.com");
-    }
-
-    window.addEventListener("load", () => {
-      showCharacter(0);
+    tabs.forEach((tab, index) => tab.addEventListener('click', () => showCharacter(index)));
+    document.addEventListener('keydown', e => {
+      if (e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') showCharacter((currentIndex + 1) % characters.length);
+      else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') showCharacter((currentIndex - 1 + characters.length) % characters.length);
+      else return;
+      if (e.target.closest('.n21-cast-tabs')) { e.preventDefault(); tabs[currentIndex].focus(); }
     });
+    function toggleShare(e) { e.preventDefault(); document.getElementById('shareBar').classList.toggle('open'); }
+    function copyLink() { navigator.clipboard.writeText('https://nocturne21.com'); }
+    showCharacter(0);
   </script>
   
   <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
@@ -975,7 +423,6 @@ bio.style.background = `
 </script>
 </body>
 </html>
-
 
 
 
