@@ -262,6 +262,58 @@
   .n21-cast-tab.n21-cast-tab-custom.active { transform: translateY(-2px); }
 }
 
+/* Kai artwork sizing and hover refinement — no synthetic red paper behind it. */
+.n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom {
+  width: 100%;
+  min-height: 88px;
+  flex-shrink: 0;
+  background: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  clip-path: none !important;
+  overflow: visible;
+  position: relative;
+  z-index: 5;
+  transform: translateX(-4px) scale(1.06);
+  transform-origin: center right;
+  transition: transform .22s ease, filter .22s ease;
+}
+.n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom .n21-custom-tab-art {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: transparent !important;
+}
+.n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active {
+  transform: translateX(-7px) scale(1.06);
+  filter: drop-shadow(3px 5px 4px rgba(0,0,0,.4));
+}
+.n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover,
+.n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active:hover {
+  transform: translateX(-12px) scale(1.12) rotate(-1deg);
+  filter: brightness(1.14) drop-shadow(4px 7px 6px rgba(174,150,245,.55));
+  z-index: 8;
+}
+@media (max-width: 800px) {
+  .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom {
+    width: 150px;
+    flex: 0 0 150px;
+    min-height: 70px;
+    transform: none;
+    transform-origin: center;
+  }
+  .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active {
+    transform: translateY(-2px);
+  }
+  .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover,
+  .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active:hover {
+    transform: translateY(-5px) scale(1.04);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom { transition: none; }
+}
+
 /* Floating Cast heading; notebook bio styling above is untouched. */
 .n21-cast-hero {
   box-sizing: border-box;
