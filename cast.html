@@ -224,6 +224,44 @@
 }
 @media (prefers-reduced-motion: reduce) { .n21-cast-tab { transition: none; } }
 
+
+/* Kai's illustrated tab: use the finished artwork, not CSS paper effects. */
+.n21-cast-tab.n21-cast-tab-custom {
+  display: block;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  clip-path: none;
+  overflow: visible;
+  line-height: 0;
+  transform: none;
+  filter: drop-shadow(2px 4px 3px rgba(0,0,0,.35));
+}
+.n21-cast-tab.n21-cast-tab-custom::before,
+.n21-cast-tab.n21-cast-tab-custom::after { content: none; }
+.n21-cast-tab-custom .n21-custom-tab-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+.n21-cast-tab.n21-cast-tab-custom:hover {
+  transform: translateX(-4px);
+  filter: brightness(1.08) drop-shadow(3px 6px 4px rgba(0,0,0,.4));
+}
+.n21-cast-tab.n21-cast-tab-custom.active {
+  transform: translateX(-7px);
+  filter: brightness(1.07) drop-shadow(4px 5px 5px rgba(165,139,233,.35));
+}
+@media (max-width: 800px) {
+  .n21-cast-tab.n21-cast-tab-custom:hover { transform: none; }
+  .n21-cast-tab.n21-cast-tab-custom.active { transform: translateY(-2px); }
+}
+
 /* Floating Cast heading; notebook bio styling above is untouched. */
 .n21-cast-hero {
   box-sizing: border-box;
@@ -339,7 +377,7 @@
 
       <div class="n21-cast-layout">
         <div class="n21-cast-tabs" id="thumbContainer" aria-label="Choose a character">
-          <button class="n21-cast-tab active" type="button" data-index="0" aria-label="Show Kai" aria-pressed="true"><span class="n21-tab-photo"><img src="img/cast/cast-kai.png" alt="" loading="lazy"></span><span class="n21-tab-label">Kai</span></button>
+          <button class="n21-cast-tab n21-cast-tab-custom active" type="button" data-index="0" aria-label="Show Kai" aria-pressed="true"><img class="n21-custom-tab-art" src="img/characters/button-kai.png" alt="" loading="lazy"></button>
           <button class="n21-cast-tab" type="button" data-index="1" aria-label="Show Kuro" aria-pressed="false"><span class="n21-tab-photo"><img src="img/cast/cast-kuro.png" alt="" loading="lazy"></span><span class="n21-tab-label">Kuro</span></button>
           <button class="n21-cast-tab" type="button" data-index="2" aria-label="Show Yoshiko" aria-pressed="false"><span class="n21-tab-photo"><img src="img/cast/cast-yosh.png" alt="" loading="lazy"></span><span class="n21-tab-label">Yoshiko</span></button>
           <button class="n21-cast-tab" type="button" data-index="3" aria-label="Show Shingen" aria-pressed="false"><span class="n21-tab-photo"><img src="img/cast/cast-shin.png" alt="" loading="lazy"></span><span class="n21-tab-label">Shingen</span></button>
