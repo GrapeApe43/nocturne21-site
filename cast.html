@@ -534,6 +534,62 @@ body .n21-cast-page.subPage {
   .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover { transform: none; }
 }
 
+
+/* Yoshiko's illustrated corkboard — keep artwork separate from clickable tabs. */
+@media (min-width: 801px) {
+  .n21-cast-page .n21-cast-board {
+    background: url("img/characters/cork-board.png") center top / 100% 100% no-repeat !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    min-height: 810px;
+    padding: 28px 27px 38px !important;
+    overflow: visible;
+  }
+  .n21-cast-page .n21-board-heading {
+    color: #28202b;
+    text-shadow: 0 1px 1px rgba(255,255,255,.45);
+    font-size: 1.05rem;
+    margin: 0 0 14px;
+  }
+  .n21-cast-page .n21-cast-tabs { padding: 0 2px 16px !important; gap: 14px !important; }
+}
+/* Let the PNG's irregular silhouette, not a rectangular CSS shape, define its shadow. */
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom {
+  position: relative;
+  isolation: auto;
+  overflow: visible;
+  clip-path: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  transition: transform .22s ease, filter .22s ease !important;
+  transform: none;
+  filter: drop-shadow(2px 4px 3px rgba(0,0,0,.58));
+  z-index: 1;
+}
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom::before,
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom::after { content: none !important; }
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active {
+  transform: translateY(-2px) scale(1.035);
+  filter: drop-shadow(3px 7px 5px rgba(0,0,0,.64)) drop-shadow(0 0 7px rgba(195,170,255,.68));
+  z-index: 2;
+}
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover,
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active:hover {
+  transform: translateY(-5px) scale(1.09) rotate(-1deg);
+  filter: drop-shadow(4px 9px 6px rgba(0,0,0,.7)) drop-shadow(0 0 10px rgba(195,170,255,.8));
+  z-index: 3;
+}
+@media (max-width: 800px) {
+  /* Keep mobile navigation as a horizontal strip, not a stretched vertical board. */
+  .n21-cast-page .n21-cast-board { background: rgba(18,17,34,.5) !important; min-height: 0; }
+  .n21-cast-page .n21-cast-tabs { padding-top: 12px; padding-bottom: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom { transition: none !important; }
+}
+
   </style>
 </head>
 
