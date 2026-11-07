@@ -210,3 +210,117 @@ span.lbIEFix { padding: 0.5em 0.8em !important; }
 
 
 
+/* ===========================================================
+   NOCTURNE 21 — CUSTOM BRUSHSTROKE LYTEBOX SKIN
+   Keep the original Lytebox JS navigation and image dimensions.
+   All artwork paths are relative to lytebox/lytebox.css.
+   =========================================================== */
+#lbOverlay { background: #08080d !important; }
+#lbOuterContainer, #lbOuterContainer.black, #lbOuterContainer.grey,
+#lbOuterContainer.red, #lbOuterContainer.green, #lbOuterContainer.blue,
+#lbOuterContainer.gold, #lbOuterContainer.orange {
+  background: #0c0c11 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+#lbImageContainer { position: relative; padding: 10px; }
+#lbImageContainer::after {
+  content: '';
+  position: absolute;
+  inset: -19px;
+  border: 27px solid transparent;
+  border-image-source: url('images/frame.png');
+  border-image-slice: 145 135 165 135;
+  border-image-width: 27px;
+  border-image-repeat: stretch;
+  pointer-events: none;
+  z-index: 13;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,.65));
+}
+#lbImage, #lbImage.black, #lbImage.grey, #lbImage.red,
+#lbImage.green, #lbImage.blue, #lbImage.gold, #lbImage.orange {
+  border: 0 !important;
+}
+#lbTopContainer, #lbBottomContainer,
+#lbTopContainer.black, #lbBottomContainer.black,
+#lbTopContainer.grey, #lbBottomContainer.grey,
+#lbTopContainer.red, #lbBottomContainer.red,
+#lbTopContainer.green, #lbBottomContainer.green,
+#lbTopContainer.blue, #lbBottomContainer.blue,
+#lbTopContainer.gold, #lbBottomContainer.gold,
+#lbTopContainer.orange, #lbBottomContainer.orange {
+  background: #0c0c11 !important;
+  color: #e5e9ec !important;
+  font-family: Ubbing, Georgia, serif !important;
+  border: 0 !important;
+  overflow: visible;
+}
+#lbBottomContainer { padding-top: 12px; }
+#lbTitleBottom, #lbTitleTop { font-weight: normal; font-size: 1.13em; }
+#lbNumBottom, #lbNumTop { color: #a5a9b4; font-size: .9em; }
+#lbDescBottom { line-height: 1.55; }
+#lbHoverNav { z-index: 15; }
+#lbPrevHov, #lbNextHov {
+  height: 100%;
+  width: 48%;
+  margin: 0;
+  border: 0 !important;
+  background: none !important;
+  position: relative;
+  transition: none;
+}
+#lbPrevHov::after, #lbNextHov::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: clamp(45px, 10vw, 96px);
+  height: clamp(42px, 9vw, 85px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: .76;
+  transform: translateY(-50%);
+  transition: transform .3s ease, opacity .3s ease, filter .3s ease;
+  pointer-events: none;
+}
+#lbPrevHov::after { left: -12px; background-image: url('images/button-previous.png'); }
+#lbNextHov::after { right: -12px; background-image: url('images/button-next.png'); }
+#lbPrevHov:hover::after, #lbPrevHov:focus-visible::after,
+#lbNextHov:hover::after, #lbNextHov:focus-visible::after {
+  opacity: 1;
+  filter: brightness(1.35);
+  transform: translateY(-50%) scale(1.13);
+}
+/* The original bottom close control remains the functional close link. */
+#lbClose, #lbCloseTop {
+  background: url('images/button-exit.png') center / contain no-repeat !important;
+  width: 46px;
+  height: 64px;
+  border: 0 !important;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), filter .3s;
+}
+#lbClose {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 99999;
+  float: none;
+  margin: 0;
+}
+#lbClose:hover, #lbCloseTop:hover,
+#lbClose:focus-visible, #lbCloseTop:focus-visible {
+  transform: rotate(12deg) scale(1.12);
+  filter: drop-shadow(0 0 8px rgba(245,20,80,.6));
+}
+/* Hide duplicate miniature arrows; the full-image hit targets remain active. */
+#lbPrev, #lbNext, #lbPrevTop, #lbNextTop { opacity: 0; pointer-events: none; }
+@media (max-width: 600px) {
+  #lbImageContainer::after { inset: -12px; border-width: 18px; border-image-width: 18px; }
+  #lbPrevHov::after { left: -5px; }
+  #lbNextHov::after { right: -5px; }
+  #lbClose { width: 35px; height: 51px; top: 6px; right: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #lbPrevHov::after, #lbNextHov::after, #lbClose, #lbCloseTop { transition: none; }
+}
