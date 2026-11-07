@@ -590,7 +590,51 @@ body .n21-cast-page.subPage {
   .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom { transition: none !important; }
 }
 
-  </style>
+  
+/* Yoshiko's casually layered corkboard tabs — desktop only. */
+@media (min-width: 801px) {
+  .n21-cast-page .n21-cast-board {
+    padding-left: 21px !important;
+    padding-right: 21px !important;
+  }
+  .n21-cast-page .n21-cast-tabs {
+    gap: 0 !important;
+    padding: 4px 0 28px !important;
+    overflow: visible !important;
+  }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom {
+    --scrap-angle: 0deg;
+    --scrap-shift: 0px;
+    width: calc(100% + 28px) !important;
+    max-width: none !important;
+    flex: 0 0 auto !important;
+    margin: -4px 0 -4px -14px !important;
+    transform: translateX(var(--scrap-shift)) rotate(var(--scrap-angle)) !important;
+    transform-origin: 50% 50%;
+    filter: drop-shadow(2px 5px 3px rgba(0,0,0,.67)) !important;
+    z-index: 1;
+  }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:nth-child(1) { --scrap-angle: -3deg; --scrap-shift: -5px; }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:nth-child(2) { --scrap-angle:  2.5deg; --scrap-shift: 6px; }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:nth-child(3) { --scrap-angle: -1.5deg; --scrap-shift: -3px; }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:nth-child(4) { --scrap-angle:  3deg; --scrap-shift: 5px; }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:nth-child(5) { --scrap-angle: -2.5deg; --scrap-shift: -5px; }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:nth-child(6) { --scrap-angle:  1.5deg; --scrap-shift: 4px; }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:nth-child(7) { --scrap-angle: -2deg; --scrap-shift: -2px; }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active {
+    transform: translateX(var(--scrap-shift)) translateY(-3px) rotate(var(--scrap-angle)) scale(1.055) !important;
+    filter: drop-shadow(4px 9px 6px rgba(0,0,0,.9)) drop-shadow(1px 3px 2px rgba(0,0,0,.7)) !important;
+    z-index: 8;
+  }
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover,
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active:hover {
+    transform: translateX(var(--scrap-shift)) translateY(-7px) rotate(var(--scrap-angle)) scale(1.11) !important;
+    filter: drop-shadow(5px 12px 8px rgba(0,0,0,.92)) !important;
+    z-index: 12;
+  }
+}
+
+</style>
 </head>
 
 <body align="center" background="img/lily.png" width="100%">
