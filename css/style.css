@@ -4531,70 +4531,76 @@ h1, h2, h3, h4,
     width: 100% !important;
   }
 }
-/* ============================================================
-   EXTRAS — INDIVIDUALLY ANGLED SCRAPBOOK TAPE
-   The existing polaroid.png is reused for BOTH frame and tape.
-   No extra image files or HTML edits needed.
-   ============================================================ */
+/* ===========================================================
+   EXTRAS POLAROID REPAIR — separate transparent frame + tape
+   The frame has NO tape baked in. Photos keep their own ratio.
+   Percent padding is relative to card WIDTH, so it tracks the
+   PNG opening even when a portrait image makes the card taller.
+   =========================================================== */
 .extras-page .extras-content .polaroid-gallery .polaroid {
-  --tape-angle: -5deg;
-  --tape-x: 0px;
-  --tape-y: 0px;
+  --tape-turn: -7deg;
+  --tape-shift: 0%;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 4.45% 4.35% 15.1% !important;
+  overflow: visible !important;
+  isolation: isolate;
 }
-/* Clip only the baked-in tape, preserving the rest of the frame.
-   The separate tape layer below covers the small top-edge opening. */
 .extras-page .extras-content .polaroid-gallery .polaroid::after {
-  clip-path: polygon(
-    0 0, 36.5% 0, 36.5% 10.7%, 63.5% 10.7%,
-    63.5% 0, 100% 0, 100% 100%, 0 100%
-  );
+  content: "" !important;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: url('/img/polaroid.png') center / 100% 100% no-repeat !important;
+  clip-path: none !important;
+  pointer-events: none;
+  opacity: 1 !important;
 }
-/* Extract the original tape directly from the source PNG.
-   It is attached to the Polaroid, so hover motion carries it along. */
 .extras-page .extras-content .polaroid-gallery .polaroid::before {
   content: "" !important;
   display: block !important;
   position: absolute;
-  z-index: 4;
-  pointer-events: none;
-  top: 1.5%;
-  left: 50%;
-  width: 26%;
-  height: 9.5%;
-  background-image: url('/img/polaroid.png');
-  background-repeat: no-repeat;
-  background-size: 384.615% 1052.63%;
-  background-position: 50% 0%;
-  opacity: 1;
-  border: 0;
-  box-shadow: none;
-  backdrop-filter: none;
-  transform: translate(calc(-50% + var(--tape-x)), var(--tape-y)) rotate(var(--tape-angle));
+  z-index: 5;
+  top: -2.6%;
+  left: calc(50% + var(--tape-shift));
+  width: 25%;
+  height: auto;
+  aspect-ratio: 240 / 113;
+  background: url('/img/tape.png') center / contain no-repeat !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  transform: translateX(-50%) rotate(var(--tape-turn)) !important;
   transform-origin: center;
+  pointer-events: none;
 }
-/* Repeatable variety across columns, without random layout shifts. */
-.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n + 1) {
-  --tape-angle: -9deg; --tape-x: -7px; --tape-y: 1px;
+.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n + 1) { --tape-turn: -11deg; --tape-shift: -7%; }
+.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n + 2) { --tape-turn: 8deg; --tape-shift: 6%; }
+.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n + 3) { --tape-turn: -3deg; --tape-shift: 9%; }
+.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n + 4) { --tape-turn: 12deg; --tape-shift: -4%; }
+.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n + 5) { --tape-turn: -8deg; --tape-shift: 4%; }
+.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n) { --tape-turn: 4deg; --tape-shift: -8%; }
+.extras-page .extras-content .then-now-column:nth-child(2) .polaroid:nth-child(odd) { --tape-turn: 10deg; --tape-shift: 5%; }
+.extras-page .extras-content .then-now-column:nth-child(2) .polaroid:nth-child(even) { --tape-turn: -9deg; --tape-shift: -5%; }
+.extras-page .extras-content .polaroid-gallery .polaroid > img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
-.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n + 2) {
-  --tape-angle: 7deg; --tape-x: 6px; --tape-y: -2px;
-}
-.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n + 3) {
-  --tape-angle: -3deg; --tape-x: 9px; --tape-y: 2px;
-}
-.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n + 4) {
-  --tape-angle: 11deg; --tape-x: -4px; --tape-y: -1px;
-}
-.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n + 5) {
-  --tape-angle: -12deg; --tape-x: 3px; --tape-y: 1px;
-}
-.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(6n) {
-  --tape-angle: 4deg; --tape-x: -8px; --tape-y: 0px;
-}
-/* Alternate the pattern between the two Then & Now columns. */
-.extras-page .extras-content .then-now-column:nth-child(2) .polaroid:nth-child(odd) {
-  --tape-angle: 10deg; --tape-x: 4px; --tape-y: -1px;
-}
-.extras-page .extras-content .then-now-column:nth-child(2) .polaroid:nth-child(even) {
-  --tape-angle: -7deg; --tape-x: -5px; --tape-y: 2px;
+.extras-page .extras-content .polaroid-gallery .polaroid > span,
+.extras-page .extras-content .polaroid-gallery .polaroid > .caption {
+  z-index: 4 !important;
+  bottom: 3.3% !important;
+  left: 6% !important;
+  right: 6% !important;
+  width: 88% !important;
 }
