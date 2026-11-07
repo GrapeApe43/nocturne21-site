@@ -4361,3 +4361,113 @@ h1, h2, h3, h4,
 .writeHeader:has(.site-header)::before {
   display: none;
 }
+
+/* ==============================================
+   EXTRAS — WEATHERED POLAROID MASONRY (NOV 2026)
+   Original art proportions and Lytebox preserved.
+   Place the supplied template at /img/polaroid.png.
+============================================== */
+.extras-page .extras-content .polaroid-gallery:not(.then-now-grid) {
+  display: block !important;
+  columns: 3 170px;
+  column-gap: 22px;
+  padding: 12px 8px 22px;
+}
+.extras-page .extras-content .polaroid-gallery:not(.then-now-grid) > .polaroid {
+  display: inline-block !important;
+  width: 100%;
+  margin: 0 0 22px;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+}
+/* Existing Then & Now column wrappers are already a natural masonry arrangement. */
+.extras-page .extras-content .then-now-grid {
+  gap: 22px;
+}
+.extras-page .extras-content .then-now-grid .then-now-column {
+  gap: 22px;
+}
+.extras-page .extras-content .polaroid-gallery .polaroid {
+  --tilt: -1.5deg;
+  display: block;
+  position: relative;
+  isolation: isolate;
+  padding: 9% 8% 17% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #211c1b !important;
+  transform: rotate(var(--tilt)) !important;
+  transform-origin: center center;
+  transition: transform .42s cubic-bezier(.2,.8,.2,1), filter .3s ease !important;
+  filter: drop-shadow(2px 7px 5px rgba(0,0,0,.38));
+  box-sizing: border-box;
+  min-width: 0;
+}
+.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(4n + 2),
+.extras-page .extras-content .then-now-column:nth-child(2) .polaroid:nth-child(odd) { --tilt: 2.3deg; }
+.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(4n + 3) { --tilt: -.7deg; }
+.extras-page .extras-content .polaroid-gallery .polaroid:nth-child(4n) { --tilt: 1.4deg; }
+/* Frame overlay, including the tape; never intercepts clicks. */
+.extras-page .extras-content .polaroid-gallery .polaroid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 1;
+  mix-blend-mode: normal;
+  background: url('/img/polaroid.png') center / 100% 100% no-repeat;
+}
+/* Hide old CSS-generated tape; real tape is in the supplied PNG. */
+.extras-page .extras-content .polaroid-gallery .polaroid::before { content: none !important; }
+.extras-page .extras-content .polaroid-gallery .polaroid img,
+.extras-page .extras-content .then-now-grid .polaroid img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  background: #171829;
+  filter: none;
+  transform: none;
+}
+.extras-page .extras-content .polaroid-gallery .polaroid span,
+.extras-page .extras-content .polaroid-gallery .polaroid .caption {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: 10px 0 0 !important;
+  color: #26221d !important;
+  font-family: 'Ubbing', cursive !important;
+  font-size: clamp(.9rem, 1.4vw, 1.12rem) !important;
+  line-height: 1.2 !important;
+  text-align: center;
+  overflow-wrap: anywhere;
+  transform: none;
+}
+.extras-page .extras-content .polaroid-gallery .polaroid:hover,
+.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible {
+  transform: rotate(0deg) translateY(-7px) scale(1.025) !important;
+  filter: drop-shadow(3px 13px 9px rgba(0,0,0,.5));
+  z-index: 5;
+}
+@media (max-width: 600px) {
+  .extras-page .extras-content .polaroid-gallery:not(.then-now-grid) {
+    columns: 2 135px;
+    column-gap: 14px;
+    padding: 10px 4px 18px;
+  }
+  .extras-page .extras-content .polaroid-gallery:not(.then-now-grid) > .polaroid { margin-bottom: 15px; }
+  .extras-page .extras-content .then-now-grid { grid-template-columns: 1fr; gap: 15px; }
+  .extras-page .extras-content .then-now-grid .then-now-column { gap: 15px; }
+}
+@media (max-width: 370px) {
+  .extras-page .extras-content .polaroid-gallery:not(.then-now-grid) { columns: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .extras-page .extras-content .polaroid-gallery .polaroid { transition: none !important; }
+}
