@@ -630,15 +630,18 @@ body .n21-cast-page.subPage {
   .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover,
   .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active:hover {
     /* One springy wobble, then hold the raised position while hovered. */
-    animation: n21-corkboard-wobble .52s cubic-bezier(.2,.65,.25,1) both;
+    animation: n21-corkboard-wobble 1.4s ease-out both;
+    transform-origin: 12% 12%;
     filter: drop-shadow(5px 12px 8px rgba(0,0,0,.92)) !important;
     z-index: 12;
   }
+  /* A loose sign pivoting around its remaining upper-left tack. */
   @keyframes n21-corkboard-wobble {
     0%   { transform: translateX(var(--scrap-shift)) translateY(0) rotate(var(--scrap-angle)) scale(1); }
-    22%  { transform: translateX(var(--scrap-shift)) translateY(-4px) rotate(calc(var(--scrap-angle) + 7deg)) scale(1.055); }
-    48%  { transform: translateX(var(--scrap-shift)) translateY(-8px) rotate(calc(var(--scrap-angle) - 5deg)) scale(1.12); }
-    72%  { transform: translateX(var(--scrap-shift)) translateY(-7px) rotate(calc(var(--scrap-angle) + 2deg)) scale(1.105); }
+    16%  { transform: translateX(var(--scrap-shift)) translateY(-3px) rotate(calc(var(--scrap-angle) + 19deg)) scale(1.08); }
+    42%  { transform: translateX(var(--scrap-shift)) translateY(-6px) rotate(calc(var(--scrap-angle) - 9deg)) scale(1.11); }
+    65%  { transform: translateX(var(--scrap-shift)) translateY(-7px) rotate(calc(var(--scrap-angle) + 4deg)) scale(1.11); }
+    83%  { transform: translateX(var(--scrap-shift)) translateY(-7px) rotate(calc(var(--scrap-angle) - 1.5deg)) scale(1.11); }
     100% { transform: translateX(var(--scrap-shift)) translateY(-7px) rotate(var(--scrap-angle)) scale(1.11); }
   }
   @media (prefers-reduced-motion: reduce) {
