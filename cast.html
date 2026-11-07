@@ -610,7 +610,7 @@ body .n21-cast-page.subPage {
     max-width: none !important;
     flex: 0 0 auto !important;
     margin: 0 0 0 -14px !important;
-    transform: translateX(var(--scrap-shift)) rotate(var(--scrap-angle)) !important;
+    transform: translateX(var(--scrap-shift)) rotate(var(--scrap-angle));
     transform-origin: 50% 50%;
     filter: drop-shadow(2px 5px 3px rgba(0,0,0,.67)) !important;
     z-index: 1;
@@ -623,15 +623,30 @@ body .n21-cast-page.subPage {
   .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:nth-child(6) { --scrap-angle:  6deg; --scrap-shift: 6px; }
   .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:nth-child(7) { --scrap-angle: -7deg; --scrap-shift: -4px; }
   .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active {
-    transform: translateX(var(--scrap-shift)) translateY(-3px) rotate(var(--scrap-angle)) scale(1.055) !important;
+    transform: translateX(var(--scrap-shift)) translateY(-3px) rotate(var(--scrap-angle)) scale(1.055);
     filter: drop-shadow(4px 9px 6px rgba(0,0,0,.9)) drop-shadow(1px 3px 2px rgba(0,0,0,.7)) !important;
     z-index: 8;
   }
   .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover,
   .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active:hover {
-    transform: translateX(var(--scrap-shift)) translateY(-7px) rotate(var(--scrap-angle)) scale(1.11) !important;
+    /* One springy wobble, then hold the raised position while hovered. */
+    animation: n21-corkboard-wobble .52s cubic-bezier(.2,.65,.25,1) both;
     filter: drop-shadow(5px 12px 8px rgba(0,0,0,.92)) !important;
     z-index: 12;
+  }
+  @keyframes n21-corkboard-wobble {
+    0%   { transform: translateX(var(--scrap-shift)) translateY(0) rotate(var(--scrap-angle)) scale(1); }
+    22%  { transform: translateX(var(--scrap-shift)) translateY(-4px) rotate(calc(var(--scrap-angle) + 7deg)) scale(1.055); }
+    48%  { transform: translateX(var(--scrap-shift)) translateY(-8px) rotate(calc(var(--scrap-angle) - 5deg)) scale(1.12); }
+    72%  { transform: translateX(var(--scrap-shift)) translateY(-7px) rotate(calc(var(--scrap-angle) + 2deg)) scale(1.105); }
+    100% { transform: translateX(var(--scrap-shift)) translateY(-7px) rotate(var(--scrap-angle)) scale(1.11); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover,
+    .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active:hover {
+      animation: none !important;
+      transform: translateX(var(--scrap-shift)) translateY(-7px) rotate(var(--scrap-angle)) scale(1.11) !important;
+    }
   }
 }
 
