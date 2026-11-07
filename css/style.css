@@ -1903,19 +1903,12 @@ footer a:hover {
 
 .music-card figure {
   margin: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 12px;
 }
 
 .music-card audio {
   display: block;
   width: 100%;
-  max-width: 440px;
-  margin: 0 auto;
+  max-width: 100%;
   box-sizing: border-box;
 }
 
@@ -4624,4 +4617,21 @@ body.extras-page .extras-content .polaroid-gallery a.polaroid:visited {
   border: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+}
+
+/* NOCTURNE 21: aged archive thumbnails, full color on hover/focus.
+   Applied to actual gallery artwork only, not frame/tape overlays. */
+body.extras-page .extras-content .polaroid-gallery a.polaroid > img,
+body.extras-page .extras-content .polaroid-gallery .polaroid > img {
+  filter: sepia(.64) saturate(.65) contrast(.94) brightness(.96) !important;
+  transition: filter .65s ease !important;
+}
+body.extras-page .extras-content .polaroid-gallery a.polaroid:hover > img,
+body.extras-page .extras-content .polaroid-gallery a.polaroid:focus-visible > img,
+body.extras-page .extras-content .polaroid-gallery .polaroid:hover > img,
+body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img {
+  filter: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  body.extras-page .extras-content .polaroid-gallery .polaroid > img { transition: none !important; }
 }
