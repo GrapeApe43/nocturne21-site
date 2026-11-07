@@ -4494,3 +4494,40 @@ h1, h2, h3, h4,
   background: transparent !important;
   pointer-events: none;
 }
+
+/* More Scenes Revisited: three larger Polaroids in a balanced row.
+   Override generic CSS masonry only for this small 3-image section. */
+.extras-page .extras-content .polaroid-gallery.more-scenes-gallery {
+  display: grid !important;
+  columns: auto !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  align-items: start;
+  column-gap: 18px;
+  row-gap: 24px;
+  padding: 18px 12px 26px;
+}
+.extras-page .extras-content .polaroid-gallery.more-scenes-gallery > .polaroid {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+@media (max-width: 650px) {
+  .extras-page .extras-content .polaroid-gallery.more-scenes-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    column-gap: 16px;
+  }
+  .extras-page .extras-content .polaroid-gallery.more-scenes-gallery > .polaroid:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - 8px) !important;
+    justify-self: center;
+  }
+}
+@media (max-width: 400px) {
+  .extras-page .extras-content .polaroid-gallery.more-scenes-gallery {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .extras-page .extras-content .polaroid-gallery.more-scenes-gallery > .polaroid:last-child:nth-child(odd) {
+    grid-column: auto;
+    width: 100% !important;
+  }
+}
