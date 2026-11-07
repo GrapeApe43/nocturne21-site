@@ -230,7 +230,7 @@ span.lbIEFix { padding: 0.5em 0.8em !important; }
   position: absolute;
   inset: -19px;
   border: 27px solid transparent;
-  border-image-source: url('images/frame.png');
+  border-image-source: url('../img/frame.png');
   border-image-slice: 145 135 165 135;
   border-image-width: 27px;
   border-image-repeat: stretch;
@@ -284,8 +284,8 @@ span.lbIEFix { padding: 0.5em 0.8em !important; }
   transition: transform .3s ease, opacity .3s ease, filter .3s ease;
   pointer-events: none;
 }
-#lbPrevHov::after { left: -12px; background-image: url('images/button-previous.png'); }
-#lbNextHov::after { right: -12px; background-image: url('images/button-next.png'); }
+#lbPrevHov::after { left: -12px; background-image: url('../img/button-previous.png'); }
+#lbNextHov::after { right: -12px; background-image: url('../img/button-next.png'); }
 #lbPrevHov:hover::after, #lbPrevHov:focus-visible::after,
 #lbNextHov:hover::after, #lbNextHov:focus-visible::after {
   opacity: 1;
@@ -294,7 +294,7 @@ span.lbIEFix { padding: 0.5em 0.8em !important; }
 }
 /* The original bottom close control remains the functional close link. */
 #lbClose, #lbCloseTop {
-  background: url('images/button-exit.png') center / contain no-repeat !important;
+  background: url('../img/button-exit.png') center / contain no-repeat !important;
   width: 46px;
   height: 64px;
   border: 0 !important;
