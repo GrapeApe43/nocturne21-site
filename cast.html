@@ -543,7 +543,7 @@ body .n21-cast-page.subPage {
     border-radius: 0 !important;
     box-shadow: none !important;
     min-height: 810px;
-    padding: 28px 27px 38px !important;
+    padding: 42px 27px 38px !important;
     overflow: visible;
   }
   .n21-cast-page .n21-board-heading {
@@ -571,14 +571,14 @@ body .n21-cast-page.subPage {
 .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom::before,
 .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom::after { content: none !important; }
 .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active {
-  transform: translateY(-2px) scale(1.035);
-  filter: drop-shadow(3px 7px 5px rgba(0,0,0,.64)) drop-shadow(0 0 7px rgba(195,170,255,.68));
+  transform: translateX(4px) translateY(-3px) scale(1.07);
+  filter: drop-shadow(3px 8px 5px rgba(0,0,0,.85)) drop-shadow(1px 3px 2px rgba(0,0,0,.7));
   z-index: 2;
 }
 .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom:hover,
 .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom.active:hover {
   transform: translateY(-5px) scale(1.09) rotate(-1deg);
-  filter: drop-shadow(4px 9px 6px rgba(0,0,0,.7)) drop-shadow(0 0 10px rgba(195,170,255,.8));
+  filter: drop-shadow(4px 11px 7px rgba(0,0,0,.88)) drop-shadow(1px 4px 3px rgba(0,0,0,.65));
   z-index: 3;
 }
 @media (max-width: 800px) {
@@ -648,15 +648,14 @@ body .n21-cast-page.subPage {
     <div class="n21-cast-wrap">
       <div class="n21-cast-layout">
         <aside class="n21-cast-board" aria-label="Character scrapbook navigation">
-          <div class="n21-board-heading">YOSHIKO'S CAST FILES</div>
         <div class="n21-cast-tabs" id="thumbContainer" aria-label="Choose a character">
           <button class="n21-cast-tab n21-cast-tab-custom active" type="button" data-index="0" aria-label="Show Kai" aria-pressed="true"><img class="n21-custom-tab-art" src="img/characters/button-kai.png" alt="" loading="lazy"></button>
-          <button class="n21-cast-tab" type="button" data-index="1" aria-label="Show Kuro" aria-pressed="false"><span class="n21-tab-photo"><img src="img/cast/cast-kuro.png" alt="" loading="lazy"></span><span class="n21-tab-label">Kuro</span></button>
+          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="1" aria-label="Show Kuro" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-kuro.png" alt="" loading="lazy"></button>
           <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="2" aria-label="Show Yoshiko" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-yoshiko.png" alt="" loading="lazy"></button>
-          <button class="n21-cast-tab" type="button" data-index="3" aria-label="Show Shingen" aria-pressed="false"><span class="n21-tab-photo"><img src="img/cast/cast-shin.png" alt="" loading="lazy"></span><span class="n21-tab-label">Shingen</span></button>
-          <button class="n21-cast-tab" type="button" data-index="4" aria-label="Show Kiri" aria-pressed="false"><span class="n21-tab-photo"><img src="img/cast/cast-kiri.png" alt="" loading="lazy"></span><span class="n21-tab-label">Kiri</span></button>
-          <button class="n21-cast-tab" type="button" data-index="5" aria-label="Show Creepy Dream Lady" aria-pressed="false"><span class="n21-tab-photo"><img src="img/cast/cast-marunin.png" alt="" loading="lazy"></span><span class="n21-tab-label">Dream Lady</span></button>
-          <button class="n21-cast-tab" type="button" data-index="6" aria-label="Show Stranger" aria-pressed="false"><span class="n21-tab-photo"><img src="img/cast/cast-riyu.png" alt="" loading="lazy"></span><span class="n21-tab-label">Stranger</span></button>
+          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="3" aria-label="Show Shingen" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-shin.png" alt="" loading="lazy"></button>
+          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="4" aria-label="Show Kiri" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-kiri.png" alt="" loading="lazy"></button>
+          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="5" aria-label="Show Creepy Dream Lady" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-marunin.png" alt="" loading="lazy"></button>
+          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="6" aria-label="Show Stranger" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-riyu.png" alt="" loading="lazy"></button>
         </div>
         </aside>
         <main class="n21-cast-main">
