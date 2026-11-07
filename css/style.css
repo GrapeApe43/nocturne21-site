@@ -4471,3 +4471,26 @@ h1, h2, h3, h4,
 @media (prefers-reduced-motion: reduce) {
   .extras-page .extras-content .polaroid-gallery .polaroid { transition: none !important; }
 }
+
+/* Refinement: remove rectangular backing; place titles on the bottom strip. */
+.extras-page .extras-content .polaroid-gallery .polaroid {
+  background: transparent !important;
+  background-color: transparent !important;
+  padding-bottom: 24% !important;
+}
+.extras-page .extras-content .polaroid-gallery .polaroid > span,
+.extras-page .extras-content .polaroid-gallery .polaroid > .caption {
+  position: absolute !important;
+  z-index: 4 !important;
+  left: 10% !important;
+  right: 10% !important;
+  bottom: 5.5% !important;
+  width: 80% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+  line-height: 1.15 !important;
+  color: #29251e !important;
+  background: transparent !important;
+  pointer-events: none;
+}
