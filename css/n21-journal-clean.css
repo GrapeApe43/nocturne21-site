@@ -1,3 +1,11 @@
+body {
+  background-image: url('/img/background.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .n21journal-page-shell {
   width: min(900px, calc(100% - 24px));
   margin: 0 auto 24px;
