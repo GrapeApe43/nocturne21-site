@@ -55,14 +55,18 @@
     @media (max-width: 600px) {
       .n21journal-hero { padding: 24px 16px; }
     }
-    /* Restore the main Journal background on mobile */
+/* Journal mobile background */
 @media (max-width: 800px) {
+  html {
+    background: transparent !important;
+  }
+
   body {
     background-image: url("/img/background-image.png") !important;
-    background-size: auto !important;
-    background-repeat: repeat !important;
-    background-position: center top !important;
-    background-attachment: scroll !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
   }
 }
   </style>
