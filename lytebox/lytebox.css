@@ -325,18 +325,20 @@ span.lbIEFix { padding: 0.5em 0.8em !important; }
   #lbPrevHov::after, #lbNextHov::after, #lbClose, #lbCloseTop { transition: none; }
 }
 
-/* NOCTURNE 21: readable custom arrows on dark AND light artwork */
+/* Nocturne 21 — brush-painted navigation buttons; no extra CSS backplates. */
 #lbPrevHov::after, #lbNextHov::after {
-  background-color: rgba(8, 12, 25, .78) !important;
-  border: 1px solid rgba(224, 233, 238, .34) !important;
-  border-radius: 12px !important;
-  box-shadow: 0 3px 16px rgba(0,0,0,.48), inset 0 0 12px rgba(255,255,255,.05) !important;
-  opacity: .92 !important;
-  background-size: 82% 82% !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-size: contain !important;
+  opacity: .9;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,.55));
 }
 #lbPrevHov:hover::after, #lbNextHov:hover::after,
 #lbPrevHov:focus-visible::after, #lbNextHov:focus-visible::after {
-  background-color: rgba(8, 12, 25, .94) !important;
-  border-color: rgba(238,245,249,.65) !important;
-  opacity: 1 !important;
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(245,20,80,.85))
+          drop-shadow(0 0 14px rgba(245,20,80,.55));
+  transform: translateY(-50%) scale(1.09);
 }
