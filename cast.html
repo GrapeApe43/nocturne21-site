@@ -653,6 +653,74 @@ body .n21-cast-page.subPage {
   }
 }
 
+
+/* MOBILE CAST PHOTO BOARD — desktop stays unchanged. */
+.n21-mobile-corkboard, .n21-mobile-close { display: none; }
+@media (max-width: 800px) {
+  body .n21-cast-page .n21-cast-layout { display: block !important; }
+  body .n21-cast-page .n21-cast-board {
+    display: block !important; width: 100% !important; padding: 0 !important;
+    margin: 0 auto !important; background: transparent !important;
+    border: 0 !important; box-shadow: none !important;
+  }
+  body .n21-cast-page #thumbContainer { display: none !important; }
+  .n21-mobile-corkboard {
+    display: block; position: relative; width: 100%;
+    aspect-ratio: 536 / 767;
+    background: url("img/characters/corkboard-mobile.png") center / 100% 100% no-repeat;
+    isolation: isolate;
+  }
+  .n21-mobile-label {
+    position: absolute; width: 40%; left: 29%; top: 3%;
+    height: auto; pointer-events: none; z-index: 2;
+  }
+  .n21-mobile-photo {
+    position: absolute; display: block; padding: 0; margin: 0;
+    border: 0; background: transparent; cursor: pointer;
+    width: var(--w); left: var(--x); top: var(--y);
+    transform: rotate(var(--angle)); transform-origin: center;
+    filter: drop-shadow(2px 5px 3px rgba(0,0,0,.45));
+    transition: transform .32s ease, filter .32s ease;
+    z-index: var(--layer, 3);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .n21-mobile-photo img { display: block; width: 100%; height: auto; }
+  .n21-mobile-photo:hover, .n21-mobile-photo:focus-visible {
+    transform: rotate(0deg) translateY(-5px) scale(1.08);
+    filter: drop-shadow(3px 9px 6px rgba(0,0,0,.65));
+    z-index: 20;
+  }
+  .n21-mobile-photo:focus-visible { outline: 3px solid #efe2ff; outline-offset: 3px; }
+  .photo-kai     { --x: 3%;  --y: 5%;  --w: 37%; --angle: -12deg; }
+  .photo-yoshiko { --x: 61%; --y: 3%;  --w: 36%; --angle: 11deg; }
+  .photo-kuro    { --x: 34%; --y: 22%; --w: 34%; --angle: 0deg; --layer: 5; }
+  .photo-shingen { --x: 4%;  --y: 37%; --w: 36%; --angle: 7deg; }
+  .photo-kiri    { --x: 62%; --y: 38%; --w: 34%; --angle: -10deg; }
+  .photo-marunin { --x: 15%; --y: 59%; --w: 36%; --angle: -11deg; }
+  .photo-riyu    { --x: 55%; --y: 70%; --w: 37%; --angle: 12deg; }
+  body .n21-cast-page .n21-cast-hero { display: none !important; }
+  body .n21-cast-page .n21-story-links { text-align: center; margin: 14px auto; }
+  body .n21-cast-page #characterDisplay.n21-cast-display {
+    display: none; position: fixed !important; inset: 0 !important;
+    z-index: 9999 !important; width: 100% !important; height: 100dvh !important;
+    max-height: 100dvh !important; box-sizing: border-box !important;
+    overflow-y: auto !important; overscroll-behavior: contain;
+    background: #11101c !important; padding: 64px 12px 24px !important;
+    border: 0 !important; border-radius: 0 !important;
+  }
+  body .n21-cast-page #characterDisplay.n21-cast-display.n21-mobile-open { display: block !important; }
+  .n21-mobile-close {
+    display: block; position: sticky; top: -52px; z-index: 2;
+    margin: -50px 0 15px auto; padding: 10px 14px;
+    background: #30243e; color: #fff; border: 1px solid #c5addb;
+    border-radius: 6px; font: inherit; cursor: pointer;
+  }
+  body.n21-cast-modal-open { overflow: hidden !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .n21-mobile-photo { transition: none !important; }
+}
+
 </style>
 </head>
 
@@ -720,6 +788,16 @@ body .n21-cast-page.subPage {
           <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="5" aria-label="Show Creepy Dream Lady" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-marunin.png" alt="" loading="lazy"></button>
           <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="6" aria-label="Show Stranger" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-riyu.png" alt="" loading="lazy"></button>
         </div>
+<div class="n21-mobile-corkboard" aria-label="Yoshiko's cast photo board">
+  <img class="n21-mobile-label" src="img/characters/cast-label.png" alt="The Cast">
+  <button type="button" class="n21-mobile-photo photo-kai" data-index="0" aria-label="Open Kai's profile"><img src="img/characters/photo-kai.png" alt=""></button>
+  <button type="button" class="n21-mobile-photo photo-yoshiko" data-index="2" aria-label="Open Yoshiko's profile"><img src="img/characters/photo-yoshiko.png" alt=""></button>
+  <button type="button" class="n21-mobile-photo photo-kuro" data-index="1" aria-label="Open Kuro's profile"><img src="img/characters/photo-kuro.png" alt=""></button>
+  <button type="button" class="n21-mobile-photo photo-shingen" data-index="3" aria-label="Open Shingen's profile"><img src="img/characters/photo-shingen.png" alt=""></button>
+  <button type="button" class="n21-mobile-photo photo-kiri" data-index="4" aria-label="Open Kiri's profile"><img src="img/characters/photo-kiri.png" alt=""></button>
+  <button type="button" class="n21-mobile-photo photo-marunin" data-index="5" aria-label="Open Marunin's profile"><img src="img/characters/photo-marunin.png" alt=""></button>
+  <button type="button" class="n21-mobile-photo photo-riyu" data-index="6" aria-label="Open Ri'yu's profile"><img src="img/characters/photo-riyu.png" alt=""></button>
+</div>
         </aside>
         <main class="n21-cast-main">
   <section class="n21-cast-hero" aria-labelledby="n21-cast-heading">
@@ -732,7 +810,8 @@ body .n21-cast-page.subPage {
   learn more <a href="about.html">about the comic</a>,
   or browse the <a href="archive.html">complete comic archive</a>.
 </p>
-        <div class="n21-cast-display" id="characterDisplay">
+        <div class="n21-cast-display" id="characterDisplay" role="region" aria-label="Character profile">
+          <button class="n21-mobile-close" type="button" aria-label="Close character profile">✕ Back to the board</button>
           <img class="n21-cast-art" id="charImage" src="img/characters/profile-kai.jpg" alt="Kai's illustrated scrapbook profile" fetchpriority="high">
           <div class="n21-cast-fallback-bio" id="fallbackBio" hidden></div>
           <p class="n21-cast-visually-hidden" id="charAccessibleBio"></p>
@@ -819,6 +898,28 @@ body .n21-cast-page.subPage {
       }
     }
     tabs.forEach((tab, index) => tab.addEventListener('click', () => showCharacter(index)));
+    const mobileProfile = document.getElementById('characterDisplay');
+    const mobileClose = document.querySelector('.n21-mobile-close');
+    let lastPhoto = null;
+    function closeMobileProfile() {
+      mobileProfile.classList.remove('n21-mobile-open');
+      document.body.classList.remove('n21-cast-modal-open');
+      if (lastPhoto) lastPhoto.focus();
+    }
+    document.querySelectorAll('.n21-mobile-photo').forEach(photo => {
+      photo.addEventListener('click', () => {
+        lastPhoto = photo;
+        showCharacter(Number(photo.dataset.index));
+        mobileProfile.classList.add('n21-mobile-open');
+        document.body.classList.add('n21-cast-modal-open');
+        mobileProfile.scrollTop = 0;
+        mobileClose.focus();
+      });
+    });
+    mobileClose.addEventListener('click', closeMobileProfile);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mobileProfile.classList.contains('n21-mobile-open')) closeMobileProfile();
+    });
     document.addEventListener('keydown', e => {
       if (e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') showCharacter((currentIndex + 1) % characters.length);
@@ -856,7 +957,6 @@ body .n21-cast-page.subPage {
 
 </body>
 </html>
-
 
 
 
