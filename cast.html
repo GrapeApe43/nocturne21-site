@@ -752,7 +752,10 @@ body .n21-cast-page.subPage {
 .n21-dossier-redactions p { display:flex; align-items:center; flex-wrap:wrap; gap:7px; margin:6px 0; }
 .n21-blackout { display:inline-block; height:1.12em; width:clamp(90px,30%,180px); background:#17130f; transform:rotate(-1deg); box-shadow:1px 2px 0 rgba(0,0,0,.18); vertical-align:middle; }
 .n21-blackout.short { width:clamp(70px,23%,125px); transform:rotate(1deg); }
-.n21-classified { display:block; margin:8px 0 5px auto; width:min(50%,230px); border:3px double #a91f1a; color:#a91f1a !important; font:900 clamp(1rem,3vw,1.6rem)/1.1 sans-serif; text-align:center; letter-spacing:.09em; padding:5px 3px; transform:rotate(-11deg); opacity:.85; }
+.n21-classified { display:inline-block; margin:-2px 0 6px 28%; width:max-content; max-width:65%; border:3px double #a91f1a; color:#a91f1a !important; font:900 clamp(.9rem,2.8vw,1.45rem)/1.1 sans-serif; text-align:center; letter-spacing:.09em; padding:4px 12px; transform:rotate(-9deg); opacity:.85; }
+.n21-dossier-writing .n21-redaction-note { display:block; margin:4px 0 3px 10%; line-height:1.4; }
+.n21-dossier-writing .n21-redaction-note:nth-of-type(2) { margin-left:34%; transform:rotate(2deg); }
+.n21-dossier-writing .n21-redaction-note:nth-of-type(3) { margin-left:15%; transform:rotate(-3deg); }
 .n21-dossier-writing .n21-redaction-note { color:#71312a !important; transform:rotate(-2deg); font-size:.93rem; }
 .n21-dossier-note { margin-top:16px !important; transform:rotate(-1deg); }
 .n21-dossier-close { display:block; position:relative; z-index:2; margin:20px auto 0; padding:6px 12px; border:1px dashed #78492b; background:rgba(238,222,187,.75); color:#392417; font:700 1rem 'Gloria Hallelujah','Patrick Hand',cursive; cursor:pointer; transform:rotate(-1deg); }
@@ -867,8 +870,10 @@ body .n21-cast-page.subPage {
                   <p>Place of birth: <span class="n21-blackout" aria-label="Redacted"></span></p>
                   <p>Family history: <span class="n21-blackout short" aria-label="Redacted"></span></p>
                   <p>Previous residence: <span class="n21-blackout" aria-label="Redacted"></span></p>
-                  <span class="n21-classified" aria-hidden="true">CLASSIFIED</span>
-                  <p class="n21-redaction-note">I don't actually know what's under these.</p>
+                  <span class="n21-classified" aria-hidden="true">REDACTED</span>
+                  <p class="n21-redaction-note">↳ I don't actually know what's under these.</p>
+                  <p class="n21-redaction-note">Seriously.</p>
+                  <p class="n21-redaction-note">I asked him. He doesn't know.</p>
                 </section>
                 <h3>Known habits</h3>
                 <p>Drinks enough coffee to concern a medical professional. Unfortunately, the medical professional in this house is Dad, and he has other things to worry about.</p>
