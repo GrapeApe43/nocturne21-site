@@ -766,6 +766,32 @@ body .n21-cast-page.subPage {
 @media(max-width:600px) { .n21-dossier-content { min-height:850px; padding:18% 10% 45px; } .n21-dossier-writing p { font-size:.86rem; line-height:1.55; } .n21-dossier-writing h2 { font-size:1.3rem; } .n21-dossier-writing h3 { font-size:1rem; } .n21-dossier-redactions { margin:10px 0 14px; } }
 @media(prefers-reduced-motion:reduce) { .n21-dossier-content,.n21-dossier.is-closing .n21-dossier-content { animation:none !important; } .n21-dossier > summary:hover { transform:none; } }
 
+/* Final Cast refinements: full-width dossier and illustrated tab fasteners. */
+.n21-cast-page #characterDisplay .n21-dossier {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+/* The fastener belongs to each clickable scrapbook tab and moves with it. */
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  top: 3%;
+  left: 5%;
+  width: 18%;
+  aspect-ratio: 1 / 1;
+  background: url('img/characters/fastener.png') center / contain no-repeat;
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(1px 2px 1px rgba(0,0,0,.45));
+}
+@media (max-width: 800px) {
+  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom::after {
+    width: 19%;
+  }
+}
+
 </style>
 </head>
 
