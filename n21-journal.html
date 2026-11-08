@@ -55,18 +55,25 @@
     @media (max-width: 600px) {
       .n21journal-hero { padding: 24px 16px; }
     }
-/* Journal mobile background */
+/* Journal background — portrait and landscape */
 @media (max-width: 800px) {
-  html {
+  html,
+  body {
     background: transparent !important;
   }
 
-  body {
-    background-image: url("/img/background-image.png") !important;
-    background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-    background-attachment: fixed !important;
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/img/background-image.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: -1;
   }
 }
   </style>
