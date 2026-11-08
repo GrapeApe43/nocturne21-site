@@ -366,3 +366,31 @@ span.lbIEFix { padding: 0.5em 0.8em !important; }
     right: calc(-1 * clamp(45px, 10vw, 96px) * .52) !important;
   }
 }
+
+/* ============================================================
+   NOCTURNE 21 — VIEWPORT-SAFE, CENTERED IMAGE VIEWER
+   Lytebox JS now reserves room for the frame + outside arrows.
+   !important overrides Lytebox's inline top/position calculations.
+   ============================================================ */
+#lbMain {
+  position: fixed !important;
+  top: 50% !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+}
+/* Keep the original dynamically measured Lytebox width and image ratio. */
+#lbOuterContainer {
+  max-width: calc(100vw - 120px);
+  box-sizing: border-box;
+}
+/* Prevent the painted frame from eating the viewport margin. */
+#lbImageContainer::after { box-sizing: border-box; }
+@media (max-width: 600px) {
+  #lbOuterContainer { max-width: calc(100vw - 78px); }
+}
+@media (max-height: 420px) {
+  #lbMain { top: 50% !important; }
+}
