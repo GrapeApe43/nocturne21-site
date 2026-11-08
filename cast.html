@@ -729,67 +729,35 @@ body .n21-cast-page.subPage {
 }
 
 
-/* Yoshiko's dossier: rounded manila folder, with a clean, even raised tab. */
-.n21-dossier {
-  position: relative; isolation: isolate; box-sizing: border-box;
-  max-width: 760px; margin: 30px auto 16px; padding: 26px 15px 18px;
-  border-radius: 18px; background: linear-gradient(to bottom, transparent 0 26px, #c5aa7c 26px);
-  color: #19150f !important; font-family: 'Gloria Hallelujah','Patrick Hand',cursive;
-  text-align: left; filter: drop-shadow(3px 8px 5px rgba(0,0,0,.45));
-}
-.n21-dossier[hidden] { display: none !important; }
-/* The raised tab is separate from the folder body so both shoulders line up evenly. */
-.n21-dossier::before {
-  content: ''; position: absolute; top: 0; left: 0; width: 45%; height: 48px;
-  background: #c5aa7c; border-radius: 17px 17px 0 0; z-index: -1;
-}
-.n21-dossier > summary {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  position: relative; cursor: pointer; list-style: none; box-sizing: border-box;
-  width: 100%; min-height: 88px; padding: 14px 6px 14px;
-  border: 0; background: transparent; color: #17130e !important;
-}
-.n21-dossier > summary::-webkit-details-marker { display: none; }
-.n21-dossier > summary:focus-visible { outline: 3px solid #8ee9ed; outline-offset: 4px; }
-.n21-dossier-title { display: block; width: min(92%, 650px); height: auto; object-fit: contain; }
-.n21-dossier-chevron { flex: 0 0 auto; font-size: 1rem; color: #17130e !important; }
-.n21-dossier[open] .n21-dossier-chevron { transform: rotate(180deg); }
-/* Artist-made paper PNG includes the brass fastener and TOP SECRET watermark. */
-.n21-dossier-sheet {
-  position: relative; box-sizing: border-box; margin: -2px 0 0;
-  padding: clamp(58px, 9vw, 92px) clamp(22px, 5vw, 45px) 55px;
-  background: url('img/characters/dossier-paper.png') center top / 100% 100% no-repeat;
-  border: 0; box-shadow: none; transform: rotate(.25deg);
-  color: #19150f !important; min-height: 680px;
-}
-.n21-dossier-sheet h2 {
-  margin: 0 0 16px; color: #17130e !important;
-  font: 700 clamp(1.6rem,4vw,2.25rem)/1.2 'Gloria Hallelujah','Patrick Hand',cursive;
-}
-.n21-dossier-sheet h3 {
-  color: #17130e !important; font: 700 1.22rem/1.5 'Gloria Hallelujah','Patrick Hand',cursive;
-  margin: 17px 0 5px;
-}
-.n21-dossier-sheet p {
-  color: #17130e !important; font: 400 1.05rem/1.8 'Gloria Hallelujah','Patrick Hand',cursive;
-  margin: 0 0 10px;
-}
-.n21-dossier-facts { margin: 0 0 22px; transform: rotate(-.5deg); }
-.n21-dossier-facts p { margin: 0 0 2px; font-size: 1.02rem; line-height: 1.65; }
-.n21-dossier-facts strong { font-weight: 700; }
-.n21-dossier-note { border-left: 0 !important; padding-left: 0; margin-top: 18px !important; transform: rotate(-1deg); }
-.n21-dossier-scribble { position: absolute; right: 25px; top: 100px; color: #782d35; font-size: 2rem; transform: rotate(15deg); }
-@media (max-width: 480px) {
-  .n21-dossier { margin-top: 22px; padding: 26px 9px 13px; border-radius: 13px; }
-  .n21-dossier::before { border-radius: 13px 13px 0 0; }
-  .n21-dossier > summary { min-height: 68px; padding: 8px 2px 12px; gap: 5px; }
-  .n21-dossier-title { width: 90%; }
-  .n21-dossier-sheet { min-height: 550px; padding: 65px 24px 55px; }
-  .n21-dossier-sheet h2 { font-size: 1.45rem; }
-  .n21-dossier-sheet p { font-size: .96rem; }
-  .n21-dossier-scribble { top: 115px; right: 18px; }
-}
-@media (prefers-reduced-motion: reduce) { .n21-dossier-sheet { transform: none; } }
+/* Yoshiko's illustrated folder: the two PNGs supply ALL paper and lettering. */
+.n21-dossier { width:100%; max-width:760px; margin:26px auto 14px; color:#26180f !important; font-family:'Gloria Hallelujah','Patrick Hand',cursive; text-align:left; filter:drop-shadow(2px 8px 5px rgba(0,0,0,.48)); }
+.n21-dossier[hidden] { display:none !important; }
+.n21-dossier > summary { display:block; width:100%; aspect-ratio:1718 / 1184; cursor:pointer; list-style:none; background:url('img/cast/dossier-folder-closed.png') center / contain no-repeat; border:0; }
+.n21-dossier > summary::-webkit-details-marker { display:none; }
+.n21-dossier > summary:focus-visible, .n21-dossier-close:focus-visible { outline:3px solid #8ee9ed; outline-offset:3px; }
+.n21-dossier > summary:hover { filter:brightness(1.06); transform:rotate(-.5deg); }
+.n21-dossier[open] > summary { display:none; }
+.n21-dossier-content { position:relative; width:100%; box-sizing:border-box; min-height:1010px; background:url('img/cast/dossier-folder-open.png') center top / 100% 100% no-repeat; padding:clamp(115px, 19%, 150px) 10% 65px; animation:n21-folder-reveal .55s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes n21-folder-reveal { from { opacity:.2; transform:perspective(900px) rotateX(-12deg) translateY(-22px) scaleY(.94); transform-origin:center top; } to { opacity:1; transform:perspective(900px) rotateX(0) translateY(0) scaleY(1); } }
+.n21-dossier.is-closing .n21-dossier-content { animation:n21-folder-close .32s ease-in both; }
+@keyframes n21-folder-close { to { opacity:0; transform:translateY(-15px) scaleY(.96); transform-origin:top; } }
+.n21-dossier-writing { position:relative; z-index:1; padding:0 2%; color:#211911; }
+.n21-dossier-writing h2 { margin:0 0 9px; color:#211911 !important; font:700 clamp(1.3rem,3.2vw,2rem)/1.3 'Gloria Hallelujah','Patrick Hand',cursive; }
+.n21-dossier-writing h3 { margin:17px 0 4px; color:#211911 !important; font:700 clamp(1rem,2vw,1.25rem)/1.4 'Gloria Hallelujah','Patrick Hand',cursive; }
+.n21-dossier-writing p { margin:0 0 9px; color:#211911 !important; font:400 clamp(.85rem,1.7vw,1.04rem)/1.65 'Gloria Hallelujah','Patrick Hand',cursive; }
+.n21-dossier-facts { margin-bottom:12px; transform:rotate(-.4deg); }
+.n21-dossier-facts p { margin:0 0 2px; }
+.n21-dossier-redactions { position:relative; margin:16px 0 25px; padding:8px 5px 12px; transform:rotate(-.7deg); }
+.n21-dossier-redactions h3 { margin:0 0 8px; }
+.n21-dossier-redactions p { display:flex; align-items:center; flex-wrap:wrap; gap:7px; margin:6px 0; }
+.n21-blackout { display:inline-block; height:1.12em; width:clamp(90px,30%,180px); background:#17130f; transform:rotate(-1deg); box-shadow:1px 2px 0 rgba(0,0,0,.18); vertical-align:middle; }
+.n21-blackout.short { width:clamp(70px,23%,125px); transform:rotate(1deg); }
+.n21-classified { display:block; margin:8px 0 5px auto; width:min(50%,230px); border:3px double #a91f1a; color:#a91f1a !important; font:900 clamp(1rem,3vw,1.6rem)/1.1 sans-serif; text-align:center; letter-spacing:.09em; padding:5px 3px; transform:rotate(-11deg); opacity:.85; }
+.n21-dossier-writing .n21-redaction-note { color:#71312a !important; transform:rotate(-2deg); font-size:.93rem; }
+.n21-dossier-note { margin-top:16px !important; transform:rotate(-1deg); }
+.n21-dossier-close { display:block; position:relative; z-index:2; margin:20px auto 0; padding:6px 12px; border:1px dashed #78492b; background:rgba(238,222,187,.75); color:#392417; font:700 1rem 'Gloria Hallelujah','Patrick Hand',cursive; cursor:pointer; transform:rotate(-1deg); }
+@media(max-width:600px) { .n21-dossier-content { min-height:850px; padding:18% 10% 45px; } .n21-dossier-writing p { font-size:.86rem; line-height:1.55; } .n21-dossier-writing h2 { font-size:1.3rem; } .n21-dossier-writing h3 { font-size:1rem; } .n21-dossier-redactions { margin:10px 0 14px; } }
+@media(prefers-reduced-motion:reduce) { .n21-dossier-content,.n21-dossier.is-closing .n21-dossier-content { animation:none !important; } .n21-dossier > summary:hover { transform:none; } }
 
 </style>
 </head>
@@ -886,24 +854,31 @@ body .n21-cast-page.subPage {
           <div class="n21-cast-fallback-bio" id="fallbackBio" hidden></div>
           <p class="n21-cast-visually-hidden" id="charAccessibleBio"></p>
           <details class="n21-dossier" id="kaiDossier">
-            <summary aria-label="Open Yoshiko's secret file on Kai">
-              <img class="n21-dossier-title" src="img/characters/dossier-title.png" alt="Super Secret File of Secrets — Classified">
-              <span class="n21-dossier-chevron" aria-hidden="true">▼</span>
-            </summary>
-            <div class="n21-dossier-sheet">
-              <span class="n21-dossier-scribble" aria-hidden="true">☆</span>
-              <h2>CASE FILE: KAI</h2>
-              <div class="n21-dossier-facts">
-                <p><strong>Age:</strong> 14–16 maybe?</p>
-                <p><strong>Relation:</strong> Adopted best friend</p>
+            <summary aria-label="Open Yoshiko's super secret file on Kai" title="Click to open Yoshiko's file"></summary>
+            <div class="n21-dossier-content">
+              <div class="n21-dossier-writing">
+                <h2>CASE FILE: KAI</h2>
+                <div class="n21-dossier-facts">
+                  <p><strong>Age:</strong> 14–16 maybe?</p>
+                  <p><strong>Relation:</strong> Adopted best friend</p>
+                </div>
+                <section class="n21-dossier-redactions" aria-label="Kai's unknown past">
+                  <h3>Background information</h3>
+                  <p>Place of birth: <span class="n21-blackout" aria-label="Redacted"></span></p>
+                  <p>Family history: <span class="n21-blackout short" aria-label="Redacted"></span></p>
+                  <p>Previous residence: <span class="n21-blackout" aria-label="Redacted"></span></p>
+                  <span class="n21-classified" aria-hidden="true">CLASSIFIED</span>
+                  <p class="n21-redaction-note">I don't actually know what's under these.</p>
+                </section>
+                <h3>Known habits</h3>
+                <p>Drinks enough coffee to concern a medical professional. Unfortunately, the medical professional in this house is Dad, and he has other things to worry about.</p>
+                <h3>Suspicious activity</h3>
+                <p>Can make friends with practically anyone. Has a talent for appearing wherever the snacks are. Claims he doesn't need shoes. This is not normal behavior.</p>
+                <h3>Personal observations</h3>
+                <p>He's curious about everything, asks a million questions, and somehow makes our very quiet house feel less quiet.</p>
+                <p class="n21-dossier-note"><strong>Yoshiko's note:</strong> He's family. Don't tell him I wrote that. He'll be unbearable. ♡</p>
+                <button class="n21-dossier-close" type="button">✕ Close secret file</button>
               </div>
-              <h3>Known habits</h3>
-              <p>Drinks enough coffee to concern a medical professional. Unfortunately, the medical professional in this house is Dad, and he has other things to worry about.</p>
-              <h3>Suspicious activity</h3>
-              <p>Can make friends with practically anyone. Has a talent for appearing wherever the snacks are. Claims he doesn't need shoes. This is not normal behavior.</p>
-              <h3>Personal observations</h3>
-              <p>He's curious about everything, asks a million questions, and somehow makes our very quiet house feel less quiet.</p>
-              <p class="n21-dossier-note"><strong>Yoshiko's note:</strong> He's family. Don't tell him I wrote that. He'll be unbearable. ♡</p>
             </div>
           </details>
         </div>
@@ -991,6 +966,17 @@ body .n21-cast-page.subPage {
         fallbackBio.append(heading, text);
       }
     }
+    // Let the illustrated open file settle into place; animate when closing too.
+    const dossierClose = kaiDossier.querySelector('.n21-dossier-close');
+    dossierClose.addEventListener('click', () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        kaiDossier.open = false;
+      } else {
+        kaiDossier.classList.add('is-closing');
+        window.setTimeout(() => { kaiDossier.open = false; kaiDossier.classList.remove('is-closing'); }, 320);
+      }
+      kaiDossier.scrollIntoView({behavior:'auto',block:'nearest'});
+    });
     tabs.forEach((tab, index) => tab.addEventListener('click', () => showCharacter(index)));
     const mobileProfile = document.getElementById('characterDisplay');
     const mobileClose = document.querySelector('.n21-mobile-close');
