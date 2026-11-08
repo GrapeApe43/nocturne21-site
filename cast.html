@@ -727,6 +727,28 @@ body .n21-cast-page.subPage {
   .n21-mobile-photo { transition: none !important; }
 }
 
+
+/* Yoshiko's classified dossier — prototype for Kai. */
+.n21-dossier { margin: 22px auto 12px; max-width: 760px; color: #33291f; font-family: 'Patrick Hand', cursive; }
+.n21-dossier[hidden] { display: none !important; }
+.n21-dossier > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; list-style: none; cursor: pointer; position: relative; padding: 17px 22px; background: #bfa477; border: 1px solid #8a6b43; border-radius: 8px 8px 3px 3px; box-shadow: 3px 5px 0 #7a5c38, 4px 8px 13px #0008; transform: rotate(-.5deg); font-size: clamp(1.1rem, 3vw, 1.5rem); }
+.n21-dossier > summary::-webkit-details-marker { display: none; }
+.n21-dossier > summary::before { content: ''; position: absolute; top: -11px; left: 18%; width: 36%; height: 13px; background: #bfa477; border: 1px solid #8a6b43; border-bottom: 0; border-radius: 6px 6px 0 0; }
+.n21-dossier > summary::after { content: '📎'; position: absolute; top: -18px; right: 16%; font-size: 25px; transform: rotate(25deg); }
+.n21-dossier-stamp { font: bold .8rem/1.1 'Open Sans', sans-serif; letter-spacing: .09em; color: #922f30; border: 3px double #922f30; padding: 5px 7px; transform: rotate(9deg); white-space: nowrap; }
+.n21-dossier > summary:focus-visible { outline: 3px solid #8ee9ed; outline-offset: 5px; }
+.n21-dossier-chevron { font-size: 1rem; white-space: nowrap; }
+.n21-dossier[open] .n21-dossier-chevron { transform: rotate(180deg); }
+.n21-dossier-sheet { position: relative; margin: 0 12px; padding: 27px clamp(17px, 4vw, 38px) 30px; background: repeating-linear-gradient(to bottom, #f3e7ca 0, #f3e7ca 32px, #d7d4bf 33px, #f3e7ca 34px); border: 1px solid #bba77d; box-shadow: 4px 8px 14px #0007; transform: rotate(.35deg); }
+.n21-dossier-sheet::before { content: ''; position: absolute; left: 12%; top: 0; bottom: 0; width: 1px; background: #cc8e87a8; pointer-events: none; }
+.n21-dossier-sheet h2 { margin: 0 0 15px 12%; color: #33291f; font: 400 clamp(1.5rem, 4vw, 2.1rem)/1.1 'Lacquer Regular', cursive; }
+.n21-dossier-sheet h3 { color: #7a292d; font: 700 1.35rem/1.2 'Patrick Hand', cursive; margin: 17px 0 5px; }
+.n21-dossier-sheet p { font: 400 1.22rem/1.55 'Patrick Hand', cursive; margin: 0 0 10px; }
+.n21-dossier-note { border-left: 3px solid #aa5556; padding-left: 13px; margin-top: 18px !important; transform: rotate(-1deg); }
+.n21-dossier-scribble { position: absolute; right: 20px; top: 62px; color: #9b3945; font-size: 2rem; transform: rotate(15deg); }
+@media (max-width: 480px) { .n21-dossier { margin-top: 18px; } .n21-dossier > summary { padding: 14px 12px; } .n21-dossier-stamp { font-size: .65rem; } .n21-dossier-sheet { margin: 0 5px; padding: 24px 15px; } .n21-dossier-sheet h2 { margin-left: 8%; } .n21-dossier-sheet p { font-size: 1.12rem; } }
+@media (prefers-reduced-motion: reduce) { .n21-dossier > summary, .n21-dossier-sheet { transform: none; } }
+
 </style>
 </head>
 
@@ -821,6 +843,24 @@ body .n21-cast-page.subPage {
           <img class="n21-cast-art" id="charImage" src="img/characters/profile-kai.jpg" alt="Kai's illustrated scrapbook profile" fetchpriority="high">
           <div class="n21-cast-fallback-bio" id="fallbackBio" hidden></div>
           <p class="n21-cast-visually-hidden" id="charAccessibleBio"></p>
+          <details class="n21-dossier" id="kaiDossier">
+            <summary aria-label="Open Yoshiko's secret file on Kai">
+              <span>SUPER SECRET FILE OF SECRETS</span>
+              <span class="n21-dossier-stamp">TOP SECRET</span>
+              <span class="n21-dossier-chevron" aria-hidden="true">▼</span>
+            </summary>
+            <div class="n21-dossier-sheet">
+              <span class="n21-dossier-scribble" aria-hidden="true">☆</span>
+              <h2>CASE FILE: KAI</h2>
+              <h3>Known habits</h3>
+              <p>Drinks enough coffee to concern a medical professional. Unfortunately, the medical professional in this house is Dad, and he has other things to worry about.</p>
+              <h3>Suspicious activity</h3>
+              <p>Can make friends with practically anyone. Has a talent for appearing wherever the snacks are. Claims he doesn't need shoes. This is not normal behavior.</p>
+              <h3>Personal observations</h3>
+              <p>He's curious about everything, asks a million questions, and somehow makes our very quiet house feel less quiet.</p>
+              <p class="n21-dossier-note"><strong>Yoshiko's note:</strong> He's family. Don't tell him I wrote that. He'll be unbearable. ♡</p>
+            </div>
+          </details>
         </div>
         </main>
       </div>
@@ -886,6 +926,9 @@ body .n21-cast-page.subPage {
       const char = characters[index];
       if (!char) return;
       currentIndex = index;
+      const kaiDossier = document.getElementById('kaiDossier');
+      kaiDossier.hidden = index !== 0;
+      if (index !== 0) kaiDossier.open = false;
       tabs.forEach((tab, i) => {
         tab.classList.toggle('active', i === index);
         tab.setAttribute('aria-pressed', String(i === index));
@@ -963,6 +1006,5 @@ body .n21-cast-page.subPage {
 
 </body>
 </html>
-
 
 
