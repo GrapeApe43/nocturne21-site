@@ -342,3 +342,27 @@ span.lbIEFix { padding: 0.5em 0.8em !important; }
           drop-shadow(0 0 14px rgba(245,20,80,.55));
   transform: translateY(-50%) scale(1.09);
 }
+
+/* Nocturne 21 — arrows straddle the OUTSIDE of the painted frame.
+   Keep the brush artwork, hover glow, and working Lytebox navigation. */
+#lbImageContainer, #lbHoverNav, #lbPrevHov, #lbNextHov {
+  overflow: visible !important;
+}
+#lbPrevHov::after {
+  left: calc(-1 * clamp(45px, 10vw, 96px) * .58) !important;
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+#lbNextHov::after {
+  right: calc(-1 * clamp(45px, 10vw, 96px) * .58) !important;
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  #lbPrevHov::after {
+    left: calc(-1 * clamp(45px, 10vw, 96px) * .52) !important;
+  }
+  #lbNextHov::after {
+    right: calc(-1 * clamp(45px, 10vw, 96px) * .52) !important;
+  }
+}
