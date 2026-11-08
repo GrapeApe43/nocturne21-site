@@ -568,6 +568,18 @@ body {
   color: #8ee9ed;
 }
 
+/* ========================================
+   JOURNAL — MOBILE LANDSCAPE BACKGROUND FIX
+======================================== */
+
+@media (hover: none) and (pointer: coarse) {
+  body {
+    background-attachment: scroll;
+    background-position: center top;
+    background-size: cover;
+  }
+}
+
 .n21journal-entry-body a:hover {
   color: #e9d9f5;
 }
