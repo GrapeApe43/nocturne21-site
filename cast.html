@@ -772,24 +772,18 @@ body .n21-cast-page.subPage {
   max-width: none;
   box-sizing: border-box;
 }
-/* The fastener belongs to each clickable scrapbook tab and moves with it. */
-.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom::after {
-  content: "" !important;
-  display: block !important;
-  position: absolute;
-  top: 3%;
-  left: 5%;
-  width: 18%;
-  aspect-ratio: 1 / 1;
-  background: url('img/characters/fastener.png') center / contain no-repeat;
-  pointer-events: none;
-  z-index: 5;
-  filter: drop-shadow(1px 2px 1px rgba(0,0,0,.45));
-}
-@media (max-width: 800px) {
-  .n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom::after {
-    width: 19%;
-  }
+/* Fixed brass tacks: positioned on the board, NOT inside animated buttons. */
+.n21-cast-page .n21-cast-tabs .n21-cast-tab.n21-cast-tab-custom::after { content:none !important; display:none !important; }
+.n21-cast-page .n21-cast-tabs { position:relative; }
+.n21-cast-page .n21-cast-tabs .n21-stationary-fastener {
+  position:absolute;
+  display:block;
+  width:12%;
+  aspect-ratio:1;
+  background:url('img/characters/fastener.png') center / contain no-repeat;
+  filter:saturate(.62) brightness(.96) drop-shadow(1px 2px 1px rgba(0,0,0,.4));
+  pointer-events:none;
+  z-index:30;
 }
 
 </style>
@@ -1074,6 +1068,36 @@ body .n21-cast-page.subPage {
 </div>  
   
 
+
+<script>
+/* Pin the fasteners to the corkboard's layout coordinates, independent of tab transforms. */
+(function () {
+  const board = document.getElementById('thumbContainer');
+  if (!board) return;
+  const tabs = Array.from(board.querySelectorAll('.n21-cast-tab-custom'));
+  const pins = tabs.map(() => {
+    const pin = document.createElement('span');
+    pin.className = 'n21-stationary-fastener';
+    pin.setAttribute('aria-hidden', 'true');
+    board.appendChild(pin);
+    return pin;
+  });
+  function placePins() {
+    tabs.forEach((tab, i) => {
+      const width = tab.offsetWidth * .12;
+      pins[i].style.width = width + 'px';
+      pins[i].style.left = (tab.offsetLeft + tab.offsetWidth * .05) + 'px';
+      pins[i].style.top = (tab.offsetTop + tab.offsetWidth * .03) + 'px';
+    });
+  }
+  placePins();
+  window.addEventListener('resize', placePins);
+  tabs.forEach(tab => {
+    const img = tab.querySelector('img');
+    if (img && !img.complete) img.addEventListener('load', placePins, {once:true});
+  });
+})();
+</script>
 </body>
 </html>
 
