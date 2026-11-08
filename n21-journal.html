@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nocturne 21 | Journal</title>
-  <link rel="stylesheet" href="/css/style.css?v=6001">
-  <link rel="stylesheet" href="/css/n21-journal-clean.css?v=1">
+  <link rel="stylesheet" href="/css/style.css?v=7011">
+  <link rel="stylesheet" href="/css/n21-journal-clean.css?v=100">
   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
@@ -55,30 +55,20 @@
     @media (max-width: 600px) {
       .n21journal-hero { padding: 24px 16px; }
     }
-/* Journal background — portrait and landscape */
-@media (max-width: 800px) {
-  html,
-  body {
-    background: transparent !important;
-  }
 
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("/img/background-image.png");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    pointer-events: none;
-    z-index: -1;
-  }
-}
+    /* Same background declarations as the working Journal entry page. */
+    html,
+    body {
+      background-color: #080b18 !important;
+      background-image: url('/img/background-image.png') !important;
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-attachment: fixed !important;
+    }
   </style>
 </head>
-<body align="center" background="/img/lily.png">
+<body align="center">
   <div class="writeHeader"></div>
 
   <section class="n21journal-hero" aria-labelledby="n21journal-title">
