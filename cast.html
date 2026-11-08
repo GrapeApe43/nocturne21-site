@@ -125,6 +125,7 @@
   <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
 
   <script type="text/javascript" language="javascript" src="lytebox/lytebox.js"></script>
   <link rel="stylesheet" href="lytebox/lytebox.css" type="text/css" media="screen" />
@@ -731,7 +732,10 @@ body .n21-cast-page.subPage {
 /* Yoshiko's classified dossier — Kai prototype, folder silhouette revision. */
 .n21-dossier {
   margin: 30px auto 16px; max-width: 760px;
-  color: #19150f !important; font-family: 'Patrick Hand', cursive;
+  position: relative; padding: 0 15px 18px; box-sizing: border-box;
+  background: #c5aa7c;
+  clip-path: polygon(0 18px, 1% 3px, 27% 3px, 29% 0, 45% 0, 46% 15px, 99% 15px, 100% 23px, 100% 100%, 0 100%);
+  color: #19150f !important; font-family: 'Gloria Hallelujah', 'Patrick Hand', cursive;
   text-align: left; filter: drop-shadow(3px 8px 5px rgba(0,0,0,.45));
 }
 .n21-dossier[hidden] { display: none !important; }
@@ -740,9 +744,8 @@ body .n21-cast-page.subPage {
   display: flex; align-items: center; justify-content: space-between;
   gap: 10px; box-sizing: border-box; width: 100%;
   position: relative; isolation: isolate; cursor: pointer; list-style: none;
-  min-height: 101px; padding: 43px 18px 15px;
-  background: #c5aa7c; border: 0; border-radius: 0;
-  clip-path: polygon(0 18%, 0 5%, 1% 1%, 27% 1%, 29% 0, 45% 0, 46% 12%, 98% 12%, 100% 16%, 100% 100%, 0 100%);
+  min-height: 105px; padding: 43px 4px 14px;
+  background: transparent; border: 0; border-radius: 0;
   font: 700 clamp(1.18rem, 3.2vw, 1.65rem)/1.05 'Patrick Hand', cursive;
   color: #17130e !important;
 }
@@ -763,7 +766,7 @@ body .n21-cast-page.subPage {
 .n21-dossier-chevron { font-size: 1rem; color: #17130e !important; }
 .n21-dossier[open] .n21-dossier-chevron { transform: rotate(180deg); }
 .n21-dossier-sheet {
-  position: relative; margin: -3px 15px 0; padding: 44px clamp(17px,4vw,38px) 31px;
+  position: relative; margin: -3px 0 0; padding: 44px clamp(17px,4vw,38px) 31px;
   background: repeating-linear-gradient(to bottom,#f3e7ca 0,#f3e7ca 32px,#d7d4bf 33px,#f3e7ca 34px);
   border: 1px solid #bba77d; box-shadow: 4px 8px 14px #0007;
   transform: rotate(.35deg); color: #19150f !important;
@@ -785,16 +788,21 @@ body .n21-cast-page.subPage {
 }
 .n21-dossier-sheet h2 {
   margin: 0 0 16px 11%; color: #17130e !important;
-  font: 700 clamp(1.6rem,4vw,2.25rem)/1.1 'Patrick Hand', cursive;
+  font: 700 clamp(1.6rem,4vw,2.25rem)/1.1 'Gloria Hallelujah', 'Patrick Hand', cursive;
 }
 .n21-dossier-sheet h3 {
-  color: #17130e !important; font: 700 1.4rem/1.2 'Patrick Hand', cursive;
+  color: #17130e !important; font: 700 1.22rem/1.5 'Gloria Hallelujah', 'Patrick Hand', cursive;
   margin: 17px 0 5px;
 }
 .n21-dossier-sheet p {
-  color: #17130e !important; font: 400 1.22rem/1.55 'Patrick Hand', cursive;
+  color: #17130e !important; font: 400 1.05rem/1.8 'Gloria Hallelujah', 'Patrick Hand', cursive;
   margin: 0 0 10px;
 }
+/* Old-fashioned character-sheet fields directly beneath the case name. */
+.n21-dossier-facts { margin: 0 0 22px 11%; transform: rotate(-.5deg); }
+.n21-dossier-facts p { margin: 0 0 2px; font-size: 1.02rem; line-height: 1.65; }
+.n21-dossier-facts strong { font-weight: 700; }
+/* The title can later be replaced with Yoshiko's custom transparent PNG. */
 .n21-dossier-note {
   border-left: 0 !important; padding-left: 0; margin-top: 18px !important;
   transform: rotate(-1deg);
@@ -805,12 +813,14 @@ body .n21-cast-page.subPage {
 }
 @media (max-width: 480px) {
   .n21-dossier { margin-top: 22px; }
-  .n21-dossier > summary { padding: 42px 10px 12px; min-height: 96px; gap: 6px; }
+  .n21-dossier { padding: 0 9px 13px; }
+  .n21-dossier > summary { padding: 42px 3px 12px; min-height: 96px; gap: 6px; }
   .n21-dossier > summary > span:first-child { max-width: 64%; font-size: 1.15rem; }
   .n21-dossier-stamp { font-size: .57rem; padding: 4px; }
-  .n21-dossier-sheet { margin: -3px 6px 0; padding: 42px 15px 24px; }
+  .n21-dossier-sheet { margin: -3px 0 0; padding: 42px 15px 24px; }
   .n21-dossier-sheet h2 { margin-left: 13%; }
-  .n21-dossier-sheet p { font-size: 1.12rem; }
+  .n21-dossier-sheet p { font-size: .96rem; }
+  .n21-dossier-facts { margin-left: 13%; }
   .n21-dossier-sheet::before { left: 23px; }
   .n21-dossier-sheet::after { left: 31px; }
 }
@@ -919,6 +929,10 @@ body .n21-cast-page.subPage {
             <div class="n21-dossier-sheet">
               <span class="n21-dossier-scribble" aria-hidden="true">☆</span>
               <h2>CASE FILE: KAI</h2>
+              <div class="n21-dossier-facts">
+                <p><strong>Age:</strong> 14–16 maybe?</p>
+                <p><strong>Relation:</strong> Adopted best friend</p>
+              </div>
               <h3>Known habits</h3>
               <p>Drinks enough coffee to concern a medical professional. Unfortunately, the medical professional in this house is Dad, and he has other things to worry about.</p>
               <h3>Suspicious activity</h3>
