@@ -746,8 +746,11 @@ Lytebox.prototype.changeContent = function(iContentNum) {
 			var imageWidth = $lb.imgPreloader.width;
 			var imageHeight = $lb.imgPreloader.height;
 			if ($lb.autoResize) {
-				var x = $lb.aPageSize[2] - 50;
-				var y = $lb.aPageSize[3] - 150;
+				// Reserve room for the painted frame and outside navigation arrows.
+                // Using the viewport, not the full document, prevents horizontal overflow.
+                var x = Math.max(100, $lb.aPageSize[2] - 150);
+                // Allow room for caption/navigation beneath the artwork.
+                var y = Math.max(100, $lb.aPageSize[3] - 185);
 				if (imageWidth > x) {
 					imageHeight = Math.round(imageHeight * (x / imageWidth));
 					imageWidth = x; 
