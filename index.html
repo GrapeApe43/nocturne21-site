@@ -946,36 +946,77 @@
 
     
   
-<!-- TEMPORARY iPad Chrome viewport diagnostic: remove after testing. -->
-<div id="n21-viewport-debug" style="position:fixed;top:12px;right:12px;z-index:2147483647;max-width:calc(100vw - 24px);box-sizing:border-box;padding:10px 12px;border:2px solid #e9c8ff;border-radius:8px;background:rgba(12,9,27,.96);color:#fff;font:12px/1.5 monospace;text-align:left;white-space:pre;box-shadow:0 4px 16px #0008;pointer-events:auto;">
-  Checking viewport…
+<!-- TEMPORARY iPad Chrome overflow diagnostic. Remove this block after testing. -->
+<div id="n21-viewport-debug" style="position:fixed;top:12px;right:12px;z-index:2147483647;box-sizing:border-box;width:min(365px,calc(100vw - 24px));max-height:65vh;overflow:auto;padding:10px 12px;border:2px solid #e9c8ff;border-radius:8px;background:rgba(12,9,27,.97);color:#fff;font:11px/1.45 monospace;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;box-shadow:0 4px 16px #0008;pointer-events:auto;">
+  Measuring layout…
 </div>
 <script>
 (function () {
   const panel = document.getElementById('n21-viewport-debug');
   let lastEvent = 'loaded';
   let updates = 0;
-  function update() {
-    const vv = window.visualViewport;
+  let scheduled = false;
+  function label(el) {
+    if (el === document.body) return 'body';
+    if (el === document.documentElement) return 'html';
+    let result = el.tagName.toLowerCase();
+    if (el.id) result += '#' + el.id;
+    if (typeof el.className === 'string' && el.className.trim()) {
+      result += '.' + el.className.trim().split(/\s+/).slice(0, 2).join('.');
+    }
+    return result.slice(0, 65);
+  }
+  function measure() {
+    scheduled = false;
     const html = document.documentElement;
     const body = document.body;
-    const content = document.querySelector('.subPage');
+    const vv = window.visualViewport;
+    const viewport = window.innerWidth;
+    const offenders = [];
+    const wide = [];
+    document.querySelectorAll('body *').forEach(function (el) {
+      if (el === panel || panel.contains(el) || el.tagName === 'SCRIPT' || el.tagName === 'STYLE') return;
+      const style = getComputedStyle(el);
+      if (style.display === 'none' || style.visibility === 'hidden') return;
+      const r = el.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      // Right edge outside visible viewport (ignore fixed-position share controls).
+      if (r.right > viewport + 12 && style.position !== 'fixed') {
+        offenders.push({el:el, right:r.right, left:r.left, width:r.width});
+      }
+      if (r.width > viewport + 12) wide.push({el:el, right:r.right, left:r.left, width:r.width});
+    });
+    offenders.sort((a,b) => b.right-a.right || b.width-a.width);
+    wide.sort((a,b) => b.width-a.width);
+    function format(items) {
+      if (!items.length) return '  (none)';
+      return items.slice(0,6).map(x => '  ' + label(x.el) + '\n    L:' + Math.round(x.left) + ' W:' + Math.round(x.width) + ' R:' + Math.round(x.right)).join('\n');
+    }
     panel.textContent =
-      'iPad viewport test  #' + (++updates) + '\n' +
+      'iPad layout test #' + (++updates) + '\n' +
       'Event: ' + lastEvent + '\n' +
-      'innerWidth: ' + window.innerWidth + '\n' +
+      'innerWidth: ' + viewport + '\n' +
       'html.clientWidth: ' + html.clientWidth + '\n' +
+      'html.scrollWidth: ' + html.scrollWidth + '\n' +
+      'body width: ' + Math.round(body.getBoundingClientRect().width) + '\n' +
       'visualViewport: ' + (vv ? Math.round(vv.width) : 'n/a') + '\n' +
-      'screen: ' + screen.width + ' x ' + screen.height + '\n' +
-      'body rect: ' + Math.round(body.getBoundingClientRect().width) + '\n' +
-      'content rect: ' + (content ? Math.round(content.getBoundingClientRect().width) : 'n/a') + '\n' +
-      'orientation: ' + (screen.orientation ? screen.orientation.type : 'n/a');
+      'orientation: ' + (screen.orientation ? screen.orientation.type : 'n/a') + '\n' +
+      '\nWIDEST ELEMENTS (>viewport):\n' + format(wide) +
+      '\n\nRIGHT OVERFLOW ELEMENTS:\n' + format(offenders);
   }
-  window.addEventListener('resize', function () { lastEvent = 'window resize'; update(); });
-  window.addEventListener('orientationchange', function () { lastEvent = 'orientationchange'; update(); setTimeout(update, 400); });
-  if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { lastEvent = 'visualViewport resize'; update(); });
-  window.addEventListener('pageshow', function () { lastEvent = 'pageshow'; update(); });
-  update();
+  function queue(eventName) {
+    lastEvent = eventName;
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(measure);
+    }
+  }
+  window.addEventListener('resize', () => { queue('window resize'); setTimeout(() => queue('resize +500ms'), 500); });
+  window.addEventListener('orientationchange', () => { queue('orientationchange'); setTimeout(() => queue('rotate +600ms'), 600); });
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', () => queue('visualViewport resize'));
+  window.addEventListener('pageshow', () => queue('pageshow'));
+  window.addEventListener('load', () => queue('load'));
+  queue('initial');
 })();
 </script>
 </body>
