@@ -787,8 +787,7 @@ body .n21-cast-page.subPage {
 }
 
 
-/* Mobile dossier: keep the illustrated folder proportional and the writing
-   below the folder tab, without changing the desktop layout. */
+/* Mobile dossier correction: keep all writing ON the paper. */
 @media (max-width: 600px) {
   .n21-cast-page #characterDisplay .n21-dossier {
     width: calc(100% - 16px);
@@ -796,24 +795,17 @@ body .n21-cast-page.subPage {
     margin: 26px auto 18px;
   }
   .n21-cast-page .n21-dossier-content {
-    background-size: 100% auto;
+    background-size: 100% 100%;
     background-position: center top;
-    background-repeat: no-repeat;
-    padding: clamp(78px, 20vw, 112px) 10% 50px;
+    padding: 18% 10% 11%;
     min-height: 0;
   }
-  .n21-cast-page .n21-dossier-writing {
-    min-height: 0;
-    padding: 0 1%;
-  }
+  .n21-cast-page .n21-dossier-writing { min-height: 0; padding: 0 1%; }
   .n21-cast-page .n21-dossier-writing h2 {
-    padding-top: 0;
+    padding-top: 5%;
     margin: 0 0 12px;
-    font-size: clamp(1.05rem, 4.5vw, 1.3rem);
+    font-size: clamp(1.1rem, 4.7vw, 1.3rem);
     line-height: 1.35;
-  }
-  .n21-cast-page .n21-dossier-writing h3 {
-    font-size: clamp(.95rem, 3.7vw, 1.05rem);
   }
 }
 
