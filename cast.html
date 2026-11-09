@@ -814,12 +814,7 @@ body .n21-cast-page.subPage {
 
 /* iPad Cast fixes: keep the artwork proportional and cover the entire viewport. */
 @media (min-width: 601px) and (max-width: 1366px) {
-  html { width: 100%; min-height: 100%; background: #090713 !important; overflow-x: clip; }
-  body { width: 100% !important; max-width: 100% !important; min-height: 100vh; margin: 0 !important; overflow-x: clip; background: transparent !important; background-image: none !important; position: relative; isolation: isolate; }
-  body::before {
-    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    background: #090713 url('img/background.jpg') center center / cover no-repeat;
-  }
+  /* Sitewide stylesheet owns the iPad background and viewport. */
   .n21-cast-page #characterDisplay .n21-dossier {
     width: 100%; max-width: 100%; margin: 22px auto 16px;
   }
@@ -841,7 +836,7 @@ body .n21-cast-page.subPage {
 </style>
 </head>
 
-<body align="center" background="img/lily.png" width="100%">
+<body align="center">
 
 
 <div class="floating-share" id="shareBar">
