@@ -732,12 +732,12 @@ body .n21-cast-page.subPage {
 /* Yoshiko's illustrated folder: the two PNGs supply ALL paper and lettering. */
 .n21-dossier { width:100%; max-width:760px; margin:26px auto 14px; color:#26180f !important; font-family:'Gloria Hallelujah','Patrick Hand',cursive; text-align:left; filter:drop-shadow(2px 8px 5px rgba(0,0,0,.48)); }
 .n21-dossier[hidden] { display:none !important; }
-.n21-dossier > summary { display:block; width:100%; aspect-ratio:1718 / 1184; cursor:pointer; list-style:none; background:url('img/cast/dossier-folder-closed.png') center / contain no-repeat; border:0; }
+.n21-dossier > summary { display:block; width:100%; aspect-ratio:1718 / 1184; cursor:pointer; list-style:none; background:url('img/characters/dossier-folder-closed.png') center / contain no-repeat; border:0; }
 .n21-dossier > summary::-webkit-details-marker { display:none; }
 .n21-dossier > summary:focus-visible, .n21-dossier-close:focus-visible { outline:3px solid #8ee9ed; outline-offset:3px; }
 .n21-dossier > summary:hover { filter:brightness(1.06); transform:rotate(-.5deg); }
 .n21-dossier[open] > summary { display:none; }
-.n21-dossier-content { position:relative; width:100%; box-sizing:border-box; min-height:1010px; background:url('img/cast/dossier-folder-open.png') center top / 100% 100% no-repeat; padding:clamp(115px, 19%, 150px) 10% 65px; animation:n21-folder-reveal .55s cubic-bezier(.2,.8,.2,1) both; }
+.n21-dossier-content { position:relative; width:100%; box-sizing:border-box; min-height:1010px; background:url('img/characters/dossier-folder-open.png') center top / 100% 100% no-repeat; padding:clamp(115px, 19%, 150px) 10% 65px; animation:n21-folder-reveal .55s cubic-bezier(.2,.8,.2,1) both; }
 @keyframes n21-folder-reveal { from { opacity:.2; transform:perspective(900px) rotateX(-12deg) translateY(-22px) scaleY(.94); transform-origin:center top; } to { opacity:1; transform:perspective(900px) rotateX(0) translateY(0) scaleY(1); } }
 .n21-dossier.is-closing .n21-dossier-content { animation:n21-folder-close .32s ease-in both; }
 @keyframes n21-folder-close { to { opacity:0; transform:translateY(-15px) scaleY(.96); transform-origin:top; } }
@@ -787,26 +787,60 @@ body .n21-cast-page.subPage {
 }
 
 
-/* Mobile dossier correction: keep all writing ON the paper. */
+/* Responsive three-piece dossier artwork. Top and bottom retain their
+   proportions; the center repeats vertically as the case file grows. */
+.n21-cast-page .n21-dossier-content {
+  position: relative;
+  min-height: 0;
+  box-sizing: border-box;
+  background-image: url('img/characters/dossier-open-middle.png');
+  background-position: center top;
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+  padding: 31% 10% 14%;
+  isolation: isolate;
+}
+.n21-cast-page .n21-dossier-content::before,
+.n21-cast-page .n21-dossier-content::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.n21-cast-page .n21-dossier-content::before {
+  top: 0;
+  aspect-ratio: 1545 / 470;
+  background-image: url('img/characters/dossier-open-top.png');
+}
+.n21-cast-page .n21-dossier-content::after {
+  bottom: 0;
+  aspect-ratio: 1545 / 188;
+  background-image: url('img/characters/dossier-open-bottom.png');
+}
+.n21-cast-page .n21-dossier-writing {
+  position: relative;
+  z-index: 1;
+  min-height: 0;
+}
+.n21-cast-page .n21-dossier-writing h2 {
+  padding-top: 0;
+  margin-top: 0;
+}
 @media (max-width: 600px) {
   .n21-cast-page #characterDisplay .n21-dossier {
     width: calc(100% - 16px);
-    max-width: 440px;
     margin: 26px auto 18px;
   }
   .n21-cast-page .n21-dossier-content {
-    background-size: 100% 100%;
-    background-position: center top;
-    padding: 18% 10% 11%;
     min-height: 0;
+    padding: 31% 10% 16%;
   }
-  .n21-cast-page .n21-dossier-writing { min-height: 0; padding: 0 1%; }
-  .n21-cast-page .n21-dossier-writing h2 {
-    padding-top: 5%;
-    margin: 0 0 12px;
-    font-size: clamp(1.1rem, 4.7vw, 1.3rem);
-    line-height: 1.35;
-  }
+  .n21-cast-page .n21-dossier-writing { min-height: 0; }
+  .n21-cast-page .n21-dossier-writing h2 { padding-top: 0; }
 }
 
 </style>
@@ -984,7 +1018,7 @@ body .n21-cast-page.subPage {
   },
   {
     "name": "Stranger",
-    "image": "img/cast/profile-stranger.png",
+    "image": "img/characters/profile-stranger.png",
     "bio": "The Stranger is a mysterious young man who suddenly appears outside Caulwyn High School and announces his presence in a rather violent fashion. Almost nothing is known about him, except for one particularly unsettling detail: he has Kai's face. His identity, his purpose, and his connection to Kai remain a mystery.",
     "fallback": true
   }
