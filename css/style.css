@@ -4652,3 +4652,14 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
     z-index: -1;
   }
 }
+
+/* =====================================================
+   TEMPORARY IPAD ORIENTATION TEST — root overflow only
+   Remove this block if the viewport remains stuck.
+   ===================================================== */
+@supports (overflow: clip) {
+  @media (hover: none) and (pointer: coarse) and (min-width: 700px) and (max-width: 1500px) {
+    html { overflow-x: clip !important; }
+    body { overflow-x: clip !important; }
+  }
+}
