@@ -793,11 +793,11 @@ body .n21-cast-page.subPage {
   position: relative;
   min-height: 0;
   box-sizing: border-box;
-  background-image: url('img/characters/dossier-open-middle.png');
+  background-image: url('img/characters/dossier-open-middle-clean.png') !important;
   background-position: center top;
   background-repeat: repeat-y;
   background-size: 100% auto;
-  padding: 31% 10% 14%;
+  padding: 34% 10% 14%;
   isolation: isolate;
 }
 .n21-cast-page .n21-dossier-content::before,
@@ -837,11 +837,27 @@ body .n21-cast-page.subPage {
   }
   .n21-cast-page .n21-dossier-content {
     min-height: 0;
-    padding: 31% 10% 16%;
+    padding: 34% 10% 16%;
   }
   .n21-cast-page .n21-dossier-writing { min-height: 0; }
   .n21-cast-page .n21-dossier-writing h2 { padding-top: 0; }
 }
+
+
+/* Dossier visibility safeguard: the closed summary remains discoverable
+   even if its illustration is missing or still cached. */
+.n21-cast-page .n21-dossier:not([open]) > summary {
+  position: relative;
+  display: block !important;
+  min-height: 160px;
+  background-color: #a87c4b;
+  background-image: url('img/characters/dossier-folder-closed.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.n21-cast-page .n21-dossier[open] > summary { display: none !important; }
+.n21-cast-page .n21-dossier[open] .n21-dossier-content { display: block !important; }
 
 </style>
 </head>
