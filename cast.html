@@ -811,6 +811,33 @@ body .n21-cast-page.subPage {
   .n21-cast-page .n21-dossier-close { margin:8px auto 0; padding:4px 7px; font-size:clamp(10px,2.8vw,13px); }
 }
 
+
+/* iPad Cast fixes: keep the artwork proportional and cover the entire viewport. */
+@media (min-width: 601px) and (max-width: 1366px) {
+  html { width: 100%; min-height: 100%; background: #090713 !important; overflow-x: clip; }
+  body { width: 100% !important; max-width: 100% !important; min-height: 100vh; margin: 0 !important; overflow-x: clip; background: transparent !important; background-image: none !important; position: relative; isolation: isolate; }
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: #090713 url('img/background.jpg') center center / cover no-repeat;
+  }
+  .n21-cast-page #characterDisplay .n21-dossier {
+    width: 100%; max-width: 100%; margin: 22px auto 16px;
+  }
+  .n21-cast-page .n21-dossier-content {
+    position: relative; width: 100%; aspect-ratio: 1080 / 1429;
+    min-height: 0 !important; height: auto !important; box-sizing: border-box;
+    background: url('img/characters/dossier-folder-open.png') center top / 100% 100% no-repeat !important;
+    padding: 23% 9% 5% !important;
+  }
+  .n21-cast-page .n21-dossier-writing { min-height: 0 !important; padding: 0 !important; transform-origin: top left; }
+  .n21-cast-page .n21-dossier-writing h2 { padding: 0 !important; margin: 0 0 7px; font-size: clamp(14px, 2vw, 20px); line-height: 1.3; }
+  .n21-cast-page .n21-dossier-writing h3 { margin: 10px 0 3px; font-size: clamp(12px, 1.6vw, 17px); line-height: 1.3; }
+  .n21-cast-page .n21-dossier-writing p { margin: 0 0 6px; font-size: clamp(11px, 1.35vw, 15px); line-height: 1.45; }
+  .n21-cast-page .n21-dossier-redactions { margin: 8px 0 12px; padding: 3px 2px 5px; }
+  .n21-cast-page .n21-dossier-writing .n21-redaction-note { font-size: clamp(10px, 1.2vw, 13px); line-height: 1.3; }
+  .n21-cast-page .n21-dossier-close { margin: 10px auto 0; font-size: clamp(11px, 1.3vw, 14px); }
+}
+
 </style>
 </head>
 
@@ -870,13 +897,13 @@ body .n21-cast-page.subPage {
       <div class="n21-cast-layout">
         <aside class="n21-cast-board" aria-label="Character scrapbook navigation">
         <div class="n21-cast-tabs" id="thumbContainer" aria-label="Choose a character">
-          <button class="n21-cast-tab n21-cast-tab-custom active" type="button" data-index="0" aria-label="Show Kai" aria-pressed="true"><img class="n21-custom-tab-art" src="img/characters/button-kai.png" alt="" loading="lazy"></button>
-          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="1" aria-label="Show Kuro" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-kuro.png" alt="" loading="lazy"></button>
-          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="2" aria-label="Show Yoshiko" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-yoshiko.png" alt="" loading="lazy"></button>
-          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="3" aria-label="Show Shingen" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-shin.png" alt="" loading="lazy"></button>
-          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="4" aria-label="Show Kiri" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-kiri.png" alt="" loading="lazy"></button>
-          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="5" aria-label="Show Creepy Dream Lady" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-marunin.png" alt="" loading="lazy"></button>
-          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="6" aria-label="Show Stranger" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-riyu.png" alt="" loading="lazy"></button>
+          <button class="n21-cast-tab n21-cast-tab-custom active" type="button" data-index="0" aria-label="Show Kai" aria-pressed="true"><img class="n21-custom-tab-art" src="img/characters/button-kai.png" alt="" loading="eager"></button>
+          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="1" aria-label="Show Kuro" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-kuro.png" alt="" loading="eager"></button>
+          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="2" aria-label="Show Yoshiko" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-yoshiko.png" alt="" loading="eager"></button>
+          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="3" aria-label="Show Shingen" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-shin.png" alt="" loading="eager"></button>
+          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="4" aria-label="Show Kiri" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-kiri.png" alt="" loading="eager"></button>
+          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="5" aria-label="Show Creepy Dream Lady" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-marunin.png" alt="" loading="eager"></button>
+          <button class="n21-cast-tab n21-cast-tab-custom" type="button" data-index="6" aria-label="Show Stranger" aria-pressed="false"><img class="n21-custom-tab-art" src="img/characters/button-riyu.png" alt="" loading="eager"></button>
         </div>
 <div class="n21-mobile-corkboard" aria-label="Yoshiko's cast photo board">
   <img class="n21-mobile-label" src="img/characters/cast-label.png" alt="The Cast">
@@ -1131,7 +1158,7 @@ body .n21-cast-page.subPage {
     const writing=paper?.querySelector('.n21-dossier-writing');
     if(!paper || !writing) return;
     writing.style.transform=''; writing.style.width='';
-    if(!window.matchMedia('(max-width: 600px), (orientation: landscape) and (max-height: 650px) and (max-width: 1200px)').matches || !paper.closest('details')?.open) return;
+    if(!window.matchMedia('(max-width: 1366px)').matches || !paper.closest('details')?.open) return;
     const style=getComputedStyle(paper);
     const available=paper.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);
     const needed=writing.scrollHeight;
@@ -1148,7 +1175,8 @@ body .n21-cast-page.subPage {
     }
   }
   document.addEventListener('toggle',e=>{if(e.target?.id==='characterDossier')requestAnimationFrame(fitMobileDossier)},true);
-  window.addEventListener('resize',fitMobileDossier);
+  window.addEventListener('resize',()=>requestAnimationFrame(fitMobileDossier));
+  window.addEventListener('orientationchange',()=>requestAnimationFrame(()=>requestAnimationFrame(fitMobileDossier)));
   document.addEventListener('click',e=>{if(e.target.closest('.n21-cast-tab'))requestAnimationFrame(()=>requestAnimationFrame(fitMobileDossier))});
   document.fonts?.ready.then(fitMobileDossier);
 })();
@@ -1156,4 +1184,3 @@ body .n21-cast-page.subPage {
 
 </body>
 </html>
-
