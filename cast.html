@@ -788,7 +788,7 @@ body .n21-cast-page.subPage {
 
 
 /* MOBILE ONLY: original unsliced folder, fixed proportions. */
-@media (max-width: 600px) {
+@media (max-width: 600px), (orientation: landscape) and (max-height: 650px) and (max-width: 1200px) {
   .n21-cast-page #characterDisplay .n21-dossier { width:100%; max-width:100%; margin:22px auto 16px; }
   .n21-cast-page .n21-dossier-content {
     width:100%; aspect-ratio:1080 / 1429; min-height:0 !important;
@@ -1131,7 +1131,7 @@ body .n21-cast-page.subPage {
     const writing=paper?.querySelector('.n21-dossier-writing');
     if(!paper || !writing) return;
     writing.style.transform=''; writing.style.width='';
-    if(window.innerWidth>600 || !paper.closest('details')?.open) return;
+    if(!window.matchMedia('(max-width: 600px), (orientation: landscape) and (max-height: 650px) and (max-width: 1200px)').matches || !paper.closest('details')?.open) return;
     const style=getComputedStyle(paper);
     const available=paper.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);
     const needed=writing.scrollHeight;
