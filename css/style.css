@@ -4633,17 +4633,22 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
   body.extras-page .extras-content .polaroid-gallery .polaroid > img { transition: none !important; }
 }
 
-/* iPad background test — landscape and portrait */
-@media (hover: none) and (pointer: coarse)
-       and (min-width: 700px)
-       and (max-width: 1400px) {
-
-  html {
-    background-color: #100d1c;
-  }
-
+/* iPad Chrome/WebKit: viewport-fixed backdrop without body attachment. */
+@media (hover: none) and (pointer: coarse) and (min-width: 700px) and (max-width: 1400px) {
+  html { background: #100d1c; }
   body {
-    background-attachment: scroll;
-    background-color: #100d1c;
+    isolation: isolate;
+    background-image: none !important;
+    background-color: transparent;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: #100d1c url('/img/background-image.png') center center / cover no-repeat;
+    pointer-events: none;
+    z-index: -1;
   }
 }
