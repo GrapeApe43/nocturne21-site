@@ -4632,3 +4632,18 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
 @media (prefers-reduced-motion: reduce) {
   body.extras-page .extras-content .polaroid-gallery .polaroid > img { transition: none !important; }
 }
+
+/* iPad background test — landscape and portrait */
+@media (hover: none) and (pointer: coarse)
+       and (min-width: 700px)
+       and (max-width: 1400px) {
+
+  html {
+    background-color: #100d1c;
+  }
+
+  body {
+    background-attachment: scroll;
+    background-color: #100d1c;
+  }
+}
