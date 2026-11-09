@@ -945,7 +945,40 @@
 
 
     
-  </body>
+  
+<!-- TEMPORARY iPad Chrome viewport diagnostic: remove after testing. -->
+<div id="n21-viewport-debug" style="position:fixed;top:12px;right:12px;z-index:2147483647;max-width:calc(100vw - 24px);box-sizing:border-box;padding:10px 12px;border:2px solid #e9c8ff;border-radius:8px;background:rgba(12,9,27,.96);color:#fff;font:12px/1.5 monospace;text-align:left;white-space:pre;box-shadow:0 4px 16px #0008;pointer-events:auto;">
+  Checking viewport…
+</div>
+<script>
+(function () {
+  const panel = document.getElementById('n21-viewport-debug');
+  let lastEvent = 'loaded';
+  let updates = 0;
+  function update() {
+    const vv = window.visualViewport;
+    const html = document.documentElement;
+    const body = document.body;
+    const content = document.querySelector('.subPage');
+    panel.textContent =
+      'iPad viewport test  #' + (++updates) + '\n' +
+      'Event: ' + lastEvent + '\n' +
+      'innerWidth: ' + window.innerWidth + '\n' +
+      'html.clientWidth: ' + html.clientWidth + '\n' +
+      'visualViewport: ' + (vv ? Math.round(vv.width) : 'n/a') + '\n' +
+      'screen: ' + screen.width + ' x ' + screen.height + '\n' +
+      'body rect: ' + Math.round(body.getBoundingClientRect().width) + '\n' +
+      'content rect: ' + (content ? Math.round(content.getBoundingClientRect().width) : 'n/a') + '\n' +
+      'orientation: ' + (screen.orientation ? screen.orientation.type : 'n/a');
+  }
+  window.addEventListener('resize', function () { lastEvent = 'window resize'; update(); });
+  window.addEventListener('orientationchange', function () { lastEvent = 'orientationchange'; update(); setTimeout(update, 400); });
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { lastEvent = 'visualViewport resize'; update(); });
+  window.addEventListener('pageshow', function () { lastEvent = 'pageshow'; update(); });
+  update();
+})();
+</script>
+</body>
 </html>
 
 
