@@ -1,6 +1,5 @@
-/* ========================================
-   NOCTURNE 21 — SITE HEADER
-   ======================================== */
+
+/* NOCTURNE 21 — SITE HEADER | CSS-background banner */
 
 const CHAPTER_NUMBER = "06";
 const CHAPTER_COMPLETED = 3;
@@ -12,9 +11,11 @@ const chapterPercent =
 document.querySelector(".writeHeader").innerHTML = `
   <header class="site-header">
 
-    <a href="index.html" class="site-banner-link">
-      <img src="./img/logo.png" alt="Nocturne 21" class="site-banner" width="2400" height="800" />
-    </a>
+    <a
+      href="index.html"
+      class="site-banner-link"
+      aria-label="Nocturne 21 — Home"
+    ></a>
 
     <div id="nav">
       <a href="index.html" data-page="index.html">HOME</a>
@@ -26,50 +27,49 @@ document.querySelector(".writeHeader").innerHTML = `
       <a href="support.html" data-page="support.html">SUPPORT</a>
     </div>
 
-
     <!-- CHAPTER 06 PRODUCTION STATUS -->
 
     <div
       class="chapter-status"
       aria-label="Chapter 6 production progress"
       style="
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-        position: relative;
-        z-index: 20;
-        margin: 0;
-        padding: 10px 14px 12px;
-        background: linear-gradient(
+        display:block;
+        width:100%;
+        box-sizing:border-box;
+        position:relative;
+        z-index:20;
+        margin:0;
+        padding:10px 14px 12px;
+        background:linear-gradient(
           to bottom,
-          rgba(36, 16, 22, 0.98),
-          rgba(20, 10, 14, 0.98)
+          rgba(36,16,22,.98),
+          rgba(20,10,14,.98)
         );
-        border-top: 1px solid rgba(238, 71, 87, 0.28);
-        border-bottom: 1px solid rgba(238, 71, 87, 0.28);
-        line-height: normal;
-        text-align: left;
-        font-family: 'Courier New', Courier, monospace;
+        border-top:1px solid rgba(238,71,87,.28);
+        border-bottom:1px solid rgba(238,71,87,.28);
+        line-height:normal;
+        text-align:left;
+        font-family:'Courier New',Courier,monospace;
       "
     >
 
       <div
         style="
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          margin: 0 0 4px;
-          padding: 0;
-          line-height: 1.3;
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          width:100%;
+          margin:0 0 4px;
+          padding:0;
+          line-height:1.3;
         "
       >
         <span
           style="
-            color: #ffd6dc;
-            font-size: 0.72rem;
-            font-weight: bold;
-            letter-spacing: 0.12em;
+            color:#ffd6dc;
+            font-size:.72rem;
+            font-weight:bold;
+            letter-spacing:.12em;
           "
         >
           CHAPTER ${CHAPTER_NUMBER} // PRODUCTION STATUS
@@ -77,64 +77,62 @@ document.querySelector(".writeHeader").innerHTML = `
 
         <span
           style="
-            color: #ff9aa5;
-            font-size: 0.72rem;
-            font-weight: bold;
-            letter-spacing: 0.06em;
-            white-space: nowrap;
+            color:#ff9aa5;
+            font-size:.72rem;
+            font-weight:bold;
+            letter-spacing:.06em;
+            white-space:nowrap;
           "
         >
           ${chapterPercent}%
         </span>
       </div>
 
-
       <div
         style="
-          width: 100%;
-          margin: 0 0 6px;
-          padding: 0;
-          color: rgba(255,255,255,0.66);
-          font-size: 0.66rem;
-          letter-spacing: 0.10em;
-          line-height: 1.3;
+          width:100%;
+          margin:0 0 6px;
+          padding:0;
+          color:rgba(255,255,255,.66);
+          font-size:.66rem;
+          letter-spacing:.10em;
+          line-height:1.3;
         "
       >
-        ${String(CHAPTER_COMPLETED).padStart(2, "0")} /
-        ${String(CHAPTER_TOTAL).padStart(2, "0")}
+        ${String(CHAPTER_COMPLETED).padStart(2,"0")} /
+        ${String(CHAPTER_TOTAL).padStart(2,"0")}
         PAGES COMPLETE
       </div>
 
-
       <div
         style="
-          width: 100%;
-          height: 7px;
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-          background: rgba(0,0,0,0.55);
-          border: 1px solid rgba(238,71,87,0.28);
-          overflow: hidden;
-          line-height: 0;
+          width:100%;
+          height:7px;
+          box-sizing:border-box;
+          margin:0;
+          padding:0;
+          background:rgba(0,0,0,.55);
+          border:1px solid rgba(238,71,87,.28);
+          overflow:hidden;
+          line-height:0;
         "
       >
         <div
           style="
-            width: ${chapterPercent}%;
-            height: 100%;
-            min-width: 3px;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(
+            width:${chapterPercent}%;
+            height:100%;
+            min-width:3px;
+            margin:0;
+            padding:0;
+            background:linear-gradient(
               to right,
               #9a2736,
               #ee4757,
               #ff8c9a
             );
             box-shadow:
-              0 0 7px rgba(238,71,87,0.42),
-              0 0 14px rgba(238,71,87,0.16);
+              0 0 7px rgba(238,71,87,.42),
+              0 0 14px rgba(238,71,87,.16);
           "
         ></div>
       </div>
@@ -144,7 +142,6 @@ document.querySelector(".writeHeader").innerHTML = `
   </header>
 `;
 
-
 (function () {
   const navLinks = document.querySelectorAll("#nav a");
 
@@ -152,7 +149,6 @@ document.querySelector(".writeHeader").innerHTML = `
     window.location.pathname.split("/").pop() || "index.html";
 
   currentPath = currentPath.split("?")[0].split("#")[0];
-
 
   function normalizePath(path) {
     path = (path || "")
@@ -171,9 +167,7 @@ document.querySelector(".writeHeader").innerHTML = `
     return path;
   }
 
-
   currentPath = normalizePath(currentPath);
-
 
   navLinks.forEach(link => {
     const href = normalizePath(link.getAttribute("href"));
@@ -182,7 +176,6 @@ document.querySelector(".writeHeader").innerHTML = `
       link.classList.add("current");
     }
   });
-
 
   if (
     window.location.pathname === "/" ||
