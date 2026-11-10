@@ -4652,3 +4652,30 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
     z-index: -1;
   }
 }
+
+/* ============================================================
+   iPAD CHROME ORIENTATION — TEST I BACKGROUND BANNER FIX
+   Keeps the existing injected header, but removes the banner
+   <img> from layout and paints the same artwork as a background.
+   This override intentionally follows the existing sitewide CSS.
+   ============================================================ */
+.site-header .site-banner,
+.writeHeader .site-banner {
+  display: none !important;
+}
+
+.site-header .site-banner-link,
+.writeHeader .site-banner-link {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  aspect-ratio: 5 / 1;
+  height: auto !important;
+  background-image: url("../img/logo.png") !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-color: #08050c;
+  box-sizing: border-box !important;
+}
