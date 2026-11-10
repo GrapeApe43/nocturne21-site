@@ -3,7 +3,7 @@
   <link rel="icon" href="img/favicon.png">
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Title -->
   <title>Nocturne 21 | Sci-Fi Drama Webcomic</title>
@@ -1001,6 +1001,7 @@
       'body width: ' + Math.round(body.getBoundingClientRect().width) + '\n' +
       'visualViewport: ' + (vv ? Math.round(vv.width) : 'n/a') + '\n' +
       'orientation: ' + (screen.orientation ? screen.orientation.type : 'n/a') + '\n' +
+      'viewport workaround: ' + (window.n21ViewportTestStatus || 'waiting') + '\n' +
       '\nWIDEST ELEMENTS (>viewport):\n' + format(wide) +
       '\n\nRIGHT OVERFLOW ELEMENTS:\n' + format(offenders);
   }
@@ -1014,9 +1015,65 @@
   window.addEventListener('resize', () => { queue('window resize'); setTimeout(() => queue('resize +500ms'), 500); });
   window.addEventListener('orientationchange', () => { queue('orientationchange'); setTimeout(() => queue('rotate +600ms'), 600); });
   if (window.visualViewport) window.visualViewport.addEventListener('resize', () => queue('visualViewport resize'));
+  window.addEventListener('n21-viewport-test-updated', () => queue('workaround result'));
   window.addEventListener('pageshow', () => queue('pageshow'));
   window.addEventListener('load', () => queue('load'));
   queue('initial');
+})();
+</script>
+
+<!-- TEMPORARY Chrome-on-iPad viewport refresh experiment; homepage only. -->
+<script>
+(function () {
+  const ua = navigator.userAgent;
+  const isChromeIOS = /CriOS\//.test(ua);
+  const isIPad = /iPad/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const meta = document.querySelector('meta[name="viewport"]');
+  if (!isChromeIOS || !isIPad || !meta) {
+    window.n21ViewportTestStatus = 'inactive (not iPad Chrome)';
+    return;
+  }
+  const original = 'width=device-width, initial-scale=1.0';
+  let timer;
+  let busy = false;
+  let attempts = 0;
+  window.n21ViewportTestStatus = 'ready';
+  function check() {
+    if (busy) return;
+    const expected = Math.round(window.innerWidth);
+    const actual = document.documentElement.clientWidth;
+    if (Math.abs(expected - actual) <= 2) {
+      window.n21ViewportTestStatus = 'matched: ' + actual + 'px';
+      return;
+    }
+    if (attempts >= 8) {
+      window.n21ViewportTestStatus = 'limit reached; mismatch ' + actual + '/' + expected;
+      return;
+    }
+    attempts++;
+    busy = true;
+    window.n21ViewportTestStatus = 'attempt ' + attempts + ': ' + actual + ' → ' + expected;
+    // Temporarily request the current viewport width, then restore standard responsive mode.
+    meta.setAttribute('content', 'width=' + expected + ', initial-scale=1.0');
+    setTimeout(function () {
+      meta.setAttribute('content', original);
+      setTimeout(function () {
+        busy = false;
+        window.n21ViewportTestStatus = 'attempt ' + attempts + ' result: ' + document.documentElement.clientWidth + '/' + window.innerWidth;
+        window.dispatchEvent(new Event('n21-viewport-test-updated'));
+      }, 300);
+    }, 120);
+  }
+  function schedule() {
+    clearTimeout(timer);
+    timer = setTimeout(check, 700);
+  }
+  window.addEventListener('resize', schedule);
+  window.addEventListener('orientationchange', schedule);
+  window.addEventListener('pageshow', schedule);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  schedule();
 })();
 </script>
 </body>
