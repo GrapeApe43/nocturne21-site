@@ -1,0 +1,674 @@
+<html>
+<head align="center">
+  <link rel="icon" href="img/favicon.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Title -->
+  <title>Chrome Orientation Test — C-no-sidebar</title>
+  
+
+  <!-- Styles -->
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+  <style>
+    .comic-intro {
+      width: calc(100% - 40px);
+      max-width: 900px;
+      box-sizing: border-box;
+      margin: 28px auto 14px;
+      padding: 20px 24px;
+      background: rgba(17, 24, 39, 0.82);
+      border: 1px solid rgba(93, 97, 171, 0.85);
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+      clear: both;
+      overflow: visible;
+    }
+
+    .comic-intro h2 {
+      margin: 0 0 12px;
+      text-align: center;
+      font-family: 'Lacquer Regular', 'Lacquer', cursive;
+      font-size: 1.5em;
+      color: #5D61AB;
+    }
+
+    .comic-intro p {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #e8ecf4;
+    }
+
+    @media (max-width: 600px) {
+      .comic-intro {
+        width: calc(100% - 24px);
+        padding: 17px 18px;
+        margin-top: 22px;
+      }
+
+      .comic-intro h2 {
+        font-size: 1.35em;
+      }
+    }
+
+/* Compact, floating chapter navigator */
+.n21-jump {position:relative;display:table;margin:8px auto 0;z-index:30;font-family:'Open Sans',sans-serif;text-align:left}
+.n21-jump-trigger {width:235px;max-width:calc(100vw - 32px);padding:9px 14px;border:1px solid #7771b4;border-radius:12px;background:linear-gradient(135deg,#242743,#101424);color:#eeeaff;box-shadow:0 3px 14px #0008;cursor:pointer;font:600 12px 'Open Sans',sans-serif;display:flex;justify-content:space-between;align-items:center}
+.n21-jump-trigger:hover,.n21-jump-trigger:focus-visible {border-color:#b3a4ed;box-shadow:0 0 12px #7269c366;outline-offset:2px}
+.n21-jump-panel {position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);width:290px;max-width:calc(100vw - 24px);max-height:min(420px,65vh);overflow-y:auto;overscroll-behavior:contain;padding:10px;box-sizing:border-box;border:1px solid #7973af;border-radius:14px;background:#101323;box-shadow:0 12px 32px #000c;color:#eeeaff;z-index:100}
+.n21-jump-panel[hidden] {display:none}
+.n21-jump-volume + .n21-jump-volume {border-top:1px solid #4c486d;margin-top:12px;padding-top:12px}
+.n21-jump-volume-title {color:#b4a9ed;font-size:11px;letter-spacing:.06em;font-weight:700;text-transform:uppercase}
+.n21-jump-volume-link {display:inline-block;margin:5px 0 7px;color:#ddd8fa;font-size:11px;text-decoration:none}
+.n21-jump-chapter {margin:5px 0;border:1px solid #343754;border-radius:8px;background:#1a1d33}
+.n21-jump-chapter summary {cursor:pointer;padding:9px 10px;font-size:12px;color:#eeeaff;list-style-position:inside}
+.n21-jump-chapter[open] summary {border-bottom:1px solid #343754;color:#c4baff}
+.n21-jump-pages {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:8px}
+.n21-jump-pages a {min-width:0;overflow-wrap:anywhere;padding:7px 3px;border-radius:5px;background:#252943;text-align:center;color:#e7e5fa;text-decoration:none;font-size:10px;line-height:1.4}
+.n21-jump-pages a:hover,.n21-jump-pages a:focus-visible {background:#484276;color:white}
+@media(max-width:420px){.n21-jump-panel{width:270px}}
+
+/* Reading controls: keep both actions together, never floating over artwork */
+.n21-reading-controls {display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:10px auto 0;position:relative;z-index:30}
+.n21-reading-controls .n21-jump {margin:0;display:block}
+.n21-reading-controls #continueReadingBtn,
+.n21-reading-controls #continueReadingBtn.show {position:static!important;inset:auto!important;transform:none!important;float:none!important;display:none;visibility:visible!important;opacity:1!important;width:235px;max-width:calc(100vw - 32px);box-sizing:border-box;min-height:38px;margin:0;padding:9px 14px;border:1px solid #7771b4;border-radius:12px;background:linear-gradient(135deg,#242743,#101424);color:#eeeaff;box-shadow:0 3px 14px #0008;font:600 12px 'Open Sans',sans-serif;text-align:center;text-decoration:none;line-height:18px;z-index:auto!important}
+.n21-reading-controls #continueReadingBtn.show {display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.n21-reading-controls #continueReadingBtn.show:hover,
+.n21-reading-controls #continueReadingBtn.show:focus-visible {border-color:#b3a4ed;box-shadow:0 0 12px #7269c366;color:#fff}
+/* Mobile: two reading actions in one tidy row. Desktop remains unchanged. */
+@media (max-width: 600px) {
+  .n21-reading-controls {
+    display: flex;
+    flex-wrap: nowrap;
+    width: calc(100% - 32px);
+    max-width: 500px;
+    box-sizing: border-box;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .n21-reading-controls #continueReadingBtn.show,
+  .n21-reading-controls .n21-jump {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    box-sizing: border-box;
+  }
+
+  .n21-reading-controls #continueReadingBtn.show,
+  .n21-reading-controls .n21-jump-trigger {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 46px;
+    padding: 9px 7px;
+    box-sizing: border-box;
+    font-size: clamp(10px, 2.8vw, 12px);
+    white-space: nowrap;
+  }
+
+  .n21-reading-controls .n21-jump-trigger { gap: 4px; }
+
+  /* Keep the expanded chapter menu inside the phone viewport. */
+  .n21-reading-controls .n21-jump-panel {
+    left: auto;
+    right: 0;
+    transform: none;
+    width: min(290px, calc(100vw - 32px));
+    max-width: calc(100vw - 32px);
+  }
+
+  /* Without saved reading progress, let the page picker fill the row. */
+  .n21-reading-controls:not(:has(#continueReadingBtn.show)) .n21-jump {
+    flex: 0 1 235px;
+    margin-inline: auto;
+  }
+}
+/* Homepage title panel — matches Extras/Archive; scoped to home only. */
+.n21-home-hero {
+  box-sizing:border-box;
+  width:calc(100% - 32px);
+  max-width:900px;
+  margin:18px auto 22px;
+  padding:30px 24px 27px;
+  border:1px solid #7870b2;
+  border-radius:8px;
+  background:rgba(7,6,16,.18);
+  text-align:center;
+}
+.n21-home-hero .n21-home-kicker {
+  color:#bfb1ef;
+  font:700 .77rem/1.5 "Open Sans",sans-serif;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.n21-home-hero h1 {
+  margin:0 0 16px !important;
+  color:#d7caff !important;
+  font-family:"Lacquer Regular",cursive;
+  font-size:clamp(1.6rem,3.1vw,2.45rem) !important;
+  line-height:1.15 !important;
+  text-align:center !important;
+  font-weight:400;
+  letter-spacing:.015em;
+  position:static !important;
+  transform:none !important;
+  float:none !important;
+  text-shadow:none !important;
+}
+.n21-home-hero p {
+  max-width:650px;
+  margin:0 auto !important;
+  color:#e5e2f3 !important;
+  font:400 .92rem/1.65 "Open Sans",sans-serif;
+  text-align:center !important;
+}
+@media(max-width:600px) {
+  .n21-home-hero {width:calc(100% - 24px);padding:24px 16px;}
+}
+
+/* About panel support invitation */
+.comic-intro .n21-about-support {margin-top:18px;padding-top:15px;border-top:1px solid rgba(177,164,237,.35);text-align:center}
+.comic-intro .n21-about-support p {margin:0 0 10px;color:#e8ecf4}
+.comic-intro .n21-about-support strong {color:#d7caff}
+.comic-intro .n21-support-link {display:inline-block;padding:9px 17px;border-radius:8px;border:1px solid #8d82c5;background:linear-gradient(135deg,#71313f,#411b31);color:#fff;font:700 .87rem 'Open Sans',sans-serif;text-decoration:none}
+.comic-intro .n21-support-link:hover,.comic-intro .n21-support-link:focus-visible {background:linear-gradient(135deg,#91445a,#602742);color:white}
+/* Shared notes and comments panel; keep the existing notes and CommentBox hooks. */
+.n21-discussion-panel {box-sizing:border-box;width:calc(100% - 40px);max-width:900px;margin:28px auto 34px;padding:24px;background:rgba(17,24,39,.88);border:1px solid rgba(93,97,171,.85);border-radius:8px;box-shadow:0 2px 8px #0005;text-align:left;clear:both}
+.n21-discussion-panel #authorNotes,.n21-discussion-panel #commentsWrap {box-sizing:border-box;width:100%;max-width:none;margin:0!important;float:none!important;box-shadow:none!important;border:0!important;background:transparent!important;padding:0!important;overflow:visible}
+.n21-discussion-panel #authorNotes h2,.n21-discussion-panel .comments-title {text-align:center}
+.n21-discussion-divider {border:0;border-top:1px solid rgba(177,164,237,.38);margin:24px 0}
+@media(max-width:600px){.n21-discussion-panel{width:calc(100% - 24px);padding:18px 16px}}
+
+/* Top Web Comics voting art beside the comic's bottom navigation. */
+.n21-comic-nav-row { position:relative; width:calc(100% - 24px); max-width:900px; margin:0 auto; min-height:72px; display:flex; align-items:center; justify-content:center; }
+.n21-comic-nav-row > .writeNav { width:100%; text-align:center; }
+.n21-vote-button { position:absolute; right:0; top:50%; transform:translateY(-50%); display:block; width:168px; max-width:24%; z-index:2; line-height:0; border-radius:11px; }
+.n21-vote-button img { width:100%; height:auto; display:block; border-radius:11px; border:1px solid #7771b4; box-sizing:border-box; box-shadow:0 3px 12px #0008; transition:transform .2s ease,box-shadow .2s ease; }
+.n21-vote-button:hover img,.n21-vote-button:focus-visible img { transform:translateY(-2px); box-shadow:0 0 15px #9682e68c; }
+.n21-vote-button:focus-visible { outline:2px solid #c5b6ff; outline-offset:4px; }
+@media(max-width:1000px) { .n21-comic-nav-row { flex-direction:column; gap:12px; padding-bottom:8px; } .n21-vote-button { position:static; transform:none; width:180px; max-width:75%; } }
+
+/* Gentle hover and keyboard focus for the comic page navigation. */
+.n21-comic-nav-row .writeNav a,
+.n21-comic-nav-row .writeNav button,
+.n21-comic-nav-row .writeNav input[type="image"] {
+  display:inline-block;
+  border-radius:9px;
+  transition:transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+.n21-comic-nav-row .writeNav a:hover,
+.n21-comic-nav-row .writeNav a:focus-visible,
+.n21-comic-nav-row .writeNav button:hover,
+.n21-comic-nav-row .writeNav button:focus-visible,
+.n21-comic-nav-row .writeNav input[type="image"]:hover,
+.n21-comic-nav-row .writeNav input[type="image"]:focus-visible {
+  transform:translateY(-2px);
+  filter:brightness(1.15) drop-shadow(0 0 7px rgba(170,145,255,.75));
+}
+.n21-comic-nav-row .writeNav a:focus-visible,
+.n21-comic-nav-row .writeNav button:focus-visible,
+.n21-comic-nav-row .writeNav input[type="image"]:focus-visible {
+  outline:2px solid #c5b6ff;
+  outline-offset:3px;
+}
+@media (prefers-reduced-motion:reduce) {
+  .n21-comic-nav-row .writeNav a,
+  .n21-comic-nav-row .writeNav button,
+  .n21-comic-nav-row .writeNav input[type="image"] {transition:none;}
+  .n21-comic-nav-row .writeNav a:hover,
+  .n21-comic-nav-row .writeNav a:focus-visible,
+  .n21-comic-nav-row .writeNav button:hover,
+  .n21-comic-nav-row .writeNav button:focus-visible,
+  .n21-comic-nav-row .writeNav input[type="image"]:hover,
+  .n21-comic-nav-row .writeNav input[type="image"]:focus-visible {transform:none;}
+}
+  </style>
+  <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- SEO -->
+<meta name="description" content="Nocturne 21 is a dark, atmospheric sci-fi drama more than 20 years in the making, about a troubled teen confronting the trauma of his past with the help of a family he never expected to have, while discovering hidden strengths and secrets about who he truly is.">
+  <meta name="author" content="April Ferrero">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nocturne21.com/">
+  <meta property="og:title" content="Nocturne 21 | Sci-Fi Drama Webcomic">
+  <meta property="og:description" content="A dark, atmospheric sci-fi drama more than 20 years in the making, about a troubled teen confronting the trauma of his past with the help of a family he never expected to have, while discovering hidden strengths and secrets about who he truly is.">
+  <meta property="og:image" content="https://nocturne21.com/img/promo-art.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nocturne 21 | Sci-Fi Drama Webcomic">
+  <meta name="twitter:description" content="A dark, atmospheric sci-fi drama more than 20 years in the making, about a troubled teen confronting the trauma of his past with the help of a family he never expected to have, while discovering hidden strengths and secrets about who he truly is.">
+  <meta name="twitter:image" content="https://nocturne21.com/img/promo-art.jpg">
+
+  <!-- Structured Data -->
+  
+
+<style>
+#n21-lab { position:relative; z-index:100; box-sizing:border-box; width:calc(100% - 32px); max-width:900px; margin:16px auto; padding:14px 18px; border:2px solid #8f80c8; border-radius:10px; background:#211d34; color:#f4edff; font:14px/1.5 system-ui,sans-serif; text-align:left; }
+#n21-lab strong { color:#e6caff; } #n21-lab pre {white-space:pre-wrap; overflow-wrap:anywhere; font:12px/1.6 monospace;}
+</style>
+</head>
+  
+  <body>
+  
+  
+  
+<!-- LAB: floating social sidebar removed -->
+
+
+  <!-- most of the elements on these pages are defined in the js files as functions, then we tell these functions where to show up on the page by placing empty divs and naming those divs the name of the js functions. check the js files to edit these elements in more detail.-->
+
+  <div align="center">
+    <!-- header that has the logo image and top page navigation. don't forget to put this on every page -->
+    <div class="writeHeader"></div>
+<section id="n21-lab" aria-label="Chrome rotation diagnostic"><strong>🪿 Chrome Orientation Laboratory — C — no social sidebar</strong><pre id="n21-lab-data">Waiting for measurements…</pre><small>Rotate landscape → portrait → landscape without reloading. Screenshot this panel if widths stop matching.</small></section>
+
+    <!-- Shared visual page heading; comic reader and controls remain untouched. -->
+    <section class="n21-home-hero" aria-labelledby="n21-home-title">
+      <div class="n21-home-kicker">AN ONGOING SCI-FI DRAMA WEBCOMIC</div>
+      <h1 id="n21-home-title">Nocturne 21</h1>
+      <p>A story of identity, family, and finding somewhere to belong.</p>
+    </section>
+
+    <!-- make sure that if you want to turn on automatically scrolling to the top of the comic when you load a new page, keep the id of this div and the variable "navScrollTo" in showcomic.js the same-->
+<div id="showComic">
+
+  <!-- write the title of the page. -->
+    <div class="writePageTitle"></div>
+
+
+    <!-- write the current page of your comic -->
+    <div class="writePageClickable"></div>
+
+    <!-- Comic navigation and optional vote button -->
+    <div class="n21-comic-nav-row">
+      <div class="writeNav"></div>
+      <a class="n21-vote-button" href="https://www.topwebcomics.com/vote/27158" target="_blank" rel="noopener noreferrer" aria-label="Vote for Nocturne 21 on Top Web Comics (opens in new tab)">
+        <img src="img/Vote-icon.png" alt="Vote on Top Web Comics!" width="240" height="80" loading="lazy">
+      </a>
+    </div>
+
+</div>
+ 
+<div class="n21-reading-controls" aria-label="Comic reading controls">
+<a id="continueReadingBtn" href="#" aria-label="Continue reading"><span aria-hidden="true">▣</span> Pick Up Here <span aria-hidden="true">→</span></a>
+<div class="n21-jump" id="n21Jump">
+  <button type="button" class="n21-jump-trigger" aria-expanded="false" aria-controls="n21JumpPanel">✦ Jump to Page <span aria-hidden="true">⌄</span></button>
+  <div class="n21-jump-panel" id="n21JumpPanel" hidden>
+    <section class="n21-jump-volume">
+      <div class="n21-jump-volume-title">VOLUME ONE: ROBOT BOY</div>
+      <a class="n21-jump-volume-link" href="https://nocturne21.com/?pg=1">Volume cover ↗</a>
+      <details class="n21-jump-chapter"><summary>Chapter One: The Red Rain</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=2">Chapter One: The Red Rain</a>
+        <a href="https://nocturne21.com/?pg=3">Page 1</a>
+        <a href="https://nocturne21.com/?pg=4">Page 2</a>
+        <a href="https://nocturne21.com/?pg=5">Page 3</a>
+        <a href="https://nocturne21.com/?pg=6">Page 4</a>
+        <a href="https://nocturne21.com/?pg=7">Page 5</a>
+        <a href="https://nocturne21.com/?pg=8">Page 6</a>
+        <a href="https://nocturne21.com/?pg=9">Page 7</a>
+        <a href="https://nocturne21.com/?pg=10">Page 8</a>
+        <a href="https://nocturne21.com/?pg=11">Page 9</a>
+        <a href="https://nocturne21.com/?pg=12">Page 10</a>
+        <a href="https://nocturne21.com/?pg=13">Page 11</a>
+        <a href="https://nocturne21.com/?pg=14">Page 12</a>
+        <a href="https://nocturne21.com/?pg=15">Page 13</a>
+        <a href="https://nocturne21.com/?pg=16">Page 14</a>
+        <a href="https://nocturne21.com/?pg=17">Page 15</a>
+        <a href="https://nocturne21.com/?pg=18">Page 16</a>
+        <a href="https://nocturne21.com/?pg=19">Page 17</a>
+        <a href="https://nocturne21.com/?pg=20">Page 18</a>
+        <a href="https://nocturne21.com/?pg=21">Page 19</a>
+        <a href="https://nocturne21.com/?pg=22">Page 20</a>
+        <a href="https://nocturne21.com/?pg=23">Page 21</a>
+        <a href="https://nocturne21.com/?pg=24">Page 22</a>
+        <a href="https://nocturne21.com/?pg=25">Page 23</a>
+        <a href="https://nocturne21.com/?pg=26">Page 24</a>
+        <a href="https://nocturne21.com/?pg=27">Page 25</a>
+        <a href="https://nocturne21.com/?pg=28">Page 26</a>
+        <a href="https://nocturne21.com/?pg=29">Page 27</a>
+        <a href="https://nocturne21.com/?pg=30">Page 28</a>
+        <a href="https://nocturne21.com/?pg=31">Page 29</a>
+        <a href="https://nocturne21.com/?pg=32">Page 30</a>
+        <a href="https://nocturne21.com/?pg=33">Page 3 1</a>
+        <a href="https://nocturne21.com/?pg=34">Page 32</a>
+      </div></details>
+      <details class="n21-jump-chapter"><summary>Chapter Two: Glass</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=35">Chapter Two: Glass</a>
+        <a href="https://nocturne21.com/?pg=36">Page 33</a>
+        <a href="https://nocturne21.com/?pg=37">Page 34</a>
+        <a href="https://nocturne21.com/?pg=38">Page 35</a>
+        <a href="https://nocturne21.com/?pg=39">Page 36</a>
+        <a href="https://nocturne21.com/?pg=40">Page 37</a>
+        <a href="https://nocturne21.com/?pg=41">Page 38</a>
+        <a href="https://nocturne21.com/?pg=42">Page 39</a>
+        <a href="https://nocturne21.com/?pg=43">Page 40</a>
+        <a href="https://nocturne21.com/?pg=44">Page 41</a>
+        <a href="https://nocturne21.com/?pg=45">Page 42</a>
+        <a href="https://nocturne21.com/?pg=46">Page 43</a>
+        <a href="https://nocturne21.com/?pg=47">Page 44</a>
+        <a href="https://nocturne21.com/?pg=48">Page 45</a>
+        <a href="https://nocturne21.com/?pg=49">Page 46</a>
+        <a href="https://nocturne21.com/?pg=50">Page 47</a>
+        <a href="https://nocturne21.com/?pg=51">Page 48</a>
+        <a href="https://nocturne21.com/?pg=52">Page 49</a>
+        <a href="https://nocturne21.com/?pg=53">Page 50</a>
+        <a href="https://nocturne21.com/?pg=54">Page 51 &amp; 52</a>
+        <a href="https://nocturne21.com/?pg=55">Page 53</a>
+        <a href="https://nocturne21.com/?pg=56">Page 54</a>
+        <a href="https://nocturne21.com/?pg=57">Page 55</a>
+        <a href="https://nocturne21.com/?pg=58">Page 56</a>
+        <a href="https://nocturne21.com/?pg=59">Page 57</a>
+        <a href="https://nocturne21.com/?pg=60">Page 58</a>
+        <a href="https://nocturne21.com/?pg=61">Page 59</a>
+        <a href="https://nocturne21.com/?pg=62">Page 60</a>
+        <a href="https://nocturne21.com/?pg=63">Page 61</a>
+        <a href="https://nocturne21.com/?pg=64">Page 62</a>
+      </div></details>
+      <details class="n21-jump-chapter"><summary>Chapter Three: Snow Day</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=65">Chapter Three: Snow Day</a>
+        <a href="https://nocturne21.com/?pg=66">Page 63</a>
+        <a href="https://nocturne21.com/?pg=67">Page 64</a>
+        <a href="https://nocturne21.com/?pg=68">Page 65</a>
+        <a href="https://nocturne21.com/?pg=69">Page 66</a>
+        <a href="https://nocturne21.com/?pg=70">Page 67</a>
+        <a href="https://nocturne21.com/?pg=71">Page 68</a>
+        <a href="https://nocturne21.com/?pg=72">Page 69</a>
+        <a href="https://nocturne21.com/?pg=73">Page 70</a>
+        <a href="https://nocturne21.com/?pg=74">Page 71</a>
+        <a href="https://nocturne21.com/?pg=75">Page 72</a>
+        <a href="https://nocturne21.com/?pg=76">Page 73</a>
+        <a href="https://nocturne21.com/?pg=77">Page 74</a>
+        <a href="https://nocturne21.com/?pg=78">Page 75</a>
+        <a href="https://nocturne21.com/?pg=79">Page 76</a>
+        <a href="https://nocturne21.com/?pg=80">Page 77</a>
+        <a href="https://nocturne21.com/?pg=81">Page 78</a>
+        <a href="https://nocturne21.com/?pg=82">Page 79</a>
+        <a href="https://nocturne21.com/?pg=83">Page 80</a>
+        <a href="https://nocturne21.com/?pg=84">Page 81</a>
+        <a href="https://nocturne21.com/?pg=85">Page 82</a>
+        <a href="https://nocturne21.com/?pg=86">Page 83</a>
+        <a href="https://nocturne21.com/?pg=87">Page 84</a>
+        <a href="https://nocturne21.com/?pg=88">Page 85</a>
+        <a href="https://nocturne21.com/?pg=89">Page 86</a>
+        <a href="https://nocturne21.com/?pg=90">Page 87</a>
+        <a href="https://nocturne21.com/?pg=91">Page 88</a>
+        <a href="https://nocturne21.com/?pg=92">Page 89</a>
+        <a href="https://nocturne21.com/?pg=93">Page 90</a>
+      </div></details>
+      <details class="n21-jump-chapter"><summary>The Kai Journals</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=94">The Kai Journals: Part 1</a>
+        <a href="https://nocturne21.com/?pg=95">The Kai Journals: Part 2</a>
+        <a href="https://nocturne21.com/?pg=96">The Kai Journals: Part 3</a>
+        <a href="https://nocturne21.com/?pg=97">The Kai Journals: Part 4</a>
+      </div></details>
+      <details class="n21-jump-chapter"><summary>Chapter Four: The Stranger</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=98">Chapter Four: The Stranger</a>
+        <a href="https://nocturne21.com/?pg=99">Page 91</a>
+        <a href="https://nocturne21.com/?pg=100">Page 92</a>
+        <a href="https://nocturne21.com/?pg=101">Page 93</a>
+        <a href="https://nocturne21.com/?pg=102">Page 94</a>
+        <a href="https://nocturne21.com/?pg=103">Page 95</a>
+        <a href="https://nocturne21.com/?pg=104">Page 96</a>
+        <a href="https://nocturne21.com/?pg=105">Page 97</a>
+        <a href="https://nocturne21.com/?pg=106">Page 98</a>
+        <a href="https://nocturne21.com/?pg=107">Page 99</a>
+        <a href="https://nocturne21.com/?pg=108">Page 100</a>
+        <a href="https://nocturne21.com/?pg=109">Page 101</a>
+        <a href="https://nocturne21.com/?pg=110">Page 102</a>
+        <a href="https://nocturne21.com/?pg=111">Page 103</a>
+        <a href="https://nocturne21.com/?pg=112">Page 104</a>
+        <a href="https://nocturne21.com/?pg=113">Page 105</a>
+        <a href="https://nocturne21.com/?pg=114">Page 106</a>
+        <a href="https://nocturne21.com/?pg=115">Page 107</a>
+        <a href="https://nocturne21.com/?pg=116">Page 108</a>
+        <a href="https://nocturne21.com/?pg=117">Page 109</a>
+        <a href="https://nocturne21.com/?pg=118">Page 110</a>
+        <a href="https://nocturne21.com/?pg=119">Page 111</a>
+        <a href="https://nocturne21.com/?pg=120">Page 112</a>
+        <a href="https://nocturne21.com/?pg=121">Page 113</a>
+        <a href="https://nocturne21.com/?pg=122">Page 114</a>
+        <a href="https://nocturne21.com/?pg=123">Page 115</a>
+        <a href="https://nocturne21.com/?pg=124">Page 116</a>
+        <a href="https://nocturne21.com/?pg=125">Page 117</a>
+        <a href="https://nocturne21.com/?pg=126">Page 118</a>
+        <a href="https://nocturne21.com/?pg=127">Page 119</a>
+        <a href="https://nocturne21.com/?pg=128">Page 120</a>
+        <a href="https://nocturne21.com/?pg=129">Sleep: Part 1</a>
+        <a href="https://nocturne21.com/?pg=130">Sleep: Part 2</a>
+        <a href="https://nocturne21.com/?pg=131">Sleep: Part 3</a>
+        <a href="https://nocturne21.com/?pg=132">Sleep: Part 4</a>
+        <a href="https://nocturne21.com/?pg=133">Sleep: Part 5</a>
+        <a href="https://nocturne21.com/?pg=134">Sleep: Part 6/Page 121</a>
+        <a href="https://nocturne21.com/?pg=135">Page 122</a>
+        <a href="https://nocturne21.com/?pg=136">The Kai Journals: Part 5</a>
+        <a href="https://nocturne21.com/?pg=137">Page 123</a>
+        <a href="https://nocturne21.com/?pg=138">Page 124</a>
+        <a href="https://nocturne21.com/?pg=139">Page 125</a>
+        <a href="https://nocturne21.com/?pg=140">Page 126</a>
+        <a href="https://nocturne21.com/?pg=141">Page 127</a>
+        <a href="https://nocturne21.com/?pg=142">Page 128</a>
+        <a href="https://nocturne21.com/?pg=143">Page 129</a>
+        <a href="https://nocturne21.com/?pg=144">Page 130</a>
+        <a href="https://nocturne21.com/?pg=145">Page 131</a>
+        <a href="https://nocturne21.com/?pg=146">Page 132</a>
+        <a href="https://nocturne21.com/?pg=147">Page 133</a>
+        <a href="https://nocturne21.com/?pg=148">Page 134</a>
+        <a href="https://nocturne21.com/?pg=149">Page 135</a>
+        <a href="https://nocturne21.com/?pg=150">Page 136</a>
+      </div></details>
+    </section>
+    <section class="n21-jump-volume">
+      <div class="n21-jump-volume-title">VOLUME TWO: TRUST FALLS</div>
+      <a class="n21-jump-volume-link" href="https://nocturne21.com/?pg=151">Volume cover ↗</a>
+      <details class="n21-jump-chapter"><summary>Chapter Five: The Voice From Below</summary><div class="n21-jump-pages">
+        <a href="https://nocturne21.com/?pg=152">Chapter Five: The Voice From Below</a>
+        <a href="https://nocturne21.com/?pg=153">Page 137</a>
+        <a href="https://nocturne21.com/?pg=154">Page 138</a>
+        <a href="https://nocturne21.com/?pg=155">Page 139</a>
+        <a href="https://nocturne21.com/?pg=156">Page 140</a>
+        <a href="https://nocturne21.com/?pg=157">Page 141</a>
+        <a href="https://nocturne21.com/?pg=158">Page 142</a>
+        <a href="https://nocturne21.com/?pg=159">Page 143</a>
+        <a href="https://nocturne21.com/?pg=160">Page 144</a>
+        <a href="https://nocturne21.com/?pg=161">Page 145</a>
+        <a href="https://nocturne21.com/?pg=162">Page 146</a>
+        <a href="https://nocturne21.com/?pg=163">Page 147</a>
+        <a href="https://nocturne21.com/?pg=164">Page 148</a>
+        <a href="https://nocturne21.com/?pg=165">Page 149</a>
+        <a href="https://nocturne21.com/?pg=166">Page 150</a>
+        <a href="https://nocturne21.com/?pg=167">Page 151</a>
+        <a href="https://nocturne21.com/?pg=168">Page 152</a>
+        <a href="https://nocturne21.com/?pg=169">Page 153</a>
+        <a href="https://nocturne21.com/?pg=170">Page 154</a>
+        <a href="https://nocturne21.com/?pg=171">Page 155</a>
+        <a href="https://nocturne21.com/?pg=172">Page 156</a>
+        <a href="https://nocturne21.com/?pg=173">Page 157</a>
+        <a href="https://nocturne21.com/?pg=174">Page 158</a>
+        <a href="https://nocturne21.com/?pg=175">Page 159</a>
+        <a href="https://nocturne21.com/?pg=176">Page 160</a>
+        <a href="https://nocturne21.com/?pg=177">Page 161</a>
+        <a href="https://nocturne21.com/?pg=178">Page 162</a>
+        <a href="https://nocturne21.com/?pg=179">Page 163</a>
+        <a href="https://nocturne21.com/?pg=180">Page 164</a>
+        <a href="https://nocturne21.com/?pg=181">Page 165</a>
+        <a href="https://nocturne21.com/?pg=182">Page 166</a>
+        <a href="https://nocturne21.com/?pg=183">Page 167</a>
+        <a href="https://nocturne21.com/?pg=184">Page 168</a>
+        <a href="https://nocturne21.com/?pg=185">Page 169</a>
+        <a href="https://nocturne21.com/?pg=186">Page 170</a>
+        <a href="https://nocturne21.com/?pg=187">Page 171</a>
+        <a href="https://nocturne21.com/?pg=188">Page 172</a>
+        <a href="https://nocturne21.com/?pg=189">Page 173</a>
+        <a href="https://nocturne21.com/?pg=190">Page 174</a>
+        <a href="https://nocturne21.com/?pg=191">Page 175</a>
+        <a href="https://nocturne21.com/?pg=192">Page 176</a>
+        <a href="https://nocturne21.com/?pg=193">Page 177</a>
+        <a href="https://nocturne21.com/?pg=194">Page 178</a>
+        <a href="https://nocturne21.com/?pg=195">Page 179</a>
+        <a href="https://nocturne21.com/?pg=196">Page 180</a>
+        <a href="https://nocturne21.com/?pg=197">Page 181</a>
+        <a href="https://nocturne21.com/?pg=198">Page 182</a>
+        <a href="https://nocturne21.com/?pg=199">Page 183</a>
+        <a href="https://nocturne21.com/?pg=200">Page 184</a>
+        <a href="https://nocturne21.com/?pg=201">Page 185</a>
+        <a href="https://nocturne21.com/?pg=202">Page 186</a>
+        <a href="https://nocturne21.com/?pg=203">Page 187</a>
+        <a href="https://nocturne21.com/?pg=204">Page 188</a>
+        <a href="https://nocturne21.com/?pg=205">Page 189</a>
+        <a href="https://nocturne21.com/?pg=206">Page 190</a>
+      </div></details>
+    </section>
+  </div>
+</div>
+
+</div><!-- end reading controls -->
+<div class="jump-comments-wrap">
+  <a href="#commentsWrap" class="jump-comments-btn">↓ Jump to Comments</a>
+</div>
+     
+      
+    </div>
+
+    <!-- Crawlable description of the series for readers and search engines -->
+    <section class="comic-intro" aria-labelledby="about-nocturne21">
+      <h2 id="about-nocturne21">About Nocturne 21</h2>
+      <p>
+        <strong>Nocturne 21</strong> is an ongoing indie webcomic by <strong>April Ferrero</strong>—a dark, atmospheric sci-fi drama more than 20 years in the making. It follows a troubled teen finding a family of his own as long-hidden secrets slowly unravel the connections between them.
+      </p>
+      <div class="n21-about-support">
+        <p><strong>Enjoying Nocturne 21?</strong> Join the inner circle and see what happens behind the scenes.</p>
+        <a class="n21-support-link" href="support.html">Support the Comic →</a>
+      </div>
+    </section>
+
+    <!-- Journal preview follows the About panel with a tighter gap. -->
+ <div id="latest-journal-box" class="latest-journal-box"></div>  
+ <div id="relatedJournalBox"></div>
+  
+  <!-- Author notes and reader comments share a single panel. -->
+  <section class="n21-discussion-panel" aria-label="Author notes and reader comments">
+    <div id="authorNotes">
+      <h2>Author Notes</h2>
+      <div class="writeAuthorNotes"></div>
+    </div>
+
+    <hr class="n21-discussion-divider">
+
+    <div class="comments-shell" id="commentsWrap" style="clear: both; overflow: visible; position: relative; z-index: 1;">
+      <h2 class="comments-title">Join the Conversation</h2>
+      <p class="comment-prompt">What did you think of this page? 👀</p>
+      <div class="commentbox"></div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+<div class="cta-bottom" align="center">
+  <h3>
+    Thanks for reading 💜<br>
+    <a href="/support.html">Support the comic</a> or follow along behind the scenes
+  </h3>
+</div>
+
+ <div align="center" width="100%">
+  
+  
+
+</div>
+<!-- footer that has a link back to rarebit, and ideally has copyright info and stuff. again, don't forget to put this on every page-->
+<div class="writeFooter"></div>
+
+  <!-- really important- every js script is called here, be sure to always put them just before the closing body tag, use a defer attribute, and call them in this specific order.-->
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+
+  
+   
+    <div id='webcomicwebring' align="center">
+
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+
+<script src="js/comic_header.js"></script>
+<script>
+(function(){
+ const output=document.getElementById('n21-lab-data');
+ function measure(){
+  const h=document.documentElement,b=document.body,v=window.visualViewport;
+  const rows=[
+   'innerWidth: '+innerWidth,
+   'visualViewport.width: '+(v?Math.round(v.width):'n/a'),
+   'html.clientWidth: '+h.clientWidth,
+   'html.scrollWidth: '+h.scrollWidth,
+   'body width: '+Math.round(b.getBoundingClientRect().width),
+   'orientation: '+(matchMedia('(orientation: portrait)').matches?'portrait':'landscape')
+  ];
+  output.textContent=rows.join(' | ');
+ }
+ addEventListener('resize',measure);addEventListener('orientationchange',measure);
+ if(window.visualViewport)visualViewport.addEventListener('resize',measure);
+ addEventListener('load',measure);measure();
+})();
+</script>
+</body>
+</html>
+
+
+
+
