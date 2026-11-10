@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nocturne 21 — Test J (Test I + Full CSS)</title>
+  <!-- Test J: load the REAL sitewide stylesheet, then preserve Test I diagnostic styles. -->
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html{margin:0}
+    body{margin:0;background:#171629;color:#f6f1ff;font:16px/1.5 system-ui,sans-serif}
+    .writeHeader{width:100%}
+    /* Test I: preserve the background-only approach from successful H, but avoid stretching the artwork. */
+    .writeHeader .site-banner{display:none !important}
+    .writeHeader .site-banner-link{display:block;width:100%;max-width:100%;aspect-ratio:5/1;background-image:url("./img/logo.png");background-position:center;background-repeat:no-repeat;background-size:contain;background-color:#08050c;}
+    .writeHeader img{max-width:100%;height:auto}
+    .writeHeader #nav{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:12px;background:#261725}
+    .writeHeader #nav a{color:#f6dce6}
+    main{width:90%;max-width:850px;margin:24px auto}
+    .panel{padding:18px;background:#292740;border:1px solid #9a85c4;border-radius:12px}
+    .metrics{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;margin-top:14px;font-variant-numeric:tabular-nums}
+    .metrics span:nth-child(even){font-weight:700;text-align:right}
+    .bar{width:100%;padding:14px 10px;margin:20px 0;background:#477f8b;text-align:center;border-radius:6px}
+    .hint{color:#d7cce9;font-size:.9rem}
+    button{padding:10px 14px;margin:5px;background:#e8c9f5;color:#23152b;border:0;border-radius:7px;font:inherit}
+    #log{white-space:pre-wrap;overflow-wrap:anywhere;background:#11101d;padding:12px;border-radius:8px;font:12px/1.5 ui-monospace,monospace;max-height:230px;overflow:auto}
+  </style>
+</head>
+<body>
+  <div class="writeHeader"></div>
+  <script src="js/comic_header.js"></script>
+  <main>
+    <section class="panel">
+      <h1>🪿 Test J — Full stylesheet isolation</h1>
+      <p class="hint">Test I markup and real header script, but NOW loading css/style.css. If this breaks while Test I works, the stylesheet is implicated.</p>
+      <div class="metrics" aria-live="polite">
+        <span>window.innerWidth</span><span id="inner">—</span>
+        <span>visualViewport.width</span><span id="visual">—</span>
+        <span>html.clientWidth</span><span id="client">—</span>
+        <span>html.scrollWidth</span><span id="scroll">—</span>
+        <span>body width</span><span id="bodywidth">—</span>
+        <span>orientation</span><span id="orientation">—</span>
+      </div>
+      <div class="bar">This bar should fit the visible screen.</div>
+      <p class="hint">Open in a fresh Chrome tab, rotate both ways without reloading. Compare with Test I. This test does not modify your real homepage.</p>
+      <button type="button" id="record">Record</button>
+      <button type="button" id="clear">Clear log</button>
+      <div id="log">Waiting…</div>
+    </section>
+  </main>
+  <script>
+    (function(){
+      const el=id=>document.getElementById(id);
+      let previous='',entries=[];
+      function measure(){
+        const h=document.documentElement;
+        const v={inner:innerWidth,visual:visualViewport?Math.round(visualViewport.width):'n/a',client:h.clientWidth,scroll:h.scrollWidth,bodywidth:Math.round(document.body.getBoundingClientRect().width),orientation:matchMedia('(orientation: portrait)').matches?'portrait':'landscape'};
+        Object.entries(v).forEach(([k,value])=>el(k).textContent=String(value));
+        return v;
+      }
+      function record(label){
+        const v=measure(),s=JSON.stringify(v);
+        if(label==='automatic'&&s===previous)return;
+        previous=s;
+        entries.unshift(label+': '+Object.entries(v).map(([k,x])=>k+'='+x).join(', '));
+        entries=entries.slice(0,12);
+        el('log').textContent=entries.join('\n\n');
+      }
+      el('record').addEventListener('click',()=>record('manual'));
+      el('clear').addEventListener('click',()=>{entries=[];previous='';el('log').textContent='Log cleared.'});
+      addEventListener('resize',()=>record('automatic'));
+      addEventListener('orientationchange',()=>{record('automatic');setTimeout(()=>record('automatic'),300)});
+      if(visualViewport)visualViewport.addEventListener('resize',()=>record('automatic'));
+      record('initial');
+    })();
+  </script>
+</body>
+</html>
