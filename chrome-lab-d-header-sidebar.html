@@ -12,6 +12,10 @@
   <!-- Styles -->
   <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
   <style>
+    /* LAB TEST: consistent element sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
     .comic-intro {
       width: calc(100% - 40px);
       max-width: 900px;
