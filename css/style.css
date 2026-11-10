@@ -41,7 +41,7 @@
 
 html {
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
@@ -3108,7 +3108,7 @@ input[type="text"][value*="xml"] {
 
 body,
 html {
-  overflow-x: hidden !important;
+  overflow-x: clip !important;
 }
 
 img,
