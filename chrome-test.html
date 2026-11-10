@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chrome Orientation Test — Nocturne 21</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #171629; color: #f6f1ff; font: 16px/1.5 system-ui, sans-serif; }
+    header { background: #713d69; padding: 22px 18px; text-align: center; }
+    h1 { font-size: 1.4rem; margin: 0; }
+    main { width: min(90%, 850px); margin: 24px auto; }
+    .panel { padding: 18px; background: #292740; border: 1px solid #9a85c4; border-radius: 12px; }
+    .metrics { display: grid; grid-template-columns: 1fr auto; gap: 9px 15px; margin-top: 16px; font-variant-numeric: tabular-nums; }
+    .metrics span:nth-child(even) { font-weight: 700; text-align: right; }
+    .bar { margin: 20px 0 8px; width: 100%; padding: 14px 10px; background: #477f8b; text-align: center; border-radius: 6px; }
+    .hint { color: #d7cce9; font-size: .9rem; }
+    button { margin: 12px 0; background: #e8c9f5; color: #23152b; border: 0; padding: 10px 15px; border-radius: 7px; font: inherit; cursor: pointer; }
+    #log { white-space: pre-wrap; overflow-wrap: anywhere; background: #11101d; padding: 12px; border-radius: 8px; font: 12px/1.5 ui-monospace, monospace; max-height: 230px; overflow: auto; }
+  </style>
+</head>
+<body>
+  <header><h1>🪿 Chrome Orientation Laboratory</h1></header>
+  <main>
+    <div class="panel">
+      <strong>Live measurements</strong>
+      <div class="metrics" aria-live="polite">
+        <span>window.innerWidth</span><span id="inner">—</span>
+        <span>visualViewport.width</span><span id="visual">—</span>
+        <span>html.clientWidth</span><span id="client">—</span>
+        <span>html.scrollWidth</span><span id="scroll">—</span>
+        <span>body width</span><span id="bodywidth">—</span>
+        <span>orientation</span><span id="orientation">—</span>
+        <span>devicePixelRatio</span><span id="dpr">—</span>
+      </div>
+      <div class="bar">This bar should always fit the screen.</div>
+      <p class="hint">Rotate portrait → landscape → portrait without reloading. If the page gets too wide or leaves a strip, take screenshots showing these numbers.</p>
+      <button id="record" type="button">Record measurements</button>
+      <button id="clear" type="button">Clear log</button>
+      <div id="log" aria-label="Measurements log">Waiting for measurements…</div>
+    </div>
+  </main>
+  <script>
+    (function () {
+      const $ = id => document.getElementById(id);
+      let previous = '';
+      let entries = [];
+      function measure() {
+        const html = document.documentElement;
+        const info = {
+          inner: window.innerWidth,
+          visual: window.visualViewport ? Math.round(window.visualViewport.width) : 'n/a',
+          client: html.clientWidth,
+          scroll: html.scrollWidth,
+          bodywidth: Math.round(document.body.getBoundingClientRect().width),
+          orientation: matchMedia('(orientation: portrait)').matches ? 'portrait' : 'landscape',
+          dpr: window.devicePixelRatio
+        };
+        for (const [key, value] of Object.entries(info)) $(key).textContent = String(value);
+        return info;
+      }
+      function record(label) {
+        const info = measure();
+        const signature = JSON.stringify(info);
+        if (label === 'automatic' && signature === previous) return;
+        previous = signature;
+        entries.unshift(label + ': ' + Object.entries(info).map(([k,v]) => k + '=' + v).join(', '));
+        entries = entries.slice(0, 12);
+        $('log').textContent = entries.join('\n\n');
+      }
+      $('record').addEventListener('click', () => record('manual'));
+      $('clear').addEventListener('click', () => { entries = []; previous = ''; $('log').textContent = 'Log cleared.'; });
+      addEventListener('resize', () => record('automatic'));
+      addEventListener('orientationchange', () => { record('automatic'); setTimeout(() => record('automatic'), 300); });
+      if (window.visualViewport) visualViewport.addEventListener('resize', () => record('automatic'));
+      record('initial');
+    }());
+  </script>
+</body>
+</html>
