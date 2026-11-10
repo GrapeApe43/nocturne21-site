@@ -4342,23 +4342,6 @@ h1, h2, h3, h4,
 .latest-blog-readmore:hover, .latest-blog-readmore:focus-visible {
   color: var(--n21-link-teal) !important;
 }
-/* ========================================
-   HEADER LOADING STABILITY TEST
-======================================== */
-
-/* Reserve the banner's 3:1 space before JavaScript inserts it. */
-.writeHeader::before {
-  content: "";
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 1;
-}
-
-/* Remove the placeholder once the header exists. */
-.writeHeader:has(.site-header)::before {
-  display: none;
-}
-
 /* ==============================================
    EXTRAS — WEATHERED POLAROID MASONRY (NOV 2026)
    Original art proportions and Lytebox preserved.
@@ -4653,17 +4636,6 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
   }
 }
 
-/* ============================================================
-   iPAD CHROME ORIENTATION — TEST I BACKGROUND BANNER FIX
-   Keeps the existing injected header, but removes the banner
-   <img> from layout and paints the same artwork as a background.
-   This override intentionally follows the existing sitewide CSS.
-   ============================================================ */
-.site-header .site-banner,
-.writeHeader .site-banner {
-  display: none !important;
-}
-
 .site-header .site-banner-link,
 .writeHeader .site-banner-link {
   display: block !important;
@@ -4677,5 +4649,24 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
   background-repeat: no-repeat !important;
   background-size: contain !important;
   background-color: #08050c;
+  box-sizing: border-box !important;
+}
+/* ============================================================
+   CHROME ORIENTATION — BACKGROUND BANNER, NATIVE HEADER ELEMENT
+   Header JS now creates the anchor without an image child.
+   ============================================================ */
+.writeHeader,
+.site-header {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+.site-header .site-banner-link {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  aspect-ratio: 5 / 1;
+  background: #08050c url('../img/logo.png') center / contain no-repeat !important;
   box-sizing: border-box !important;
 }
