@@ -941,10 +941,70 @@
 </script>
 
 
+<script src="/js/chrome-ipad-viewport-rescue.js"></script>   
 
 
+<script src="/js/chrome-ipad-viewport-rescue.js"></script>
 
-<script src="/js/chrome-ipad-viewport-rescue.js"></script>    
+<script>
+(function () {
+  const ua = navigator.userAgent;
+  const isIPad = /iPad/.test(ua) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  if (!/CriOS\//.test(ua) || !isIPad) return;
+
+  let count = 0;
+
+  const panel = document.createElement('div');
+  panel.style.cssText = `
+    position:fixed;
+    bottom:12px;
+    left:12px;
+    z-index:999999;
+    background:#191527;
+    color:#eee;
+    padding:10px 14px;
+    border:1px solid #9877c9;
+    border-radius:10px;
+    font:12px monospace;
+    box-shadow:0 4px 20px #0008;
+    max-width:85vw;
+  `;
+
+  panel.innerHTML = `
+    <details>
+      <summary style="cursor:pointer">
+        🪿 Goose Watch: <span id="goose-count">0</span>
+      </summary>
+      <div id="goose-details"
+           style="margin-top:10px;line-height:1.7"></div>
+    </details>
+  `;
+
+  document.body.appendChild(panel);
+
+  const counter = panel.querySelector('#goose-count');
+  const details = panel.querySelector('#goose-details');
+
+  function update(info) {
+    count++;
+    counter.textContent = count;
+
+    details.textContent =
+      'Last target: ' + info.target + 'px\n' +
+      'HTML width: ' + info.clientWidth + 'px\n' +
+      'Scroll width: ' + info.scrollWidth + 'px';
+
+    details.style.whiteSpace = 'pre-line';
+  }
+
+  document.addEventListener('n21-viewport-rescue', function (event) {
+    update(event.detail);
+  });
+})();
+</script>
+    
   
 <!-- iPad viewport experiments removed for clean CSS test. -->
 </body>
