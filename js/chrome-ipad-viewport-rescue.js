@@ -95,5 +95,12 @@
     schedule();
   }
 
+
   window.addEventListener('load', schedule, { once: true });
+
+  // Recheck when Chrome restores a previously visited page.
+  window.addEventListener('pageshow', function () {
+    schedule();
+  });
+
 })();
