@@ -190,3 +190,44 @@ document.querySelector(".writeHeader").innerHTML = `
     }
   }
 })();
+
+/* ================================================
+   NOCTURNE 21 — CHROME IPAD VIEWPORT RESCUE
+   Load the proven orientation workaround sitewide.
+   ================================================ */
+
+(function () {
+  "use strict";
+
+  // Prevent loading the rescue script twice.
+  // The homepage already includes it directly.
+  if (
+    document.querySelector(
+      'script[src*="chrome-ipad-viewport-rescue.js"]'
+    )
+  ) {
+    return;
+  }
+
+  // Only load the workaround in Chrome on iPad.
+  const ua = navigator.userAgent;
+
+  const isChromeIOS = /CriOS\//.test(ua);
+
+  const isIPad =
+    /iPad/.test(ua) ||
+    (
+      navigator.platform === "MacIntel" &&
+      navigator.maxTouchPoints > 1
+    );
+
+  if (!isChromeIOS || !isIPad) return;
+
+  const script = document.createElement("script");
+
+  script.src = "/js/chrome-ipad-viewport-rescue.js";
+  script.async = true;
+
+  document.head.appendChild(script);
+})();
+
