@@ -33,7 +33,18 @@ writePageTitle(".writePageTitle", false," - "); //write title of page. true/fals
     if (metaDescription) {
       metaDescription.setAttribute(
         "content",
-        `Read ${pageData.title} of Nocturne 21, a sci-fi drama webcomic by April Ferrero about family, trauma, identity, and finding strength through connection.`
+        (() => {
+          const alt = String(pageData.altText || "").replace(/\s+/g, " ").trim();
+          const prefix = `Nocturne 21 — ${pageData.title}: `;
+          const fallback = `Read ${pageData.title} of Nocturne 21, a sci-fi drama webcomic by April Ferrero.`;
+          if (!alt) return fallback;
+          const maxLength = 160;
+          const available = maxLength - prefix.length;
+          const excerpt = alt.length > available
+            ? alt.slice(0, Math.max(0, available - 1)).trimEnd() + "…"
+            : alt;
+          return prefix + excerpt;
+        })()
       );
     }
   }
