@@ -4750,3 +4750,78 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
 @media (prefers-reduced-motion: reduce) {
   .floating-share { animation: none !important; }
 }
+/* Nocturne 21: compact share menu on touch devices in landscape */
+@media (orientation: landscape) and (max-height: 900px) and (pointer: coarse) {
+  .floating-share,
+  .floating-share:not(.open) {
+    position: fixed !important;
+    top: auto !important;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
+    right: calc(12px + env(safe-area-inset-right, 0px)) !important;
+    left: auto !important;
+    transform: none !important;
+    width: 60px !important;
+    height: 60px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    background: linear-gradient(145deg, #ee4757, #9a2736) !important;
+    border-color: rgba(255,214,220,.55) !important;
+    animation: n21ShareRedPulse 3.5s ease-in-out infinite !important;
+  }
+  .floating-share:not(.open) a { display: none !important; }
+  .floating-share .share-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    color: #fff2f4 !important;
+    cursor: pointer !important;
+  }
+  .floating-share.open {
+    top: auto !important;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+    right: calc(12px + env(safe-area-inset-right, 0px)) !important;
+    left: auto !important;
+    transform: none !important;
+    width: 68px !important;
+    height: auto !important;
+    max-height: calc(100vh - 24px - env(safe-area-inset-bottom, 0px)) !important;
+    max-height: calc(100dvh - 24px - env(safe-area-inset-bottom, 0px)) !important;
+    padding: 8px 6px !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 6px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    animation: none !important;
+  }
+  .floating-share.open a {
+    display: flex !important;
+    flex: 0 0 38px !important;
+    width: 38px !important;
+    height: 38px !important;
+  }
+  .floating-share.open .share-toggle {
+    flex: 0 0 32px !important;
+    width: 100% !important;
+    height: 32px !important;
+    min-width: 0 !important;
+    min-height: 32px !important;
+  }
+}
