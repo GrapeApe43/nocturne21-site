@@ -1,3 +1,4 @@
+
 import re
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -6,10 +7,15 @@ SITE_URL = "https://nocturne21.com"
 SETTINGS_FILE = "js/comic_settings.js"
 OUTPUT_FILE = "sitemap.xml"
 
-# Permanent site pages we want Google to discover.
+# Permanent public pages we want Google to discover.
 STATIC_URLS = [
     f"{SITE_URL}/",
     f"{SITE_URL}/archive.html",
+    f"{SITE_URL}/about.html",
+    f"{SITE_URL}/cast.html",
+    f"{SITE_URL}/extras.html",
+    f"{SITE_URL}/support.html",
+    f"{SITE_URL}/journal.html",
 ]
 
 
