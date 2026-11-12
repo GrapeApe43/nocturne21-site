@@ -4670,3 +4670,83 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
   background: #08050c url('../img/logo.png') center / contain no-repeat !important;
   box-sizing: border-box !important;
 }
+
+/* ==========================================================
+   N21 SHARE BAR — FINAL RED ACCENT / MOBILE KOFI PAIR
+   Overrides earlier blue share rules without affecting other UI.
+   ========================================================== */
+.floating-share {
+  background: linear-gradient(145deg, #9a2736, #39121c) !important;
+  border: 1px solid rgba(255, 140, 154, .65) !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.42),
+              0 0 14px rgba(238,71,87,.28) !important;
+}
+.floating-share a {
+  background: rgba(24,8,14,.3) !important;
+  border-color: rgba(255,214,220,.28) !important;
+}
+.floating-share a:hover,
+.floating-share a:focus-visible {
+  background: rgba(238,71,87,.85) !important;
+  box-shadow: 0 0 12px rgba(238,71,87,.45) !important;
+}
+.floating-share svg {
+  fill: #ffd6dc !important;
+}
+.floating-share a:hover svg,
+.floating-share a:focus-visible svg {
+  fill: #fff !important;
+}
+.floating-share img {
+  filter: brightness(0) saturate(100%) invert(89%) sepia(14%)
+          saturate(530%) hue-rotate(296deg) brightness(104%) !important;
+}
+.floating-share a:hover img,
+.floating-share a:focus-visible img {
+  filter: brightness(0) invert(1) !important;
+}
+.share-toggle,
+.floating-share:not(.open) .share-toggle,
+.floating-share.open .share-toggle {
+  color: #fff2f4 !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5) !important;
+}
+.share-toggle:hover,
+.share-toggle:focus-visible {
+  color: #fff !important;
+  background: rgba(255,140,154,.14) !important;
+}
+@media (max-width: 800px) {
+  .floating-share,
+  .floating-share:not(.open) {
+    position: fixed !important;
+    top: auto !important;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
+    right: calc(12px + env(safe-area-inset-right, 0px)) !important;
+    left: auto !important;
+    transform: none !important;
+    background: linear-gradient(145deg, #ee4757, #9a2736) !important;
+    border-color: rgba(255,214,220,.55) !important;
+    animation: n21ShareRedPulse 3.5s ease-in-out infinite !important;
+  }
+  .floating-share.open {
+    top: auto !important;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
+    right: calc(12px + env(safe-area-inset-right, 0px)) !important;
+    left: auto !important;
+    max-height: calc(100dvh - 48px) !important;
+    overflow-y: auto !important;
+    animation: none !important;
+  }
+  .floating-share:not(.open) .share-toggle {
+    background: transparent !important;
+    color: white !important;
+  }
+}
+@keyframes n21ShareRedPulse {
+  0%, 100% { box-shadow: 0 8px 22px rgba(0,0,0,.42), 0 0 5px rgba(238,71,87,.28); }
+  50% { box-shadow: 0 8px 22px rgba(0,0,0,.42), 0 0 14px rgba(238,71,87,.6); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .floating-share { animation: none !important; }
+}
