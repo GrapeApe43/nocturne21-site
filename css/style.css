@@ -4825,3 +4825,28 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
     min-height: 32px !important;
   }
 }
+
+/* N21 desktop share toggle — preserve all mobile layouts */
+@media (min-width: 801px) and (pointer: fine) {
+  .floating-share .share-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    min-height: 30px;
+    padding: 5px 2px;
+    border: 0;
+    border-radius: 8px;
+    background: rgba(24,8,14,.3);
+    color: #fff2f4;
+    font: 600 12px/1.2 'Open Sans', sans-serif;
+    cursor: pointer;
+  }
+  .floating-share.desktop-collapsed {
+    padding: 7px !important;
+    gap: 0 !important;
+  }
+  .floating-share.desktop-collapsed > a {
+    display: none !important;
+  }
+}
