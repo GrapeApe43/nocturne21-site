@@ -32,7 +32,7 @@ const dossierPages = {
     <p class="n21-redaction-note">I asked him. He doesn't know.</p>
     </section>
     <h3>Known habits</h3>
-    <p>Drinks enough coffee to concern a medical professional. Unfortunately, the medical professional in this house is Dad, and he has other things to worry about.</p>
+    <p>Drinks enough coffee to concern a medical professional. Unfortunately, the medical professional in this house is Dad, and he's a constant enabler.</p>
     <h3>Suspicious activity</h3>
     <p>Can make friends with practically anyone. Has a talent for appearing wherever the snacks are. Claims he doesn't need shoes. This is not normal behavior.</p>
     <h3>Personal observations</h3>
@@ -61,10 +61,12 @@ const dossierPages = {
     <span class="n21-classified" aria-hidden="true">REDACTED</span>
     <p class="n21-redaction-note">He says he doesn't know anything.</p>
     <p class="n21-redaction-note">I asked him again. Same answer.</p>
-    <p class="n21-redaction-note">HE'S DOING THAT THING WHERE HE PRETENDS HE DOESN'T KNOW WHAT I'M TALKING ABOUT.</p>
+    <p class="n21-redaction-note">The man is doing the thing where plays dumb, but I'm onto him.</p>
     </section>
     <h3>Known habits</h3>
-    <p>Works too much. Drinks coffee like it's a medical necessity. Has the ability to make an entire room feel guilty just by raising one eyebrow.</p>
+    <p>Works too much. Drinks coffee like it's a medical necessity. Smokes when he's really stessed. Lies about that too. 
+    I can smell ya, Pal. Has the ability to make an entire room feel guilty just by raising one eyebrow.Refuses to spell his name in Kanji
+    because of his Daddy issues.</p>
     <h3>Suspicious activity</h3>
     <p>Claims he's not worried. Is clearly worried. Claims he doesn't know. Somehow has a very specific opinion anyway.</p>
     <h3>Personal observations</h3>
@@ -102,7 +104,8 @@ const dossierPages = {
     <strong>Relation:</strong> Honorary uncle / Dad’s best friend</p>
     </div>
     <h3>Known habits</h3>
-    <p>Checks on everyone. Then checks again to make sure the first check worked. Gives advice whether anyone asked for it or not.</p>
+    <p>Checks on everyone. Then checks again to make sure the first check worked. Gives advice whether anyone asked for it or not.
+    Never give him the car keys. He WILL lose them. Also has a habit of losing wives. Don't tell him I said that.</p>
     <h3>Suspicious activity</h3>
     <p>Can turn one minor inconvenience into a full-scale family emergency in approximately four seconds.</p>
     <h3>Personal observations</h3>
@@ -140,9 +143,10 @@ const dossierPages = {
     <strong>Relation:</strong> Unknown. Thankfully.</p>
     </div>
     <h3>Known habits</h3>
-    <p>Appearing in Kai's dreams. Being extremely unsettling. Apparently not understanding the concept of personal space.</p>
+    <p>Appearing in Kai's dreams. Being extremely unsettling. Apparently not understanding the concept of personal space.
+    Loves knives.</p>
     <h3>Suspicious activity</h3>
-    <p>Everything. Literally everything about this situation is suspicious.</p>
+    <p>Everything. Literally EVERYTHING about her is suspicious.</p>
     <h3>Personal observations</h3>
     <p>I can't exactly interview somebody who only shows up in somebody else's dreams. This is making my investigative work VERY difficult.</p>
     <p class="n21-dossier-note">
@@ -159,7 +163,8 @@ const dossierPages = {
     <strong>Relation:</strong> Unknown. Looks familiar, though.</p>
     </div>
     <h3>Known habits</h3>
-    <p>Showing up without an invitation. Making a terrible first impression.</p>
+    <p>Showing up without an invitation. Making a terrible first impression. Terrible aim, but throws sharp objects anyway.
+    Carries himself like he knows everything, but might actually be clueless. Easy to trick.</p>
     <h3>Suspicious activity</h3>
     <p>Has Kai's face. I feel like this should be a much bigger deal to everybody.</p>
     <h3>Personal observations</h3>
