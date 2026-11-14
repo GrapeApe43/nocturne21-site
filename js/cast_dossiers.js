@@ -64,8 +64,8 @@ const dossierPages = {
     <p class="n21-redaction-note">The man is doing the thing where plays dumb, but I'm onto him.</p>
     </section>
     <h3>Known habits</h3>
-    <p>Works too much. Drinks coffee like it's a medical necessity. Smokes when he's really stessed. Lies about that too. 
-    I can smell ya, Pal. Has the ability to make an entire room feel guilty just by raising one eyebrow.Refuses to spell his name in Kanji
+    <p>Works too much. Drinks coffee like it's water. Smokes when he's really stessed. Lies about that too. 
+    I can smell ya, Pal. Has the ability to make an entire room feel guilty just by raising one eyebrow. Refuses to spell his name in Kanji
     because of his Daddy issues.</p>
     <h3>Suspicious activity</h3>
     <p>Claims he's not worried. Is clearly worried. Claims he doesn't know. Somehow has a very specific opinion anyway.</p>
