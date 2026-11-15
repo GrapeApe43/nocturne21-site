@@ -833,16 +833,25 @@ body .n21-cast-page.subPage {
 }
 
 
-/* Yoshiko's ratings — scoped to the cast dossier, no changes to portrait layout */
-.n21-cast-page .n21-assessment { margin:18px 0 10px; color:#30251c; text-align:left; }
+/* YOSHIKO'S PULL-OUT CARD: independent of the fixed-size dossier illustration */
+.n21-cast-page #characterDossier { overflow:visible!important; }
+.n21-cast-page #characterDossier > .n21-dossier-content { position:relative; z-index:2; }
+.n21-cast-page .n21-pull-card { position:relative; z-index:1; width:90%; margin:-20px auto 15px; text-align:left; isolation:isolate; }
+.n21-cast-page .n21-pull-reveal { display:grid; grid-template-rows:0fr; transition:grid-template-rows .6s cubic-bezier(.2,.8,.2,1); }
+.n21-cast-page .n21-pull-card.is-pulled .n21-pull-reveal { grid-template-rows:1fr; }
+.n21-cast-page .n21-pull-paper { min-height:0; overflow:hidden; filter:drop-shadow(0 8px 7px rgba(0,0,0,.4)); }
+.n21-cast-page .n21-pull-top { position:relative; width:100%; aspect-ratio:2048/715; background:url('img/characters/index-top.png') center / 100% 100% no-repeat; }
+.n21-cast-page .n21-pull-top h2 { position:absolute; left:9%; right:8%; top:3%; margin:0; color:#5c3029!important; text-align:center; font:700 clamp(12px,2.5vw,24px)/1.35 'Gloria Hallelujah','Patrick Hand',cursive; transform:rotate(-1deg); }
+.n21-cast-page .n21-pull-middle { background:url('img/characters/index-middle.png') center top / 100% auto repeat-y; padding:10px 12% 22px 16%; color:#352a1e; }
+.n21-cast-page .n21-pull-bottom { width:100%; aspect-ratio:2048/1034; background:url('img/characters/index-bottom.png') center top / 100% 100% no-repeat; }
+/* The pull tab is a button, visible even when the card itself is retracted. */
+.n21-cast-page .n21-pull-tab { position:relative; display:block; width:52%; min-height:42px; margin:-2px auto 0; padding:8px 5px; border:0; border-radius:0 0 14px 14px; background:#d3b473 url('img/characters/index-bottom.png') center bottom / 190% auto no-repeat; box-shadow:0 5px 6px rgba(0,0,0,.3); color:#6b3029; font:700 clamp(10px,1.6vw,16px)/1.3 'Patrick Hand',cursive; letter-spacing:.04em; cursor:pointer; transform:rotate(-1deg); }
+.n21-cast-page .n21-pull-tab:hover { filter:brightness(1.08); }
+.n21-cast-page .n21-pull-tab:focus-visible { outline:3px solid #8ee9ed; outline-offset:3px; }
 .n21-cast-page .n21-assess-stamp { display:table; max-width:100%; margin:0 0 12px auto; padding:4px 8px; border:2px double #a12d2b; color:#a12d2b!important; font:800 clamp(10px,1.5vw,15px)/1.3 'Patrick Hand',cursive; letter-spacing:.07em; transform:rotate(-5deg); }
-.n21-cast-page .n21-assess-fold { border-top:1px dashed #997c62; padding-top:9px; }
-.n21-cast-page .n21-assess-fold>summary { cursor:pointer; color:#5b2b26; font:700 clamp(13px,1.9vw,19px)/1.5 'Gloria Hallelujah','Patrick Hand',cursive; }
-.n21-cast-page .n21-assess-open-hint { color:#825e4a!important; font:400 .75em 'Patrick Hand',cursive; }
-.n21-cast-page .n21-assess-inner { margin-top:12px; }
 .n21-cast-page .n21-assess-row { margin:0 0 15px; }
 .n21-cast-page .n21-assess-label { font:700 clamp(12px,1.6vw,17px)/1.4 'Patrick Hand',cursive; color:#30251c!important; }
-.n21-cast-page .n21-assess-scale { display:flex; align-items:center; gap:0; width:100%; max-width:370px; padding:5px 0; color:#423328; }
+.n21-cast-page .n21-assess-scale { display:flex; align-items:center; width:100%; max-width:370px; padding:5px 0; color:#423328; }
 .n21-cast-page .n21-assess-num { position:relative; display:grid; place-items:center; flex:1 1 0; min-width:0; height:34px; font:400 clamp(13px,2vw,20px)/1 'Patrick Hand',cursive; color:#463629!important; }
 .n21-cast-page .n21-assess-num.is-marked { color:#9d2927!important; font-weight:bold; }
 .n21-cast-page .n21-assess-num.is-marked::after { content:""; position:absolute; inset:1px 2px; border:2px solid #a12d2b; border-radius:48% 53% 47% 51%; transform:rotate(-14deg); }
@@ -854,10 +863,9 @@ body .n21-cast-page.subPage {
 .n21-cast-page .n21-assess-scale.is-beyond { position:relative; padding-bottom:21px; }
 .n21-cast-page .n21-assess-arrow { position:absolute; left:54%; bottom:0; width:46%; overflow:hidden; white-space:nowrap; color:#a12d2b!important; font:700 24px/1 'Patrick Hand',cursive; letter-spacing:6px; }
 .n21-cast-page .n21-assess-comment { margin:0 0 0 8px; color:#9d2927!important; font:italic clamp(11px,1.4vw,15px)/1.3 'Patrick Hand',cursive; transform:rotate(-1deg); }
-.n21-cast-page .n21-assess-conclusion { margin:15px 0!important; padding:12px!important; background:rgba(247,226,175,.65); border-left:3px solid #a12d2b; color:#443123!important; font-family:'Patrick Hand',cursive!important; }
-/* When unfolded, let the paper grow rather than cover text or the close button. */
-.n21-cast-page .n21-dossier-content:has(.n21-assess-fold[open]) { aspect-ratio:auto!important; height:auto!important; min-height:0!important; background-size:100% 100%!important; padding-bottom:80px!important; }
-@media(max-width:600px) { .n21-cast-page .n21-assess-row { margin-bottom:9px; } .n21-cast-page .n21-assess-num { height:27px; font-size:14px; } .n21-cast-page .n21-assess-stamp { font-size:11px; } }
+.n21-cast-page .n21-assess-conclusion { margin:15px 0!important; padding:12px!important; background:rgba(247,226,175,.55); border-left:3px solid #a12d2b; color:#443123!important; font:400 clamp(12px,1.6vw,16px)/1.5 'Patrick Hand',cursive!important; }
+@media(max-width:600px) { .n21-cast-page .n21-pull-card { width:95%; margin-top:-8px; } .n21-cast-page .n21-pull-middle { padding:6px 12% 16px 15%; } .n21-cast-page .n21-assess-row { margin-bottom:9px; } .n21-cast-page .n21-assess-num { height:27px; font-size:14px; } .n21-cast-page .n21-pull-top h2 { font-size:clamp(11px,3.3vw,17px); } }
+@media(prefers-reduced-motion:reduce) { .n21-cast-page .n21-pull-reveal { transition:none; } }
 
 </style>
 </head>
@@ -1069,6 +1077,7 @@ body .n21-cast-page.subPage {
       dossier.querySelector('.n21-dossier-writing').innerHTML = dossierPages[index] + '<button class="n21-dossier-close" type="button">✕ Close secret file</button>';
       dossier.querySelector('summary').setAttribute('aria-label', 'Open Yoshiko\'s super secret file on ' + char.name);
       dossier.querySelector('.n21-dossier-close').addEventListener('click', closeDossier);
+      window.n21RenderAssessment?.(index);
       dossier.hidden = false;
       tabs.forEach((tab, i) => {
         tab.classList.toggle('active', i === index);
