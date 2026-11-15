@@ -1,12 +1,13 @@
 
 /*
- * NOCTURNE 21
- * YOSHIKO'S SECRET INVESTIGATOR ASSESSMENTS
+ * NOCTURNE 21 — YOSHIKO'S SECRET ASSESSMENTS
+ * Animated, single-composition edition
  *
- * Single-image pull-out card.
+ * Requires:
+ * img/characters/dossier-folder-open.png
+ * img/characters/dossier-file-open-index.png
+ *
  * Load AFTER cast_dossiers.js.
- *
- * Image: img/characters/index-card.png
  */
 
 (() => {
@@ -86,101 +87,171 @@
     }
   ];
 
-  /*
-   * All new styling lives here.
-   * This overrides the previous three-piece card.
-   */
-
   const css = `
-    /* SINGLE-IMAGE INDEX CARD */
+    /*
+     * NEW ANIMATED DOSSIER
+     *
+     * The original folder remains the closed artwork.
+     * The extended image is revealed on top of it.
+     * Both are kept proportional.
+     */
 
     .n21-cast-page #characterDossier {
       overflow: visible !important;
     }
 
     .n21-cast-page #characterDossier
-    > .n21-dossier-content {
+    .n21-dossier-content {
+      position: relative !important;
+      overflow: visible !important;
+      isolation: isolate;
+    }
+
+    .n21-cast-page #characterDossier
+    .n21-dossier-writing {
       position: relative;
-      z-index: 2;
+      z-index: 3 !important;
     }
 
     .n21-cast-page .n21-pull-card {
-      position: relative;
-      z-index: 1;
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 836 / 2048;
+      margin: 0 !important;
+      padding: 0 !important;
+      z-index: 2;
       isolation: auto;
-      width: 90%;
-      margin: -32px auto 20px;
-      text-align: left;
-      --card-width: 100%;
+      overflow: visible;
+      pointer-events: none;
+      container-type: inline-size;
     }
 
-    .n21-cast-page .n21-pull-reveal {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows .65s
-        cubic-bezier(.2,.8,.2,1);
+    /*
+     * The full image is already assembled.
+     * No separate paper pieces or generated tabs.
+     */
+
+    .n21-cast-page .n21-extended-art {
+      position: absolute;
+      inset: 0;
+      background:
+        url('img/characters/dossier-file-open-index.png')
+        center top / 100% 100% no-repeat;
+      clip-path: inset(0 0 100% 0);
+      transition:
+        clip-path .72s cubic-bezier(.22,.8,.25,1);
+      pointer-events: none;
     }
 
     .n21-cast-page .n21-pull-card.is-pulled
-    .n21-pull-reveal {
-      grid-template-rows: 1fr;
-    }
-
-    .n21-cast-page .n21-pull-paper {
-      position: relative;
-      min-height: 0;
-      overflow: hidden;
-      filter: drop-shadow(
-        0 8px 7px rgba(0,0,0,.35)
-      );
+    .n21-extended-art {
+      clip-path: inset(0 0 0 0);
     }
 
     /*
-     * The complete image remains proportional.
-     * Its original dimensions are 1355 x 2048.
-     */
-
-    .n21-cast-page .n21-index-sheet {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1355 / 2048;
-      background-image:
-        url('img/characters/index-card.png');
-      background-position: center top;
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-    }
-
-    /*
-     * Writing sits on top of the artwork.
-     * Top 17% reserved for handwritten header.
-     * Bottom 13% reserved for the pull tab.
+     * Text lives on the lined paper in the
+     * lower half of the extended composition.
      */
 
     .n21-cast-page .n21-index-writing {
       position: absolute;
-      top: 17%;
-      left: 13%;
-      width: 78%;
-      height: 68%;
+      top: 56%;
+      left: 14%;
+      width: 73%;
+      height: 35%;
       box-sizing: border-box;
       overflow: hidden;
       color: #30251c;
       font-family: 'Patrick Hand', cursive;
+      opacity: 0;
+      transform: translateY(-22px);
+      transition:
+        opacity .25s ease,
+        transform .65s cubic-bezier(.22,.8,.25,1);
+      pointer-events: none;
       container-type: inline-size;
     }
+
+    .n21-cast-page .n21-pull-card.is-pulled
+    .n21-index-writing {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: .35s;
+    }
+
+    /*
+     * TRANSPARENT PULL CONTROL
+     *
+     * The image already contains the lettering.
+     * We only add an invisible hit area.
+     */
+
+    .n21-cast-page .n21-pull-tab {
+      position: absolute !important;
+      left: 29%;
+      top: 43%;
+      width: 42%;
+      height: 7%;
+      min-height: 0 !important;
+      aspect-ratio: auto !important;
+      margin: 0 !important;
+      padding: 0 !important;
+
+      background: transparent !important;
+      background-image: none !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      transform: none !important;
+      filter: none !important;
+
+      color: transparent !important;
+      font-size: 0 !important;
+      cursor: pointer;
+      pointer-events: auto;
+      z-index: 6;
+
+      transition:
+        top .72s cubic-bezier(.22,.8,.25,1);
+    }
+
+    .n21-cast-page .n21-pull-tab span {
+      display: none !important;
+    }
+
+    .n21-cast-page .n21-pull-card.is-pulled
+    .n21-pull-tab {
+      top: 93%;
+    }
+
+    .n21-cast-page .n21-pull-tab:hover {
+      background: transparent !important;
+      filter: none !important;
+    }
+
+    .n21-cast-page .n21-pull-tab:focus-visible {
+      outline: 3px dashed #9d2927 !important;
+      outline-offset: 3px;
+    }
+
+    /*
+     * ASSESSMENT HANDWRITING
+     */
 
     .n21-cast-page .n21-assess-stamp {
       display: table;
       max-width: 100%;
       margin: 0 0 1.5cqw auto;
-      padding: .5cqw 1cqw;
+      padding: .4cqw 1cqw;
       border: 2px double #a12d2b;
       background: transparent;
       color: #a12d2b !important;
-      font: 800 3cqw/1.2
+      font: 800 3.3cqw/1.15
         'Patrick Hand', cursive;
-      letter-spacing: .04em;
+      letter-spacing: .03em;
       transform: rotate(-4deg);
     }
 
@@ -190,19 +261,19 @@
 
     .n21-cast-page .n21-assess-label {
       color: #30251c !important;
-      font: 700 3.7cqw/1.25
+      font: 700 3.8cqw/1.2
         'Patrick Hand', cursive;
     }
 
     .n21-cast-page .n21-assess-scale {
       display: flex;
-      align-items: center;
       position: relative;
+      align-items: center;
       width: 100%;
       max-width: none;
-      padding: .6cqw 0;
-      color: #423328;
       overflow: visible;
+      padding: .5cqw 0;
+      color: #423328;
     }
 
     .n21-cast-page .n21-assess-num {
@@ -212,9 +283,9 @@
       flex: 1 1 0;
       min-width: 0;
       height: 5cqw;
-      font: 400 3.5cqw/1
-        'Patrick Hand', cursive;
       color: #463629 !important;
+      font: 400 3.6cqw/1
+        'Patrick Hand', cursive;
     }
 
     .n21-cast-page .n21-assess-num.is-marked {
@@ -268,24 +339,20 @@
       transform: rotate(-13deg);
     }
 
-    .n21-cast-page
-    .n21-assess-scale.is-zero
-    .n21-assess-num:first-of-type {
-      text-decoration: line-through
-        #a12d2b 2px;
-    }
-
     .n21-cast-page .n21-assess-comment {
-      margin: .4cqw 0 0 1.5cqw;
+      margin: .3cqw 0 0 1.5cqw;
       color: #9d2927 !important;
-      font: italic 3cqw/1.25
+      font: italic 3.1cqw/1.25
         'Patrick Hand', cursive;
       transform: rotate(-1deg);
     }
 
     /*
-     * KAI'S COMPLETELY UNREASONABLE
-     * CAFFEINE RATING
+     * KAI'S CAFFEINE ARROW
+     *
+     * Starts near the end of the scale
+     * and keeps the arrowhead inside the
+     * visible paper area.
      */
 
     .n21-cast-page
@@ -296,38 +363,31 @@
     .n21-cast-page .n21-assess-arrow {
       position: absolute;
       left: 67%;
-      top: 45%;
-      width: 58%;
-      height: 8cqw;
+      top: 43%;
+      width: 32%;
+      height: 9cqw;
+      z-index: 5;
       overflow: visible;
       pointer-events: none;
-      transform: rotate(-7deg);
-      z-index: 5;
+      transform: rotate(-6deg);
     }
 
-    .n21-cast-page
-    .n21-assess-arrow svg {
+    .n21-cast-page .n21-assess-arrow svg {
       display: block;
       width: 100%;
       height: 100%;
       overflow: visible;
-      filter: drop-shadow(
-        1px 1px 0 rgba(120,30,30,.12)
-      );
     }
 
     .n21-cast-page
     .n21-assess-row:has(.is-beyond)
     .n21-assess-comment {
       font-weight: 700;
-      font-size: 3.2cqw;
-      text-decoration: underline
-        #a12d2b 1px;
+      text-decoration: underline #a12d2b 1px;
     }
 
     /*
      * EVALUATOR'S NOTE
-     * No solid colored rectangle.
      */
 
     .n21-cast-page .n21-assess-conclusion {
@@ -356,107 +416,46 @@
     }
 
     /*
-     * CLICKABLE ARTWORK TAB
-     *
-     * The closed state shows a cropped copy
-     * of the bottom of index-card.png.
-     * When open, the same artwork is visible
-     * in the full sheet, and the button
-     * becomes transparent.
+     * Make room below the folder
+     * when the index card is extended.
      */
 
-    .n21-cast-page .n21-pull-tab {
+    .n21-cast-page .n21-pull-spacer {
       display: block;
-      position: relative;
-      z-index: 4;
-      box-sizing: border-box;
-
-      width: 53%;
-      height: auto;
-      min-height: 0;
-      aspect-ratio: 2.5 / 1;
-
-      margin: 0 auto;
-      padding: 0;
-
-      border: 0 !important;
-      border-radius: 0 !important;
-      background-color: transparent !important;
-      background-image:
-        url('img/characters/index-card.png') !important;
-      background-repeat: no-repeat !important;
-      background-size: 188.7% auto !important;
-      background-position:
-        center bottom !important;
-
-      box-shadow: none !important;
-      transform: none !important;
-      color: transparent !important;
-      font-size: 0 !important;
-      cursor: pointer;
-      transition: filter .2s ease;
-    }
-
-    .n21-cast-page .n21-pull-tab span {
-      display: none !important;
-    }
-
-    .n21-cast-page .n21-pull-tab:hover {
-      filter: brightness(1.08);
+      width: 100%;
+      height: 0;
+      transition:
+        height .72s cubic-bezier(.22,.8,.25,1);
+      pointer-events: none;
     }
 
     .n21-cast-page
-    .n21-pull-tab:focus-visible {
-      outline: 3px solid #8ee9ed;
-      outline-offset: 3px;
-    }
-
-    .n21-cast-page
-    .n21-pull-card.is-pulled
-    .n21-pull-tab {
-      background-image: none !important;
-      margin-top: -19%;
-    }
-
-    /*
-     * Mobile: retain the same proportions.
-     */
-
-    @media (max-width: 600px) {
-      .n21-cast-page .n21-pull-card {
-        width: 95%;
-        margin-top: -15px;
-      }
-
-      .n21-cast-page .n21-index-writing {
-        left: 13%;
-        width: 78%;
-      }
-
-      .n21-cast-page .n21-pull-tab {
-        min-height: 40px;
-      }
+    #characterDossier:has(.n21-pull-card.is-pulled)
+    .n21-pull-spacer {
+      height: 0;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .n21-cast-page .n21-pull-reveal {
-        transition: none;
+      .n21-cast-page .n21-extended-art,
+      .n21-cast-page .n21-index-writing,
+      .n21-cast-page .n21-pull-tab,
+      .n21-cast-page .n21-pull-spacer {
+        transition: none !important;
       }
     }
   `;
 
-  // Replace any previous injected refinements.
-  document.getElementById(
-    "n21-assessment-refinements"
-  )?.remove();
-
-  const oldStyle = document.getElementById(
-    "n21-single-card-styles"
-  );
-  if (oldStyle) oldStyle.remove();
+  // Remove styles from earlier assessment versions.
+  [
+    "n21-assessment-refinements",
+    "n21-single-card-styles",
+    "n21-animated-card-styles"
+  ].forEach(id => {
+    document.getElementById(id)?.remove();
+  });
 
   const style = document.createElement("style");
-  style.id = "n21-single-card-styles";
+  style.id = "n21-animated-card-styles";
   style.textContent = css;
   document.head.appendChild(style);
 
@@ -466,33 +465,31 @@
 
   if (!dossier) return;
 
-  // Prevent duplicate cards.
+  const paper = dossier.querySelector(
+    ".n21-dossier-content"
+  );
+
+  if (!paper) return;
+
+  // Remove any previous assessment card.
   dossier.querySelectorAll(
-    ".n21-pull-card"
+    ".n21-pull-card, .n21-pull-spacer"
   ).forEach(element => element.remove());
 
   const card = document.createElement("section");
   card.className = "n21-pull-card";
+
   card.setAttribute(
     "aria-label",
     "Yoshiko's investigator assessment"
   );
 
   card.innerHTML = `
-    <div class="n21-pull-reveal"
-         id="n21-assessment-panel">
+    <div class="n21-extended-art"
+         aria-hidden="true"></div>
 
-      <div class="n21-pull-paper">
-
-        <div class="n21-index-sheet">
-
-          <div class="n21-index-writing">
-            <div class="n21-pull-data"></div>
-          </div>
-
-        </div>
-
-      </div>
+    <div class="n21-index-writing">
+      <div class="n21-pull-data"></div>
     </div>
 
     <button
@@ -505,7 +502,15 @@
     </button>
   `;
 
-  dossier.appendChild(card);
+  card.querySelector(
+    ".n21-index-writing"
+  ).id = "n21-assessment-panel";
+
+  paper.appendChild(card);
+
+  const spacer = document.createElement("div");
+  spacer.className = "n21-pull-spacer";
+  dossier.appendChild(spacer);
 
   const button = card.querySelector(
     ".n21-pull-tab"
@@ -523,27 +528,21 @@
       .replace(/"/g, "&quot;");
   }
 
-  /*
-   * A genuinely hand-drawn-looking,
-   * exaggerated caffeine arrow.
-   *
-   * The SVG is decorative and sits
-   * beyond the end of the rating scale.
-   */
-
   function caffeineArrow() {
     return `
       <span class="n21-assess-arrow"
             aria-hidden="true">
-        <svg viewBox="0 0 220 55"
-             xmlns="http://www.w3.org/2000/svg">
+
+        <svg
+          viewBox="0 0 220 65"
+          xmlns="http://www.w3.org/2000/svg">
 
           <path
-            d="M3 31
-               Q35 27 59 30
-               T112 25
-               Q143 20 174 16
-               L208 8"
+            d="M5 42
+               Q35 39 65 39
+               T120 32
+               Q155 26 185 18
+               L207 12"
             fill="none"
             stroke="#a12d2b"
             stroke-width="4.5"
@@ -552,28 +551,27 @@
           />
 
           <path
-            d="M174 3
-               Q192 5 208 8
-               Q196 23 190 35"
+            d="M174 5
+               L207 12
+               L188 41"
             fill="none"
             stroke="#a12d2b"
-            stroke-width="4.5"
+            stroke-width="5"
             stroke-linecap="round"
             stroke-linejoin="round"
           />
 
           <path
-            d="M13 37
-               Q80 35 141 24
-               M180 42 L198 30
-               M158 5 L171 12
-               M208 43 L217 33"
+            d="M10 48 Q72 44 133 30
+               M161 7 L172 15
+               M192 49 L207 35"
             fill="none"
             stroke="#a12d2b"
-            stroke-width="1.8"
+            stroke-width="2"
             stroke-linecap="round"
-            opacity=".8"
+            opacity=".75"
           />
+
         </svg>
       </span>
     `;
@@ -627,6 +625,43 @@
     `;
   }
 
+  function updateSpacer() {
+    const extendedHeight =
+      card.getBoundingClientRect().width *
+      (2048 / 836);
+
+    const folderHeight =
+      paper.getBoundingClientRect().height;
+
+    const extra = Math.max(
+      0,
+      extendedHeight - folderHeight
+    );
+
+    spacer.style.height =
+      card.classList.contains("is-pulled")
+        ? extra + "px"
+        : "0px";
+  }
+
+  function setPulled(open) {
+    card.classList.toggle("is-pulled", open);
+
+    button.setAttribute(
+      "aria-expanded",
+      String(open)
+    );
+
+    button.setAttribute(
+      "aria-label",
+      open
+        ? "Tuck away investigator's assessment"
+        : "Pull out investigator's assessment"
+    );
+
+    updateSpacer();
+  }
+
   function render(index) {
     const record = records[index];
     if (!record) return;
@@ -666,38 +701,21 @@
       </p>
     `;
 
-    card.classList.remove("is-pulled");
-
-    button.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
-    button.setAttribute(
-      "aria-label",
-      "Pull out investigator's assessment"
-    );
+    setPulled(false);
   }
 
   button.addEventListener("click", () => {
-    const open = card.classList.toggle(
-      "is-pulled"
-    );
-
-    button.setAttribute(
-      "aria-expanded",
-      String(open)
-    );
-
-    button.setAttribute(
-      "aria-label",
-      open
-        ? "Tuck away investigator's assessment"
-        : "Pull out investigator's assessment"
+    setPulled(
+      !card.classList.contains("is-pulled")
     );
   });
 
-  // Called when the selected character changes.
+  window.addEventListener(
+    "resize",
+    updateSpacer
+  );
+
+  // Character changes reset the card.
   window.n21RenderAssessment = render;
 
   render(0);
