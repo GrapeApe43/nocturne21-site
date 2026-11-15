@@ -1,17 +1,12 @@
 
 /*
- * NOCTURNE 21 — YOSHIKO'S INVESTIGATOR ASSESSMENTS
- * Pull-out index card, updated artwork and styling.
+ * NOCTURNE 21
+ * YOSHIKO'S SECRET INVESTIGATOR ASSESSMENTS
  *
- * Load after cast_dossiers.js.
+ * Single-image pull-out card.
+ * Load AFTER cast_dossiers.js.
  *
- * Artwork:
- * img/characters/index-top.png
- * img/characters/index-middle.png
- * img/characters/index-bottom.png
- *
- * This script adds its own CSS refinements.
- * Leave the existing pull-card CSS in cast.html alone.
+ * Image: img/characters/index-card.png
  */
 
 (() => {
@@ -91,230 +86,390 @@
     }
   ];
 
+  /*
+   * All new styling lives here.
+   * This overrides the previous three-piece card.
+   */
+
   const css = `
-    /* UPDATED YOSHIKO INDEX CARD */
+    /* SINGLE-IMAGE INDEX CARD */
 
-    .n21-cast-page .n21-pull-top {
-      aspect-ratio: 1600 / 560;
-      background-size: 100% 100%;
+    .n21-cast-page #characterDossier {
+      overflow: visible !important;
     }
 
-    .n21-cast-page .n21-pull-top h2 {
-      position: absolute;
-      top: 25%;
-      left: 3%;
-      right: 3%;
-      margin: 0;
-      padding: 0;
-      color: #201b16 !important;
-      font-family: 'Gloria Hallelujah',
-                   'Patrick Hand', cursive;
-      font-size: clamp(13px, 2.6vw, 29px);
-      font-weight: 700;
-      line-height: 1.2;
-      text-align: center;
-      white-space: nowrap;
-      letter-spacing: -0.035em;
-      transform: rotate(-1deg);
+    .n21-cast-page #characterDossier
+    > .n21-dossier-content {
+      position: relative;
+      z-index: 2;
     }
 
-    .n21-cast-page .n21-pull-middle {
-      background-image:
-        url('img/characters/index-middle.png');
-      background-size: 100% auto;
-      background-repeat: repeat-y;
-      padding: 14px 12% 26px 15%;
+    .n21-cast-page .n21-pull-card {
+      position: relative;
+      z-index: 1;
+      isolation: auto;
+      width: 90%;
+      margin: -32px auto 20px;
+      text-align: left;
+      --card-width: 100%;
     }
 
-    .n21-cast-page .n21-pull-bottom {
-      width: 100%;
-      aspect-ratio: 1600 / 808;
-      background-image:
-        url('img/characters/index-bottom.png');
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      background-position: center top;
+    .n21-cast-page .n21-pull-reveal {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .65s
+        cubic-bezier(.2,.8,.2,1);
     }
 
-    /* Larger handwriting */
-
-    .n21-cast-page .n21-assess-stamp {
-      font-size: clamp(13px, 1.8vw, 19px);
+    .n21-cast-page .n21-pull-card.is-pulled
+    .n21-pull-reveal {
+      grid-template-rows: 1fr;
     }
 
-    .n21-cast-page .n21-assess-row {
-      margin-bottom: 20px;
-    }
-
-    .n21-cast-page .n21-assess-label {
-      font-size: clamp(17px, 2.1vw, 23px);
-      line-height: 1.4;
-    }
-
-    .n21-cast-page .n21-assess-num {
-      font-size: clamp(17px, 2.2vw, 24px);
-      height: 39px;
-    }
-
-    .n21-cast-page .n21-assess-comment {
-      font-size: clamp(15px, 1.8vw, 20px);
-      line-height: 1.45;
-      margin-top: 3px;
-    }
-
-    /* Evaluator's note: handwritten,
-       with a highlighted heading */
-
-    .n21-cast-page .n21-assess-conclusion {
-      background: transparent !important;
-      border: none !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      padding: 4px 0 !important;
-      margin: 22px 0 10px !important;
-      color: #35291e !important;
-      font-size: clamp(17px, 2vw, 22px) !important;
-      line-height: 1.55 !important;
-    }
-
-    .n21-cast-page .n21-assess-conclusion strong {
-      display: inline;
-      background: linear-gradient(
-        to bottom,
-        transparent 42%,
-        rgba(245, 199, 48, 0.57) 42%,
-        rgba(245, 199, 48, 0.57) 87%,
-        transparent 87%
+    .n21-cast-page .n21-pull-paper {
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+      filter: drop-shadow(
+        0 8px 7px rgba(0,0,0,.35)
       );
-      padding: 0 3px;
-      color: #292016 !important;
     }
 
     /*
-     * ACTUAL PAPER TAB
+     * The complete image remains proportional.
+     * Its original dimensions are 1355 x 2048.
+     */
+
+    .n21-cast-page .n21-index-sheet {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1355 / 2048;
+      background-image:
+        url('img/characters/index-card.png');
+      background-position: center top;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    /*
+     * Writing sits on top of the artwork.
+     * Top 17% reserved for handwritten header.
+     * Bottom 13% reserved for the pull tab.
+     */
+
+    .n21-cast-page .n21-index-writing {
+      position: absolute;
+      top: 17%;
+      left: 13%;
+      width: 78%;
+      height: 68%;
+      box-sizing: border-box;
+      overflow: hidden;
+      color: #30251c;
+      font-family: 'Patrick Hand', cursive;
+      container-type: inline-size;
+    }
+
+    .n21-cast-page .n21-assess-stamp {
+      display: table;
+      max-width: 100%;
+      margin: 0 0 1.5cqw auto;
+      padding: .5cqw 1cqw;
+      border: 2px double #a12d2b;
+      background: transparent;
+      color: #a12d2b !important;
+      font: 800 3cqw/1.2
+        'Patrick Hand', cursive;
+      letter-spacing: .04em;
+      transform: rotate(-4deg);
+    }
+
+    .n21-cast-page .n21-assess-row {
+      margin: 0 0 2.2cqw;
+    }
+
+    .n21-cast-page .n21-assess-label {
+      color: #30251c !important;
+      font: 700 3.7cqw/1.25
+        'Patrick Hand', cursive;
+    }
+
+    .n21-cast-page .n21-assess-scale {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      max-width: none;
+      padding: .6cqw 0;
+      color: #423328;
+      overflow: visible;
+    }
+
+    .n21-cast-page .n21-assess-num {
+      position: relative;
+      display: grid;
+      place-items: center;
+      flex: 1 1 0;
+      min-width: 0;
+      height: 5cqw;
+      font: 400 3.5cqw/1
+        'Patrick Hand', cursive;
+      color: #463629 !important;
+    }
+
+    .n21-cast-page .n21-assess-num.is-marked {
+      color: #9d2927 !important;
+      font-weight: bold;
+    }
+
+    .n21-cast-page
+    .n21-assess-num.is-marked::after {
+      content: "";
+      position: absolute;
+      inset: 0 1px;
+      border: 2px solid #a12d2b;
+      border-radius: 48% 53% 47% 51%;
+      transform: rotate(-14deg);
+    }
+
+    .n21-cast-page
+    .n21-assess-num.mark-double::before,
+    .n21-cast-page
+    .n21-assess-num.mark-triple::before {
+      content: "";
+      position: absolute;
+      inset: -1px 0;
+      border: 2px solid #a12d2b;
+      border-radius: 54% 45% 55% 48%;
+      transform: rotate(23deg);
+    }
+
+    .n21-cast-page
+    .n21-assess-num.mark-triple {
+      text-decoration: underline wavy #a12d2b;
+    }
+
+    .n21-cast-page
+    .n21-assess-num.mark-soft::after {
+      border-width: 1.5px;
+      transform: rotate(-6deg);
+    }
+
+    .n21-cast-page .n21-assess-zero {
+      display: grid;
+      place-items: center;
+      flex: 0 0 5cqw;
+      height: 5cqw;
+      border: 3px double #a12d2b;
+      border-radius: 50%;
+      color: #a12d2b !important;
+      font: 700 4cqw
+        'Patrick Hand', cursive;
+      transform: rotate(-13deg);
+    }
+
+    .n21-cast-page
+    .n21-assess-scale.is-zero
+    .n21-assess-num:first-of-type {
+      text-decoration: line-through
+        #a12d2b 2px;
+    }
+
+    .n21-cast-page .n21-assess-comment {
+      margin: .4cqw 0 0 1.5cqw;
+      color: #9d2927 !important;
+      font: italic 3cqw/1.25
+        'Patrick Hand', cursive;
+      transform: rotate(-1deg);
+    }
+
+    /*
+     * KAI'S COMPLETELY UNREASONABLE
+     * CAFFEINE RATING
+     */
+
+    .n21-cast-page
+    .n21-assess-scale.is-beyond {
+      padding-bottom: 5cqw;
+    }
+
+    .n21-cast-page .n21-assess-arrow {
+      position: absolute;
+      left: 67%;
+      top: 45%;
+      width: 58%;
+      height: 8cqw;
+      overflow: visible;
+      pointer-events: none;
+      transform: rotate(-7deg);
+      z-index: 5;
+    }
+
+    .n21-cast-page
+    .n21-assess-arrow svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      filter: drop-shadow(
+        1px 1px 0 rgba(120,30,30,.12)
+      );
+    }
+
+    .n21-cast-page
+    .n21-assess-row:has(.is-beyond)
+    .n21-assess-comment {
+      font-weight: 700;
+      font-size: 3.2cqw;
+      text-decoration: underline
+        #a12d2b 1px;
+    }
+
+    /*
+     * EVALUATOR'S NOTE
+     * No solid colored rectangle.
+     */
+
+    .n21-cast-page .n21-assess-conclusion {
+      margin: 2.5cqw 0 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: #35291e !important;
+      font: 400 3.4cqw/1.3
+        'Patrick Hand', cursive !important;
+    }
+
+    .n21-cast-page
+    .n21-assess-conclusion strong {
+      color: #292016 !important;
+      background: linear-gradient(
+        to bottom,
+        transparent 43%,
+        rgba(245,199,48,.55) 43%,
+        rgba(245,199,48,.55) 88%,
+        transparent 88%
+      );
+      padding: 0 .3cqw;
+    }
+
+    /*
+     * CLICKABLE ARTWORK TAB
      *
-     * Closed: show the bottom portion of
-     * index-bottom.png as the pull control.
-     *
-     * Open: overlay a transparent button
-     * on the tab already in the full image.
+     * The closed state shows a cropped copy
+     * of the bottom of index-card.png.
+     * When open, the same artwork is visible
+     * in the full sheet, and the button
+     * becomes transparent.
      */
 
     .n21-cast-page .n21-pull-tab {
-      box-sizing: border-box;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: block;
       position: relative;
-      z-index: 3;
+      z-index: 4;
+      box-sizing: border-box;
 
       width: 53%;
       height: auto;
       min-height: 0;
-      aspect-ratio: 2.8 / 1;
+      aspect-ratio: 2.5 / 1;
 
       margin: 0 auto;
-      padding: 7% 2% 3%;
+      padding: 0;
 
-      border: none;
-      border-radius: 0;
-
-      background-color: transparent;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background-color: transparent !important;
       background-image:
-        url('img/characters/index-bottom.png');
-      background-size: 188.7% auto;
-      background-position: center bottom;
-      background-repeat: no-repeat;
+        url('img/characters/index-card.png') !important;
+      background-repeat: no-repeat !important;
+      background-size: 188.7% auto !important;
+      background-position:
+        center bottom !important;
 
-      box-shadow: none;
-      color: #fff;
-      transform: none;
+      box-shadow: none !important;
+      transform: none !important;
+      color: transparent !important;
+      font-size: 0 !important;
       cursor: pointer;
-      transition: filter 0.2s ease;
+      transition: filter .2s ease;
     }
-
-    .n21-cast-page .n21-pull-card.is-pulled
-    .n21-pull-tab {
-      margin-top: -18.9%;
-      background-image: none;
-    }
-
-    /* Label-maker sticker ON the tab */
 
     .n21-cast-page .n21-pull-tab span {
-      display: inline-block;
-      max-width: 90%;
-      padding: 5px 12px;
-      background: #272520;
-      color: #f5eedc;
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 1px;
-      box-shadow: 1px 2px 3px rgba(0,0,0,.28);
-
-      font-family: monospace;
-      font-size: clamp(10px, 1.4vw, 14px);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: .08em;
-      text-align: center;
-      white-space: nowrap;
-      transform: rotate(-2deg);
-      pointer-events: none;
+      display: none !important;
     }
 
     .n21-cast-page .n21-pull-tab:hover {
       filter: brightness(1.08);
     }
 
-    .n21-cast-page .n21-pull-tab:focus-visible {
+    .n21-cast-page
+    .n21-pull-tab:focus-visible {
       outline: 3px solid #8ee9ed;
       outline-offset: 3px;
     }
 
+    .n21-cast-page
+    .n21-pull-card.is-pulled
+    .n21-pull-tab {
+      background-image: none !important;
+      margin-top: -19%;
+    }
+
+    /*
+     * Mobile: retain the same proportions.
+     */
+
     @media (max-width: 600px) {
-      .n21-cast-page .n21-pull-top h2 {
-        font-size: clamp(10px, 3.1vw, 17px);
-        letter-spacing: -0.05em;
+      .n21-cast-page .n21-pull-card {
+        width: 95%;
+        margin-top: -15px;
       }
 
-      .n21-cast-page .n21-pull-middle {
-        padding: 8px 11% 18px 15%;
+      .n21-cast-page .n21-index-writing {
+        left: 13%;
+        width: 78%;
       }
 
-      .n21-cast-page .n21-assess-label {
-        font-size: 17px;
+      .n21-cast-page .n21-pull-tab {
+        min-height: 40px;
       }
+    }
 
-      .n21-cast-page .n21-assess-num {
-        font-size: 15px;
-        height: 29px;
-      }
-
-      .n21-cast-page .n21-assess-comment {
-        font-size: 15px;
-      }
-
-      .n21-cast-page .n21-assess-conclusion {
-        font-size: 17px !important;
-      }
-
-      .n21-cast-page .n21-pull-tab span {
-        font-size: 9px;
-        padding: 4px 6px;
+    @media (prefers-reduced-motion: reduce) {
+      .n21-cast-page .n21-pull-reveal {
+        transition: none;
       }
     }
   `;
 
-  // Install the updated styles.
+  // Replace any previous injected refinements.
+  document.getElementById(
+    "n21-assessment-refinements"
+  )?.remove();
+
+  const oldStyle = document.getElementById(
+    "n21-single-card-styles"
+  );
+  if (oldStyle) oldStyle.remove();
+
   const style = document.createElement("style");
-  style.id = "n21-assessment-refinements";
+  style.id = "n21-single-card-styles";
   style.textContent = css;
   document.head.appendChild(style);
 
-  const dossier =
-    document.getElementById("characterDossier");
+  const dossier = document.getElementById(
+    "characterDossier"
+  );
 
   if (!dossier) return;
+
+  // Prevent duplicate cards.
+  dossier.querySelectorAll(
+    ".n21-pull-card"
+  ).forEach(element => element.remove());
 
   const card = document.createElement("section");
   card.className = "n21-pull-card";
@@ -329,16 +484,13 @@
 
       <div class="n21-pull-paper">
 
-        <div class="n21-pull-top">
-          <h2>INVESTIGATOR'S ASSESSMENT</h2>
-        </div>
+        <div class="n21-index-sheet">
 
-        <div class="n21-pull-middle">
-          <div class="n21-pull-data"></div>
-        </div>
+          <div class="n21-index-writing">
+            <div class="n21-pull-data"></div>
+          </div>
 
-        <div class="n21-pull-bottom"
-             aria-hidden="true"></div>
+        </div>
 
       </div>
     </div>
@@ -349,27 +501,90 @@
       aria-expanded="false"
       aria-controls="n21-assessment-panel"
       aria-label="Pull out investigator's assessment">
-      <span>PULL ↓</span>
+      <span aria-hidden="true"></span>
     </button>
   `;
 
   dossier.appendChild(card);
 
-  const button = card.querySelector(".n21-pull-tab");
-  const data = card.querySelector(".n21-pull-data");
+  const button = card.querySelector(
+    ".n21-pull-tab"
+  );
 
-  const escapeHTML = value =>
-    String(value)
+  const data = card.querySelector(
+    ".n21-pull-data"
+  );
+
+  function escapeHTML(value) {
+    return String(value)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+  /*
+   * A genuinely hand-drawn-looking,
+   * exaggerated caffeine arrow.
+   *
+   * The SVG is decorative and sits
+   * beyond the end of the rating scale.
+   */
+
+  function caffeineArrow() {
+    return `
+      <span class="n21-assess-arrow"
+            aria-hidden="true">
+        <svg viewBox="0 0 220 55"
+             xmlns="http://www.w3.org/2000/svg">
+
+          <path
+            d="M3 31
+               Q35 27 59 30
+               T112 25
+               Q143 20 174 16
+               L208 8"
+            fill="none"
+            stroke="#a12d2b"
+            stroke-width="4.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <path
+            d="M174 3
+               Q192 5 208 8
+               Q196 23 190 35"
+            fill="none"
+            stroke="#a12d2b"
+            stroke-width="4.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <path
+            d="M13 37
+               Q80 35 141 24
+               M180 42 L198 30
+               M158 5 L171 12
+               M208 43 L217 33"
+            fill="none"
+            stroke="#a12d2b"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            opacity=".8"
+          />
+        </svg>
+      </span>
+    `;
+  }
 
   function score(value, kind) {
     const numbers = Array.from(
       { length: 10 },
       (_, index) => {
         const number = index + 1;
+
         const marked =
           number === value &&
           kind !== "beyond" &&
@@ -377,31 +592,32 @@
 
         return `
           <span class="n21-assess-num
-            ${marked ? "is-marked mark-" + kind : ""}">
+            ${marked
+              ? "is-marked mark-" + kind
+              : ""}">
             ${number}
           </span>
         `;
       }
     ).join("");
 
-    const zero =
-      kind === "zero"
-        ? '<span class="n21-assess-zero">0</span>'
-        : "";
+    const zero = kind === "zero"
+      ? '<span class="n21-assess-zero">0</span>'
+      : "";
 
-    const arrow =
-      kind === "beyond"
-        ? '<span class="n21-assess-arrow">⟶⟶⟶</span>'
-        : "";
+    const arrow = kind === "beyond"
+      ? caffeineArrow()
+      : "";
 
     return `
-      <div
-        class="n21-assess-scale
-          ${kind === "beyond" ? "is-beyond" : ""}
-          ${kind === "zero" ? "is-zero" : ""}"
+      <div class="n21-assess-scale
+        ${kind === "beyond" ? "is-beyond" : ""}
+        ${kind === "zero" ? "is-zero" : ""}"
         aria-label="Score ${
-          kind === "beyond" ? "above 10" : value
-        } out of 10">
+          kind === "beyond"
+            ? "off the chart"
+            : value + " out of 10"
+        }">
 
         ${zero}
         ${numbers}
@@ -450,19 +666,23 @@
       </p>
     `;
 
-    // Reset the card when changing characters.
     card.classList.remove("is-pulled");
-    button.setAttribute("aria-expanded", "false");
+
+    button.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
     button.setAttribute(
       "aria-label",
       "Pull out investigator's assessment"
     );
-    button.querySelector("span").textContent = "PULL ↓";
   }
 
   button.addEventListener("click", () => {
-    const open =
-      card.classList.toggle("is-pulled");
+    const open = card.classList.toggle(
+      "is-pulled"
+    );
 
     button.setAttribute(
       "aria-expanded",
@@ -475,13 +695,9 @@
         ? "Tuck away investigator's assessment"
         : "Pull out investigator's assessment"
     );
-
-    button.querySelector("span").textContent =
-      open ? "PUSH ↑" : "PULL ↓";
   });
 
-  // Existing Cast page calls this
-  // whenever the selected character changes.
+  // Called when the selected character changes.
   window.n21RenderAssessment = render;
 
   render(0);
