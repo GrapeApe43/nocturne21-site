@@ -224,7 +224,7 @@
 
     .n21-cast-page .n21-pull-card.is-pulled
     .n21-pull-tab {
-      top: 93%;
+      top: 94%;
     }
 
     .n21-cast-page .n21-pull-tab:hover {
@@ -435,6 +435,35 @@
       height: 0;
     }
 
+    /* FIX: keep the original dossier at its illustrated aspect ratio.
+       Content and pull-out artwork must never resize the folder. */
+    .n21-cast-page #characterDossier > .n21-dossier-content {
+      aspect-ratio: 1080 / 1429 !important;
+      min-height: 0 !important;
+      box-sizing: border-box !important;
+      background-size: 100% 100% !important;
+      overflow: visible !important;
+    }
+
+    /* Make the click target follow the visible handwritten pull tab. */
+    .n21-cast-page .n21-pull-tab {
+      top: 52%;
+      height: 6.5%;
+    }
+    .n21-cast-page .n21-pull-card.is-pulled .n21-pull-tab {
+      top: 94%;
+    }
+
+    /* Keep the assessment stamp comfortably below the paper header. */
+    .n21-cast-page .n21-index-writing {
+      top: 57.5%;
+      overflow: visible;
+    }
+    .n21-cast-page .n21-assess-stamp {
+      margin-top: 1.5cqw;
+      line-height: 1.35;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .n21-cast-page .n21-extended-art,
       .n21-cast-page .n21-index-writing,
@@ -625,7 +654,18 @@
     `;
   }
 
+  function lockFolderHeight() {
+    // Explicit pixel height prevents content-based aspect-ratio expansion.
+    const width = paper.getBoundingClientRect().width;
+    if (!width) return;
+    const target = width * (1429 / 1080);
+    paper.style.setProperty("height", target + "px", "important");
+    paper.style.setProperty("min-height", "0px", "important");
+  }
+
   function updateSpacer() {
+    lockFolderHeight();
+
     const extendedHeight =
       card.getBoundingClientRect().width *
       (2048 / 836);
@@ -719,4 +759,6 @@
   window.n21RenderAssessment = render;
 
   render(0);
+  document.fonts?.ready.then(updateSpacer);
+  window.addEventListener("load", updateSpacer);
 })();
