@@ -1185,36 +1185,7 @@ body .n21-cast-page.subPage {
 })();
 </script>
 
-<script>
-(function(){
-  function fitMobileDossier(){
-    const paper=document.querySelector('#characterDossier .n21-dossier-content');
-    const writing=paper?.querySelector('.n21-dossier-writing');
-    if(!paper || !writing) return;
-    writing.style.transform=''; writing.style.width='';
-    if(!window.matchMedia('(max-width: 1366px)').matches || !paper.closest('details')?.open) return;
-    const style=getComputedStyle(paper);
-    const available=paper.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);
-    const needed=writing.scrollHeight;
-    if(needed>available && available>0){
-      // Keep text inside the paper. Width compensates for scaling to preserve wrapping.
-      let factor=Math.min(1,available/needed);
-      for(let i=0;i<4;i++){
-        writing.style.width=(100/factor)+'%';
-        const revised=writing.scrollHeight;
-        factor=Math.min(factor,available/revised);
-      }
-      writing.style.width=(100/factor)+'%';
-      writing.style.transform='scale('+factor+')';
-    }
-  }
-  document.addEventListener('toggle',e=>{if(e.target?.id==='characterDossier')requestAnimationFrame(fitMobileDossier)},true);
-  window.addEventListener('resize',()=>requestAnimationFrame(fitMobileDossier));
-  window.addEventListener('orientationchange',()=>requestAnimationFrame(()=>requestAnimationFrame(fitMobileDossier)));
-  document.addEventListener('click',e=>{if(e.target.closest('.n21-cast-tab'))requestAnimationFrame(()=>requestAnimationFrame(fitMobileDossier))});
-  document.fonts?.ready.then(fitMobileDossier);
-})();
-</script>
+
 
 <script src="/js/chrome-ipad-viewport-rescue.js"></script>
   
