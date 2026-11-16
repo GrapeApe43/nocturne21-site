@@ -5,7 +5,7 @@
  *
  * Requires:
  * img/characters/dossier-folder-open.png
- * img/characters/dossier-file-open-index.png
+ * img/characters/dossier-folder-open-index.png
  *
  * Load AFTER cast_dossiers.js.
  */
@@ -138,7 +138,7 @@
       position: absolute;
       inset: 0;
       background:
-        url('img/characters/dossier-file-open-index.png')
+        url('img/characters/dossier-folder-open-index.png')
         center top / 100% 100% no-repeat;
       clip-path: inset(0 0 100% 0);
       transition:
