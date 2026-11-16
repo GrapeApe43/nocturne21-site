@@ -1266,3 +1266,49 @@ function fitWriting() {
 
   scheduleFit();
 })();
+
+/*
+ * NOCTURNE 21 — CENTER THE STUBBORN BUTTON
+ *
+ * Centers the close button relative to the
+ * visible dossier writing area.
+ *
+ * Does not change text sizing, folder art,
+ * or the pull-out animation.
+ */
+
+(() => {
+  "use strict";
+
+  const styleId = "n21-center-dossier-close";
+  document.getElementById(styleId)?.remove();
+
+  const style = document.createElement("style");
+  style.id = styleId;
+
+  style.textContent = `
+    .n21-cast-page
+    #characterDossier .n21-dossier-close {
+      display: block !important;
+      position: relative !important;
+
+      width: max-content !important;
+      max-width: 100% !important;
+
+      margin: 12px 0 0 50% !important;
+
+      left: auto !important;
+      right: auto !important;
+
+      transform: translateX(-50%) !important;
+      transform-origin: center center !important;
+
+      float: none !important;
+      clear: both !important;
+      text-align: center !important;
+    }
+  `;
+
+  document.head.appendChild(style);
+})();
+
