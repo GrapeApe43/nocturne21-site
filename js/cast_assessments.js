@@ -939,3 +939,74 @@
 
   render(0);
 })();
+
+/*
+ * NOCTURNE 21 — THE TWO-TAB GOBLIN FIX
+ *
+ * Keeps the folder and index card dimensions intact.
+ * Hides the original folder's pull tab while the
+ * investigator's assessment is extended.
+ */
+
+(() => {
+  "use strict";
+
+  const style = document.createElement("style");
+  style.id = "n21-single-visible-tab-fix";
+
+  // Prevent duplicate styles if the script is reloaded.
+  document.getElementById(style.id)?.remove();
+
+  style.textContent = `
+    /*
+     * CLOSED STATE
+     *
+     * Show the entire original folder,
+     * including its illustrated pull tab.
+     */
+
+    .n21-cast-page
+    #characterDossier > .n21-dossier-content::before {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    /*
+     * EXTENDED STATE
+     *
+     * Fade away only the bottom portion of
+     * the original folder illustration.
+     *
+     * The extended index card remains behind it.
+     * Its heading and bottom pull tab stay visible.
+     */
+
+    .n21-cast-page
+    #characterDossier:has(.n21-pull-card.is-pulled)
+    > .n21-dossier-content::before {
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 90%,
+        transparent 97%
+      );
+
+      mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 90%,
+        transparent 97%
+      );
+    }
+
+    /*
+     * Keep the original folder's geometry
+     * and the extended artwork untouched.
+     *
+     * No height, width, or aspect-ratio
+     * changes are made here.
+     */
+  `;
+
+  document.head.appendChild(style);
+})();
