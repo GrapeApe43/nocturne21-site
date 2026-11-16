@@ -1069,3 +1069,91 @@
 
   document.head.appendChild(style);
 })();
+
+/*
+ * NOCTURNE 21 — MOBILE DOSSIER TEXT FIT
+ *
+ * Restores responsive text fitting without
+ * changing folder dimensions, index-card
+ * layering, or pull-out animation.
+ */
+
+(() => {
+  "use strict";
+
+  const dossier = document.getElementById("characterDossier");
+  if (!dossier) return;
+
+  const paper = dossier.querySelector(".n21-dossier-content");
+  const writing = dossier.querySelector(".n21-dossier-writing");
+
+  if (!paper || !writing) return;
+
+  function fitWriting() {
+    // Reset previous fitting before measuring.
+    writing.style.removeProperty("transform");
+    writing.style.removeProperty("width");
+
+    if (!dossier.open || dossier.hidden) return;
+
+    // Only fit on tablet/mobile layouts.
+    if (window.innerWidth > 1366) return;
+
+    const availableHeight =
+      paper.clientHeight * 0.70;
+
+    const availableWidth =
+      paper.clientWidth * 0.82;
+
+    if (!availableHeight || !availableWidth) return;
+
+    // Measure the actual writing.
+    const neededHeight = writing.scrollHeight;
+    const neededWidth = writing.scrollWidth;
+
+    if (!neededHeight) return;
+
+    const scale = Math.min(
+      1,
+      availableHeight / neededHeight,
+      availableWidth / neededWidth
+    );
+
+    writing.style.setProperty(
+      "transform",
+      `scale(${scale})`,
+      "important"
+    );
+  }
+
+  // Allow the folder to finish opening first.
+  dossier.addEventListener("toggle", () => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(fitWriting);
+    });
+  });
+
+  // Refit after character changes.
+  const originalRender = window.n21RenderAssessment;
+
+  if (typeof originalRender === "function") {
+    window.n21RenderAssessment = function(index) {
+      originalRender(index);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(fitWriting);
+      });
+    };
+  }
+
+  window.addEventListener("resize", fitWriting);
+
+  window.addEventListener("orientationchange", () => {
+    requestAnimationFrame(fitWriting);
+  });
+
+  document.fonts?.ready.then(fitWriting);
+
+  fitWriting();
+})();
+
