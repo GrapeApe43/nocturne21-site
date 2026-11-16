@@ -969,15 +969,15 @@
       -webkit-mask-image: linear-gradient(
         to bottom,
         #000 0%,
-        #000 90%,
-        transparent 97%
+        #000 87%,
+        transparent 94%
       );
 
       mask-image: linear-gradient(
         to bottom,
         #000 0%,
-        #000 90%,
-        transparent 97%
+        #000 87%,
+        transparent 94%
       );
     }
   `;
