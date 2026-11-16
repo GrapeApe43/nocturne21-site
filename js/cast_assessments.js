@@ -1102,7 +1102,7 @@
   style.textContent = `
     .n21-cast-page
     #characterDossier .n21-dossier-writing {
-      transform-origin: top center !important;
+      transform-origin: top left !important;
       overflow: visible;
     }
 
@@ -1191,11 +1191,37 @@ function fitWriting() {
     widthScale
   );
 
-  writing.style.setProperty(
-    "transform",
-    `scale(${scale})`,
-    "important"
-  );
+
+/*
+ * Scale the writing from its original left margin,
+ * then shift it horizontally so its visible center
+ * matches the paper's center.
+ */
+
+const writingWidth = writing.getBoundingClientRect().width;
+
+// First apply the scale.
+writing.style.setProperty(
+  "transform",
+  `scale(${scale})`,
+  "important"
+);
+
+// Measure the scaled result.
+const scaledRect = writing.getBoundingClientRect();
+const paperRect = paper.getBoundingClientRect();
+
+// Calculate the horizontal difference.
+const offset =
+  (paperRect.left + paperRect.width / 2) -
+  (scaledRect.left + scaledRect.width / 2);
+
+// Apply the correction without changing scale.
+writing.style.setProperty(
+  "transform",
+  `translateX(${offset}px) scale(${scale})`,
+  "important"
+);
 }
 
 
