@@ -1127,101 +1127,77 @@
 
   let scheduled = false;
 
-  function fitWriting() {
-    scheduled = false;
 
-    // Remove old measurements before every calculation.
-    writing.style.removeProperty("transform");
-    writing.style.removeProperty("width");
-    writing.style.removeProperty("height");
+function fitWriting() {
+  scheduled = false;
 
-    if (!dossier.open || dossier.hidden) return;
+  writing.style.removeProperty("transform");
+  writing.style.removeProperty("width");
+  writing.style.removeProperty("height");
 
-    if (window.innerWidth > 1366) return;
+  if (!dossier.open || dossier.hidden) return;
+  if (window.innerWidth > 1366) return;
 
-    const paperWidth = paper.clientWidth;
-    const paperHeight = paper.clientHeight;
+  const paperWidth = paper.clientWidth;
+  const paperHeight = paper.clientHeight;
 
-    if (!paperWidth || !paperHeight) return;
+  if (!paperWidth || !paperHeight) return;
 
-    const computed = getComputedStyle(writing);
+  const computed = getComputedStyle(writing);
+  const top = parseFloat(computed.top) || 0;
+  const left = parseFloat(computed.left) || 0;
 
-    const top = parseFloat(computed.top) || 0;
-    const left = parseFloat(computed.left) || 0;
+  // Keep the writing within the visible paper.
+  const availableHeight = Math.max(
+    1,
+    paperHeight * 0.88 - top
+  );
 
-    // Reserve room above the illustrated pull tab.
-    const bottomLimit = paperHeight * 0.89;
+  const availableWidth = Math.max(
+    1,
+    paperWidth - left - paperWidth * 0.09
+  );
 
-    const availableHeight = Math.max(
-      1,
-      bottomLimit - top
-    );
+  /*
+   * Keep the writing at its intended layout
+   * width instead of making it wider and wider
+   * to compensate for scaling.
+   *
+   * This preserves natural paragraph wrapping.
+   */
 
-    // Respect the original left/right paper margins.
-    const availableWidth = Math.max(
-      1,
-      paperWidth - left - paperWidth * 0.09
-    );
+  const baseWidth = Math.min(
+    paperWidth * 0.82,
+    availableWidth
+  );
 
-    // Original writing width before scaling.
-    const baseWidth = Math.min(
-      paperWidth * 0.82,
-      availableWidth
-    );
+  writing.style.width = baseWidth + "px";
 
-    /*
-     * When text is scaled, its layout width must
-     * increase by the inverse scale factor.
-     *
-     * Otherwise wrapping and visible dimensions
-     * disagree, causing the orientation bug.
-     */
+  // Measure at the natural font size.
+  const neededHeight = writing.scrollHeight;
+  const neededWidth = writing.scrollWidth;
 
-    let scale = 1;
+  if (!neededHeight || !neededWidth) return;
 
-    for (let attempt = 0; attempt < 12; attempt++) {
-      writing.style.width = (baseWidth / scale) + "px";
+  const heightScale =
+    availableHeight / neededHeight;
 
-      // Force layout after changing width.
-      const neededHeight = writing.scrollHeight;
-      const neededWidth = writing.scrollWidth;
+  const widthScale =
+    availableWidth / neededWidth;
 
-      const visibleHeight = neededHeight * scale;
-      const visibleWidth = neededWidth * scale;
+  const scale = Math.min(
+    1,
+    heightScale,
+    widthScale
+  );
 
-      if (
-        visibleHeight <= availableHeight &&
-        visibleWidth <= availableWidth
-      ) {
-        break;
-      }
+  writing.style.setProperty(
+    "transform",
+    `scale(${scale})`,
+    "important"
+  );
+}
 
-      const heightFactor =
-        availableHeight / Math.max(1, visibleHeight);
-
-      const widthFactor =
-        availableWidth / Math.max(1, visibleWidth);
-
-      const adjustment = Math.min(
-        heightFactor,
-        widthFactor,
-        0.96
-      );
-
-      scale = Math.max(
-        0.35,
-        scale * adjustment
-      );
-
-      if (scale <= 0.35) break;
-    }
-
-    writing.style.setProperty(
-      "transform",
-      `scale(${scale})`,
-      "important"
-    );
-  }
 
   function scheduleFit() {
     if (scheduled) return;
