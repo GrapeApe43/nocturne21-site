@@ -984,3 +984,44 @@
 
   document.head.appendChild(style);
 })();
+
+/*
+ * NOCTURNE 21 — DUPLICATE ARTWORK CLEANUP
+ *
+ * Conceals the upper portion of the extended PNG
+ * without changing the folder or card geometry.
+ */
+
+(() => {
+  "use strict";
+
+  const styleId = "n21-duplicate-artwork-cleanup";
+  document.getElementById(styleId)?.remove();
+
+  const style = document.createElement("style");
+  style.id = styleId;
+
+  style.textContent = `
+    /*
+     * Clip the extended composition slightly lower
+     * to hide the remaining duplicate folder edge.
+     *
+     * Keep the same clipping boundary in both
+     * states so the animation remains unchanged.
+     */
+
+    .n21-cast-page
+    #characterDossier .n21-extended-art {
+      clip-path: inset(54% 0 46% 0) !important;
+    }
+
+    .n21-cast-page
+    #characterDossier
+    .n21-pull-card.is-pulled .n21-extended-art {
+      clip-path: inset(54% 0 0 0) !important;
+    }
+  `;
+
+  document.head.appendChild(style);
+})();
+
