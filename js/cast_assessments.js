@@ -1,9 +1,10 @@
 
 /*
  * NOCTURNE 21 — YOSHIKO'S SECRET ASSESSMENTS
- * Animated, single-composition edition
  *
- * Requires:
+ * Stationary folder + animated index card.
+ *
+ * Artwork:
  * img/characters/dossier-folder-open.png
  * img/characters/dossier-folder-open-index.png
  *
@@ -87,116 +88,232 @@
     }
   ];
 
-  const css = `
-    /*
-     * NEW ANIMATED DOSSIER
-     *
-     * The original folder remains the closed artwork.
-     * The extended image is revealed on top of it.
-     * Both are kept proportional.
-     */
+  /*
+   * LAYOUT
+   *
+   * The folder has ONE aspect ratio: 1080 / 1429.
+   *
+   * Its artwork is drawn on a stationary overlay.
+   * The extended composition is underneath.
+   *
+   * Only the lower section of the extended artwork
+   * is revealed. We never redraw or stretch the
+   * folder portion of that image over the original.
+   *
+   * The extended card keeps its existing 836 / 2048
+   * proportions and pull-out distance.
+   */
 
+  const css = `
     .n21-cast-page #characterDossier {
       overflow: visible !important;
     }
 
-    .n21-cast-page #characterDossier
-    .n21-dossier-content {
+    /*
+     * FIXED FOLDER GEOMETRY
+     *
+     * Writing is taken out of normal document flow
+     * so its length cannot stretch the folder.
+     */
+
+    .n21-cast-page
+    #characterDossier > .n21-dossier-content {
       position: relative !important;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      aspect-ratio: 1080 / 1429 !important;
+      box-sizing: border-box !important;
+      padding: 0 !important;
+      background-image: none !important;
       overflow: visible !important;
       isolation: isolate;
     }
 
-    .n21-cast-page #characterDossier
-    .n21-dossier-writing {
-      position: relative;
-      z-index: 3 !important;
+    /*
+     * The original folder is always on top.
+     * It cannot be resized by the index card.
+     */
+
+    .n21-cast-page
+    #characterDossier > .n21-dossier-content::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        url('img/characters/dossier-folder-open.png')
+        center top / 100% 100% no-repeat;
+      pointer-events: none;
     }
 
-    .n21-cast-page .n21-pull-card {
+    /*
+     * Yoshiko's original dossier writing.
+     * Keep it on top of the folder illustration.
+     */
+
+    .n21-cast-page
+    #characterDossier .n21-dossier-writing {
       position: absolute !important;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 836 / 2048;
+      top: 19%;
+      left: 10%;
+      width: 80%;
+      height: 73%;
+      min-height: 0 !important;
+      box-sizing: border-box;
+      padding: 0 2% !important;
+      margin: 0 !important;
+      z-index: 3 !important;
+      transform-origin: top left;
+    }
+
+    /*
+     * Mobile and tablet writing placement.
+     * The existing mobile text-fitting script
+     * can still scale the writing when needed.
+     */
+
+    @media (max-width: 1366px) {
+      .n21-cast-page
+      #characterDossier .n21-dossier-writing {
+        top: 23%;
+        left: 9%;
+        width: 82%;
+        height: 71%;
+        padding: 0 !important;
+      }
+    }
+
+    /*
+     * INDEX CARD
+     *
+     * The card is an absolutely positioned layer.
+     * It never participates in folder sizing.
+     */
+
+    .n21-cast-page
+    #characterDossier .n21-pull-card {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 836 / 2048 !important;
+      min-height: 0 !important;
       margin: 0 !important;
       padding: 0 !important;
-      z-index: 2;
+      border: 0 !important;
+      background: transparent !important;
+      z-index: 1;
+      overflow: visible !important;
       isolation: auto;
-      overflow: visible;
       pointer-events: none;
       container-type: inline-size;
     }
 
     /*
-     * The full image is already assembled.
-     * No separate paper pieces or generated tabs.
+     * EXTENDED ARTWORK
+     *
+     * The upper portion contains another copy
+     * of the folder. We keep that portion hidden.
+     *
+     * The original folder is already displayed
+     * by ::before above.
+     *
+     * Revealing only the lower portion prevents
+     * the duplicate folder from stretching or
+     * appearing during the animation.
      */
 
-    .n21-cast-page .n21-extended-art {
-      position: absolute;
-      inset: 0;
+    .n21-cast-page
+    #characterDossier .n21-extended-art {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+
       background:
         url('img/characters/dossier-folder-open-index.png')
-        center top / 100% 100% no-repeat;
-      clip-path: inset(0 0 100% 0);
+        center top / 100% 100% no-repeat !important;
+
+      clip-path: inset(54% 0 46% 0);
       transition:
         clip-path .72s cubic-bezier(.22,.8,.25,1);
+
       pointer-events: none;
     }
 
-    .n21-cast-page .n21-pull-card.is-pulled
-    .n21-extended-art {
-      clip-path: inset(0 0 0 0);
+    .n21-cast-page
+    #characterDossier
+    .n21-pull-card.is-pulled .n21-extended-art {
+      clip-path: inset(54% 0 0 0);
     }
 
     /*
-     * Text lives on the lined paper in the
-     * lower half of the extended composition.
+     * ASSESSMENT WRITING
+     *
+     * This stays aligned with the lower lined
+     * section of the extended composition.
      */
 
-    .n21-cast-page .n21-index-writing {
-      position: absolute;
-      top: 56%;
+    .n21-cast-page
+    #characterDossier .n21-index-writing {
+      position: absolute !important;
+      top: 57.5%;
       left: 14%;
       width: 73%;
       height: 35%;
       box-sizing: border-box;
-      overflow: hidden;
+      overflow: visible !important;
+
       color: #30251c;
       font-family: 'Patrick Hand', cursive;
+
       opacity: 0;
+      visibility: hidden;
       transform: translateY(-22px);
+
       transition:
         opacity .25s ease,
-        transform .65s cubic-bezier(.22,.8,.25,1);
+        transform .65s cubic-bezier(.22,.8,.25,1),
+        visibility 0s linear .72s;
+
       pointer-events: none;
       container-type: inline-size;
     }
 
-    .n21-cast-page .n21-pull-card.is-pulled
-    .n21-index-writing {
+    .n21-cast-page
+    #characterDossier
+    .n21-pull-card.is-pulled .n21-index-writing {
       opacity: 1;
+      visibility: visible;
       transform: translateY(0);
-      transition-delay: .35s;
+      transition:
+        opacity .25s ease .35s,
+        transform .65s cubic-bezier(.22,.8,.25,1),
+        visibility 0s;
     }
 
     /*
-     * TRANSPARENT PULL CONTROL
+     * INVISIBLE PULL BUTTON
      *
-     * The image already contains the lettering.
-     * We only add an invisible hit area.
+     * No additional tab artwork is generated.
+     * The button follows the illustrated tab.
      */
 
-    .n21-cast-page .n21-pull-tab {
+    .n21-cast-page
+    #characterDossier .n21-pull-tab {
       position: absolute !important;
-      left: 29%;
-      top: 43%;
-      width: 42%;
-      height: 7%;
+      display: block !important;
+
+      left: 29% !important;
+      top: 52% !important;
+      width: 42% !important;
+      height: 6.5% !important;
+
       min-height: 0 !important;
       aspect-ratio: auto !important;
+
       margin: 0 !important;
       padding: 0 !important;
 
@@ -205,11 +322,13 @@
       border: 0 !important;
       border-radius: 0 !important;
       box-shadow: none !important;
+
       transform: none !important;
       filter: none !important;
 
       color: transparent !important;
       font-size: 0 !important;
+
       cursor: pointer;
       pointer-events: auto;
       z-index: 6;
@@ -218,161 +337,207 @@
         top .72s cubic-bezier(.22,.8,.25,1);
     }
 
-    .n21-cast-page .n21-pull-tab span {
+    .n21-cast-page
+    #characterDossier
+    .n21-pull-card.is-pulled .n21-pull-tab {
+      top: 94% !important;
+    }
+
+    .n21-cast-page
+    #characterDossier .n21-pull-tab span {
       display: none !important;
     }
 
-    .n21-cast-page .n21-pull-card.is-pulled
-    .n21-pull-tab {
-      top: 94%;
-    }
-
-    .n21-cast-page .n21-pull-tab:hover {
+    .n21-cast-page
+    #characterDossier .n21-pull-tab:hover {
       background: transparent !important;
       filter: none !important;
     }
 
-    .n21-cast-page .n21-pull-tab:focus-visible {
+    .n21-cast-page
+    #characterDossier .n21-pull-tab:focus-visible {
       outline: 3px dashed #9d2927 !important;
       outline-offset: 3px;
     }
 
     /*
-     * ASSESSMENT HANDWRITING
+     * CLASSIFICATION STAMP
      */
 
-    .n21-cast-page .n21-assess-stamp {
+    .n21-cast-page
+    #characterDossier .n21-assess-stamp {
       display: table;
       max-width: 100%;
-      margin: 0 0 1.5cqw auto;
+      margin: 1.5cqw 0 1.5cqw auto;
       padding: .4cqw 1cqw;
+
       border: 2px double #a12d2b;
       background: transparent;
+
       color: #a12d2b !important;
-      font: 800 3.3cqw/1.15
+
+      font: 800 3.3cqw/1.35
         'Patrick Hand', cursive;
+
       letter-spacing: .03em;
       transform: rotate(-4deg);
     }
 
-    .n21-cast-page .n21-assess-row {
+    /*
+     * RATING ROWS
+     */
+
+    .n21-cast-page
+    #characterDossier .n21-assess-row {
       margin: 0 0 2.2cqw;
     }
 
-    .n21-cast-page .n21-assess-label {
+    .n21-cast-page
+    #characterDossier .n21-assess-label {
       color: #30251c !important;
+
       font: 700 3.8cqw/1.2
         'Patrick Hand', cursive;
     }
 
-    .n21-cast-page .n21-assess-scale {
+    .n21-cast-page
+    #characterDossier .n21-assess-scale {
       display: flex;
       position: relative;
       align-items: center;
+
       width: 100%;
       max-width: none;
       overflow: visible;
+
       padding: .5cqw 0;
       color: #423328;
     }
 
-    .n21-cast-page .n21-assess-num {
+    .n21-cast-page
+    #characterDossier .n21-assess-num {
       position: relative;
       display: grid;
       place-items: center;
+
       flex: 1 1 0;
       min-width: 0;
       height: 5cqw;
+
       color: #463629 !important;
+
       font: 400 3.6cqw/1
         'Patrick Hand', cursive;
     }
 
-    .n21-cast-page .n21-assess-num.is-marked {
+    .n21-cast-page
+    #characterDossier .n21-assess-num.is-marked {
       color: #9d2927 !important;
       font-weight: bold;
     }
 
     .n21-cast-page
+    #characterDossier
     .n21-assess-num.is-marked::after {
       content: "";
       position: absolute;
       inset: 0 1px;
+
       border: 2px solid #a12d2b;
       border-radius: 48% 53% 47% 51%;
+
       transform: rotate(-14deg);
     }
 
     .n21-cast-page
+    #characterDossier
     .n21-assess-num.mark-double::before,
     .n21-cast-page
+    #characterDossier
     .n21-assess-num.mark-triple::before {
       content: "";
       position: absolute;
       inset: -1px 0;
+
       border: 2px solid #a12d2b;
       border-radius: 54% 45% 55% 48%;
+
       transform: rotate(23deg);
     }
 
     .n21-cast-page
+    #characterDossier
     .n21-assess-num.mark-triple {
       text-decoration: underline wavy #a12d2b;
     }
 
     .n21-cast-page
+    #characterDossier
     .n21-assess-num.mark-soft::after {
       border-width: 1.5px;
       transform: rotate(-6deg);
     }
 
-    .n21-cast-page .n21-assess-zero {
+    .n21-cast-page
+    #characterDossier .n21-assess-zero {
       display: grid;
       place-items: center;
+
       flex: 0 0 5cqw;
       height: 5cqw;
+
       border: 3px double #a12d2b;
       border-radius: 50%;
+
       color: #a12d2b !important;
+
       font: 700 4cqw
         'Patrick Hand', cursive;
+
       transform: rotate(-13deg);
     }
 
-    .n21-cast-page .n21-assess-comment {
+    .n21-cast-page
+    #characterDossier .n21-assess-comment {
       margin: .3cqw 0 0 1.5cqw;
+
       color: #9d2927 !important;
+
       font: italic 3.1cqw/1.25
         'Patrick Hand', cursive;
+
       transform: rotate(-1deg);
     }
 
     /*
      * KAI'S CAFFEINE ARROW
      *
-     * Starts near the end of the scale
-     * and keeps the arrowhead inside the
-     * visible paper area.
+     * Preserved from the working version.
      */
 
     .n21-cast-page
+    #characterDossier
     .n21-assess-scale.is-beyond {
       padding-bottom: 5cqw;
     }
 
-    .n21-cast-page .n21-assess-arrow {
+    .n21-cast-page
+    #characterDossier .n21-assess-arrow {
       position: absolute;
       left: 67%;
       top: 43%;
       width: 32%;
       height: 9cqw;
+
       z-index: 5;
       overflow: visible;
       pointer-events: none;
+
       transform: rotate(-6deg);
     }
 
-    .n21-cast-page .n21-assess-arrow svg {
+    .n21-cast-page
+    #characterDossier .n21-assess-arrow svg {
       display: block;
       width: 100%;
       height: 100%;
@@ -380,6 +545,7 @@
     }
 
     .n21-cast-page
+    #characterDossier
     .n21-assess-row:has(.is-beyond)
     .n21-assess-comment {
       font-weight: 700;
@@ -390,21 +556,27 @@
      * EVALUATOR'S NOTE
      */
 
-    .n21-cast-page .n21-assess-conclusion {
+    .n21-cast-page
+    #characterDossier .n21-assess-conclusion {
       margin: 2.5cqw 0 0 !important;
       padding: 0 !important;
+
       border: none !important;
       border-radius: 0 !important;
       background: transparent !important;
       box-shadow: none !important;
+
       color: #35291e !important;
+
       font: 400 3.4cqw/1.3
         'Patrick Hand', cursive !important;
     }
 
     .n21-cast-page
+    #characterDossier
     .n21-assess-conclusion strong {
       color: #292016 !important;
+
       background: linear-gradient(
         to bottom,
         transparent 43%,
@@ -412,56 +584,29 @@
         rgba(245,199,48,.55) 88%,
         transparent 88%
       );
+
       padding: 0 .3cqw;
     }
 
     /*
-     * Make room below the folder
-     * when the index card is extended.
+     * EXTRA SPACE BELOW THE FOLDER
+     *
+     * The spacer grows as the index card appears.
+     * It does not change the folder's height.
      */
 
-    .n21-cast-page .n21-pull-spacer {
+    .n21-cast-page
+    #characterDossier .n21-pull-spacer {
       display: block;
       width: 100%;
       height: 0;
+      margin: 0;
+      padding: 0;
+
       transition:
         height .72s cubic-bezier(.22,.8,.25,1);
+
       pointer-events: none;
-    }
-
-    .n21-cast-page
-    #characterDossier:has(.n21-pull-card.is-pulled)
-    .n21-pull-spacer {
-      height: 0;
-    }
-
-    /* FIX: keep the original dossier at its illustrated aspect ratio.
-       Content and pull-out artwork must never resize the folder. */
-    .n21-cast-page #characterDossier > .n21-dossier-content {
-      aspect-ratio: 1080 / 1429 !important;
-      min-height: 0 !important;
-      box-sizing: border-box !important;
-      background-size: 100% 100% !important;
-      overflow: visible !important;
-    }
-
-    /* Make the click target follow the visible handwritten pull tab. */
-    .n21-cast-page .n21-pull-tab {
-      top: 52%;
-      height: 6.5%;
-    }
-    .n21-cast-page .n21-pull-card.is-pulled .n21-pull-tab {
-      top: 94%;
-    }
-
-    /* Keep the assessment stamp comfortably below the paper header. */
-    .n21-cast-page .n21-index-writing {
-      top: 57.5%;
-      overflow: visible;
-    }
-    .n21-cast-page .n21-assess-stamp {
-      margin-top: 1.5cqw;
-      line-height: 1.35;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -474,7 +619,10 @@
     }
   `;
 
-  // Remove styles from earlier assessment versions.
+  /*
+   * REMOVE PREVIOUS ASSESSMENT STYLES
+   */
+
   [
     "n21-assessment-refinements",
     "n21-single-card-styles",
@@ -488,6 +636,10 @@
   style.textContent = css;
   document.head.appendChild(style);
 
+  /*
+   * FIND THE EXISTING DOSSIER
+   */
+
   const dossier = document.getElementById(
     "characterDossier"
   );
@@ -500,10 +652,17 @@
 
   if (!paper) return;
 
-  // Remove any previous assessment card.
+  /*
+   * REMOVE OLD GENERATED CARDS
+   */
+
   dossier.querySelectorAll(
     ".n21-pull-card, .n21-pull-spacer"
   ).forEach(element => element.remove());
+
+  /*
+   * BUILD THE INDEX CARD
+   */
 
   const card = document.createElement("section");
   card.className = "n21-pull-card";
@@ -514,11 +673,17 @@
   );
 
   card.innerHTML = `
-    <div class="n21-extended-art"
-         aria-hidden="true"></div>
+    <div
+      class="n21-extended-art"
+      aria-hidden="true">
+    </div>
 
-    <div class="n21-index-writing">
+    <div
+      class="n21-index-writing"
+      id="n21-assessment-panel">
+
       <div class="n21-pull-data"></div>
+
     </div>
 
     <button
@@ -527,15 +692,17 @@
       aria-expanded="false"
       aria-controls="n21-assessment-panel"
       aria-label="Pull out investigator's assessment">
+
       <span aria-hidden="true"></span>
+
     </button>
   `;
 
-  card.querySelector(
-    ".n21-index-writing"
-  ).id = "n21-assessment-panel";
-
   paper.appendChild(card);
+
+  /*
+   * BUILD THE SPACE BELOW THE FOLDER
+   */
 
   const spacer = document.createElement("div");
   spacer.className = "n21-pull-spacer";
@@ -549,6 +716,10 @@
     ".n21-pull-data"
   );
 
+  /*
+   * HTML ESCAPING
+   */
+
   function escapeHTML(value) {
     return String(value)
       .replace(/&/g, "&amp;")
@@ -557,10 +728,15 @@
       .replace(/"/g, "&quot;");
   }
 
+  /*
+   * KAI'S CAFFEINE ARROW
+   */
+
   function caffeineArrow() {
     return `
-      <span class="n21-assess-arrow"
-            aria-hidden="true">
+      <span
+        class="n21-assess-arrow"
+        aria-hidden="true">
 
         <svg
           viewBox="0 0 220 65"
@@ -606,6 +782,10 @@
     `;
   }
 
+  /*
+   * RATING SCALE
+   */
+
   function score(value, kind) {
     const numbers = Array.from(
       { length: 10 },
@@ -617,11 +797,12 @@
           kind !== "beyond" &&
           kind !== "zero";
 
+        const markClass = marked
+          ? "is-marked mark-" + kind
+          : "";
+
         return `
-          <span class="n21-assess-num
-            ${marked
-              ? "is-marked mark-" + kind
-              : ""}">
+          <span class="n21-assess-num ${markClass}">
             ${number}
           </span>
         `;
@@ -636,15 +817,22 @@
       ? caffeineArrow()
       : "";
 
+    const scaleClass =
+      kind === "beyond"
+        ? "is-beyond"
+        : kind === "zero"
+          ? "is-zero"
+          : "";
+
+    const description =
+      kind === "beyond"
+        ? "off the chart"
+        : value + " out of 10";
+
     return `
-      <div class="n21-assess-scale
-        ${kind === "beyond" ? "is-beyond" : ""}
-        ${kind === "zero" ? "is-zero" : ""}"
-        aria-label="Score ${
-          kind === "beyond"
-            ? "off the chart"
-            : value + " out of 10"
-        }">
+      <div
+        class="n21-assess-scale ${scaleClass}"
+        aria-label="Score ${description}">
 
         ${zero}
         ${numbers}
@@ -654,24 +842,27 @@
     `;
   }
 
-  function lockFolderHeight() {
-    // Explicit pixel height prevents content-based aspect-ratio expansion.
-    const width = paper.getBoundingClientRect().width;
-    if (!width) return;
-    const target = width * (1429 / 1080);
-    paper.style.setProperty("height", target + "px", "important");
-    paper.style.setProperty("min-height", "0px", "important");
-  }
+  /*
+   * KEEP THE PULL-OUT DISTANCE UNCHANGED
+   *
+   * No JavaScript height is applied to the folder.
+   * CSS owns the folder's proportions.
+   *
+   * We only calculate how much extra page space
+   * is required for the extended index card.
+   */
 
   function updateSpacer() {
-    lockFolderHeight();
-
-    const extendedHeight =
-      card.getBoundingClientRect().width *
-      (2048 / 836);
+    const cardWidth =
+      card.getBoundingClientRect().width;
 
     const folderHeight =
       paper.getBoundingClientRect().height;
+
+    if (!cardWidth || !folderHeight) return;
+
+    const extendedHeight =
+      cardWidth * (2048 / 836);
 
     const extra = Math.max(
       0,
@@ -683,6 +874,10 @@
         ? extra + "px"
         : "0px";
   }
+
+  /*
+   * PULL OUT / TUCK AWAY
+   */
 
   function setPulled(open) {
     card.classList.toggle("is-pulled", open);
@@ -702,30 +897,38 @@
     updateSpacer();
   }
 
+  /*
+   * RENDER CHARACTER ASSESSMENT
+   */
+
   function render(index) {
     const record = records[index];
+
     if (!record) return;
 
     const rows = record.ratings.map(
-      ([name, value, kind, comment]) => `
-        <div class="n21-assess-row">
+      ([name, value, kind, comment]) => {
+        const displayedComment =
+          kind === "beyond"
+            ? "OFF THE CHART! " + comment
+            : comment;
 
-          <div class="n21-assess-label">
-            ${escapeHTML(name)}
+        return `
+          <div class="n21-assess-row">
+
+            <div class="n21-assess-label">
+              ${escapeHTML(name)}
+            </div>
+
+            ${score(value, kind)}
+
+            <div class="n21-assess-comment">
+              ${escapeHTML(displayedComment)}
+            </div>
+
           </div>
-
-          ${score(value, kind)}
-
-          <div class="n21-assess-comment">
-            ${escapeHTML(
-              kind === "beyond"
-                ? "OFF THE CHART! " + comment
-                : comment
-            )}
-          </div>
-
-        </div>
-      `
+        `;
+      }
     ).join("");
 
     data.innerHTML = `
@@ -741,8 +944,17 @@
       </p>
     `;
 
+    /*
+     * Switching characters always retracts
+     * the card without changing folder geometry.
+     */
+
     setPulled(false);
   }
+
+  /*
+   * EVENTS
+   */
 
   button.addEventListener("click", () => {
     setPulled(
@@ -755,10 +967,25 @@
     updateSpacer
   );
 
-  // Character changes reset the card.
+  window.addEventListener(
+    "orientationchange",
+    () => {
+      requestAnimationFrame(updateSpacer);
+    }
+  );
+
+  document.fonts?.ready.then(updateSpacer);
+
+  window.addEventListener(
+    "load",
+    updateSpacer
+  );
+
+  /*
+   * EXPOSE RENDERER TO cast.html
+   */
+
   window.n21RenderAssessment = render;
 
   render(0);
-  document.fonts?.ready.then(updateSpacer);
-  window.addEventListener("load", updateSpacer);
 })();
