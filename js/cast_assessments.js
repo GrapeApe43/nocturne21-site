@@ -1038,7 +1038,7 @@
       pointer-events: none;
 
       transition:
-        opacity .72s cubic-bezier(.22,.8,.25,1);
+        opacity .18s ease-in .54s;
     }
 
     /*
@@ -1048,11 +1048,12 @@
      * revealing the index card beneath.
      */
 
-    .n21-cast-page
-    #characterDossier:has(.n21-pull-card.is-pulled)
-    > .n21-dossier-content::after {
-      opacity: 0;
-    }
+.n21-cast-page
+#characterDossier:has(.n21-pull-card.is-pulled)
+> .n21-dossier-content::after {
+  opacity: 0;
+  transition: opacity .18s ease-out;
+}
 
     /*
      * REDUCED MOTION
