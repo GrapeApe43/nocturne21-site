@@ -941,130 +941,44 @@
 })();
 
 
+
 /*
- * NOCTURNE 21 — SMOOTH FOLDER MASK
- *
- * Replaces the previous Two-Tab Goblin Fix.
- *
- * Keeps both image proportions unchanged.
- * Smoothly reveals and hides the folder's
- * lower edge during the card animation.
+ * NOCTURNE 21 — TWO-TAB GOBLIN FIX
+ * Restore the previous, better-looking mask.
  */
 
 (() => {
   "use strict";
 
   const styleId = "n21-single-visible-tab-fix";
-
   document.getElementById(styleId)?.remove();
 
   const style = document.createElement("style");
   style.id = styleId;
 
   style.textContent = `
-    /*
-     * Register animatable mask positions.
-     *
-     * This lets Chrome interpolate between
-     * the closed and extended folder masks.
-     */
-
-    @property --n21-mask-solid {
-      syntax: "<percentage>";
-      inherits: false;
-      initial-value: 100%;
-    }
-
-    @property --n21-mask-clear {
-      syntax: "<percentage>";
-      inherits: false;
-      initial-value: 100%;
-    }
-
-    /*
-     * ORIGINAL FOLDER
-     *
-     * Closed:
-     * The entire original image is visible.
-     *
-     * Extended:
-     * The bottom edge and original pull tab
-     * fade away, exposing the index card.
-     *
-     * Both states use the same gradient,
-     * allowing a smooth transition.
-     */
-
     .n21-cast-page
     #characterDossier > .n21-dossier-content::before {
-      --n21-mask-solid: 100%;
-      --n21-mask-clear: 100%;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
 
+    .n21-cast-page
+    #characterDossier:has(.n21-pull-card.is-pulled)
+    > .n21-dossier-content::before {
       -webkit-mask-image: linear-gradient(
         to bottom,
         #000 0%,
-        #000 var(--n21-mask-solid),
-        transparent var(--n21-mask-clear)
+        #000 90%,
+        transparent 97%
       );
 
       mask-image: linear-gradient(
         to bottom,
         #000 0%,
-        #000 var(--n21-mask-solid),
-        transparent var(--n21-mask-clear)
+        #000 90%,
+        transparent 97%
       );
-
-      transition:
-        --n21-mask-solid .72s cubic-bezier(.22,.8,.25,1),
-        --n21-mask-clear .72s cubic-bezier(.22,.8,.25,1);
-    }
-
-    /*
-     * CARD EXTENDED
-     *
-     * The folder fades out through its
-     * bottom section instead of instantly
-     * changing its mask.
-     */
-
-    .n21-cast-page
-    #characterDossier:has(.n21-pull-card.is-pulled)
-    > .n21-dossier-content::before {
-      --n21-mask-solid: 86%;
-      --n21-mask-clear: 92%;
-    }
-
-    /*
-     * EXTENDED ARTWORK
-     *
-     * Slightly raise the clipping boundary
-     * to conceal the remaining duplicated
-     * folder artwork above the index card.
-     *
-     * No width, height, or aspect-ratio
-     * adjustments.
-     */
-
-    .n21-cast-page
-    #characterDossier .n21-extended-art {
-      clip-path: inset(55% 0 45% 0) !important;
-    }
-
-    .n21-cast-page
-    #characterDossier
-    .n21-pull-card.is-pulled .n21-extended-art {
-      clip-path: inset(55% 0 0 0) !important;
-    }
-
-    /*
-     * Respect reduced-motion preferences.
-     */
-
-    @media (prefers-reduced-motion: reduce) {
-      .n21-cast-page
-      #characterDossier > .n21-dossier-content::before {
-        transition: none !important;
-      }
     }
   `;
 
