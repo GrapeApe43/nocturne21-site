@@ -1070,12 +1070,15 @@
   document.head.appendChild(style);
 })();
 
+
 /*
- * NOCTURNE 21 — MOBILE DOSSIER TEXT FIT
+ * NOCTURNE 21 — RESPONSIVE DOSSIER FIT
  *
- * Restores responsive text fitting without
- * changing folder dimensions, index-card
- * layering, or pull-out animation.
+ * Single source of truth for dossier writing.
+ * Handles mobile, tablet, rotation, character
+ * changes, and close-button centering.
+ *
+ * Does NOT modify folder or index-card artwork.
  */
 
 (() => {
@@ -1089,35 +1092,129 @@
 
   if (!paper || !writing) return;
 
+  // Keep the writing and close button centered.
+  const styleId = "n21-responsive-dossier-fit";
+  document.getElementById(styleId)?.remove();
+
+  const style = document.createElement("style");
+  style.id = styleId;
+
+  style.textContent = `
+    .n21-cast-page
+    #characterDossier .n21-dossier-writing {
+      transform-origin: top left !important;
+      overflow: visible;
+    }
+
+    .n21-cast-page
+    #characterDossier .n21-dossier-close {
+      display: block !important;
+      position: relative !important;
+      float: none !important;
+      clear: both !important;
+      width: max-content;
+      max-width: 100%;
+      box-sizing: border-box;
+      margin: 12px auto 0 !important;
+      left: auto !important;
+      right: auto !important;
+      translate: none !important;
+      text-align: center !important;
+    }
+  `;
+
+  document.head.appendChild(style);
+
+  let scheduled = false;
+
   function fitWriting() {
-    // Reset previous fitting before measuring.
+    scheduled = false;
+
+    // Remove old measurements before every calculation.
     writing.style.removeProperty("transform");
     writing.style.removeProperty("width");
+    writing.style.removeProperty("height");
 
     if (!dossier.open || dossier.hidden) return;
 
-    // Only fit on tablet/mobile layouts.
     if (window.innerWidth > 1366) return;
 
-    const availableHeight =
-      paper.clientHeight * 0.70;
+    const paperWidth = paper.clientWidth;
+    const paperHeight = paper.clientHeight;
 
-    const availableWidth =
-      paper.clientWidth * 0.82;
+    if (!paperWidth || !paperHeight) return;
 
-    if (!availableHeight || !availableWidth) return;
+    const computed = getComputedStyle(writing);
 
-    // Measure the actual writing.
-    const neededHeight = writing.scrollHeight;
-    const neededWidth = writing.scrollWidth;
+    const top = parseFloat(computed.top) || 0;
+    const left = parseFloat(computed.left) || 0;
 
-    if (!neededHeight) return;
+    // Reserve room above the illustrated pull tab.
+    const bottomLimit = paperHeight * 0.89;
 
-    const scale = Math.min(
+    const availableHeight = Math.max(
       1,
-      availableHeight / neededHeight,
-      availableWidth / neededWidth
+      bottomLimit - top
     );
+
+    // Respect the original left/right paper margins.
+    const availableWidth = Math.max(
+      1,
+      paperWidth - left - paperWidth * 0.09
+    );
+
+    // Original writing width before scaling.
+    const baseWidth = Math.min(
+      paperWidth * 0.82,
+      availableWidth
+    );
+
+    /*
+     * When text is scaled, its layout width must
+     * increase by the inverse scale factor.
+     *
+     * Otherwise wrapping and visible dimensions
+     * disagree, causing the orientation bug.
+     */
+
+    let scale = 1;
+
+    for (let attempt = 0; attempt < 12; attempt++) {
+      writing.style.width = (baseWidth / scale) + "px";
+
+      // Force layout after changing width.
+      const neededHeight = writing.scrollHeight;
+      const neededWidth = writing.scrollWidth;
+
+      const visibleHeight = neededHeight * scale;
+      const visibleWidth = neededWidth * scale;
+
+      if (
+        visibleHeight <= availableHeight &&
+        visibleWidth <= availableWidth
+      ) {
+        break;
+      }
+
+      const heightFactor =
+        availableHeight / Math.max(1, visibleHeight);
+
+      const widthFactor =
+        availableWidth / Math.max(1, visibleWidth);
+
+      const adjustment = Math.min(
+        heightFactor,
+        widthFactor,
+        0.96
+      );
+
+      scale = Math.max(
+        0.35,
+        scale * adjustment
+      );
+
+      if (scale <= 0.35) break;
+    }
 
     writing.style.setProperty(
       "transform",
@@ -1126,64 +1223,70 @@
     );
   }
 
-  // Allow the folder to finish opening first.
-  dossier.addEventListener("toggle", () => {
+  function scheduleFit() {
+    if (scheduled) return;
+
+    scheduled = true;
+
     requestAnimationFrame(() => {
       requestAnimationFrame(fitWriting);
     });
+  }
+
+  // Recalculate after the browser settles on rotation.
+  let lastWidth = 0;
+
+  function checkLayout() {
+    const width = paper.getBoundingClientRect().width;
+
+    if (Math.abs(width - lastWidth) > 1) {
+      lastWidth = width;
+      scheduleFit();
+    }
+  }
+
+  dossier.addEventListener("toggle", scheduleFit);
+
+  window.addEventListener("resize", scheduleFit);
+
+  window.addEventListener("orientationchange", () => {
+    scheduleFit();
+
+    // Some mobile browsers update layout in stages.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(scheduleFit);
+    });
   });
 
-  // Refit after character changes.
+  // Observe actual paper-size changes, not just
+  // browser resize events.
+  if ("ResizeObserver" in window) {
+    const observer = new ResizeObserver(checkLayout);
+    observer.observe(paper);
+  }
+
+  // Character changes replace the writing HTML.
   const originalRender = window.n21RenderAssessment;
 
   if (typeof originalRender === "function") {
     window.n21RenderAssessment = function(index) {
       originalRender(index);
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(fitWriting);
-      });
+      scheduleFit();
     };
   }
 
-  window.addEventListener("resize", fitWriting);
+  // Also catch content changes independently.
+  const mutationObserver = new MutationObserver(scheduleFit);
 
-  window.addEventListener("orientationchange", () => {
-    requestAnimationFrame(fitWriting);
+  mutationObserver.observe(writing, {
+    childList: true,
+    subtree: true,
+    characterData: true
   });
 
-  document.fonts?.ready.then(fitWriting);
+  document.fonts?.ready.then(scheduleFit);
 
-  fitWriting();
+  window.addEventListener("load", scheduleFit);
+
+  scheduleFit();
 })();
-
-/*
- * NOCTURNE 21 — DOSSIER WRITING POSITION FIX
- *
- * Moves the case-file writing closer to the
- * fastener without touching the folder art,
- * text scaling, or index-card animation.
- */
-
-(() => {
-  "use strict";
-
-  const styleId = "n21-dossier-writing-position-fix";
-  document.getElementById(styleId)?.remove();
-
-  const style = document.createElement("style");
-  style.id = styleId;
-
-  style.textContent = `
-    @media (max-width: 1366px) {
-      .n21-cast-page
-      #characterDossier .n21-dossier-writing {
-        top: 16% !important;
-        height: 78% !important;
-      }
-    }
-  `;
-
-  document.head.appendChild(style);
-})();
-
