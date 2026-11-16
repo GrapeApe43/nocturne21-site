@@ -1,12 +1,12 @@
 
 /*
- * NOCTURNE 21 — YOSHIKO'S SECRET ASSESSMENTS
+ * NOCTURNE 21
+ * YOSHIKO'S SECRET ASSESSMENTS
  *
- * Stationary folder + animated index card.
+ * Stationary folder / independent pull-out artwork
  *
- * Artwork:
- * img/characters/dossier-folder-open.png
- * img/characters/dossier-folder-open-index.png
+ * Original folder: 1481 x 2048
+ * Extended artwork: 836 x 2048
  *
  * Load AFTER cast_dossiers.js.
  */
@@ -89,19 +89,18 @@
   ];
 
   /*
-   * LAYOUT
+   * GEOMETRY
    *
-   * The folder has ONE aspect ratio: 1080 / 1429.
+   * The original folder has a ratio of 1481:2048.
+   * The extended composition has a ratio of 836:2048.
    *
-   * Its artwork is drawn on a stationary overlay.
-   * The extended composition is underneath.
+   * The two images are NEVER forced into the same
+   * aspect ratio.
    *
-   * Only the lower section of the extended artwork
-   * is revealed. We never redraw or stretch the
-   * folder portion of that image over the original.
+   * The extended artwork remains full-size behind
+   * the stationary original folder.
    *
-   * The extended card keeps its existing 836 / 2048
-   * proportions and pull-out distance.
+   * Its lower portion is revealed using clip-path.
    */
 
   const css = `
@@ -109,30 +108,28 @@
       overflow: visible !important;
     }
 
-    /*
-     * FIXED FOLDER GEOMETRY
-     *
-     * Writing is taken out of normal document flow
-     * so its length cannot stretch the folder.
-     */
+    /* ORIGINAL FOLDER */
 
     .n21-cast-page
     #characterDossier > .n21-dossier-content {
       position: relative !important;
+      display: block !important;
       width: 100% !important;
       height: auto !important;
       min-height: 0 !important;
-      aspect-ratio: 1080 / 1429 !important;
+      aspect-ratio: 1481 / 2048 !important;
       box-sizing: border-box !important;
       padding: 0 !important;
-      background-image: none !important;
+      margin: 0 !important;
+      background: none !important;
       overflow: visible !important;
       isolation: isolate;
     }
 
     /*
-     * The original folder is always on top.
-     * It cannot be resized by the index card.
+     * Stationary original folder.
+     * Its proportions cannot be changed by text
+     * or by the index-card animation.
      */
 
     .n21-cast-page
@@ -141,16 +138,15 @@
       position: absolute;
       inset: 0;
       z-index: 2;
-      background:
-        url('img/characters/dossier-folder-open.png')
-        center top / 100% 100% no-repeat;
+      background-image:
+        url('img/characters/dossier-folder-open.png');
+      background-position: center top;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
       pointer-events: none;
     }
 
-    /*
-     * Yoshiko's original dossier writing.
-     * Keep it on top of the folder illustration.
-     */
+    /* ORIGINAL DOSSIER WRITING */
 
     .n21-cast-page
     #characterDossier .n21-dossier-writing {
@@ -161,17 +157,11 @@
       height: 73%;
       min-height: 0 !important;
       box-sizing: border-box;
-      padding: 0 2% !important;
       margin: 0 !important;
+      padding: 0 2% !important;
       z-index: 3 !important;
       transform-origin: top left;
     }
-
-    /*
-     * Mobile and tablet writing placement.
-     * The existing mobile text-fitting script
-     * can still scale the writing when needed.
-     */
 
     @media (max-width: 1366px) {
       .n21-cast-page
@@ -185,15 +175,17 @@
     }
 
     /*
-     * INDEX CARD
+     * EXTENDED COMPOSITION
      *
-     * The card is an absolutely positioned layer.
-     * It never participates in folder sizing.
+     * It uses its own actual aspect ratio.
+     * It is positioned independently behind
+     * the original folder.
      */
 
     .n21-cast-page
     #characterDossier .n21-pull-card {
       position: absolute !important;
+      display: block !important;
       top: 0 !important;
       left: 0 !important;
       width: 100% !important;
@@ -204,25 +196,19 @@
       padding: 0 !important;
       border: 0 !important;
       background: transparent !important;
-      z-index: 1;
       overflow: visible !important;
-      isolation: auto;
+      isolation: auto !important;
+      z-index: 1;
       pointer-events: none;
       container-type: inline-size;
     }
 
     /*
-     * EXTENDED ARTWORK
+     * Only the lower part of the extended
+     * composition needs to become visible.
      *
-     * The upper portion contains another copy
-     * of the folder. We keep that portion hidden.
-     *
-     * The original folder is already displayed
-     * by ::before above.
-     *
-     * Revealing only the lower portion prevents
-     * the duplicate folder from stretching or
-     * appearing during the animation.
+     * The top is already covered by the
+     * stationary folder.
      */
 
     .n21-cast-page
@@ -231,29 +217,28 @@
       inset: 0 !important;
       width: 100% !important;
       height: 100% !important;
-
-      background:
-        url('img/characters/dossier-folder-open-index.png')
-        center top / 100% 100% no-repeat !important;
-
-      clip-path: inset(54% 0 46% 0);
+      background-image:
+        url('img/characters/dossier-folder-open-index.png') !important;
+      background-position: center top !important;
+      background-size: 100% 100% !important;
+      background-repeat: no-repeat !important;
+      clip-path: inset(52% 0 48% 0);
       transition:
         clip-path .72s cubic-bezier(.22,.8,.25,1);
-
       pointer-events: none;
     }
 
     .n21-cast-page
     #characterDossier
     .n21-pull-card.is-pulled .n21-extended-art {
-      clip-path: inset(54% 0 0 0);
+      clip-path: inset(52% 0 0 0);
     }
 
     /*
-     * ASSESSMENT WRITING
+     * INDEX-CARD WRITING
      *
-     * This stays aligned with the lower lined
-     * section of the extended composition.
+     * Text is positioned relative to the
+     * extended artwork, not the folder.
      */
 
     .n21-cast-page
@@ -265,19 +250,15 @@
       height: 35%;
       box-sizing: border-box;
       overflow: visible !important;
-
       color: #30251c;
       font-family: 'Patrick Hand', cursive;
-
       opacity: 0;
       visibility: hidden;
-      transform: translateY(-22px);
-
+      transform: translateY(-20px);
       transition:
         opacity .25s ease,
         transform .65s cubic-bezier(.22,.8,.25,1),
         visibility 0s linear .72s;
-
       pointer-events: none;
       container-type: inline-size;
     }
@@ -295,52 +276,47 @@
     }
 
     /*
-     * INVISIBLE PULL BUTTON
+     * CLICKABLE TAB
      *
-     * No additional tab artwork is generated.
-     * The button follows the illustrated tab.
+     * This is deliberately OUTSIDE the index
+     * card's stacking layer.
+     *
+     * It sits over the actual illustrated tab.
+     * No duplicate tab image is generated.
      */
 
     .n21-cast-page
     #characterDossier .n21-pull-tab {
       position: absolute !important;
       display: block !important;
-
       left: 29% !important;
-      top: 52% !important;
+      top: 93% !important;
       width: 42% !important;
-      height: 6.5% !important;
-
+      height: 7% !important;
       min-height: 0 !important;
       aspect-ratio: auto !important;
-
       margin: 0 !important;
       padding: 0 !important;
-
       background: transparent !important;
       background-image: none !important;
       border: 0 !important;
       border-radius: 0 !important;
       box-shadow: none !important;
-
-      transform: none !important;
-      filter: none !important;
-
       color: transparent !important;
       font-size: 0 !important;
-
+      transform: none !important;
+      filter: none !important;
       cursor: pointer;
       pointer-events: auto;
-      z-index: 6;
-
+      z-index: 6 !important;
       transition:
         top .72s cubic-bezier(.22,.8,.25,1);
     }
 
     .n21-cast-page
     #characterDossier
-    .n21-pull-card.is-pulled .n21-pull-tab {
-      top: 94% !important;
+    .n21-pull-tab.is-pulled {
+      top: 170% !important;
     }
 
     .n21-cast-page
@@ -360,9 +336,7 @@
       outline-offset: 3px;
     }
 
-    /*
-     * CLASSIFICATION STAMP
-     */
+    /* ASSESSMENT STAMP */
 
     .n21-cast-page
     #characterDossier .n21-assess-stamp {
@@ -370,22 +344,16 @@
       max-width: 100%;
       margin: 1.5cqw 0 1.5cqw auto;
       padding: .4cqw 1cqw;
-
       border: 2px double #a12d2b;
       background: transparent;
-
       color: #a12d2b !important;
-
       font: 800 3.3cqw/1.35
         'Patrick Hand', cursive;
-
       letter-spacing: .03em;
       transform: rotate(-4deg);
     }
 
-    /*
-     * RATING ROWS
-     */
+    /* ASSESSMENT ROWS */
 
     .n21-cast-page
     #characterDossier .n21-assess-row {
@@ -395,7 +363,6 @@
     .n21-cast-page
     #characterDossier .n21-assess-label {
       color: #30251c !important;
-
       font: 700 3.8cqw/1.2
         'Patrick Hand', cursive;
     }
@@ -405,11 +372,9 @@
       display: flex;
       position: relative;
       align-items: center;
-
       width: 100%;
       max-width: none;
       overflow: visible;
-
       padding: .5cqw 0;
       color: #423328;
     }
@@ -419,13 +384,10 @@
       position: relative;
       display: grid;
       place-items: center;
-
       flex: 1 1 0;
       min-width: 0;
       height: 5cqw;
-
       color: #463629 !important;
-
       font: 400 3.6cqw/1
         'Patrick Hand', cursive;
     }
@@ -442,10 +404,8 @@
       content: "";
       position: absolute;
       inset: 0 1px;
-
       border: 2px solid #a12d2b;
       border-radius: 48% 53% 47% 51%;
-
       transform: rotate(-14deg);
     }
 
@@ -458,10 +418,8 @@
       content: "";
       position: absolute;
       inset: -1px 0;
-
       border: 2px solid #a12d2b;
       border-radius: 54% 45% 55% 48%;
-
       transform: rotate(23deg);
     }
 
@@ -482,37 +440,28 @@
     #characterDossier .n21-assess-zero {
       display: grid;
       place-items: center;
-
       flex: 0 0 5cqw;
       height: 5cqw;
-
       border: 3px double #a12d2b;
       border-radius: 50%;
-
       color: #a12d2b !important;
-
       font: 700 4cqw
         'Patrick Hand', cursive;
-
       transform: rotate(-13deg);
     }
 
     .n21-cast-page
     #characterDossier .n21-assess-comment {
       margin: .3cqw 0 0 1.5cqw;
-
       color: #9d2927 !important;
-
       font: italic 3.1cqw/1.25
         'Patrick Hand', cursive;
-
       transform: rotate(-1deg);
     }
 
     /*
      * KAI'S CAFFEINE ARROW
-     *
-     * Preserved from the working version.
+     * Kept from the working version.
      */
 
     .n21-cast-page
@@ -528,11 +477,9 @@
       top: 43%;
       width: 32%;
       height: 9cqw;
-
       z-index: 5;
       overflow: visible;
       pointer-events: none;
-
       transform: rotate(-6deg);
     }
 
@@ -552,22 +499,17 @@
       text-decoration: underline #a12d2b 1px;
     }
 
-    /*
-     * EVALUATOR'S NOTE
-     */
+    /* EVALUATOR'S NOTE */
 
     .n21-cast-page
     #characterDossier .n21-assess-conclusion {
       margin: 2.5cqw 0 0 !important;
       padding: 0 !important;
-
       border: none !important;
       border-radius: 0 !important;
       background: transparent !important;
       box-shadow: none !important;
-
       color: #35291e !important;
-
       font: 400 3.4cqw/1.3
         'Patrick Hand', cursive !important;
     }
@@ -576,7 +518,6 @@
     #characterDossier
     .n21-assess-conclusion strong {
       color: #292016 !important;
-
       background: linear-gradient(
         to bottom,
         transparent 43%,
@@ -584,15 +525,14 @@
         rgba(245,199,48,.55) 88%,
         transparent 88%
       );
-
       padding: 0 .3cqw;
     }
 
     /*
-     * EXTRA SPACE BELOW THE FOLDER
+     * PAGE SPACE
      *
-     * The spacer grows as the index card appears.
-     * It does not change the folder's height.
+     * This expands beneath the stationary folder
+     * without changing the folder's dimensions.
      */
 
     .n21-cast-page
@@ -602,10 +542,8 @@
       height: 0;
       margin: 0;
       padding: 0;
-
       transition:
         height .72s cubic-bezier(.22,.8,.25,1);
-
       pointer-events: none;
     }
 
@@ -620,7 +558,7 @@
   `;
 
   /*
-   * REMOVE PREVIOUS ASSESSMENT STYLES
+   * REMOVE OLD GENERATED ASSESSMENT STYLES
    */
 
   [
@@ -637,7 +575,7 @@
   document.head.appendChild(style);
 
   /*
-   * FIND THE EXISTING DOSSIER
+   * FIND THE DOSSIER
    */
 
   const dossier = document.getElementById(
@@ -653,15 +591,15 @@
   if (!paper) return;
 
   /*
-   * REMOVE OLD GENERATED CARDS
+   * REMOVE ANY OLD GENERATED ASSESSMENT
    */
 
   dossier.querySelectorAll(
-    ".n21-pull-card, .n21-pull-spacer"
+    ".n21-pull-card, .n21-pull-spacer, .n21-pull-tab"
   ).forEach(element => element.remove());
 
   /*
-   * BUILD THE INDEX CARD
+   * BUILD THE EXTENDED ARTWORK
    */
 
   const card = document.createElement("section");
@@ -685,39 +623,55 @@
       <div class="n21-pull-data"></div>
 
     </div>
-
-    <button
-      type="button"
-      class="n21-pull-tab"
-      aria-expanded="false"
-      aria-controls="n21-assessment-panel"
-      aria-label="Pull out investigator's assessment">
-
-      <span aria-hidden="true"></span>
-
-    </button>
   `;
 
   paper.appendChild(card);
 
   /*
-   * BUILD THE SPACE BELOW THE FOLDER
+   * IMPORTANT:
+   *
+   * The button is a SIBLING of the card.
+   *
+   * This allows it to sit above the folder,
+   * rather than getting trapped behind it
+   * inside the card's stacking context.
+   */
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "n21-pull-tab";
+
+  button.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+  button.setAttribute(
+    "aria-controls",
+    "n21-assessment-panel"
+  );
+
+  button.setAttribute(
+    "aria-label",
+    "Pull out investigator's assessment"
+  );
+
+  paper.appendChild(button);
+
+  /*
+   * EXTRA PAGE SPACE
    */
 
   const spacer = document.createElement("div");
   spacer.className = "n21-pull-spacer";
   dossier.appendChild(spacer);
 
-  const button = card.querySelector(
-    ".n21-pull-tab"
-  );
-
   const data = card.querySelector(
     ".n21-pull-data"
   );
 
   /*
-   * HTML ESCAPING
+   * SAFE HTML OUTPUT
    */
 
   function escapeHTML(value) {
@@ -843,26 +797,26 @@
   }
 
   /*
-   * KEEP THE PULL-OUT DISTANCE UNCHANGED
+   * SPACE CALCULATION
    *
-   * No JavaScript height is applied to the folder.
-   * CSS owns the folder's proportions.
+   * The folder keeps its own natural height.
+   * The extended image keeps its own natural
+   * height.
    *
-   * We only calculate how much extra page space
-   * is required for the extended index card.
+   * Only the extra space below the folder
+   * changes when the assessment is pulled out.
    */
 
   function updateSpacer() {
-    const cardWidth =
-      card.getBoundingClientRect().width;
+    const width = paper.getBoundingClientRect().width;
+
+    if (!width) return;
 
     const folderHeight =
-      paper.getBoundingClientRect().height;
-
-    if (!cardWidth || !folderHeight) return;
+      width * (2048 / 1481);
 
     const extendedHeight =
-      cardWidth * (2048 / 836);
+      width * (2048 / 836);
 
     const extra = Math.max(
       0,
@@ -876,11 +830,12 @@
   }
 
   /*
-   * PULL OUT / TUCK AWAY
+   * PULL OUT / RETRACT
    */
 
   function setPulled(open) {
     card.classList.toggle("is-pulled", open);
+    button.classList.toggle("is-pulled", open);
 
     button.setAttribute(
       "aria-expanded",
@@ -898,7 +853,7 @@
   }
 
   /*
-   * RENDER CHARACTER ASSESSMENT
+   * RENDER CHARACTER
    */
 
   function render(index) {
@@ -944,11 +899,6 @@
       </p>
     `;
 
-    /*
-     * Switching characters always retracts
-     * the card without changing folder geometry.
-     */
-
     setPulled(false);
   }
 
@@ -982,7 +932,7 @@
   );
 
   /*
-   * EXPOSE RENDERER TO cast.html
+   * MAKE THE RENDERER AVAILABLE TO cast.html
    */
 
   window.n21RenderAssessment = render;
