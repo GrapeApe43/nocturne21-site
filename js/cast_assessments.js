@@ -942,9 +942,17 @@
 
 
 
+
 /*
- * NOCTURNE 21 — TWO-TAB GOBLIN FIX
- * Restore the previous, better-looking mask.
+ * NOCTURNE 21 — SMOOTH TAB RETURN
+ *
+ * Replaces the previous TWO-TAB GOBLIN FIX.
+ *
+ * The successful extended-state mask stays fixed.
+ * A separate copy of the original folder's lower
+ * edge fades in and out during the card animation.
+ *
+ * No changes to sizing, pull distance, or timing.
  */
 
 (() => {
@@ -957,28 +965,104 @@
   style.id = styleId;
 
   style.textContent = `
-    .n21-cast-page
-    #characterDossier > .n21-dossier-content::before {
-      -webkit-mask-image: none;
-      mask-image: none;
-    }
+    /*
+     * BASE FOLDER
+     *
+     * Keep the successful 87%–94% mask
+     * permanently in place.
+     *
+     * This means the browser no longer needs
+     * to switch between two mask images.
+     */
 
     .n21-cast-page
-    #characterDossier:has(.n21-pull-card.is-pulled)
-    > .n21-dossier-content::before {
+    #characterDossier > .n21-dossier-content::before {
       -webkit-mask-image: linear-gradient(
         to bottom,
         #000 0%,
         #000 87%,
         transparent 94%
-      );
+      ) !important;
 
       mask-image: linear-gradient(
         to bottom,
         #000 0%,
         #000 87%,
         transparent 94%
+      ) !important;
+    }
+
+    /*
+     * LOWER FOLDER EDGE
+     *
+     * A second copy of the folder image covers
+     * only the bottom section.
+     *
+     * Closed: fully visible.
+     * Extended: transparent.
+     *
+     * Because opacity is animatable, the original
+     * tab returns smoothly instead of popping.
+     */
+
+    .n21-cast-page
+    #characterDossier > .n21-dossier-content::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+
+      background-image:
+        url('img/characters/dossier-folder-open.png');
+      background-position: center top;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 84%,
+        #000 87%,
+        #000 100%
       );
+
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 84%,
+        #000 87%,
+        #000 100%
+      );
+
+      opacity: 1;
+      pointer-events: none;
+
+      transition:
+        opacity .72s cubic-bezier(.22,.8,.25,1);
+    }
+
+    /*
+     * CARD EXTENDED
+     *
+     * Fade the original bottom edge away,
+     * revealing the index card beneath.
+     */
+
+    .n21-cast-page
+    #characterDossier:has(.n21-pull-card.is-pulled)
+    > .n21-dossier-content::after {
+      opacity: 0;
+    }
+
+    /*
+     * REDUCED MOTION
+     */
+
+    @media (prefers-reduced-motion: reduce) {
+      .n21-cast-page
+      #characterDossier > .n21-dossier-content::after {
+        transition: none !important;
+      }
     }
   `;
 
