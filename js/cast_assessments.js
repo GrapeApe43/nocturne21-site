@@ -1157,3 +1157,33 @@
   fitWriting();
 })();
 
+/*
+ * NOCTURNE 21 — DOSSIER WRITING POSITION FIX
+ *
+ * Moves the case-file writing closer to the
+ * fastener without touching the folder art,
+ * text scaling, or index-card animation.
+ */
+
+(() => {
+  "use strict";
+
+  const styleId = "n21-dossier-writing-position-fix";
+  document.getElementById(styleId)?.remove();
+
+  const style = document.createElement("style");
+  style.id = styleId;
+
+  style.textContent = `
+    @media (max-width: 1366px) {
+      .n21-cast-page
+      #characterDossier .n21-dossier-writing {
+        top: 16% !important;
+        height: 78% !important;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+})();
+
