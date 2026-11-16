@@ -1102,7 +1102,7 @@
   style.textContent = `
     .n21-cast-page
     #characterDossier .n21-dossier-writing {
-      transform-origin: top left !important;
+      transform-origin: top center !important;
       overflow: visible;
     }
 
