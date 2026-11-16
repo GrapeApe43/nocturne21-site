@@ -1071,14 +1071,18 @@
 })();
 
 
+
 /*
- * NOCTURNE 21 — RESPONSIVE DOSSIER FIT
+ * NOCTURNE 21 — RESPONSIVE DOSSIER WRITING
  *
- * Single source of truth for dossier writing.
- * Handles mobile, tablet, rotation, character
- * changes, and close-button centering.
+ * Keeps the visible left and right margins consistent
+ * for ALL characters, including Kai and Kuro.
  *
- * Does NOT modify folder or index-card artwork.
+ * The artwork, pull-out card, animation, and tab
+ * remain completely untouched.
+ *
+ * Replaces both previous responsive-fitting and
+ * close-button-centering systems.
  */
 
 (() => {
@@ -1092,8 +1096,7 @@
 
   if (!paper || !writing) return;
 
-  // Keep the writing and close button centered.
-  const styleId = "n21-responsive-dossier-fit";
+  const styleId = "n21-unified-dossier-fit";
   document.getElementById(styleId)?.remove();
 
   const style = document.createElement("style");
@@ -1102,8 +1105,10 @@
   style.textContent = `
     .n21-cast-page
     #characterDossier .n21-dossier-writing {
+      box-sizing: border-box !important;
       transform-origin: top left !important;
-      overflow: visible;
+      min-height: 0 !important;
+      overflow: visible !important;
     }
 
     .n21-cast-page
@@ -1112,14 +1117,20 @@
       position: relative !important;
       float: none !important;
       clear: both !important;
-      width: max-content;
-      max-width: 100%;
-      box-sizing: border-box;
+
+      width: max-content !important;
+      max-width: 100% !important;
+
       margin: 12px auto 0 !important;
+
       left: auto !important;
       right: auto !important;
+
+      transform: none !important;
       translate: none !important;
+
       text-align: center !important;
+      box-sizing: border-box !important;
     }
   `;
 
@@ -1127,103 +1138,146 @@
 
   let scheduled = false;
 
+  function fitWriting() {
+    scheduled = false;
 
-function fitWriting() {
-  scheduled = false;
+    // Clear only the adjustments made by this fitter.
+    writing.style.removeProperty("transform");
+    writing.style.removeProperty("width");
+    writing.style.removeProperty("height");
 
-  writing.style.removeProperty("transform");
-  writing.style.removeProperty("width");
-  writing.style.removeProperty("height");
+    if (!dossier.open || dossier.hidden) return;
 
-  if (!dossier.open || dossier.hidden) return;
-  if (window.innerWidth > 1366) return;
+    // Preserve the existing desktop layout.
+    if (window.innerWidth > 1366) return;
 
-  const paperWidth = paper.clientWidth;
-  const paperHeight = paper.clientHeight;
+    const paperWidth = paper.clientWidth;
+    const paperHeight = paper.clientHeight;
 
-  if (!paperWidth || !paperHeight) return;
+    if (!paperWidth || !paperHeight) return;
 
-  const computed = getComputedStyle(writing);
-  const top = parseFloat(computed.top) || 0;
-  const left = parseFloat(computed.left) || 0;
+    const computed = getComputedStyle(writing);
+    const top = parseFloat(computed.top) || 0;
+    const left = parseFloat(computed.left) || 0;
 
-  // Keep the writing within the visible paper.
-  const availableHeight = Math.max(
-    1,
-    paperHeight * 0.88 - top
-  );
+    /*
+     * Consistent visible writing boundaries.
+     *
+     * Left edge stays at the existing CSS position.
+     * Right edge retains the same paper margin.
+     *
+     * Scaling must NEVER move the left edge inward.
+     */
 
-  const availableWidth = Math.max(
-    1,
-    paperWidth - left - paperWidth * 0.09
-  );
+    const rightMargin = paperWidth * 0.09;
 
-  /*
-   * Keep the writing at its intended layout
-   * width instead of making it wider and wider
-   * to compensate for scaling.
-   *
-   * This preserves natural paragraph wrapping.
-   */
+    const availableWidth = Math.max(
+      1,
+      paperWidth - left - rightMargin
+    );
 
-  const baseWidth = Math.min(
-    paperWidth * 0.82,
-    availableWidth
-  );
+    /*
+     * Keep writing above the illustrated pull tab.
+     * The folder itself never changes dimensions.
+     */
 
-  writing.style.width = baseWidth + "px";
+    const availableHeight = Math.max(
+      1,
+      paperHeight * 0.88 - top
+    );
 
-  // Measure at the natural font size.
-  const neededHeight = writing.scrollHeight;
-  const neededWidth = writing.scrollWidth;
+    /*
+     * Important:
+     *
+     * When text scales down, its layout width
+     * increases proportionally.
+     *
+     * Example:
+     * A 75% scale gets 133.33% layout width.
+     *
+     * After scaling, the VISIBLE writing width
+     * is unchanged.
+     *
+     * This prevents Kuro's long dossier from
+     * becoming a tiny centered column.
+     */
 
-  if (!neededHeight || !neededWidth) return;
+    function measureAtScale(scale) {
+      const layoutWidth = availableWidth / scale;
 
-  const heightScale =
-    availableHeight / neededHeight;
+      writing.style.setProperty(
+        "width",
+        layoutWidth + "px",
+        "important"
+      );
 
-  const widthScale =
-    availableWidth / neededWidth;
+      writing.style.setProperty(
+        "height",
+        "auto",
+        "important"
+      );
 
-  const scale = Math.min(
-    1,
-    heightScale,
-    widthScale
-  );
+      writing.style.setProperty(
+        "transform",
+        "none",
+        "important"
+      );
 
+      return writing.scrollHeight * scale;
+    }
 
-/*
- * Scale the writing from its original left margin,
- * then shift it horizontally so its visible center
- * matches the paper's center.
- */
+    /*
+     * Find the largest scale that fits vertically.
+     *
+     * Binary search is more stable than repeatedly
+     * shrinking an already-shrunk element.
+     */
 
-const writingWidth = writing.getBoundingClientRect().width;
+    let scale = 1;
 
-// First apply the scale.
-writing.style.setProperty(
-  "transform",
-  `scale(${scale})`,
-  "important"
-);
+    if (measureAtScale(1) > availableHeight) {
+      let low = 0.2;
+      let high = 1;
 
-// Measure the scaled result.
-const scaledRect = writing.getBoundingClientRect();
-const paperRect = paper.getBoundingClientRect();
+      for (let i = 0; i < 18; i++) {
+        const middle = (low + high) / 2;
 
-// Calculate the horizontal difference.
-const offset =
-  (paperRect.left + paperRect.width / 2) -
-  (scaledRect.left + scaledRect.width / 2);
+        if (measureAtScale(middle) <= availableHeight) {
+          low = middle;
+        } else {
+          high = middle;
+        }
+      }
 
-// Apply the correction without changing scale.
-writing.style.setProperty(
-  "transform",
-  `translateX(${offset}px) scale(${scale})`,
-  "important"
-);
-}
+      scale = low;
+    }
 
+    /*
+     * Apply the final width and scale.
+     *
+     * No translateX.
+     * No recentering.
+     * No character-specific offsets.
+     */
+
+    writing.style.setProperty(
+      "width",
+      (availableWidth / scale) + "px",
+      "important"
+    );
+
+    writing.style.setProperty(
+      "height",
+      "auto",
+      "important"
+    );
+
+    writing.style.setProperty(
+      "transform",
+      `scale(${scale})`,
+      "important"
+    );
+  }
 
   function scheduleFit() {
     if (scheduled) return;
@@ -1235,39 +1289,37 @@ writing.style.setProperty(
     });
   }
 
-  // Recalculate after the browser settles on rotation.
-  let lastWidth = 0;
-
-  function checkLayout() {
-    const width = paper.getBoundingClientRect().width;
-
-    if (Math.abs(width - lastWidth) > 1) {
-      lastWidth = width;
-      scheduleFit();
-    }
-  }
-
+  // Opening or closing the secret file.
   dossier.addEventListener("toggle", scheduleFit);
 
+  // Browser resizing.
   window.addEventListener("resize", scheduleFit);
 
+  // iPad and phone orientation changes.
   window.addEventListener("orientationchange", () => {
     scheduleFit();
 
-    // Some mobile browsers update layout in stages.
     requestAnimationFrame(() => {
       requestAnimationFrame(scheduleFit);
     });
   });
 
-  // Observe actual paper-size changes, not just
-  // browser resize events.
+  // Detect actual changes to the folder's dimensions.
   if ("ResizeObserver" in window) {
-    const observer = new ResizeObserver(checkLayout);
+    const observer = new ResizeObserver(() => {
+      scheduleFit();
+    });
+
     observer.observe(paper);
   }
 
-  // Character changes replace the writing HTML.
+  /*
+   * Character switching.
+   *
+   * Recalculate after cast.html replaces the
+   * dossier writing for the selected character.
+   */
+
   const originalRender = window.n21RenderAssessment;
 
   if (typeof originalRender === "function") {
@@ -1277,8 +1329,10 @@ writing.style.setProperty(
     };
   }
 
-  // Also catch content changes independently.
-  const mutationObserver = new MutationObserver(scheduleFit);
+  // Detect dossier text changes.
+  const mutationObserver = new MutationObserver(
+    scheduleFit
+  );
 
   mutationObserver.observe(writing, {
     childList: true,
@@ -1292,6 +1346,7 @@ writing.style.setProperty(
 
   scheduleFit();
 })();
+
 
 /*
  * NOCTURNE 21 — CENTER THE STUBBORN BUTTON
