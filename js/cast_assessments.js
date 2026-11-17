@@ -1393,3 +1393,65 @@
   document.head.appendChild(style);
 })();
 
+/*
+ * NOCTURNE 21 — RETURN TO DOSSIER
+ *
+ * When the investigator's assessment is tucked away,
+ * smoothly return the reader to the folder.
+ *
+ * Does not change artwork, sizing, margins,
+ * or the existing pull-out animation.
+ */
+
+(() => {
+  "use strict";
+
+  const dossier = document.getElementById("characterDossier");
+  if (!dossier) return;
+
+  let returnTimer = null;
+
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest(".n21-pull-tab");
+    if (!button || !dossier.contains(button)) return;
+
+    const card = dossier.querySelector(".n21-pull-card");
+    if (!card) return;
+
+    // At click time, the existing handler hasn't changed
+    // the card state yet. Only act when retracting.
+    const isClosing = card.classList.contains("is-pulled");
+
+    clearTimeout(returnTimer);
+
+    if (!isClosing) return;
+
+    // Let the existing 720ms retraction finish.
+    returnTimer = setTimeout(() => {
+      // Don't scroll if the reader reopened the card
+      // or closed the entire dossier.
+      if (
+        !dossier.open ||
+        dossier.hidden ||
+        card.classList.contains("is-pulled")
+      ) return;
+
+      const folderTop =
+        dossier.getBoundingClientRect().top +
+        window.scrollY;
+
+      const destination = Math.max(0, folderTop - 24);
+
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      window.scrollTo({
+        top: destination,
+        behavior: reducedMotion ? "instant" : "smooth"
+      });
+    }, 760);
+
+  }, true);
+})();
+
