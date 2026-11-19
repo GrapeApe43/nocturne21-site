@@ -426,7 +426,7 @@ body .n21-cast-page.subPage {
   overflow: visible !important;
 }
 /* Keep the header translucent so the site background shows through. */
-body .n21-cast-page .n21-cast-main .n21-cast-hero {
+body .n21-cast-page .n21-cast-wrap > .n21-cast-hero {
   background: rgba(9, 8, 22, .34) !important;
   background-image: none !important;
   border: 1px solid rgba(163, 144, 220, .6) !important;
@@ -500,13 +500,13 @@ body .n21-cast-page.subPage {
   filter: drop-shadow(0 0 8px rgba(182,169,232,.45));
 }
 .n21-cast-main { min-width: 0; }
-.n21-cast-main .n21-cast-hero {
+.n21-cast-wrap > .n21-cast-hero {
   width: 100% !important;
   max-width: none !important;
   margin: 0 0 14px !important;
   padding: 22px 16px !important;
 }
-.n21-cast-main .n21-cast-hero h1 { font-size: clamp(1.55rem, 2.7vw, 2.25rem) !important; }
+.n21-cast-wrap > .n21-cast-hero h1 { font-size: clamp(1.55rem, 2.7vw, 2.25rem) !important; }
 .n21-cast-main .n21-story-links {
   margin: 0 0 14px;
   text-align: center;
@@ -515,7 +515,7 @@ body .n21-cast-page.subPage {
 @media (max-width: 800px) {
   .n21-cast-page .n21-cast-layout { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .n21-cast-main { display: contents; }
-  .n21-cast-main .n21-cast-hero { order: 0; }
+  .n21-cast-wrap > .n21-cast-hero { order: 0; }
   .n21-cast-board { order: 1; padding: 10px; }
   .n21-cast-main .n21-story-links { order: 2; }
   .n21-cast-main #characterDisplay.n21-cast-display { order: 3; }
@@ -867,6 +867,29 @@ body .n21-cast-page.subPage {
 @media(max-width:600px) { .n21-cast-page .n21-pull-card { width:95%; margin-top:-8px; } .n21-cast-page .n21-pull-middle { padding:6px 12% 16px 15%; } .n21-cast-page .n21-assess-row { margin-bottom:9px; } .n21-cast-page .n21-assess-num { height:27px; font-size:14px; } .n21-cast-page .n21-pull-top h2 { font-size:clamp(11px,3.3vw,17px); } }
 @media(prefers-reduced-motion:reduce) { .n21-cast-page .n21-pull-reveal { transition:none; } }
 
+
+/* CAST WIDTH ALIGNMENT TEST — matches the Archive's outer edges.
+   Heading sits above both columns; mobile corkboard remains unchanged. */
+body .n21-cast-page.subPage {
+  width: min(1180px, calc(100% - 30px)) !important;
+  max-width: 1180px !important;
+}
+.n21-cast-page .n21-cast-wrap > .n21-cast-hero {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 0 20px !important;
+  padding: 30px 24px 27px !important;
+  text-align: center;
+}
+.n21-cast-page .n21-cast-layout {
+  grid-template-columns: 245px minmax(0, 1fr);
+  gap: 22px;
+}
+@media (max-width: 800px) {
+  body .n21-cast-page .n21-cast-wrap > .n21-cast-hero { display: none !important; }
+  .n21-cast-page .n21-cast-layout { grid-template-columns: minmax(0, 1fr); }
+}
 </style>
 </head>
 
@@ -923,6 +946,11 @@ body .n21-cast-page.subPage {
 
   <div class="subPage clearfix n21-cast-page" align="left">
     <div class="n21-cast-wrap">
+  <section class="n21-cast-hero" aria-labelledby="n21-cast-heading">
+    <div class="n21-cast-hero-kicker">MEET THE CHARACTERS</div>
+    <h1 id="n21-cast-heading">Nocturne 21 Cast</h1>
+    <p>Select a character tab to explore their scrapbook profile!</p>
+  </section>
       <div class="n21-cast-layout">
         <aside class="n21-cast-board" aria-label="Character scrapbook navigation">
         <div class="n21-cast-tabs" id="thumbContainer" aria-label="Choose a character">
@@ -946,11 +974,7 @@ body .n21-cast-page.subPage {
 </div>
         </aside>
         <main class="n21-cast-main">
-  <section class="n21-cast-hero" aria-labelledby="n21-cast-heading">
-    <div class="n21-cast-hero-kicker">MEET THE CHARACTERS</div>
-    <h1 id="n21-cast-heading">Nocturne 21 Cast</h1>
-    <p>Select a character tab to explore their scrapbook profile!</p>
-  </section>
+
       <p class="n21-story-links">
   New to the story? <a href="index.html">Read Nocturne 21</a>,
   learn more <a href="about.html">about the comic</a>,
