@@ -31,8 +31,8 @@
 <style>
 /* Archive-only Extras-inspired visual treatment. No global CSS changes. */
 .n21-archive-hero-outside {
-  width: min(92%, 980px); /* fallback until measured against archive panel */
-  max-width: none;
+  width: min(1180px, calc(100% - 30px)) !important; /* match the archive columns */
+  max-width: none !important;
   margin: 20px auto 0 !important;
   position: relative;
   z-index: 1;
@@ -97,7 +97,7 @@
 </style>
 <style>
 /* Archive: Extras-inspired chapter browser */
-#archive-main.n21-archive-layout{box-sizing:border-box;width:min(1180px,calc(100% - 30px));max-width:none;margin:20px auto 55px;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;display:grid;grid-template-columns:245px minmax(0,1fr);gap:22px;align-items:start;text-align:left;font-family:'Open Sans',sans-serif;color:#e9eaf7}
+#archive-main.n21-archive-layout{box-sizing:border-box;width:min(1180px,calc(100% - 30px))!important;max-width:none!important;margin:20px auto 55px;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;display:grid;grid-template-columns:245px minmax(0,1fr);gap:22px;align-items:start;text-align:left;font-family:'Open Sans',sans-serif;color:#e9eaf7}
 .n21-archive-sidebar{display:grid;gap:16px;min-width:0}
 .n21-archive-side-panel,.n21-archive-content{background:rgba(18,23,45,.95);border:1px solid #6764a0;box-shadow:0 4px 16px #0005;border-radius:8px;min-width:0}
 .n21-archive-side-panel{padding:18px}
@@ -239,20 +239,6 @@
  function init(){
   const sections=[...document.querySelectorAll('#archive-main .n21-archive-chapters .archive-section')];
   const links=[...document.querySelectorAll('.n21-archive-side-links a[data-chapter]')];
-  const hero=document.querySelector('.n21-archive-hero-outside');
-  const layout=document.querySelector('#archive-main.n21-archive-layout');
-  if(hero&&layout){
-   function sync(){
-    const r=layout.getBoundingClientRect();
-    hero.style.boxSizing='border-box';
-    hero.style.width=Math.min(r.width,window.innerWidth-30)+'px';
-    hero.style.marginLeft=Math.max(15,r.left)+'px';
-    hero.style.marginRight='0';
-   }
-   sync();
-   window.addEventListener('resize',sync,{passive:true});
-   if(window.ResizeObserver)new ResizeObserver(sync).observe(layout);
-  }
   function select(id,updateHash){
    if(!sections.some(x=>x.id===id))id=sections[0]?.id;
    if(!id)return;
