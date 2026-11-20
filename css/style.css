@@ -4863,3 +4863,18 @@ body.extras-page .extras-layout > .extras-hero h1,
 
 /* Restore original Lacquer typography on secondary headings as well. */
 h2, h3, h4, h5 { font-family: "Lacquer", "Lacquer Regular", cursive !important; }
+
+
+/* N21 typography follow-up: chapter and Extras navigation links. */
+#archive-main .n21-archive-side-links a,
+#archive-main .archive-chapter-nav a,
+.extras-page .extras-side-links a {
+  font-family: "Lacquer", "Lacquer Regular", cursive !important;
+}
+
+/* Fan Art: center the native audio player within its existing card. */
+.music-card audio,
+.extras-page .extras-content .music-card audio {
+  display: block;
+  margin-inline: auto !important;
+}
