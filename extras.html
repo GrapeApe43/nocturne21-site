@@ -351,6 +351,15 @@
   transition:filter .25s ease, transform .25s ease;
 }
 </style>
+<style>
+/* Header alignment: match Archive's desktop hero proportions. */
+@media (min-width: 821px) {
+  .extras-page .extras-layout > .extras-hero {
+    min-height: 148px;
+    box-sizing: border-box;
+  }
+}
+</style>
 </head>
 <body background="img/lily.png" class="extras-page">
 <div class="floating-share" id="shareBar"><button class="share-toggle" onclick="toggleShare(event)" type="button">Share</button>
