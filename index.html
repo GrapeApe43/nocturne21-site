@@ -229,6 +229,32 @@
   .n21-comic-nav-row .writeNav input[type="image"]:hover,
   .n21-comic-nav-row .writeNav input[type="image"]:focus-visible {transform:none;}
 }
+
+/* Homepage width alignment: match the 1180px Cast / Archive / Extras frame.
+   Only the homepage panels are affected; comic artwork and controls keep their sizing. */
+.n21-home-hero,
+.comic-intro,
+.n21-discussion-panel,
+.n21-comic-nav-row {
+  width: min(1180px, calc(100% - 30px));
+  max-width: 1180px;
+  box-sizing: border-box;
+}
+/* The journal preview is styled in the shared stylesheet; override it here only. */
+#latest-journal-box.latest-journal-box {
+  width: min(1180px, calc(100% - 30px));
+  max-width: 1180px;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .n21-home-hero,
+  .comic-intro,
+  .n21-discussion-panel,
+  .n21-comic-nav-row,
+  #latest-journal-box.latest-journal-box {
+    width: calc(100% - 24px);
+  }
+}
   </style>
   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
 
@@ -1009,7 +1035,6 @@
 <!-- iPad viewport experiments removed for clean CSS test. -->
 </body>
 </html>
-
 
 
 
