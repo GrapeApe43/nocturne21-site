@@ -103,6 +103,36 @@
 .n21-poker-exhibit .polaroid{width:100%;box-sizing:border-box}
 .n21-poker-story-link{display:block;text-align:center;color:#f1e5ff!important;font-size:.82rem;text-decoration:underline!important;line-height:1.4;padding:4px 2px}
 .n21-poker-story-link:hover,.n21-poker-story-link:focus-visible{color:#fff!important;text-decoration-thickness:2px!important}
+
+/* Mobile Extras navigation repair: full-width Explore panel and 2 x 2 links.
+   Scoped to these pages; desktop and iPad viewport scripts stay unchanged. */
+@media (max-width: 820px) {
+  body.extras-page main.extras-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  body.extras-page main.extras-layout > aside.extras-sidebar {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100%;
+    min-width: 0;
+  }
+  body.extras-page main.extras-layout > .extras-content {
+    width: 100%;
+    min-width: 0;
+  }
+  body.extras-page .extras-sidebar .extras-side-links {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px;
+  }
+  body.extras-page .extras-sidebar .extras-side-links a {
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 11px 6px;
+    font-size: 1rem;
+  }
+}
+
 </style>
 </head>
 <body background="img/lily.png" class="extras-page">
