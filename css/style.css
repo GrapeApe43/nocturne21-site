@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Lacquer&display=swap");
-
 /* ========================================
    NOCTURNE 21 — SITEWIDE STYLE SHEET
    Red-panel rebuild
@@ -85,7 +84,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Lacquer", "Lacquer Regular", sans-serif;
+  font-family: "Lacquer Regular", sans-serif;
   color: var(--n21-text);
 }
 
@@ -505,7 +504,7 @@ ul.horizontal-list li {
 
 
 .comments-title {
-  font-family: "Lacquer", "Lacquer Regular", sans-serif;
+  font-family: "Lacquer Regular", sans-serif;
   color: var(--n21-red-pale);
   font-size: 1.4rem;
   letter-spacing: 0.03em;
@@ -804,7 +803,7 @@ ul.horizontal-list li {
   color: #2f1319;
   border: none;
   border-radius: 10px;
-  font-family: "Lacquer", "Lacquer Regular", sans-serif;
+  font-family: "Lacquer Regular", sans-serif;
   font-size: 1.2rem;
   text-align: center;
   transform: rotate(-1deg);
@@ -1151,7 +1150,7 @@ footer a:hover {
   color: var(--n21-red-pale);
   border: 1px solid rgba(255, 214, 220, 0.16);
   text-decoration: none;
-  font-family: "Lacquer", "Lacquer Regular", sans-serif;
+  font-family: "Lacquer Regular", sans-serif;
   box-shadow: 0 0 10px rgba(238, 71, 87, 0.18);
 }
 
@@ -1514,7 +1513,7 @@ footer a:hover {
 .related-blog-item a {
   color: var(--n21-red-pale);
   text-decoration: none;
-  font-family: "Lacquer", "Lacquer Regular", sans-serif;
+  font-family: "Lacquer Regular", sans-serif;
   font-size: 1.1rem;
 }
 
@@ -1581,7 +1580,7 @@ footer a:hover {
 .latest-blog-item a {
   color: #ffe7ea;
   text-decoration: none;
-  font-family: "Lacquer", "Lacquer Regular", sans-serif;
+  font-family: "Lacquer Regular", sans-serif;
   font-size: 1.1rem;
 }
 
@@ -2097,7 +2096,7 @@ footer a:hover {
   z-index: 9998;
   background: linear-gradient(145deg, #ff8c9a, #EE4757);
   color: #fff;
-  font-family: "Lacquer", "Lacquer Regular", sans-serif;
+  font-family: "Lacquer Regular", sans-serif;
   padding: 12px 16px;
   border-radius: 14px;
   text-decoration: none;
@@ -4851,4 +4850,13 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
   .floating-share.desktop-collapsed > a {
     display: none !important;
   }
+}
+
+/* N21 main title font repair — no layout or sizing changes. */
+h1,
+body .n21-cast-page .n21-cast-wrap > .n21-cast-hero h1,
+body.extras-page main.extras-layout > header.extras-hero h1,
+body.extras-page .extras-layout > .extras-hero h1,
+.n21-archive-hero h1 {
+  font-family: "Lacquer", "Lacquer Regular", cursive !important;
 }
