@@ -99,7 +99,7 @@
 @media(max-width:540px){.extras-page .n21-category-grid{grid-template-columns:1fr}.extras-page .n21-category img{height:180px}}
 </style>
 </head>
-<body background="img/lily.png" class="extras-page">
+<body background="img/lily.png" class="extras-page n21-packed-gallery">
 <div class="floating-share" id="shareBar"><button class="share-toggle" onclick="toggleShare(event)" type="button">Share</button>
 <a aria-label="RSS" href="/rss.html" title="Subscribe"><svg viewbox="0 0 24 24"><circle cx="6" cy="18" r="2"></circle><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path></svg></a>
 <a data-platform="bluesky" href="https://bsky.app/" target="_blank"><img alt="Bluesky" src="img/bluesky.png"/></a>
@@ -138,4 +138,39 @@
 <script>function copyLink(){navigator.clipboard.writeText(location.href).then(()=>alert('Link copied ✧')).catch(()=>alert('Copy the address from your browser to share!'));}</script>
 <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script><script>if(window.kofiWidgetOverlay){kofiWidgetOverlay.draw('nocturne21',{'type':'floating-chat','floating-chat.donateButton.text':'Coffee','floating-chat.donateButton.background-color':'#5D61AB','floating-chat.donateButton.text-color':'#fff'});}</script>
 <div align="center" id="webcomicwebring"><script src="https://webcomicring.org/js/comicring-variables.js"></script><script src="https://webcomicring.org/js/comicring-widget.js"></script></div>
+<script>
+/* Tightly pack variable-height Polaroids without cropping artwork. */
+(function () {
+  const galleries = Array.from(document.querySelectorAll('.extras-content .polaroid-gallery:not(.then-now-grid)'));
+  if (!galleries.length) return;
+  let scheduled = false;
+  function pack() {
+    scheduled = false;
+    galleries.forEach(gallery => {
+      const styles = getComputedStyle(gallery);
+      const row = parseFloat(styles.gridAutoRows) || 2;
+      const gap = parseFloat(styles.rowGap) || 0;
+      const cards = Array.from(gallery.children).filter(el => el.classList.contains('polaroid'));
+      cards.forEach(card => { card.style.gridRowEnd = 'span 1'; });
+      cards.forEach(card => {
+        const height = card.scrollHeight;
+        const span = Math.max(1, Math.ceil((height + 16 + gap) / (row + gap)));
+        card.style.gridRowEnd = 'span ' + span;
+      });
+    });
+  }
+  function schedule() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(pack);
+  }
+  window.addEventListener('resize', schedule, { passive: true });
+  window.addEventListener('load', schedule);
+  galleries.forEach(gallery => gallery.querySelectorAll('img').forEach(img => {
+    if (!img.complete) img.addEventListener('load', schedule, { once: true });
+  }));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+  schedule();
+})();
+</script>
 </body></html>
