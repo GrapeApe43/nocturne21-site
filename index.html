@@ -240,11 +240,37 @@
   max-width: 1180px;
   box-sizing: border-box;
 }
-/* The journal preview is styled in the shared stylesheet; override it here only. */
-#latest-journal-box.latest-journal-box {
-  width: min(1180px, calc(100% - 30px));
-  max-width: 1180px;
+/* Homepage journal preview: match the full-width panels and journal entry cards.
+   Shared style.css has a 900px !important cap, so this needs !important too. */
+body #latest-journal-box.latest-journal-box {
+  width: min(1180px, calc(100% - 30px)) !important;
+  max-width: 1180px !important;
+  box-sizing: border-box !important;
+  margin: 24px auto !important;
+  background: linear-gradient(145deg, #25223e, #1b1b35) !important;
+  border: 1px solid #7771b4 !important;
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.36), inset 0 0 15px rgba(115,104,180,.07) !important;
+}
+/* Disable the decorative red overlays on this one box only. */
+body #latest-journal-box.latest-journal-box::before,
+body #latest-journal-box.latest-journal-box::after {
+  content: none !important;
+}
+body #latest-journal-box .latest-journal-inner {
+  width: 100%;
+  max-width: none;
   box-sizing: border-box;
+  background: transparent !important;
+}
+body #latest-journal-box .latest-journal-button {
+  background: #34304f !important;
+  border: 1px solid #8078b4;
+  border-radius: 9px;
+  color: #e9e3ff !important;
+}
+body #latest-journal-box .latest-journal-button:hover {
+  background: #514973 !important;
 }
 @media (max-width: 600px) {
   .n21-home-hero,
@@ -252,7 +278,7 @@
   .n21-discussion-panel,
   .n21-comic-nav-row,
   #latest-journal-box.latest-journal-box {
-    width: calc(100% - 24px);
+    width: calc(100% - 24px) !important;
   }
 }
   </style>
