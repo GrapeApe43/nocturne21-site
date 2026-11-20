@@ -86,6 +86,37 @@
 
 .extras-page .extras-sidebar .extras-sidebar-art{display:block;width:100%;max-width:185px;height:auto;object-fit:contain;margin:16px auto 0;filter:drop-shadow(0 5px 9px rgba(0,0,0,.3))}
 @media(max-width:820px){.extras-page .extras-sidebar .extras-sidebar-art{display:block;max-width:160px}}
+
+/* Mobile-only repair: remove the desktop sidebar column and
+   arrange the four Explore links as an even 2-by-2 grid. */
+@media (max-width: 820px) {
+  body.extras-page main.extras-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: calc(100% - 20px) !important;
+    max-width: 100% !important;
+    gap: 15px !important;
+  }
+  body.extras-page main.extras-layout > .extras-sidebar,
+  body.extras-page main.extras-layout > .extras-content {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+  body.extras-page .extras-sidebar .extras-side-links {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+  body.extras-page .extras-sidebar .extras-side-links a {
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 12px 6px;
+    font-size: 1rem;
+  }
+}
+
 </style>
 </head>
 <body background="img/lily.png" class="extras-page">
