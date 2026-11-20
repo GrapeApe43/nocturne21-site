@@ -4860,3 +4860,6 @@ body.extras-page .extras-layout > .extras-hero h1,
 .n21-archive-hero h1 {
   font-family: "Lacquer", "Lacquer Regular", cursive !important;
 }
+
+/* Restore original Lacquer typography on secondary headings as well. */
+h2, h3, h4, h5 { font-family: "Lacquer", "Lacquer Regular", cursive !important; }
