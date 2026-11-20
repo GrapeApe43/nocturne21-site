@@ -326,6 +326,55 @@ body #latest-journal-box .latest-journal-button:focus-visible {
     width: calc(100% - 24px) !important;
   }
 }
+
+/* Homepage final polish — scoped changes only. */
+/* Both reading controls use the existing Pick Up Here treatment. */
+.n21-reading-controls .n21-jump-trigger {
+  background: linear-gradient(135deg, #242743, #101424) !important;
+  border: 1px solid #7771b4 !important;
+  color: #eeeaff !important;
+  box-shadow: 0 3px 14px #0008 !important;
+  border-radius: 12px !important;
+  font: 600 12px 'Open Sans', sans-serif !important;
+}
+.n21-reading-controls .n21-jump-trigger:hover,
+.n21-reading-controls .n21-jump-trigger:focus-visible {
+  border-color: #b3a4ed !important;
+  box-shadow: 0 0 12px #7269c366 !important;
+}
+/* Match the existing red Read Entry / Support the Comic buttons. */
+.jump-comments-wrap .jump-comments-btn {
+  background: linear-gradient(135deg, #ff6c7f, #d63c50) !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  padding: 10px 14px !important;
+  color: #fff !important;
+  font: 600 14px 'Open Sans', sans-serif !important;
+  text-shadow: none !important;
+  box-shadow: 0 3px 12px #0006 !important;
+  transition: transform .2s ease, background .2s ease;
+}
+.jump-comments-wrap .jump-comments-btn:hover,
+.jump-comments-wrap .jump-comments-btn:focus-visible {
+  background: linear-gradient(135deg, #ff8494, #e14a5e) !important;
+  transform: translateY(-1px);
+}
+/* Quiet teal accents from the journal design. */
+.comic-intro .n21-about-support strong,
+body #latest-journal-box.latest-journal-box .latest-journal-label {
+  color: #75cbd2 !important;
+}
+/* Comic is 900px wide on desktop: align vote art with its right edge,
+   rather than the outer 1180px content frame. */
+@media (min-width: 1001px) {
+  .n21-comic-nav-row .n21-vote-button {
+    right: max(0px, calc((100% - 900px) / 2)) !important;
+  }
+}
+/* Preserve the original stacked vote button on narrower screens. */
+@media (max-width: 1000px) {
+  .n21-comic-nav-row .n21-vote-button { right: auto !important; }
+}
   </style>
   <link rel="stylesheet" href="https://webcomicring.org/js/comicring.css">
 
