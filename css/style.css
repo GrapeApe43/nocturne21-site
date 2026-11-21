@@ -4648,7 +4648,7 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
   background-image: url("../img/logo.png") !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
-  background-size: contain !important;
+  background-size: cover !important;
   background-color: #08050c;
   box-sizing: border-box !important;
 }
@@ -4668,7 +4668,7 @@ body.extras-page .extras-content .polaroid-gallery .polaroid:focus-visible > img
   min-width: 0 !important;
   height: auto !important;
   aspect-ratio: 5 / 1;
-  background: #08050c url('../img/logo.png') center / contain no-repeat !important;
+  background: #08050c url('../img/logo.png') center / cover no-repeat !important;
   box-sizing: border-box !important;
 }
 
