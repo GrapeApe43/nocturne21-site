@@ -12,19 +12,35 @@
   <link href="https://db.onlinewebfonts.com/c/06747210b92d5da2086c0a4c811f437f?family=Lacquer+Regular" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <style>
-    .n21-support-hero{box-sizing:border-box;width:min(92%,980px);margin:20px auto 16px;padding:30px 24px 27px;border:1px solid #7870b2;border-radius:8px;background:rgba(7,6,16,.18);text-align:center}
+    /* One shared width for the title and the main panel, without JS measurements. */
+    .n21-support-hero,
+    body #n21-support-content.subPage {
+      box-sizing: border-box !important;
+      width: min(1180px, calc(100% - 30px)) !important;
+      max-width: 1180px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      float: none !important;
+    }
+    .n21-support-hero {
+      margin-top: 20px !important;
+      margin-bottom: 16px !important;
+      padding: 30px 24px 27px;
+      border: 1px solid #7870b2;
+      border-radius: 8px;
+      background: rgba(7,6,16,.18);
+      text-align: center;
+    }
     .n21-support-hero-kicker{color:#bfb1ef;font:700 .77rem/1.5 "Open Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
     .n21-support-hero h1{margin:0 0 16px!important;color:#d7caff!important;font-family:"Lacquer Regular",cursive;font-size:clamp(1.6rem,3.1vw,2.45rem)!important;line-height:1.15!important;font-weight:400;letter-spacing:.015em;text-align:center!important;position:static!important;transform:none!important;float:none!important;text-shadow:none!important}
     .n21-support-hero p{max-width:650px;margin:0 auto!important;color:#e5e2f3!important;font:400 .92rem/1.65 "Open Sans",sans-serif;text-align:center!important}
-    /* Narrower support panel: horizontal artwork no longer needs a 1360px container. */
-    body #n21-support-content.subPage{box-sizing:border-box!important;width:min(980px,calc(100% - 32px))!important;max-width:980px!important;margin-left:auto!important;margin-right:auto!important;float:none!important}
     body #n21-support-content.subPage > .support-page{box-sizing:border-box!important;width:100%!important;max-width:none!important;min-width:0!important;float:none!important;margin-left:auto!important;margin-right:auto!important}
     #n21-support-content .support-page > p,
     #n21-support-content .support-page > hr,
     #n21-support-content .support-page > h2,
-    #n21-support-content .support-cta{max-width:900px;width:100%;box-sizing:border-box;margin-left:auto!important;margin-right:auto!important}
-    /* Each artwork image is a complete clickable card, including its illustrated button. */
-    #n21-support-content .n21-art-tier-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;align-items:start;width:100%;max-width:900px;position:static;transform:none;margin:24px auto;box-sizing:border-box;background:#050407;padding:16px;border-radius:4px}
+    #n21-support-content .support-cta{max-width:1060px;width:100%;box-sizing:border-box;margin-left:auto!important;margin-right:auto!important}
+    /* Each tier image includes its illustrated button; preserve the full artwork. */
+    #n21-support-content .n21-art-tier-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;align-items:start;width:100%;max-width:1060px;position:static;transform:none;margin:24px auto;box-sizing:border-box;background:#050407;padding:16px;border-radius:4px}
     #n21-support-content .n21-art-tier{display:block;width:100%;min-width:0;text-decoration:none;border:2px solid #a99bdf;border-radius:14px;overflow:hidden;background:transparent;box-shadow:0 5px 18px rgba(0,0,0,.25),0 0 0 1px rgba(204,188,255,.12);line-height:0;transition:transform .2s ease,filter .2s ease;outline-offset:4px}
     #n21-support-content .n21-art-tier picture{display:block;width:100%}
     #n21-support-content .n21-art-tier img{display:block;width:100%;height:auto;max-width:100%;border:0;border-radius:0;box-shadow:none;object-fit:contain}
@@ -32,7 +48,9 @@
     #n21-support-content .n21-art-tier:focus-visible{outline:3px solid #d5b9ff;border-radius:5px}
     #n21-support-content .n21-art-tier:active{transform:translateY(-1px) scale(.99)}
     @media(max-width:760px){
-      body #n21-support-content.subPage{width:calc(100% - 20px)!important;padding-left:12px!important;padding-right:12px!important}
+      .n21-support-hero,
+      body #n21-support-content.subPage{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important}
+      body #n21-support-content.subPage{padding-left:12px!important;padding-right:12px!important}
       body #n21-support-content.subPage > .support-page{width:100%!important;max-width:100%!important;padding-left:0!important;padding-right:0!important}
       #n21-support-content .n21-art-tier-grid{grid-template-columns:minmax(0,1fr);gap:18px;width:100%!important;max-width:510px!important;margin:24px auto!important;padding:12px;justify-items:center;left:auto!important;right:auto!important}
       #n21-support-content .n21-art-tier{width:100%;max-width:460px;margin:0 auto!important;justify-self:center;float:none!important;position:relative;left:auto!important;right:auto!important}
@@ -93,16 +111,6 @@
     <script type="text/javascript" src="https://webcomicring.org/js/comicring-variables.js"></script>
     <script type="text/javascript" src="https://webcomicring.org/js/comicring-widget.js"></script>
   </div>
-  <script>
-    (function(){
-      const hero=document.querySelector('.n21-support-hero');
-      const content=document.getElementById('n21-support-content');
-      if(!hero||!content)return;
-      function syncWidth(){const width=content.getBoundingClientRect().width;if(width>0)hero.style.width=Math.min(width,980)+'px';}
-      syncWidth();window.addEventListener('load',syncWidth);window.addEventListener('resize',syncWidth,{passive:true});
-      if(window.ResizeObserver)new ResizeObserver(syncWidth).observe(content);
-    })();
-  </script>
   <script src="/js/sharebar.js"></script>
 </body>
 </html>
