@@ -745,3 +745,32 @@ body {
     width: calc(100% - 20px);
   }
 }
+
+/* Journal entry: center artwork without changing its natural proportions. */
+.n21journal-entry-body img,
+.n21journal-entry-article > .n21journal-entry-thumb {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  float: none !important;
+}
+
+/* Match the comments panel to the full-width entry article, centered. */
+.n21journal-entry-wrap > .comments-shell {
+  display: block;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0;
+  margin: 24px auto 0 !important;
+  float: none !important;
+}
+.n21journal-entry-wrap > .comments-shell .commentbox {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
