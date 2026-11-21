@@ -7,7 +7,7 @@ body {
 }
 
 .n21journal-page-shell {
-  width: min(900px, calc(100% - 24px));
+  width: min(1180px, calc(100% - 30px));
   margin: 0 auto 24px;
 }
 
@@ -335,7 +335,7 @@ body {
 ======================================== */
 
 .n21journal-entry-wrap {
-  width: min(900px, calc(100% - 24px));
+  width: min(1180px, calc(100% - 30px));
   margin: 0 auto 24px;
 }
 
@@ -736,5 +736,12 @@ body {
     height: 32px !important;
     min-width: 0 !important;
     min-height: 32px !important;
+  }
+}
+/* Match Extras / About responsive gutters on narrow screens. */
+@media (max-width: 560px) {
+  .n21journal-page-shell,
+  .n21journal-entry-wrap {
+    width: calc(100% - 20px);
   }
 }
