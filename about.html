@@ -145,6 +145,29 @@
 @media(max-width:600px) {
   .n21-about-hero {padding:24px 16px;}
 }
+
+/* Match the Extras/Gallery content width on desktop and mobile. */
+body #n21-about-content,
+body .n21-about-hero {
+  box-sizing: border-box !important;
+  width: min(1180px, calc(100% - 30px)) !important;
+  max-width: 1180px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+body #n21-about-content {
+  min-width: 0;
+}
+body #n21-about-content img,
+body #n21-about-content iframe {
+  max-width: 100%;
+}
+@media (max-width: 560px) {
+  body #n21-about-content,
+  body .n21-about-hero {
+    width: calc(100% - 20px) !important;
+  }
+}
   </style>
 </head>
 <body align="center" background="img/lily.png">
@@ -347,21 +370,7 @@ forge for yourself.</p>
   });
 </script>
 
-<script>
-(function () {
-  const hero = document.querySelector(".n21-about-hero");
-  const panel = document.getElementById("n21-about-content");
-  if (!hero || !panel) return;
-  function syncWidth() {
-    const width = panel.getBoundingClientRect().width;
-    if (width > 0) hero.style.width = width + "px";
-  }
-  syncWidth();
-  window.addEventListener("load", syncWidth);
-  window.addEventListener("resize", syncWidth, {passive:true});
-  if (window.ResizeObserver) new ResizeObserver(syncWidth).observe(panel);
-})();
-</script>
+
 <script src="js/sharebar.js"></script>
 
 
