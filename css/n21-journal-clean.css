@@ -774,3 +774,40 @@ body {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+
+/* Journal artwork: weathered featured-print treatment inspired by Extras. */
+.n21journal-entry-body img,
+.n21journal-entry-article > .n21journal-entry-thumb {
+  box-sizing: border-box;
+  width: auto;
+  max-width: min(100%, 720px);
+  height: auto;
+  padding: 11px 11px 16px;
+  background: #e7e2d9;
+  border: 1px solid #c7bdaf;
+  border-radius: 2px;
+  box-shadow: 0 3px 0 rgba(255,255,255,.08),
+              0 12px 24px rgba(0,0,0,.48),
+              3px 5px 0 rgba(0,0,0,.15);
+  transform: rotate(-.45deg);
+  transform-origin: center center;
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+.n21journal-entry-body img:hover,
+.n21journal-entry-article > .n21journal-entry-thumb:hover {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: 0 16px 30px rgba(0,0,0,.55),
+              0 0 18px rgba(155,137,215,.14);
+}
+@media (max-width: 600px) {
+  .n21journal-entry-body img,
+  .n21journal-entry-article > .n21journal-entry-thumb {
+    padding: 7px 7px 11px;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .n21journal-entry-body img,
+  .n21journal-entry-article > .n21journal-entry-thumb { transition: none; }
+}
