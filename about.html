@@ -168,6 +168,39 @@ body #n21-about-content iframe {
     width: calc(100% - 20px) !important;
   }
 }
+
+/* Desktop About page: larger illustrations and more breathing room for copy. */
+@media (min-width: 821px) {
+  body #n21-about-content .about-story-image {
+    display: block;
+    float: right !important;
+    width: 36% !important;
+    max-width: 400px !important;
+    height: auto !important;
+    margin: 0 0 24px 34px !important;
+  }
+  body #n21-about-content .about-author-section {
+    gap: 38px;
+    margin-top: 44px;
+    margin-bottom: 38px;
+  }
+  body #n21-about-content .about-author-section .about-author-image {
+    width: 44% !important;
+    max-width: 440px !important;
+  }
+  body #n21-about-content p {
+    line-height: 1.9;
+    margin-top: 18px;
+    margin-bottom: 20px;
+  }
+  body #n21-about-content h2 {
+    margin-top: 30px;
+    margin-bottom: 18px;
+  }
+  body #n21-about-content .about-author-copy h2 {
+    margin-top: 0;
+  }
+}
   </style>
 </head>
 <body align="center" background="img/lily.png">
@@ -242,7 +275,7 @@ body #n21-about-content iframe {
 </section>
 <div class="subPage clearfix" id="n21-about-content">
 <div align="left">
-        <img src="img/Shimizu-photo.png" alt="Nocturne 21: About" align="right"/>
+        <img class="about-story-image" src="img/Shimizu-photo.png" alt="Nocturne 21: About" align="right"/>
       
 
 <p><b>Genre:</b> Sci-fi family drama with mystery, suspense
