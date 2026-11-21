@@ -205,6 +205,42 @@ body #n21-about-content iframe {
     margin-top: 0;
   }
 }
+
+/* About page: combine background and author copy beside the artwork. */
+body #n21-about-content .about-background-author-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 44%);
+  align-items: start;
+  gap: 34px;
+  margin: 24px 0 32px;
+  text-align: left;
+}
+body #n21-about-content .about-background-author-copy { min-width: 0; }
+body #n21-about-content .about-background-author-layout .about-author-image {
+  display: block;
+  float: none !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0 !important;
+  object-fit: contain;
+}
+body #n21-about-content .about-background-author-layout h2:first-child { margin-top: 0; }
+body #n21-about-content .about-background-author-layout .about-author-copy {
+  width: auto;
+  margin-top: 28px;
+}
+@media (max-width: 820px) {
+  body #n21-about-content .about-background-author-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  body #n21-about-content .about-background-author-layout .about-author-image {
+    width: min(100%, 325px) !important;
+    margin: 0 auto !important;
+  }
+}
+
   </style>
 </head>
 <body align="center" background="img/lily.png">
@@ -320,57 +356,40 @@ the newest member of the Shimizu household.  </p>
 </div>
 
 
-<h2>SOME BACKGROUND</h2>
-
-<p>Nocturne 21 is a passion project I’ve been working on for
-more than twenty years. It started out as a high schooler’s 
-angsty comic scribbles, but with practice, blood, sweat, 
-a WHOLE lot of tears, and even more “do-overs”, 
-it eventually evolved into a more complex and interesting 
-story. While the genre changes as we dive further into the 
-plot, it will have a consistent focus on compelling 
-characters, desperate struggles, dynamic relationships, 
-and of course… family. For so many of us, our lives, who 
-we become, and what we value comes from family, whether
-it be the one you’re born from or one you choose to 
-forge for yourself.</p>
-            </div>
-        
-        
-<div class="about-author-section">
-
-  <div class="about-author-copy">
-    <h2>ABOUT THE AUTHOR</h2>
-
-    <p>
-      My name is April Ferrero, and I’m a comic artist and illustrator,
+<div class="about-background-author-layout">
+  <div class="about-background-author-copy">
+    <section class="about-background-block">
+      <h2>SOME BACKGROUND</h2>
+      <p>Nocturne 21 is a passion project I’ve been working on for
+      more than twenty years. It started out as a high schooler’s
+      angsty comic scribbles, but with practice, blood, sweat,
+      a WHOLE lot of tears, and even more “do-overs”,
+      it eventually evolved into a more complex and interesting
+      story. While the genre changes as we dive further into the
+      plot, it will have a consistent focus on compelling
+      characters, desperate struggles, dynamic relationships,
+      and of course… family. For so many of us, our lives, who
+      we become, and what we value comes from family, whether
+      it be the one you’re born from or one you choose to
+      forge for yourself.</p>
+    </section>
+    <section class="about-author-copy">
+      <h2>ABOUT THE AUTHOR</h2>
+      <p>My name is April Ferrero, and I’m a comic artist and illustrator,
       based in Holy Land of Dunks, also known as New England. Creating
       characters and stories has always been my passion; it’s what made
       me teach myself how to draw as a child and refine my talent,
-      eventually going on to get a degree in illustration.
-    </p>
-    <p>
-      In middle school, I discovered comics and realized it was the perfect means
+      eventually going on to get a degree in illustration.</p>
+      <p>In middle school, I discovered comics and realized it was the perfect means
       to take these characters and their stories and really bring them
-      to life.
-    </p>
+      to life.</p>
+    </section>
   </div>
-
-  <img
-    class="about-author-image"
-    src="img/about-me.jpg"
-    alt="Illustration by Nocturne 21 creator April Ferrero"
-  >
-
+  <img class="about-author-image" src="img/about-me.jpg"
+       alt="Illustration by Nocturne 21 creator April Ferrero">
+</div>
 </div>
 
-
-        
-       
-    
-    
-  
-    
 <!-- Clear floated About-page images -->
 <div style="clear: both;"></div>
 
