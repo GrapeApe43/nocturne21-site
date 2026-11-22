@@ -2,7 +2,7 @@
 /* NOCTURNE 21 — SITE HEADER | CSS-background banner */
 
 const CHAPTER_NUMBER = "06";
-const CHAPTER_COMPLETED = 3;
+const CHAPTER_COMPLETED = 4;
 const CHAPTER_TOTAL = 35;
 
 const chapterPercent =
