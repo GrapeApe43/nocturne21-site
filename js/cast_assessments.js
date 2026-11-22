@@ -50,17 +50,17 @@
       ratings: [
         ["Composure under pressure", 0, "zero", "Not a typo."],
         ["Embarrassing dad energy", 10, "double", "Unmeasurable, frankly."],
-        ["Ability to locate car keys", 1, "triple", "PLEASE check your pockets."],
+        ["Ability to locate car keys", 1, "triple", "Will be purchasing a lanyard for him for Christmas."],
         ["Good intentions", 10, "soft", "Annoyingly, yes."]
       ],
-      note: "If he asks, I said only nice things. I do not have time for the follow-up conversation."
+      note: "Loses keys and wallet more than he loses wives...Remind me to redact that later."
     },
     {
       stamp: "REPEAT OFFENDER",
       ratings: [
         ["Likelihood of starting drama", 9, "double", "Exhibit A: literally yesterday."],
         ["Willingness to admit he's wrong", 2, "triple", "Reassessment request denied."],
-        ["Concern for his appearance", 10, "double", "He owns a mirror. We know."],
+        ["Concern for his appearance", 10, "double", "He owns a mirror. Probably more than one."],
         ["Potential", 8, "soft", "I've seen it."]
       ],
       note: "He's an idiot, but I remember who he is when he stops trying so hard."
@@ -84,7 +84,7 @@
         ["Willingness to explain himself", 1, "triple", "An impressive commitment to silence."],
         ["Respect for Kai's well-being", 1, "soft", "Why send him back somewhere that hurt him?"]
       ],
-      note: "He knows all ABOUT Kai. I'm not convinced he knows Kai. He wants Kai sent back to what sounds like an awful home, and won't say why. Why would you want somebody to go back to a place that hurt them?"
+      note: "He knows all ABOUT Kai. I'm not convinced he knows Kai. He insists on sending Kai back to what sounds like an awful home, and won't say why. Why would you want someone you care about to go back to a place that clearly traumatized them?"
     }
   ];
 
