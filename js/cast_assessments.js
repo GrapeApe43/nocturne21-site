@@ -20,7 +20,7 @@
       ratings: [
         ["Coffee dependency", 10, "beyond", "Expressed concerns with Dad. Dad made him another cup."],
         ["Making friends", 10, "normal", "It's actually ridiculous."],
-        ["Shoe compliance", 1, "double", "Claims shoes are optional."],
+        ["Shoe compliance", 1, "double", "Claims shoes are optional. Unwilling to compromise on socks."],
         ["Finding snacks", 10, "normal", "A supernatural talent."]
       ],
       note: "He's family. And apparently 90% caffeine."
