@@ -18,7 +18,7 @@
     {
       stamp: "CAFFEINATED MENACE",
       ratings: [
-        ["Coffee dependency", 10, "beyond", "Dad made him another cup."],
+        ["Coffee dependency", 10, "beyond", "Expressed concerns with Dad. Dad made him another cup."],
         ["Making friends", 10, "normal", "It's actually ridiculous."],
         ["Shoe compliance", 1, "double", "Claims shoes are optional."],
         ["Finding snacks", 10, "normal", "A supernatural talent."]
