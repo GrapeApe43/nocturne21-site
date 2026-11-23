@@ -40,18 +40,41 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
+
+      - name: Diagnose journal publisher checkout
+        shell: bash
+        run: |
+          echo "Git commit checked out:"
+          git rev-parse HEAD
+          echo "Journal publisher path and SHA-256:"
+          ls -l publish-journal.py
+          sha256sum publish-journal.py
+          echo "First 26 lines of checked-out publisher (no secrets):"
+          sed -n '1,26p' publish-journal.py
+          echo "Checking for the old mandatory webhook lookup:"
+          if grep -nF 'os.environ["WEBHOOK_URL"]' publish-journal.py; then
+            echo "ERROR: Old publisher code is present in the checked-out file."
+            exit 1
+          fi
+          echo "No old mandatory webhook lookup found."
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
       - name: Install Python dependencies
         run: pip install requests feedgen pytumblr
+
       - name: Generate comic RSS
         run: python generate-rss.py
+
       - name: Generate journal RSS
         run: python publish-journal.py
+
       - name: Generate sitemap
         run: python generate-sitemap.py
+
       - name: Post comic to social media
         if: github.event_name == 'workflow_dispatch' && inputs.publish_comic == 'true'
         run: python generate-rss.py
@@ -63,6 +86,7 @@ jobs:
           TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
           TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
+
       - name: Post journal to social media
         id: journal_post
         if: github.event_name == 'workflow_dispatch' && inputs.publish_journal == 'true'
@@ -77,6 +101,7 @@ jobs:
           TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
           TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
+
       - name: Save publish trackers to repo
         if: github.event_name == 'workflow_dispatch'
         run: |
@@ -90,22 +115,27 @@ jobs:
           else
             echo "No tracker or RSS changes to commit."
           fi
+
       - name: Upload rss.xml to Neocities
         run: |
           curl --fail-with-body -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
             -F "rss.xml=@rss.xml" https://neocities.org/api/upload
+
       - name: Upload sitemap.xml to Neocities
         run: |
           curl --fail-with-body -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
             -F "sitemap.xml=@sitemap.xml" https://neocities.org/api/upload
+
       - name: Upload robots.txt to Neocities
         run: |
           curl --fail-with-body -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
             -F "robots.txt=@robots.txt" https://neocities.org/api/upload
+
       - name: Upload journal-rss.xml to Neocities
         run: |
           curl --fail-with-body -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
             -F "journal-rss.xml=@journal-rss.xml" https://neocities.org/api/upload
+
       - name: Report journal posting failure
         if: always() && steps.journal_post.outcome == 'failure'
         run: |
