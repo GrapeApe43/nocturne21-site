@@ -17,52 +17,43 @@ on:
       - "n21-journal-data.js"
       - "publish-journal.py"
       - ".github/workflows/publish.yml"
-
   workflow_dispatch:
     inputs:
       publish_comic:
         description: "Post comic update?"
         required: true
-        default: "true"
+        default: "false"
         type: choice
-        options:
-          - "true"
-          - "false"
+        options: ["true", "false"]
       publish_journal:
         description: "Post journal update?"
         required: true
         default: "false"
         type: choice
-        options:
-          - "true"
-          - "false"
+        options: ["true", "false"]
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Install Python dependencies
         run: pip install requests feedgen pytumblr
-
-      - name: Generate RSS only
+      - name: Generate comic RSS
         run: python generate-rss.py
-
+      - name: Generate journal RSS
+        run: python publish-journal.py
       - name: Generate sitemap
         run: python generate-sitemap.py
-
       - name: Post comic to social media
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish_comic == 'true'
+        if: github.event_name == 'workflow_dispatch' && inputs.publish_comic == 'true'
         run: python generate-rss.py
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
@@ -72,11 +63,13 @@ jobs:
           TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
           TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
-
       - name: Post journal to social media
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish_journal == 'true'
+        id: journal_post
+        if: github.event_name == 'workflow_dispatch' && inputs.publish_journal == 'true'
+        continue-on-error: true
         run: python publish-journal.py
         env:
+          PUBLISH_JOURNAL: "true"
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
           BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
@@ -84,15 +77,12 @@ jobs:
           TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
           TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
           TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
-
       - name: Save publish trackers to repo
         if: github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git add .last_discord_post.txt .last_journal_post.txt rss.xml journal-rss.xml sitemap.xml 2>/dev/null || true
-
+          git add .last_discord_post.txt .last_journal_post.txt .journal_publish_state.json rss.xml journal-rss.xml sitemap.xml 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "Update publish trackers"
             git pull --rebase --autostash origin main
@@ -100,28 +90,24 @@ jobs:
           else
             echo "No tracker or RSS changes to commit."
           fi
-
       - name: Upload rss.xml to Neocities
         run: |
-          curl -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
-          -F "rss.xml=@rss.xml" \
-          https://neocities.org/api/upload
-
+          curl --fail-with-body -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
+            -F "rss.xml=@rss.xml" https://neocities.org/api/upload
       - name: Upload sitemap.xml to Neocities
         run: |
-          curl -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
-          -F "sitemap.xml=@sitemap.xml" \
-          https://neocities.org/api/upload
-
+          curl --fail-with-body -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
+            -F "sitemap.xml=@sitemap.xml" https://neocities.org/api/upload
       - name: Upload robots.txt to Neocities
         run: |
-          curl -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
-          -F "robots.txt=@robots.txt" \
-          https://neocities.org/api/upload     
-
+          curl --fail-with-body -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
+            -F "robots.txt=@robots.txt" https://neocities.org/api/upload
       - name: Upload journal-rss.xml to Neocities
-        if: hashFiles('journal-rss.xml') != ''
         run: |
-          curl -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
-          -F "journal-rss.xml=@journal-rss.xml" \
-          https://neocities.org/api/upload
+          curl --fail-with-body -H "Authorization: Bearer ${{ secrets.NEOCITIES_API_KEY }}" \
+            -F "journal-rss.xml=@journal-rss.xml" https://neocities.org/api/upload
+      - name: Report journal posting failure
+        if: always() && steps.journal_post.outcome == 'failure'
+        run: |
+          echo "Journal posting failed on one or more platforms. Check logs; successful posts were tracked."
+          exit 1
