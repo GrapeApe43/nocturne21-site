@@ -1,249 +1,255 @@
 import os
 import re
+import json
+import html
+import mimetypes
+from pathlib import Path
 from datetime import datetime, timezone
+from email.utils import format_datetime
+from urllib.parse import quote
 
 import requests
 import pytumblr
 
-SITE_URL = "https://nocturne21.com"
-JOURNAL_DATA_FILE = "./n21-journal-data.js"
-
-if not os.path.exists(JOURNAL_DATA_FILE):
-    print("Available files:", os.listdir("."))
-    raise FileNotFoundError(f"Could not find {JOURNAL_DATA_FILE}")
-LAST_JOURNAL_POST_FILE = ".last_journal_post.txt"
-OUTPUT_FILE = "journal-rss.xml"
-DEFAULT_IMAGE_URL = f"{SITE_URL}/img/promo-art.jpg"
-
-WEBHOOK_URL = os.environ["WEBHOOK_URL"]
-BLUESKY_HANDLE = os.environ["BLUESKY_HANDLE"]
-BLUESKY_APP_PASSWORD = os.environ["BLUESKY_APP_PASSWORD"]
-
-TUMBLR_CONSUMER_KEY = os.environ["TUMBLR_CONSUMER_KEY"]
-TUMBLR_CONSUMER_SECRET = os.environ["TUMBLR_CONSUMER_SECRET"]
-TUMBLR_OAUTH_TOKEN = os.environ["TUMBLR_OAUTH_TOKEN"]
-TUMBLR_OAUTH_SECRET = os.environ["TUMBLR_OAUTH_SECRET"]
-
-TUMBLR_BLOG = "nocturne-21.tumblr.com"
+SITE_URL = 'https://nocturne21.com'
+DATA_FILE = Path('n21-journal-data.js')
+RSS_FILE = Path('journal-rss.xml')
+TRACKER_FILE = Path('.last_journal_post.txt')
+STATE_FILE = Path('.journal_publish_state.json')
+DEFAULT_IMAGE = f'{SITE_URL}/img/promo-art.jpg'
+TIMEOUT = 25
 
 
-def strip_html(text):
-    return re.sub(r"<[^>]+>", "", text or "").strip()
-
-
-def format_rfc2822(dt):
-    return dt.strftime("%a, %d %b %Y %H:%M:%S +0000")
-
-
-def parse_js_date(date_text):
-    return datetime.strptime(date_text, "%Y-%m-%d").replace(tzinfo=timezone.utc)
-
-
-def extract_field(entry, field):
-    match = re.search(rf'{field}\s*:\s*"(.*?)"', entry, re.S)
-    return match.group(1).strip() if match else None
-
-
-def extract_content(entry):
-    match = re.search(r'content\s*:\s*`(.*?)`', entry, re.S)
-    return match.group(1).strip() if match else ""
-
-
-def extract_tags(entry):
-    match = re.search(r'tags\s*:\s*\[(.*?)\]', entry, re.S)
+def objects_from_array(source):
+    match = re.search(r'\bconst\s+N21_JOURNAL_POSTS\s*=\s*\[', source)
     if not match:
-        return []
-    return re.findall(r'"(.*?)"', match.group(1))
+        raise ValueError('Cannot find N21_JOURNAL_POSTS array')
+    i = match.end()
+    depth = 0
+    start = None
+    quote_char = None
+    escaped = False
+    line_comment = False
+    block_comment = False
+    result = []
+    while i < len(source):
+        c = source[i]
+        nxt = source[i + 1] if i + 1 < len(source) else ''
+        if line_comment:
+            if c == '\n':
+                line_comment = False
+            i += 1
+            continue
+        if block_comment:
+            if c == '*' and nxt == '/':
+                block_comment = False
+                i += 2
+            else:
+                i += 1
+            continue
+        if quote_char:
+            if escaped:
+                escaped = False
+            elif c == '\\':
+                escaped = True
+            elif c == quote_char:
+                quote_char = None
+            i += 1
+            continue
+        if c == '/' and nxt == '/':
+            line_comment = True
+            i += 2
+            continue
+        if c == '/' and nxt == '*':
+            block_comment = True
+            i += 2
+            continue
+        if c in ('"', "'", '`'):
+            quote_char = c
+            i += 1
+            continue
+        if c == ']' and depth == 0:
+            if start is not None:
+                raise ValueError('Unclosed journal post object')
+            return result
+        elif c == '{':
+            if start is None:
+                start = i
+            depth += 1
+        elif c == '}':
+            depth -= 1
+            if start is not None and depth == 0:
+                result.append(source[start:i + 1])
+                start = None
+        i += 1
+    raise ValueError('Journal array is not closed')
 
 
-def extract_comic_page(entry):
-    match = re.search(r'comicPage\s*:\s*(\d+)', entry)
-    return int(match.group(1)) if match else None
+def string_field(block, name):
+    m = re.search(r'\b' + re.escape(name) + r'\s*:\s*([\"\'])(.*?)\1', block, re.S)
+    return m.group(2) if m else None
 
 
-def build_entry_url(post_id):
-    return f"{SITE_URL}/n21-entry-page.html?id={post_id}"
+def content_field(block):
+    m = re.search(r'\bcontent\s*:\s*`((?:\\.|[^`])*)`', block, re.S)
+    return m.group(1) if m else ''
 
 
-def get_image(post):
-    if post["comicPage"]:
-        return f"{SITE_URL}/img/preview/pg{post['comicPage']}.png"
-    return DEFAULT_IMAGE_URL
+def tags_field(block):
+    m = re.search(r'\btags\s*:\s*\[([^\]]*)\]', block, re.S)
+    return re.findall(r'[\"\']([^\"\']+)[\"\']', m.group(1)) if m else []
 
 
-with open(JOURNAL_DATA_FILE, "r", encoding="utf-8") as f:
-    text = f.read()
+def strip_markup(value):
+    return html.unescape(re.sub(r'<[^>]*>', ' ', value or '')).strip()
 
-entries = re.findall(r'\{(.*?)\}', text, re.S)
 
-posts = []
+def absolute_image(path):
+    if not path:
+        return DEFAULT_IMAGE
+    if path.startswith(('https://', 'http://')):
+        return path
+    return SITE_URL + '/' + path.lstrip('/')
 
-for entry in entries:
-    post_id = extract_field(entry, "id")
-    title = extract_field(entry, "title")
-    date_raw = extract_field(entry, "date")
-    excerpt = extract_field(entry, "excerpt")
-    content = extract_content(entry)
-    tags = extract_tags(entry)
-    comic_page = extract_comic_page(entry)
 
-    if not post_id or not title or not date_raw:
-        continue
+def load_posts():
+    blocks = objects_from_array(DATA_FILE.read_text(encoding='utf-8'))
+    posts = []
+    for block in blocks:
+        ident = string_field(block, 'id')
+        title = string_field(block, 'title')
+        date = string_field(block, 'date')
+        if not all((ident, title, date)):
+            continue
+        dt = datetime.strptime(date, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+        excerpt = string_field(block, 'excerpt')
+        content = content_field(block)
+        thumbnail = string_field(block, 'thumbnail')
+        comic_match = re.search(r'\bcomicPage\s*:\s*(\d+)', block)
+        comic_page = int(comic_match.group(1)) if comic_match else None
+        image = absolute_image(thumbnail) if thumbnail else (f'{SITE_URL}/img/preview/pg{comic_page}.png' if comic_page else DEFAULT_IMAGE)
+        posts.append({
+            'id': ident, 'title': title, 'date': dt,
+            'description': excerpt or strip_markup(content) or title,
+            'tags': tags_field(block), 'image': image,
+            'url': f'{SITE_URL}/n21-entry-page?id={quote(ident)}',
+        })
+    if not posts:
+        raise ValueError('No journal posts found')
+    return sorted(posts, key=lambda p: p['date'], reverse=True)
 
-    dt = parse_js_date(date_raw)
-    description = excerpt or strip_html(content) or title
 
-    posts.append({
-        "id": post_id,
-        "title": title,
-        "date": dt,
-        "description": description,
-        "tags": tags,
-        "comicPage": comic_page,
-        "url": build_entry_url(post_id),
-    })
+def generate_rss(posts):
+    items = []
+    for p in posts:
+        items.append(f'''<item><title>{html.escape(p['title'])}</title>
+<link>{html.escape(p['url'])}</link><guid isPermaLink="true">{html.escape(p['url'])}</guid>
+<pubDate>{format_datetime(p['date'])}</pubDate>
+<description>{html.escape(p['description'])}</description></item>''')
+    rss = f'''<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Nocturne 21 Journal</title>
+<link>{SITE_URL}</link><description>News and updates from Nocturne 21</description>
+{''.join(items)}</channel></rss>'''
+    RSS_FILE.write_text(rss, encoding='utf-8')
+    print(f'Generated {RSS_FILE} with {len(posts)} posts.')
 
-posts.sort(key=lambda x: x["date"], reverse=True)
 
-if not posts:
-    raise ValueError("No journal posts found")
+def require(name):
+    value = os.getenv(name)
+    if not value:
+        raise RuntimeError(f'Missing GitHub Actions secret: {name}')
+    return value
 
-latest = posts[0]
-image_url = get_image(latest)
 
-rss_items = []
-for post in posts:
-    post_image = get_image(post)
-    rss_items.append(f"""
-    <item>
-      <title>{post["title"]}</title>
-      <link>{post["url"]}</link>
-      <guid>{post["url"]}</guid>
-      <pubDate>{format_rfc2822(post["date"])}</pubDate>
-      <description><![CDATA[
-        <p>{post["description"]}</p>
-        <p><img src="{post_image}" alt="{post["title"]}"></p>
-      ]]></description>
-    </item>
-    """.strip())
+def discord(p):
+    res = requests.post(require('WEBHOOK_URL'), json={
+        'content': f"📝 **New Journal Post!**\n\n**{p['title']}**\n{p['url']}",
+        'embeds': [{'title': p['title'], 'url': p['url'], 'description': p['description'][:200], 'image': {'url': p['image']}}],
+    }, timeout=TIMEOUT)
+    res.raise_for_status()
+    if res.status_code not in (200, 204):
+        raise RuntimeError(f'Discord unexpected status {res.status_code}')
 
-rss = f"""<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-  <channel>
-    <title>Nocturne 21 Journal</title>
-    <link>{SITE_URL}/n21-journal</link>
-    <description>Journal entries, comic updates, behind-the-scenes notes, and extra thoughts from Nocturne 21.</description>
-    <language>en-us</language>
-    <lastBuildDate>{format_rfc2822(datetime.now(timezone.utc))}</lastBuildDate>
-    {' '.join(rss_items)}
-  </channel>
-</rss>
-"""
 
-with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-    f.write(rss)
+def bluesky(p):
+    session = requests.post('https://bsky.social/xrpc/com.atproto.server.createSession', json={
+        'identifier': require('BLUESKY_HANDLE'), 'password': require('BLUESKY_APP_PASSWORD')
+    }, timeout=TIMEOUT)
+    session.raise_for_status()
+    data = session.json()
+    image_res = requests.get(p['image'], timeout=TIMEOUT)
+    image_res.raise_for_status()
+    image_bytes = image_res.content
+    if len(image_bytes) > 1_000_000:
+        raise RuntimeError('Bluesky image exceeds 1 MB; use a smaller thumbnail')
+    mime = image_res.headers.get('Content-Type', '').split(';')[0]
+    if mime not in ('image/jpeg', 'image/png', 'image/webp'):
+        mime = mimetypes.guess_type(p['image'])[0] or 'image/jpeg'
+    upload = requests.post('https://bsky.social/xrpc/com.atproto.repo.uploadBlob',
+        headers={'Authorization': f"Bearer {data['accessJwt']}", 'Content-Type': mime},
+        data=image_bytes, timeout=TIMEOUT)
+    upload.raise_for_status()
+    record = {
+        '$type': 'app.bsky.feed.post',
+        'text': f"📝 {p['title']}\n\n{p['url']}",
+        'createdAt': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+        'embed': {'$type': 'app.bsky.embed.images', 'images': [{'alt': p['title'], 'image': upload.json()['blob']}]}
+    }
+    response = requests.post('https://bsky.social/xrpc/com.atproto.repo.createRecord',
+        headers={'Authorization': f"Bearer {data['accessJwt']}"},
+        json={'repo': data['did'], 'collection': 'app.bsky.feed.post', 'record': record}, timeout=TIMEOUT)
+    response.raise_for_status()
 
-print(f"{OUTPUT_FILE} generated successfully with {len(posts)} items.")
 
-last_posted = None
-if os.path.exists(LAST_JOURNAL_POST_FILE):
-    with open(LAST_JOURNAL_POST_FILE, "r", encoding="utf-8") as f:
-        last_posted = f.read().strip()
+def tumblr(p):
+    client = pytumblr.TumblrRestClient(
+        require('TUMBLR_CONSUMER_KEY'), require('TUMBLR_CONSUMER_SECRET'),
+        require('TUMBLR_OAUTH_TOKEN'), require('TUMBLR_OAUTH_SECRET'))
+    response = client.create_photo('nocturne-21.tumblr.com', state='published',
+        caption=f"<p><b>{html.escape(p['title'])}</b></p><p><a href='{html.escape(p['url'], quote=True)}'>Read here</a></p>",
+        source=p['image'], tags=p['tags'])
+    if not isinstance(response, dict) or ('id' not in response and 'id_string' not in response):
+        raise RuntimeError(f'Tumblr did not confirm post creation: {response}')
 
-if last_posted == latest["id"]:
-    print(f'Journal post "{latest["id"]}" already posted. Skipping social.')
-    raise SystemExit(0)
 
-discord_data = {
-    "content": f"📝 **New Journal Post!**\n\n**{latest['title']}**\n{latest['url']}",
-    "embeds": [{
-        "title": latest["title"],
-        "url": latest["url"],
-        "description": latest["description"][:200],
-        "image": {"url": image_url}
-    }]
-}
+def main():
+    posts = load_posts()
+    generate_rss(posts)
+    if os.getenv('PUBLISH_JOURNAL') != 'true':
+        print('RSS-only mode; social posting skipped.')
+        return
+    latest = posts[0]
+    print(f"Selected journal: {latest['id']} ({latest['title']})")
+    state = {}
+    if STATE_FILE.exists():
+        state = json.loads(STATE_FILE.read_text(encoding='utf-8'))
+    if not isinstance(state, dict):
+        raise RuntimeError('Invalid journal publish state')
+    # Honor the legacy tracker for older successful runs.
+    if TRACKER_FILE.exists() and TRACKER_FILE.read_text(encoding='utf-8').strip() == latest['id']:
+        print('Journal already marked published by legacy tracker; skipping.')
+        return
+    completed = set(state.get(latest['id'], []))
+    failures = []
+    for name, fn in [('discord', discord), ('bluesky', bluesky), ('tumblr', tumblr)]:
+        if name in completed:
+            print(f'{name}: already posted; skipping.')
+            continue
+        try:
+            fn(latest)
+            completed.add(name)
+            state[latest['id']] = sorted(completed)
+            STATE_FILE.write_text(json.dumps(state, indent=2) + '\n', encoding='utf-8')
+            print(f'{name}: posted.')
+        except Exception as exc:
+            failures.append(f'{name}: {exc}')
+            print(f'{name}: FAILED: {exc}')
+    if len(completed) == 3:
+        TRACKER_FILE.write_text(latest['id'], encoding='utf-8')
+        print('Journal published to all three platforms.')
+    if failures:
+        raise RuntimeError('Some social posts failed: ' + '; '.join(failures))
 
-response = requests.post(WEBHOOK_URL, json=discord_data)
-print("Discord:", response.status_code)
 
-if response.status_code not in (200, 204):
-    raise Exception("Discord failed")
-
-session_resp = requests.post(
-    "https://bsky.social/xrpc/com.atproto.server.createSession",
-    json={
-        "identifier": BLUESKY_HANDLE,
-        "password": BLUESKY_APP_PASSWORD,
-    },
-    timeout=20
-)
-session_resp.raise_for_status()
-session = session_resp.json()
-
-jwt = session["accessJwt"]
-did = session["did"]
-
-img_resp = requests.get(image_url, timeout=20)
-img_resp.raise_for_status()
-img = img_resp.content
-content_type = img_resp.headers.get("Content-Type", "image/png")
-
-upload_resp = requests.post(
-    "https://bsky.social/xrpc/com.atproto.repo.uploadBlob",
-    headers={
-        "Authorization": f"Bearer {jwt}",
-        "Content-Type": content_type
-    },
-    data=img,
-    timeout=20
-)
-upload_resp.raise_for_status()
-upload = upload_resp.json()
-
-create_resp = requests.post(
-    "https://bsky.social/xrpc/com.atproto.repo.createRecord",
-    headers={
-        "Authorization": f"Bearer {jwt}",
-        "Content-Type": "application/json"
-    },
-    json={
-        "repo": did,
-        "collection": "app.bsky.feed.post",
-        "record": {
-            "$type": "app.bsky.feed.post",
-            "text": f"📝 {latest['title']}\n\n{latest['url']}",
-            "createdAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-            "embed": {
-                "$type": "app.bsky.embed.images",
-                "images": [{
-                    "alt": latest["title"],
-                    "image": upload["blob"]
-                }]
-            }
-        }
-    },
-    timeout=20
-)
-create_resp.raise_for_status()
-print("Bluesky posted")
-
-client = pytumblr.TumblrRestClient(
-    TUMBLR_CONSUMER_KEY,
-    TUMBLR_CONSUMER_SECRET,
-    TUMBLR_OAUTH_TOKEN,
-    TUMBLR_OAUTH_SECRET
-)
-
-client.create_photo(
-    TUMBLR_BLOG,
-    state="published",
-    caption=f"<p><b>{latest['title']}</b></p><p><a href='{latest['url']}'>Read here</a></p>",
-    source=image_url,
-    tags=latest["tags"]
-)
-
-print("Tumblr posted")
-
-with open(LAST_JOURNAL_POST_FILE, "w", encoding="utf-8") as f:
-    f.write(latest["id"])
+if __name__ == '__main__':
+    main()
