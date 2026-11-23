@@ -64,7 +64,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install Python dependencies
-        run: pip install requests feedgen pytumblr
+        run: pip install requests feedgen pytumblr Pillow
 
       - name: Generate comic RSS
         run: python generate-rss.py
