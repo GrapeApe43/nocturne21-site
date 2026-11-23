@@ -3,6 +3,8 @@ import re
 import json
 import html
 import mimetypes
+from io import BytesIO
+from PIL import Image, ImageOps
 from pathlib import Path
 from datetime import datetime, timezone
 from email.utils import format_datetime
@@ -180,11 +182,36 @@ def bluesky(p):
     image_res = requests.get(p['image'], timeout=TIMEOUT)
     image_res.raise_for_status()
     image_bytes = image_res.content
-    if len(image_bytes) > 1_000_000:
-        raise RuntimeError('Bluesky image exceeds 1 MB; use a smaller thumbnail')
     mime = image_res.headers.get('Content-Type', '').split(';')[0]
     if mime not in ('image/jpeg', 'image/png', 'image/webp'):
         mime = mimetypes.guess_type(p['image'])[0] or 'image/jpeg'
+    if len(image_bytes) > 1_000_000:
+        print(f'Bluesky thumbnail is {len(image_bytes):,} bytes; optimizing automatically.')
+        with Image.open(BytesIO(image_bytes)) as original:
+            original = ImageOps.exif_transpose(original)
+            # JPEG is widely supported by Bluesky. Flatten transparent artwork on white.
+            if original.mode in ('RGBA', 'LA') or 'transparency' in original.info:
+                rgba = original.convert('RGBA')
+                background = Image.new('RGB', rgba.size, 'white')
+                background.paste(rgba, mask=rgba.getchannel('A'))
+                optimized = background
+            else:
+                optimized = original.convert('RGB')
+            optimized.thumbnail((1600, 1600), Image.Resampling.LANCZOS)
+            for max_dimension in (1600, 1200, 900, 700, 500):
+                optimized.thumbnail((max_dimension, max_dimension), Image.Resampling.LANCZOS)
+                for quality in (85, 75, 65, 50):
+                    output = BytesIO()
+                    optimized.save(output, format='JPEG', quality=quality, optimize=True)
+                    if output.tell() <= 950_000:
+                        image_bytes = output.getvalue()
+                        mime = 'image/jpeg'
+                        break
+                if len(image_bytes) <= 950_000:
+                    break
+            else:
+                raise RuntimeError('Unable to optimize Bluesky image below 1 MB')
+        print(f'Optimized Bluesky thumbnail to {len(image_bytes):,} bytes.')
     upload = requests.post('https://bsky.social/xrpc/com.atproto.repo.uploadBlob',
         headers={'Authorization': f"Bearer {data['accessJwt']}", 'Content-Type': mime},
         data=image_bytes, timeout=TIMEOUT)
