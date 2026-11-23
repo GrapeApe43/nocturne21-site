@@ -61,7 +61,7 @@ const dossierPages = {
     <span class="n21-classified" aria-hidden="true">REDACTED</span>
     <p class="n21-redaction-note">He says he doesn't know anything.</p>
     <p class="n21-redaction-note">I asked him again. Same answer.</p>
-    <p class="n21-redaction-note">The man is doing the thing where plays dumb, but I'm onto him.</p>
+    <p class="n21-redaction-note">The man is doing the thing where he plays dumb, but I'm onto him.</p>
     </section>
     <h3>Known habits</h3>
     <p>Works too much. Drinks coffee like it's water. Smokes when he's really stessed. Lies about that too. 
