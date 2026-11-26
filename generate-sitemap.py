@@ -7,15 +7,16 @@ SITE_URL = "https://nocturne21.com"
 SETTINGS_FILE = "js/comic_settings.js"
 OUTPUT_FILE = "sitemap.xml"
 
-# Permanent public pages we want Google to discover.
+# Permanent public pages.
+# Use extensionless URLs for Neocities.
 STATIC_URLS = [
     f"{SITE_URL}/",
-    f"{SITE_URL}/archive.html",
-    f"{SITE_URL}/about.html",
-    f"{SITE_URL}/cast.html",
-    f"{SITE_URL}/extras.html",
-    f"{SITE_URL}/support.html",
-    f"{SITE_URL}/journal.html",
+    f"{SITE_URL}/archive",
+    f"{SITE_URL}/about",
+    f"{SITE_URL}/cast",
+    f"{SITE_URL}/extras",
+    f"{SITE_URL}/support",
+    f"{SITE_URL}/n21-journal",
 ]
 
 
@@ -81,13 +82,22 @@ for entry in entries:
 # Remove duplicates while preserving order.
 comic_pages = list(dict.fromkeys(comic_pages))
 
+if not comic_pages:
+    raise ValueError("No comic pages found. Sitemap not updated.")
 
+
+# Combine permanent pages and individual comic pages.
 urls = list(STATIC_URLS)
 
 for pg in comic_pages:
     urls.append(f"{SITE_URL}/?pg={pg}")
 
 
+# Remove any duplicate URLs.
+urls = list(dict.fromkeys(urls))
+
+
+# Generate XML.
 xml_entries = []
 
 for url in urls:
