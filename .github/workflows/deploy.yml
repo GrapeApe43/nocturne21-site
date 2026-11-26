@@ -1,4 +1,3 @@
-
 name: Deploy to Neocities
 
 on:
@@ -19,6 +18,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate sitemap
+        run: python generate-sitemap.py
 
       - name: Generate comic sharing pages
         run: node generate-share-pages.cjs
@@ -42,8 +49,11 @@ jobs:
           cp *.html deploy/
 
           # RSS + DATA FILES
-          cp *.xml deploy/ 2>/dev/null || true
+          cp *.xml deploy/
           cp *.js deploy/ 2>/dev/null || true
+
+          # SEARCH ENGINE FILES
+          cp robots.txt deploy/
 
           # OPTIONAL
           cp favicon.* deploy/ 2>/dev/null || true
