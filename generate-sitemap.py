@@ -9,7 +9,11 @@ SETTINGS_FILE = "js/comic_settings.js"
 JOURNAL_FILE = "n21-journal-data.js"
 OUTPUT_FILE = "sitemap.xml"
 
-# Permanent public pages.
+
+# ========================================
+# PERMANENT PUBLIC PAGES
+# ========================================
+
 STATIC_URLS = [
     f"{SITE_URL}/",
     f"{SITE_URL}/archive",
@@ -18,8 +22,21 @@ STATIC_URLS = [
     f"{SITE_URL}/extras",
     f"{SITE_URL}/support",
     f"{SITE_URL}/n21-journal",
+
+    # Extras subpages
+    f"{SITE_URL}/gallery",
+    f"{SITE_URL}/gallery-concept",
+    f"{SITE_URL}/gallery-illustrations",
+    f"{SITE_URL}/gallery-specials",
+    f"{SITE_URL}/fanart",
+    f"{SITE_URL}/crossovers",
+    f"{SITE_URL}/memes",
 ]
 
+
+# ========================================
+# COMIC DATA HELPERS
+# ========================================
 
 def get_pgdata_block(js_text):
     start_marker = "const pgData = ["
@@ -151,8 +168,11 @@ Path(OUTPUT_FILE).write_text(sitemap, encoding="utf-8")
 # REPORT RESULTS
 # ========================================
 
-print("sitemap.xml generated successfully!")
+print("========================================")
+print("Nocturne 21 sitemap generated!")
+print("========================================")
 print(f"Static pages: {len(STATIC_URLS)}")
 print(f"Comic pages: {len(comic_pages)}")
 print(f"Journal entries: {len(journal_ids)}")
 print(f"Total URLs: {len(urls)}")
+print("========================================")
