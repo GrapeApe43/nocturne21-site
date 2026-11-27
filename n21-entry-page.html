@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nocturne 21 | Journal Entry</title>
+  <meta name="author" content="April Ferrero">
+  <meta name="robots" content="index, follow">
 
   <link href="css/style.css?v=7011" rel="stylesheet" type="text/css" media="all">
   <link href="/css/n21-journal-clean.css?v=101" rel="stylesheet" type="text/css" media="all">
@@ -93,7 +95,7 @@
       <div id="entry-content" class="n21journal-entry-body"></div>
       <div id="entry-comic-link"></div>
       <div id="entry-patreon-box"></div>
-      <div class="n21-entry-back-bottom"><a href="n21-journal.html" class="n21journal-backlink">← Back to Journal</a></div>
+      <div class="n21-entry-back-bottom"><a href="/n21-journal" class="n21journal-backlink">← Back to Journal</a></div>
     </article>
     <div id="commentsWrap" class="comments-shell"></div>
   </div>
@@ -111,11 +113,55 @@
       return params.get(name);
     }
     function findPostById(id) {
-      if (!Array.isArray(N21_JOURNAL_POSTS) || !id) return null;
+      if (typeof N21_JOURNAL_POSTS === "undefined" || !Array.isArray(N21_JOURNAL_POSTS) || !id) return null;
       return N21_JOURNAL_POSTS.find(post =>
         post.id && post.id.trim().toLowerCase() === id.trim().toLowerCase()
       ) || null;
     }
+    // Entry-specific SEO metadata, generated from the journal data.
+    function setEntryMeta(attribute, key, value) {
+      let tag = document.head.querySelector(`meta[${attribute}="${key}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute(attribute, key);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", value);
+    }
+
+    function updateEntrySEO(post) {
+      if (!post) {
+        setEntryMeta("name", "robots", "noindex, follow");
+        return;
+      }
+      const url = "https://nocturne21.com/n21-entry-page?id=" + encodeURIComponent(post.id);
+      const title = `${post.title} | Nocturne 21 Journal`;
+      const plainText = document.createElement("div");
+      plainText.innerHTML = post.content || "";
+      const description = (post.excerpt || plainText.textContent || "From the Nocturne 21 creator's journal.").replace(/\s+/g, " ").trim();
+      const summary = description.length > 160 ? description.slice(0, 157).trim() + "..." : description;
+      const image = new URL(post.thumbnail || post.thumb || "/img/promo-art.jpg", "https://nocturne21.com/").href;
+      let canonical = document.head.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.rel = "canonical";
+        document.head.appendChild(canonical);
+      }
+      canonical.href = url;
+      document.title = title;
+      setEntryMeta("name", "description", summary);
+      setEntryMeta("property", "og:type", "article");
+      setEntryMeta("property", "og:site_name", "Nocturne 21");
+      setEntryMeta("property", "og:title", title);
+      setEntryMeta("property", "og:description", summary);
+      setEntryMeta("property", "og:url", url);
+      setEntryMeta("property", "og:image", image);
+      setEntryMeta("name", "twitter:card", "summary_large_image");
+      setEntryMeta("name", "twitter:title", title);
+      setEntryMeta("name", "twitter:description", summary);
+      setEntryMeta("name", "twitter:image", image);
+    }
+
     function renderPost() {
       const entryTitle = document.getElementById("entry-title");
       const entryDate = document.getElementById("entry-date");
@@ -127,6 +173,7 @@
         entryDate.textContent = "";
         entryContent.innerHTML = "<p>No journal entry ID was provided.</p>";
         document.title = "Nocturne 21 | Entry Not Found";
+        updateEntrySEO(null);
         return null;
       }
       const post = findPostById(postId);
@@ -135,12 +182,13 @@
         entryDate.textContent = "";
         entryContent.innerHTML = "<p>Sorry, that journal entry could not be found.</p>";
         document.title = "Nocturne 21 | Entry Not Found";
+        updateEntrySEO(null);
         return null;
       }
       entryTitle.textContent = post.title;
       entryDate.textContent = formatDate(post.date);
       entryContent.innerHTML = post.content || "";
-      document.title = `Nocturne 21 | ${post.title}`;
+      updateEntrySEO(post);
 
       const entryComicLink = document.getElementById("entry-comic-link");
       if (entryComicLink) {
